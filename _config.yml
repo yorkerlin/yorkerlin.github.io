@@ -20,7 +20,7 @@ title                    : "Wu Lin"
 title_separator          : "-"
 name                     : "Wu Lin"
 description              : "Academic website for Wu Lin."
-url                      : "" #https://yorkerlin.github.io #http://127.0.0.1:4000  the base hostname & protocol for your site
+url                      : "" #http://127.0.0.1:4000  the base hostname & protocol for your site
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "yorkerlin/yorkerlin.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
