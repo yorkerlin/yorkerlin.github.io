@@ -1,6 +1,6 @@
 ## About Me
 
-PhD student working on computational *differential structures* such as exploiting geometric and algebraic structures. My research so far has mostly focused on *information geometry* and *manifold optimization*.
+PhD student working on computational *differential structures* such as geometric and algebraic structures. My research so far has mostly focused on *information geometry* and *manifold optimization*.
 
 
 For more details, see  my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en).
