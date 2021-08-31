@@ -102,7 +102,7 @@ analytics:
 author:
   name             : "Wu Lin"
   avatar           : "/img/biopic.jpg"# path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Research machine learning<br> Learning math and physics"
+  bio              : "Research machine learning<br> Learn math and physics"
   googlescholar    : "https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en"
   cv               : # "/files/cv.pdf"
   home             : "/" # null (default), "absolute or relative url to link to author home"
