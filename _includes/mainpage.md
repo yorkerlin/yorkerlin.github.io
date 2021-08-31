@@ -2,8 +2,9 @@
 
 PhD student working on computational *differential structures* such as geometric and algebraic structures. My research so far has mostly focused on *information geometry* and *manifold optimization*.
 
+For talks, see my [Youtube Channel](https://www.youtube.com/channel/UCkzT14GKLJC1EDjV-OzQffA).
 
-For more details, see  my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en).
+For publications, see my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en).
 
 ## Research Interests
 
