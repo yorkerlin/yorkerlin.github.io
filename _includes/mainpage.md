@@ -8,7 +8,7 @@ For publications, see my [Google Scholar](https://scholar.google.com/citations?u
 
 ## Research Interests
 
-I am interested in *geometric* methods in machine learning, including the development of optimization algorihms as well as design of approximate inference methods.
+I am interested in exploiting (hidden) structures and symmetries in machine learning, including the development of practical optimization algorihms and efficient posterior approximation methods.
 
 ## News
 
