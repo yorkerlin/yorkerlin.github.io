@@ -8,7 +8,7 @@ For publications, see my [Google Scholar](https://scholar.google.com/citations?u
 
 ## Research Interests
 
-I am interested in exploiting (hidden) structures and symmetries in machine learning, including the development of practical optimization algorihms and efficient posterior approximation methods.
+I am interested in exploiting (hidden) structures and symmetries in machine learning with a focus on practical and efficient methods for optimization and posterior inference.
 
 ## News
 
