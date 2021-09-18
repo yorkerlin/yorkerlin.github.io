@@ -2,7 +2,7 @@
 
 PhD student working on computational *differential structures* such as geometric and algebraic structures. My research so far has mostly focused on *information geometry* and *manifold optimization*.
 
-For talks, see my [Youtube Channel](https://www.youtube.com/channel/UCkzT14GKLJC1EDjV-OzQffA).
+For talks, see my [Youtube Channel](https://www.youtube.com/channel/UCkzT14GKLJC1EDjV-OzQffA) such as [generalized natural gradient descent](https://www.youtube.com/watch?v=nu1hT-LExFg) and [structured natural gradient descent](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s) for optimization and posterior inference.
 
 For publications, see my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en).
 
