@@ -39,14 +39,14 @@ comments:
     colorscheme          : # "light" (default), "dark"
 staticman:
   endpoint               : "https://staticman-yorkerlin.herokuapp.com/v3/entry/github/"
-  allowedFields          : ['name', 'email', 'url', 'message']
+  allowedFields          : #['name', 'email', 'url', 'message']
   branch                 : "main"
   commitMessage          : # "New comment."
   filename               : # comment-{@timestamp}
   format                 : # "yaml"
   moderation             : # true
   path                   : # "/_data/comments/{options.slug}" (default)
-  requiredFields         : ['name', 'email', 'message']
+  requiredFields         : # ['name', 'email', 'message']
   transforms:
     email                : # "md5"
   generatedFields:
@@ -280,7 +280,7 @@ defaults:
       layout: single
       author_profile: true
       share: true
-      comments: true
+      comments: false
   # _talks
   - scope:
       path: ""
