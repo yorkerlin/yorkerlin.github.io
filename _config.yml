@@ -40,7 +40,7 @@ comments:
 staticman:
   endpoint               : "https://staticman-yorkerlin.herokuapp.com/v3/entry/github/"
   allowedFields          : #['name', 'email', 'url', 'message']
-  branch                 : "main"
+  branch                 : "master"
   commitMessage          : # "New comment."
   filename               : # comment-{@timestamp}
   format                 : # "yaml"
