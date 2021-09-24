@@ -38,7 +38,7 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
 staticman:
-  endpoint               : "https://staticman-yorkerlin.herokuapp.com.herokuapp.com/v2/entry/"
+  endpoint               : "https://staticman-yorkerlin.herokuapp.com/v2/entry/"
   allowedFields          : #['name', 'email', 'url', 'message']
   branch                 : "master"
   commitMessage          : # "New comment."
