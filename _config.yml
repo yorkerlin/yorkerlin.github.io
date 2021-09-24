@@ -55,8 +55,9 @@ staticman:
       options:
         format           : # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 reCaptcha:
-  siteKey                :
-  secret                 :
+  siteKey                : "6Lf6m4gcAAAAAFAQND87jH7NA5IkNJPVVCR95u7X"
+  secret                 : "HAEETZeN+ZRL+/8bXg5nlJh1qJJb2DJPYOfBdlg4XnClrlmazgX4h9iWNO+12S0hbofiOUdMgJ1+JmWXgG/7SZKbMPNIKeN3N83z80syBgpxUCXJnc4GpzHQD+GgICAmagkJjbhNLyyesXljaenB804z9+ZPNl5nZdLtX/dMlB/zrzfNue3GQviqNSgmwCHvjiwKoXvolSuYwGyVeLQ7wfjNs+wclyEy74phrQS2uk67W9tdclft7Jczzg0lVOjdXSv0uP09y4CJeFdKbViV+Tuepv11YOr03w61kz6D1H61Rn1J1XR5RQDNwd7+PHbQN+Jwb25ArEMoiwVgmAtoUcjQWXJXim33+q6oG34l9UXCuyWztJa+yKF5+cgCNooDOLSNcHgPIV5BjjUiX7VrU+bRBq6XP1q71n1cx9FRZ0l6aFl9yLZ/jY0hl/urs78ZNXTeDalDKF3SxVUGNecYy8YrI7VsBMXipwY5//Hn2FhmvpnvDAuoFI1cRNZmMFq1y34UuUXP0vULwwv87PP84dkGTSoMNtPKTrbixff6xq+C8mNwZEf3U9Cwb6oJvOo+Q1fuxIc5enlPO5CgDb9X2Vf529VGI03SNT4kgoaEuJPpqKk7+xT5j7iDCSoZRu7qJy7X8tUstYEJ6E2piTef1KTG4VcaIUjQbmvzo3IDqd8="
+
 atom_feed:
   path                   : # blank (default) uses feed.xml
 search                   : # true, false (default)
