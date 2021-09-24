@@ -17,3 +17,14 @@ const banner = `/*!
 if (script.slice(0, 3) != "/**") {
   fs.writeFileSync(filename, banner + script);
 }
+
+var verifyCaptcha = function(response) {
+    if(response.length == 0) {
+    } else {
+        var _el=$('#comment-form-submit');
+        _el.removeAttr("disabled");
+        _el.addClass('button-primary dark-blue-bg');
+        _el.attr('aria-disabled', 'false');
+        _el.attr('type', 'submit');
+    }
+};
