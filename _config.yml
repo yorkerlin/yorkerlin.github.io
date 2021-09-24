@@ -134,6 +134,8 @@ author:
   email            : "yorker.lin@gmail.com"
   location         : "Vancouver, Canada"
 
+after_footer_scripts:
+  - /assets/js/custom.js
 
 # Reading Files
 include:
