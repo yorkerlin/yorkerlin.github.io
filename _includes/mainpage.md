@@ -8,6 +8,8 @@ For generalized natural-gradient methods, please see
 
 For publications, see my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en).
 
+I review papers from conferences (ICML, NeurIPS, ICLR, AI&Stats) and journals (JMLR, information geometry (Springer)).  
+
 ## Research Interests
 
 I am interested in exploiting (hidden) structures and symmetries in machine learning with a focus on practical and numerical methods for optimization and posterior inference.
