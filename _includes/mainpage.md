@@ -1,6 +1,6 @@
 ## About Me
 
-PhD student working on computational *differential structures* such as geometric and algebraic structures. My research so far has mostly focused on *information geometry* and *manifold optimization*.
+PhD student working on computational aspects of *differential structures* such as geometric and algebraic structures. My research so far has mostly focused on *information geometry* and *manifold optimization*.
 
 For generalized natural-gradient methods, please see 
 * Structured natural gradient descent: [talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [paper](https://arxiv.org/abs/2102.07405)
