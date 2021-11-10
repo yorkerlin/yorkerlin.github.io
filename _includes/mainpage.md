@@ -12,7 +12,7 @@ I review papers from conferences (ICML, NeurIPS, ICLR, AI&Stats), journals (JMLR
 
 ## Research Interests
 
-I am interested in exploiting (hidden) structures and symmetries in machine learning with a focus on practical and numerical methods for optimization and posterior inference.
+I am interested in exploiting (hidden) structures and symmetries in machine learning with a focus on practical and numerical methods for optimization and statistical inference.
 
 ## News
 
