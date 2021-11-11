@@ -3,8 +3,8 @@
 PhD student working on computational aspects of differential, geometric, and algebraic structures. My research so far has mostly focused on *information geometry* and *manifold optimization*.
 
 For generalized natural-gradient methods, please see 
-* Structured natural gradient descent: [talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [paper](https://arxiv.org/abs/2102.07405)
-* Riemannian gradient descent: [talk](https://www.youtube.com/watch?v=nu1hT-LExFg), [paper](https://arxiv.org/abs/2002.10060)
+* Structured natural gradient descent: [talk (video)](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [paper](https://arxiv.org/abs/2102.07405)
+* Riemannian gradient descent: [talk (video)](https://www.youtube.com/watch?v=nu1hT-LExFg), [paper](https://arxiv.org/abs/2002.10060)
 
 For more publications, see my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en) page.
 
