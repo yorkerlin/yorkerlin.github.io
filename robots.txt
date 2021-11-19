@@ -1,1 +1,1 @@
-Sitemap: /sitemap.xml
+Sitemap: yorkerlin.github.io/sitemap.xml
