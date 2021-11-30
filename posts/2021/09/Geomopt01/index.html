@@ -246,7 +246,7 @@ where <code class="language-plaintext highlighter-rouge">$ \mathrm{KL} [ q(z) ||
 \end{aligned} \tag{3}\label{3}
 $$</code>
 The <strong>natural evolution strategies</strong> is an algorithm that speeds up the search process by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$\pi(a|\tau)$</code>.
-In the context of reinforcement learning,  <code class="language-plaintext highlighter-rouge">$ \pi(a | \tau ) $</code> is known as the policy distribution to generate actions and the algorithm becomes the <strong>natural policy gradient</strong> method.</p>
+In the context of reinforcement learning,  <code class="language-plaintext highlighter-rouge">$ \pi(a | \tau ) $</code> is known as the policy distribution to generate actions and the natural evolution strategies is known as the <strong>natural policy gradient</strong> method.</p>
 </blockquote>
 
 <p>In these examples, we can express the objective function in terms of an expectation under a parametric family highlighted in red. 
@@ -280,8 +280,8 @@ By doing so, we can exploit the geometric structure of a parametric family denot
 </table>
 
 <p>We will mainly focus on the geometric structure of (finite-dimensional) parametric families.
-As an example of a parametric family, let’s consider a Gaussian family.
-The following figure illustrates four distributions in a 1-dimensional Gaussian family denoted by
+For example, let’s consider a 1-dimensional Gaussian family.
+The following figure illustrates four distributions in a Gaussian family denoted by
 <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |\mu,\sigma) \Big| \mu \in \mathcal{R}, \sigma&gt;0 \}$</code>, where <code class="language-plaintext highlighter-rouge">$ p(w | \tau ): = \mathcal{N}(w |\mu,\sigma) = \frac{1}{\sqrt{2\pi \sigma} } \exp [- \frac{(w-\mu)^2}{2\sigma} ] $</code>  and $\tau :=(\mu,\sigma) $.</p>
 
 <p><img src="/img/gauss1d.png" alt="Figure 2" title="Source:Wikipedia" /></p>
@@ -292,10 +292,13 @@ The following figure illustrates four distributions in a 1-dimensional Gaussian 
 We can not use an arbitrary differentiable parameterization to represent a geometric structure.
 This structure is also known as a manifold structure. A (smooth) manifold should be locally like a “flat” vector space. For example, consider the (curved) Earth surface. It looks like a (locally) flat space to us.</p>
 
+<p>The main reason of using an intrinsic parameterization is (1) the topology of a parameter space is nice. (2) The (exact) FIM is non-singular and well-defined.
+These properties will play a key role in <a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-in-an-intrinsic-parameter-space">Part IV</a> for natural-gradient descent.</p>
+
 <p>We require that a manifold should be locally like a vector space denoted by $ E $ under a parameterization.
-A local vector-space structure means that we can do local vector additions and local real scalar products.
+A local vector-space structure means that we can do <strong>local vector additions</strong> and <strong>local real scalar products</strong> (see <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a> for the details.)
 Intuitively, this vector-space structure means that a local (small) perturbation $ E $ at each point should not take out of the parameter space.
-Technically, the parameter space denoted by $\Omega_\tau$ should be an open set in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where <code class="language-plaintext highlighter-rouge">$K$</code> is the number of (scalar) parameters.
+Technically, the parameter space denoted by $\Omega_\tau$ should be an open set in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where <code class="language-plaintext highlighter-rouge">$K$</code> is the number of entries of a parameter array.
 As we will see soon, FIM is a <code class="language-plaintext highlighter-rouge">$K$</code>-by-<code class="language-plaintext highlighter-rouge">$K$</code> matrix.</p>
 
 <p>To illustrate this, let’s consider a unit circle in $\mathcal{R}^2$ as shown in the Figure.
@@ -304,7 +307,7 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 <p><img src="/img/circle.png" title="Source:Wikipedia" width="300" /></p>
 
 <blockquote>
-  <p>Parametrization 1:</p>
+  <p>Parametrization 1 (Intrinsic parameterization):</p>
 
   <p>A (local) parametrization at $ (0,1) $ highlighted in red for the circle is
 <code class="language-plaintext highlighter-rouge">$\{ (t,\sqrt{1-t^2}) | -h&lt;t&lt;h \} $</code>, where $h=0.1$. We use <strong>one</strong> (scalar) parameter in this parametrization.</p>
@@ -321,7 +324,7 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 </blockquote>
 
 <blockquote>
-  <p>Parametrization 2:</p>
+  <p>Parametrization 2 (Non-intrinsic parameterization):</p>
 
   <p>Let’s define a map <code class="language-plaintext highlighter-rouge">$f : [0,2\pi) \rightarrow \mathcal{S}^1 $</code> such that <code class="language-plaintext highlighter-rouge">$f(\theta) = (\sin \theta, \cos \theta ) $</code>, where we use $\mathcal{S}^1$ to denote the circle.</p>
 
@@ -330,37 +333,36 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
   <p>This map $f$ is bijective and smooth. However, the parameter space is not open in $\mathcal{R}$. Moreover, its inverse map $f^{-1}$ is <strong>not</strong> continous at point $(0,1) \in  \mathcal{S}^1$.</p>
 
   <p>This smoothness requirement of the inverse map is essential when it comes to reparametrization (A.K.A. parameter transformation). The requirement gives us a way to generate new intrinsic parameterizations. In other words, the Jacobian matrix is non-singular if the requirement is satisfied. Thus, we can safely use the chain rule and inverse function theorem.</p>
-
-  <p>We will <strong>not</strong> consider this parametrization as an intrinsic parameterization.</p>
 </blockquote>
 
 <blockquote>
-  <p>Parametrization 3:</p>
+  <p>Parametrization 3 (Non-intrinsic parameterization):</p>
 
   <p>The circle does <strong>not</strong> look like a flat space under the following parametrization
-<code class="language-plaintext highlighter-rouge">$\{ (x,y) | x^2+y^2=1, x,y \in \mathcal{R} \} $</code>. We use <strong>two</strong> (scalar) parameters in this parametrization.</p>
+<code class="language-plaintext highlighter-rouge">$\{ (x,y) | x^2+y^2=1, x,y \in \mathcal{R} \} $</code>. The number of entries in this parameter array is 2.</p>
 
-  <p>The reason is that we cannot find a small <strong>2-dimensional</strong> perturbation $E$ in the <strong>2-dimensional</strong> parameter space <code class="language-plaintext highlighter-rouge">$\Omega_{xy}=\{(x,y)|x^2+y^2=1 \} $</code> due to the constraint $x^2+y^2=1$. In other words, $\Omega_\tau$ is not open in $\mathcal{R}^2$.</p>
+  <p>The reason is that we cannot find a small <strong>2-dimensional</strong> perturbation $E$ in the <strong>2-dimensional</strong> parameter space <code class="language-plaintext highlighter-rouge">$\Omega_{\tau}=\{(x,y)|x^2+y^2=1 \} $</code> due to the constraint $x^2+y^2=1$. In other words, $\Omega_\tau$ is not open in $\mathcal{R}^2$.</p>
 
   <p><img src="/img/2d-perturbation.png" title="Fig" width="300" /></p>
-
-  <p>This parametrization is <strong>not</strong> an intrinsic parameterization.</p>
 </blockquote>
 
 <h1 id="intrinsic-parameterizations-for-parametric-families">Intrinsic Parameterizations for Parametric families</h1>
 <hr />
-<p>Now, we discuss how to choose a parameterization for a parametric family so that we can exploit the geometric structure induced by the Fisher-Rao metric.</p>
+<p>Now, we discuss how to choose a parameterization given a parametric family so that we can exploit the geometric structure induced by the Fisher-Rao metric.</p>
 
 <p>Given a parametric distribution family $ p(w|\tau) $ indexed by its parameter $\tau$, $ p(w|\tau) $ should be smooth w.r.t. $ \tau $ by considering $ w $ to be fixed.
-We say a parametrization is intrinsic if the following condition for parameter $\tau $ holds:</p>
+We say a parametrization is <strong>intrinsic</strong> if the following condition for parameter (array) $\tau $ holds:</p>
 
-<p><strong>Regularity Condition</strong>: The set of partial derivatives 
+<p><strong>Regularity Condition</strong>:  The set of partial derivatives 
 $ \{ \partial_{\tau_i} \log p(w|\tau) \}  $ should be linearly independent for any $ w $ and any $\tau$.</p>
 
-<p>We will use two examples to illustrate this condition.</p>
+<p>Note that this regularity condition implicitly assumes that the parameter space $\Omega_\tau$ is an open set in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where K is the number of entries in parameter array <code class="language-plaintext highlighter-rouge">$\tau$</code>.
+We will discuss more about this at <a href="#caveats-of-the-fisher-matrix-computation">here</a>.</p>
+
+<p>We will use the following examples to illustrate this condition.</p>
 
 <blockquote>
-  <p>Example 1:</p>
+  <p>Example 1 (Intrinsic parameterization):</p>
 
   <p>We will show that the regularity condition holds. Consider a 1-dimensional Gaussian family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |\mu,\sigma) \Big| \mu \in \mathcal{R}, \sigma&gt;0 \}$</code> with parameter $\tau = (\mu,\sigma) $.
 The partial derivatives are
@@ -383,7 +385,7 @@ the partial derivatives are linearly independent.</p>
 </blockquote>
 
 <blockquote>
-  <p>Example 2:</p>
+  <p>Example 2 (Non-intrinsic parameterization):</p>
 
   <p>We will show that the regularity condition fails. Consider a Bernoulli family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \frac{\pi_0}{\pi_0+\pi_1} + \mathcal{I}(w=1) \frac{\pi_1}{\pi_0+\pi_1} \Big| \pi_0&gt;0, \pi_1&gt;0  \}$</code> with parameter $\tau = (\pi_0,\pi_1) $, where function $ \mathcal{I}(\cdot) $ is the indicator function.
 The partial derivatives are</p>
@@ -405,14 +407,14 @@ the partial derivatives are linearly dependent.</p>
 </blockquote>
 
 <blockquote>
-  <p>Example 3:</p>
+  <p>Example 3 (Non-intrinsic parameterization):</p>
 
   <p>We will soon show that the  condition fails for Bernoulli family  <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) \pi_1  \Big| \pi_0&gt;0, \pi_1&gt;0, \pi_0+\pi_1=1  \}$</code> with parameter $\tau = (\pi_0,\pi_1)$. 
 The main reason is that the parameter space is not open in $\mathcal{R}^2$.</p>
 </blockquote>
 
 <blockquote>
-  <p>Example 4:</p>
+  <p>Example 4  (Intrinsic parameterization):</p>
 
   <p>We can show that the condition holds for Bernoulli family <code class="language-plaintext highlighter-rouge">$\{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) (1-\pi_0)  \Big| 0&lt;\pi_0&lt;1  \}$</code> with parameter $\tau = \pi_0$.</p>
 </blockquote>
@@ -425,33 +427,32 @@ Note that the metric could be ill-defined since the expectation may not exist.</
 
 <p>Given a parameterization,  we can express the metric in a matrix form as
 $ \mathbf{F}(\tau) := E_{p(w|\tau) }  [ \Big( \nabla_{\tau} \log p(w|\tau ) \Big)  \Big(\nabla_{\tau} \log (w|\tau) \Big)^T ]$,
-where $K$ is the length of parameter vector $\tau$ and 
+where $K$ is the number of entries of parameter array $\tau$ and 
 $ \nabla_{\tau} \log p(w|\tau ) := [ \partial_{\tau_1} \log p(w|\tau ), \cdots, \partial_{\tau_K} \log p(w|\tau ) ]^T  $ is a column vector.
-The matrix form is also known as the <strong>Fisher information matrix</strong>. Obviously, FIM depends on the choice of parameterizations.</p>
+The matrix form is also known as the <strong>Fisher information matrix</strong> (FIM). Obviously, FIM depends on the choice of parameterizations. In many cases,  we could also compute FIM as
+$ \mathbf{F}(\tau) := - E_{p(w|\tau) }  [  \nabla_{\tau}^2 \log p(w|\tau )  ]$.</p>
 
 <p>The regularity condition guarantees that FIM is non-singular if the matrix exists.
 The condition is also related to the model identification in maximum likelihood estimation.</p>
 
 <p>In the following discussion, we will assume the metric is well-defined.
-The Fisher-Rao metric is a valid Riemannian metric since the corresponding FIM is positive definite everywhere in an <strong>intrinsic</strong> parameter space.
-The Fisher-Rao metric is special since it is closely related to  maximum likelihood estimation, central limit theorem, and principle of maximum entropy.</p>
+In such cases, the Fisher-Rao metric is a valid Riemannian metric since the corresponding FIM is positive definite everywhere in an <strong>intrinsic</strong> parameter space.
+The Fisher-Rao metric is <strong>special</strong> since it is closely related to  maximum likelihood estimation, central limit theorem, and principle of maximum entropy.</p>
 
-<p><span style="color:red"><strong>Warning</strong></span>: an arbitrary Riemannian metric often is NOT useful for applications in machine learning.</p>
+<p><span style="color:red"><strong>Warning</strong></span>: An arbitrary Riemannian metric often is NOT useful for applications in machine learning.</p>
 
 <p>Recall that when we perform a parameter transformation, we require both the transformation map and its inverse map to be smooth.
 If this smoothness requirement is satisfied, we can obtain a new intrinsic parameterization via the transformation.
-In Part II,
+In <a href="/posts/2021/11/Geomopt03/#Pparameter-transform-and-invariance">Part III</a>,
 we will show FIM is also positive definite under this new intrinsic parameterization.</p>
 
-<p>In many cases, we could also compute FIM as
-$ \mathbf{F}(\tau) := - E_{p(w|\tau) }  [  \nabla_{\tau}^2 \log p(w|\tau )  ]$.</p>
-
-<h2 id="caveats-of-the-fisher-matrix-computation">Caveats of the Fisher matrix computation</h2>
+<h1 id="caveats-of-the-fisher-matrix-computation">Caveats of the Fisher matrix computation</h1>
+<hr />
 <p>There are some caveats when it comes to the Fisher matrix computation. In particular, the regularity condition should be satisfied.
 It is possible to define FIM under a non-intrinstic parameterization. However, FIM often is singular or ill-defined under a non-intrinstic  parameterization as shown below.</p>
 
 <blockquote>
-  <p>Example 1:</p>
+  <p>Example 1 (Ill-defined FIM):</p>
 
   <p>Consider Bernoulli family  $ \{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) \pi_1  \Big| \pi_0&gt;0, \pi_1&gt;0, \pi_0+\pi_1=1  \}$ with parameter $\tau = (\pi_0,\pi_1)$.
 The following computation is not correct. Do you make similar mistakes like this?</p>
@@ -485,28 +486,22 @@ In other words, the above Fisher matrix computation is not correct since $ \nabl
 </blockquote>
 
 <blockquote>
-  <p>Example 2:</p>
+  <p>Example 2  (Singular FIM):</p>
 
   <p>Consider Bernoulli family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \frac{\pi_0}{\pi_0+\pi_1} + \mathcal{I}(w=1) \frac{\pi_1}{\pi_0+\pi_1} \Big| \pi_0&gt;0, \pi_1&gt;0  \}$</code> with parameter $\tau = (\pi_0,\pi_1) $.</p>
 
   <p>We can show that FIM under this  parameterization is singular.</p>
-</blockquote>
 
-<blockquote>
-  <p>Example 3:</p>
-
-  <p>Consider Bernoulli family <code class="language-plaintext highlighter-rouge">$\{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) (1-\pi_0)  \Big| 0&lt;\pi_0&lt;1  \}$</code> with parameter <code class="language-plaintext highlighter-rouge">$\tau = \pi_0$</code>.</p>
-
-  <p>We can show that FIM under this  parameterization is non-singular.</p>
+  <p>A Bernoulli family with a non-singular FIM can be defined as <code class="language-plaintext highlighter-rouge">$\{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) (1-\pi_0)  \Big| 0&lt;\pi_0&lt;1  \}$</code> with parameter <code class="language-plaintext highlighter-rouge">$\tau = \pi_0$</code>.</p>
 </blockquote>
 
 <h1 id="manifold-dimension">Manifold Dimension</h1>
 <hr />
-<p>We can define the dimension of a manifold by using the dimension of an intrinsic parametrization. Formally, we can show that any intrinsic parametrization of a manifold has the same degrees of freedom. 
+<p>We can define the dimension of a manifold by using the dimension of an intrinsic parametrization. Mathematically, we can show that any intrinsic parametrization of a manifold has the same degrees of freedom.
 We now illustrate this by examples.</p>
 
 <blockquote>
-  <p>Example 1:</p>
+  <p>Example 1 (Manifold):</p>
 
   <p>The unit circle dicussed before is a 1-dimensional manifold.</p>
 
@@ -514,7 +509,7 @@ We now illustrate this by examples.</p>
 </blockquote>
 
 <blockquote>
-  <p>Example 2:</p>
+  <p>Example 2 (Manifold):</p>
 
   <p>The open unit ball is a 2-dimensional manifold.</p>
 
@@ -522,19 +517,19 @@ We now illustrate this by examples.</p>
 </blockquote>
 
 <blockquote>
-  <p>Example 3:</p>
+  <p>Example 3 (Non-manifold):</p>
 
   <p>The closed unit ball is <strong>not</strong> a manifold.</p>
 
   <p><img src="/img/closed-ball.png" alt="Source:Wikipedia" width="200" /></p>
 
-  <p>The main reason is that its boundary  does not have the same degrees of freedom as its interior.</p>
+  <p>The main reason is that its boundary does not have the same degrees of freedom as its interior.</p>
 
-  <p>The closed ball is indeed a manifold with (closed) boundary. We will not consider this case in these blog posts.</p>
+  <p>The closed ball is indeed a manifold with (closed) boundary. We will not consider such cases in these blog posts.</p>
 </blockquote>
 
 <blockquote>
-  <p>Example 4:</p>
+  <p>Example 4 (Stastical manifold):</p>
 
   <p>Consider a 1-dimensional  Gaussian family.
 We specify an intrinsic parameterization $\mathbf{\tau}$  as <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |\mu,\sigma) \Big| \mu \in \mathcal{R}, \sigma&gt;0 \}$</code> with <code class="language-plaintext highlighter-rouge">$\tau = (\mu,\sigma) $</code>. <br /></p>
@@ -543,13 +538,13 @@ We specify an intrinsic parameterization $\mathbf{\tau}$  as <code class="langua
 </blockquote>
 
 <blockquote>
-  <p>Example 5:</p>
+  <p>Example 5 (Stastical manifold):</p>
 
   <p>Consider a $d$-dimensional Gaussian family with zero mean.
-We specify an intrinsic parameterization $\mathbf{\tau}$  as <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{\Sigma}) \Big| \mathrm{MatH}(\tau) = \mathbf{\Sigma}   \succ \mathbf{0} \}$</code> with <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{\Sigma})$</code>, where <code class="language-plaintext highlighter-rouge">$\tau$</code> is a $\frac{d(d+1)}{2}$-dim vector and map $\mathrm{MatH}()$ is the inverse map of the half-vectorization function <code class="language-plaintext highlighter-rouge">$\mathrm{vech}()$</code>. 
-The half-vectorization, <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{\Sigma})$</code>, of a symmetric <code class="language-plaintext highlighter-rouge">$d \times d$</code> matrix <code class="language-plaintext highlighter-rouge">$\mathbf{\Sigma}$</code> is the <code class="language-plaintext highlighter-rouge">$\frac{d(d + 1)}{2}$</code>-dim  vector obtained by vectorizing only the lower triangular part of <code class="language-plaintext highlighter-rouge">$\mathbf{\Sigma}$</code>.</p>
+We specify an intrinsic parameterization $\mathbf{\tau}$  as <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{\Sigma}) \Big| \mathrm{MatH}(\tau) = \mathbf{\Sigma}   \succ \mathbf{0} \}$</code> with <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{\Sigma})$</code>, where <code class="language-plaintext highlighter-rouge">$\tau$</code> is a $\frac{d(d+1)}{2}$-dim array and map $\mathrm{MatH}()$ is the inverse map of the <a href="https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vectorization">half-vectorization function</a> <code class="language-plaintext highlighter-rouge">$\mathrm{vech}()$</code>. 
+The half-vectorization of a symmetric <code class="language-plaintext highlighter-rouge">$d \times d$</code> matrix <code class="language-plaintext highlighter-rouge">$\mathbf{\Sigma}$</code> denoted by <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{\Sigma})$</code> is a <code class="language-plaintext highlighter-rouge">$\frac{d(d + 1)}{2}$</code>-dim array obtained by vectorizing only the lower triangular part of <code class="language-plaintext highlighter-rouge">$\mathbf{\Sigma}$</code>.</p>
 
-  <p>This Gaussian family is a $\frac{d(d+1)}{2}$-dimensional manifold. We will disucss more about this family in Part II.</p>
+  <p>This Gaussian family is a $\frac{d(d+1)}{2}$-dimensional manifold. We will disucss more about this family in <a href="/posts/2021/10/Geomopt02/#riemannian-steepest-direction">Part II</a>.</p>
 </blockquote>
 
 
@@ -630,7 +625,7 @@ The half-vectorization, <code class="language-plaintext highlighter-rouge">$\mat
       <a href="#" class="pagination--pager disabled">Previous</a>
     
     
-      <a href="/posts/2021/10/Geomopt02/" class="pagination--pager" title="Part II: the Space of Natural-Gradients at one Point
+      <a href="/posts/2021/10/Geomopt02/" class="pagination--pager" title="Part II: Natural-Gradients Evaluted at one Point
 ">Next</a>
     
   </nav>
@@ -711,7 +706,7 @@ We will also discuss why standard Euclidean gradients are NOT inva...</p>
     
     <h2 class="archive__item-title" itemprop="headline">
       
-        <a href="/posts/2021/10/Geomopt02/" rel="permalink">Part II: the Space of Natural-Gradients at one Point
+        <a href="/posts/2021/10/Geomopt02/" rel="permalink">Part II: Natural-Gradients Evaluted at one Point
 </a>
       
     </h2>
@@ -721,12 +716,12 @@ We will also discuss why standard Euclidean gradients are NOT inva...</p>
 
 
 
-  10 minute read
+  11 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Goal
 This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.
-The space of nat...</p>
+The main propose...</p>
   </article>
 </div>
         

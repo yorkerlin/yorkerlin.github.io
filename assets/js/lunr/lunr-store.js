@@ -54,8 +54,8 @@ var store = [{
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/09/Geomopt01/",
         "teaser":null},{
-        "title": "Part II: the Space of Natural-Gradients at one Point",
-        "excerpt":"Goal This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The space of natural-gradients evaluated at the same point is called a tangent space at that point in a manifold. We will give an informal introduction with a focus on high...","categories": [],
+        "title": "Part II: Natural-Gradients Evaluted at one Point",
+        "excerpt":"Goal This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to compute/define a natural-gradient.The space of natural-gradients evaluated at the same point is called a tangent space at that point. We...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/10/Geomopt02/",
         "teaser":null},{
