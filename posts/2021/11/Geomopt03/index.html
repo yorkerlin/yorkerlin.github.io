@@ -501,7 +501,7 @@ This also implies that Euclidean gradient descent is not invariant under a param
 \begin{aligned}
 \hat{\mathbf{F}}_{\tau} (\tau_0) = \underbrace{\mathbf{J}^T}_{  \frac{ \partial \lambda^i(\tau_0) }{ \partial \tau^k }  } \hat{\mathbf{F}}_{\lambda} (\lambda_0) \underbrace{\mathbf{J}}_{  \frac{ \partial \lambda^l(\tau_0) }{ \partial \tau^j }  } 
 \end{aligned}
-$$</code> where <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{F}}_\tau :=\nabla_\tau^2 f_\tau(\mathbf{\tau}) =\nabla_\tau^2 [ f_\lambda({\lambda}(\tau)) ]$</code> and $f_\tau(\mathbf{\tau}) =  f_\lambda({\lambda}(\tau))$.</p>
+$$</code> where <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{F}}_\tau(\tau_0) :=\nabla_\tau^2 f_\tau(\mathbf{\tau_0}) =\nabla_\tau^2 [ f_\lambda({\lambda}(\tau_0)) ]$</code> and $f_\tau(\mathbf{\tau}) =  f_\lambda({\lambda}(\tau))$.</p>
 
 <p>In this case, using the result of the <a href="/posts/2021/10/Geomopt02/#riemannian-steepest-direction">Riemannian steepest direction</a>, it is easy to show that
 the Riemannian steepest direction with this metric is</p>
@@ -509,7 +509,7 @@ the Riemannian steepest direction with this metric is</p>
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{v}_{\text{opt}}= -\frac{ \hat{\mathbf{F}}_\tau^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0) }{\| \hat{\mathbf{F}}_\tau^{-1}(\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_\hat{F}}
-=  -\frac{  [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} \nabla_\tau f(\mathbf{\tau}_0) }{\| [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} \nabla_\tau f(\mathbf{\tau}_0) \|_\hat{F}} 
+=  -\frac{  [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} \nabla_\tau f({\tau}_0) }{\| [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} \nabla_\tau f(\mathbf{\tau}_0) \|_\hat{F}} 
 \end{aligned}
 $$</code> This Riemannian steepest direction is exactly the normalized gradient direction in Newton’s method, where we use the weighted inner product to define the norm.</p>
 
