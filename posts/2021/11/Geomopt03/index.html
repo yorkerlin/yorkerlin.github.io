@@ -504,20 +504,20 @@ This also implies that Euclidean gradient descent is not invariant under a param
 $$</code> where <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{F}}_\tau :=\nabla_\tau^2 f_\tau(\mathbf{\tau}) =\nabla_\tau^2 [ f_\lambda({\lambda}(\tau)) ]$</code> and $f_\tau(\mathbf{\tau}) =  f_\lambda({\lambda}(\tau))$.</p>
 
 <p>In this case, using the result of the <a href="/posts/2021/10/Geomopt02/#riemannian-steepest-direction">Riemannian steepest direction</a>, it is easy to show that
-the Riemannian steepest direction under this metric is</p>
+the Riemannian steepest direction with this metric is</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{v}_{\text{opt}}= -\frac{ \hat{\mathbf{F}}_\tau^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0) }{\| \hat{\mathbf{F}}_\tau^{-1}(\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_\hat{F}}
 =  -\frac{  [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} \nabla_\tau f(\mathbf{\tau}_0) }{\| [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} (\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_\hat{F}} 
 \end{aligned}
-$$</code> which is exactly the normalized gradient direction in Newton’s method.</p>
+$$</code> This Riemannian steepest direction is exactly the normalized gradient direction in Newton’s method, where we use the weighted inner product to define the norm.</p>
 
 <p>It is obvious that the gradient direction in Newton’s method is invariant since it is a speical case of the Riemannian steepest direction.
 This invariance property also implies that Newton’s method is linearly invariant.</p>
 
 <p>Readers may wonder why not use the Newton metric instead of the Fisher-Rao metric.  Key reasons are the Fisher-Rao metric is defined via the manifold while this Newton metric is defined via the loss function.
-As we will discuss more in Part V, computing Riemannians gradient with this Newton  metric are often more computaitonally intensive compared to the Fisher-Rao metric. Moreover, Riemannians gradient with this Newton  metric are dependent on the choice of a loss function (see more about this in Part V).</p>
+As we will discuss more in Part V, computing Riemannians gradient with this Newton  metric are often more computaitonally intensive compared to the Fisher-Rao metric. Moreover, Riemannian gradients with this Newton  metric are dependent on the convexity of the loss function (see more about this in Part V).</p>
 
 
         
