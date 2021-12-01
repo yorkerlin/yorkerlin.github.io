@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Part I: Manifolds with the Fisher-Rao Metric - Wu Lin</title>
-<meta name="description" content="GoalThis blog post should help readers to understand the Fisher-Rao metric also known as the Fisher information matrix (FIM).  FIM plays an essential role in statistics and machine learning  FIM induces a (Riemannian) geometric structure of a (parametric) distribution family">
+<meta name="description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that,  The FIM plays an essential role in statistics and machine learning  For a parametric distribution, it induces a Riemannian geometric-structure">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="/posts/2021/09/Geomopt01/">
 
 
-  <meta property="og:description" content="GoalThis blog post should help readers to understand the Fisher-Rao metric also known as the Fisher information matrix (FIM).  FIM plays an essential role in statistics and machine learning  FIM induces a (Riemannian) geometric structure of a (parametric) distribution family">
+  <meta property="og:description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that,  The FIM plays an essential role in statistics and machine learning  For a parametric distribution, it induces a Riemannian geometric-structure">
 
 
 
@@ -167,7 +167,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Part I: Manifolds with the Fisher-Rao Metric">
-    <meta itemprop="description" content="GoalThis blog post should help readers to understand the Fisher-Rao metric also known as the Fisher information matrix (FIM).  FIM plays an essential role in statistics and machine learning  FIM induces a (Riemannian) geometric structure of a (parametric) distribution family">
+    <meta itemprop="description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that,  The FIM plays an essential role in statistics and machine learning  For a parametric distribution, it induces a Riemannian geometric-structure">
     <meta itemprop="datePublished" content="September 06, 2021">
     
 
@@ -191,19 +191,20 @@
       <section class="page__content" itemprop="text">
         
         <h2 id="goal">Goal</h2>
-<p>This blog post should help readers to understand the Fisher-Rao metric also known as the Fisher information matrix (FIM).</p>
+<p>This blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that,</p>
 <ul>
-  <li>FIM plays an essential role in statistics and machine learning</li>
-  <li>FIM induces a (Riemannian) geometric structure of a (parametric) distribution family</li>
+  <li>The FIM plays an essential role in statistics and machine learning</li>
+  <li>For a parametric distribution, it induces a <strong>Riemannian</strong> geometric-structure</li>
 </ul>
 
-<p>We will give an informal introduction with a focus on intuitions.</p>
+<p>The discussion here is informal and focuses on more on intuitions, rather than rigor.</p>
 
 <h1 id="motivation">Motivation</h1>
 <hr />
-<p>Probabilistic modeling is a popular approach in machine learning and often relies on (parametric) families of probability distributions.
-In such cases, we can exploit the (hidden) geometric structure induced by the Fisher-Rao metric. 
-Below, we give some examples of  probability  distributions that naturally arise in machine learning.</p>
+<p>Let’s start with some motivation: why should we care about geometric structures of probability distributions?
+Probability distributions form the backbone of majority of machine-learning approaches, for example, any approach that use probabilistic modeling is built upon such distributions. 
+For all such cases, we can exploit the underlying geometric structure, induced by the Fisher-Rao metric, which is the topic of this blog. 
+Below, we give some common examples from machine learning, where probability  distributions naturally arise.</p>
 
 <blockquote>
   <p>Least Square (Empirical Risk Minimization):</p>
@@ -211,13 +212,13 @@ Below, we give some examples of  probability  distributions that naturally arise
   <p>Given N input-output pairs <code class="language-plaintext highlighter-rouge">$(x_i,y_i)$</code>,  the least-square loss can be viewed as expectation under a probability distribution.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-\min_{\tau} \frac{1}{2n} \sum_{i=1}^{n}   (y_i-x_i^T\tau)^2   + \mathrm{Constant} &amp; = - \frac{1}{n}  \sum_{i=1}^{n}  \log \mathcal{N}(y_i | x_i^T\tau,1) \\
-&amp; \approx - E_{ \color{red} {p(x,y | \tau)} } [ \log p(x,y | \tau) ] 
+\min_{\tau} \frac{1}{2n} \sum_{i=1}^{n}   (y_i-x_i^T\tau)^2  &amp; = \max_{\tau} \frac{1}{n}  \sum_{i=1}^{n}  \log \mathcal{N}(y_i | x_i^T\tau,1) \\
+&amp; \approx \int [ \log p(x,y | \tau) ]  d p(x,y | \tau)
 \end{aligned} \tag{1}\label{1}
 $$</code>
-where we assume <code class="language-plaintext highlighter-rouge">$(x_i,y_i)$</code> is generated by a distribution <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) $</code> and  <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathcal{N}(y | x^T\tau,1) p(x) $</code>. <code class="language-plaintext highlighter-rouge">$ \mathcal{N} (y | x^T\tau,1) $</code>  is a Gaussian distribution with mean <code class="language-plaintext highlighter-rouge">$ x^T\tau $</code> and variance <code class="language-plaintext highlighter-rouge">$ 1 $</code>.</p>
+Here <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathcal{N}(y | x^T\tau,1) p(x) $</code> is assumed to be the data-generating distribution, and the least-square loss is the finite-sample approximation of the expectation. The normal distribution is denoted by <code class="language-plaintext highlighter-rouge">$ \mathcal{N} (y | x^T\tau,1) $</code> with mean <code class="language-plaintext highlighter-rouge">$ x^T\tau $</code> and variance <code class="language-plaintext highlighter-rouge">$ 1 $</code>.</p>
 
-  <p>Algorithms such as  <strong>Fisher scoring</strong> and <strong>(emprical) natural-gradient descent</strong> can be seen as methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code> induced by the Fisher-Rao metric.</p>
+  <p>Algorithms such as  <strong>Fisher scoring</strong> and <strong>(emprical) natural-gradient descent</strong> are commonly used methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code>.</p>
 </blockquote>
 
 <!--- \stackrel{\eqref{1}} (Eq. `$\eqref{1}$`) --->
@@ -660,10 +661,10 @@ The half-vectorization of a symmetric <code class="language-plaintext highlighte
 
 
 
-  6 minute read
+  10 minute read
 </p>
     
-    <p class="archive__item-excerpt" itemprop="description">Working in Progress (incomplete)
+    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
 
 </p>
   </article>
@@ -688,12 +689,12 @@ The half-vectorization of a symmetric <code class="language-plaintext highlighte
 
 
 
-  8 minute read
+  10 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Goal
 This blog post should help readers to understand the invariance of natural-gradients.
-We will also discuss why standard Euclidean gradients are NOT inva...</p>
+We will also discuss why the Euclidean steepest direction is NOT i...</p>
   </article>
 </div>
         

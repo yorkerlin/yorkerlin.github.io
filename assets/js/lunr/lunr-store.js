@@ -50,7 +50,7 @@ var store = [{
         "url": "/news/news/",
         "teaser":null},{
         "title": "Part I: Manifolds with the Fisher-Rao Metric",
-        "excerpt":"Goal This blog post should help readers to understand the Fisher-Rao metric also known as the Fisher information matrix (FIM). FIM plays an essential role in statistics and machine learning FIM induces a (Riemannian) geometric structure of a (parametric) distribution familyWe will give an informal introduction with a focus on...","categories": [],
+        "excerpt":"Goal This blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that, The FIM plays an essential role in statistics and machine learning For a parametric distribution, it induces a Riemannian geometric-structureThe discussion here is informal and focuses on...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/09/Geomopt01/",
         "teaser":null},{
@@ -60,12 +60,12 @@ var store = [{
         "url": "/posts/2021/10/Geomopt02/",
         "teaser":null},{
         "title": "Part III: Invariance of Natural-Gradients",
-        "excerpt":"Goal This blog post should help readers to understand the invariance of natural-gradients.We will also discuss why standard Euclidean gradients are NOT invariant. We will give an informal introduction with a focus on high level of ideas. Parameter Transform and Invariance In Part II, we show that a Riemannian gradient...","categories": [],
+        "excerpt":"Goal This blog post should help readers to understand the invariance of natural-gradients.We will also discuss why the Euclidean steepest direction is NOT invariant while the gradient direction in Newton’s method is invariant. We will give an informal introduction with a focus on high level of ideas. Parameter Transformation and...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/11/Geomopt03/",
         "teaser":null},{
         "title": "Part IV: Natural and Riemannian  Gradient Descent",
-        "excerpt":"Working in Progress (incomplete) Goal This blog post should help readers to understand natural-gradient descent and Riemannian gradient descent. We will give an informal introduction with a focus on high level of ideas. Two kinds of Spaces As we disucssed in Part II, the parameter space $\\Omega_\\tau$ and the tangent...","categories": [],
+        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should help readers to understand natural-gradient descent and Riemannian gradient descent. We will give an informal introduction with a focus on high level of ideas. Two kinds of Spaces As we disucssed in Part II, the parameter space $\\Omega_\\tau$ and the...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/11/Geomopt04/",
         "teaser":null},{
