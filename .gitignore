@@ -1,3 +1,11 @@
 _site/
+.bundle/
 *.swp
+.sass-cache
+.vagrant
+.jekyll-cache
+
+_drafts
+*.gitignored
+*-gitignored.md
 
