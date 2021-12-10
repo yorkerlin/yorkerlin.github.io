@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Part III: Invariance of Natural-Gradients - Wu Lin</title>
-<meta name="description" content="GoalThis blog post should help readers to understand the invariance of natural-gradients.We will also discuss why the Euclidean steepest direction is NOT invariant while the gradient direction in Newton’s method is invariant.">
+<meta name="description" content="Warning: working in Progress (incomplete)">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="/posts/2021/11/Geomopt03/">
 
 
-  <meta property="og:description" content="GoalThis blog post should help readers to understand the invariance of natural-gradients.We will also discuss why the Euclidean steepest direction is NOT invariant while the gradient direction in Newton’s method is invariant.">
+  <meta property="og:description" content="Warning: working in Progress (incomplete)">
 
 
 
@@ -167,7 +167,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Part III: Invariance of Natural-Gradients">
-    <meta itemprop="description" content="GoalThis blog post should help readers to understand the invariance of natural-gradients.We will also discuss why the Euclidean steepest direction is NOT invariant while the gradient direction in Newton’s method is invariant.">
+    <meta itemprop="description" content="Warning: working in Progress (incomplete)">
     <meta itemprop="datePublished" content="November 02, 2021">
     
 
@@ -182,7 +182,7 @@
 
 
 
-  10 minute read
+  8 minute read
 </p>
           
         </header>
@@ -190,7 +190,9 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="goal">Goal</h2>
+        <p>Warning: working in Progress (incomplete)</p>
+
+<h2 id="goal">Goal</h2>
 <p>This blog post should help readers to understand the invariance of natural-gradients.
 We will also discuss why the Euclidean steepest direction is NOT invariant while the gradient direction in Newton’s method is invariant.</p>
 
@@ -488,37 +490,6 @@ $$</code></p>
 <p>In summary, the Euclidean steepest direction (which is a normalized Euclidean gradient) is NOT transformed according to the transformation rule for a Euclidean gradient.
 This also implies that Euclidean gradient descent is not invariant under a parameter transformation. We will cover more about this in Part IV.</p>
 
-<h1 id="gradient-direction-in-newtons-method-is-invariant">Gradient Direction in Newton’s Method is Invariant</h1>
-<hr />
-<p>Let’s consider the following optimization problem  <code class="language-plaintext highlighter-rouge">$\min_{\tau \in \Omega_\tau } f_\tau(\mathbf{\tau})$</code> under an intrinsic parameterization $\mathbf{\tau}$.</p>
-
-<p>For Newton’s method, we have to assume the loss function <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau})$</code> to be stronly convex so that the Hessian <code class="language-plaintext highlighter-rouge">$\nabla_\tau^2 f_\tau(\mathbf{\tau})$</code> is positive-definite everywhere in <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>.</p>
-
-<p>The key observation is that we can use the Hessian to define a new Riemannian metric <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{F}}_\tau:=\nabla_\tau^2 f_\tau(\mathbf{\tau})$</code> under parametrization $\tau$. Note that  <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{F}}_\tau$</code> in general is not the same as the Fisher-Rao metric <code class="language-plaintext highlighter-rouge">${\mathbf{F}}_\tau$</code> .</p>
-
-<p>We can show that the new metric <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{F}}_\tau$</code> follows the same parameter transformation rule as the Fisher-Rao metric as shown below.
-<code class="language-plaintext highlighter-rouge">$$
-\begin{aligned}
-\hat{\mathbf{F}}_{\tau} (\tau_0) = \underbrace{\mathbf{J}^T}_{  \frac{ \partial \lambda^i(\tau_0) }{ \partial \tau^k }  } \hat{\mathbf{F}}_{\lambda} (\lambda_0) \underbrace{\mathbf{J}}_{  \frac{ \partial \lambda^l(\tau_0) }{ \partial \tau^j }  } 
-\end{aligned}
-$$</code> where <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{F}}_\tau(\tau_0) :=\nabla_\tau^2 f_\tau(\mathbf{\tau_0}) =\nabla_\tau^2 [ f_\lambda({\lambda}(\tau_0)) ]$</code> and $f_\tau(\mathbf{\tau}) =  f_\lambda({\lambda}(\tau))$.</p>
-
-<p>In this case, using the result of the <a href="/posts/2021/10/Geomopt02/#riemannian-steepest-direction">Riemannian steepest direction</a>, it is easy to show that
-the Riemannian steepest direction with this metric is</p>
-
-<p><code class="language-plaintext highlighter-rouge">$$
-\begin{aligned}
-\mathbf{v}_{\text{opt}}= -\frac{ \hat{\mathbf{F}}_\tau^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0) }{\| \hat{\mathbf{F}}_\tau^{-1}(\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_\hat{F}}
-=  -\frac{  [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} \nabla_\tau f({\tau}_0) }{\| [\nabla_\tau^2 f_\tau(\tau_0)]^{-1} \nabla_\tau f(\mathbf{\tau}_0) \|_\hat{F}} 
-\end{aligned}
-$$</code> This Riemannian steepest direction is exactly the normalized gradient direction in Newton’s method, where we use the weighted inner product to define the norm.</p>
-
-<p>It is obvious that the gradient direction in Newton’s method is invariant since it is a speical case of the Riemannian steepest direction.
-This invariance property also implies that Newton’s method is linearly invariant.</p>
-
-<p>Readers may wonder why not use the Newton metric instead of the Fisher-Rao metric.  Key reasons are the Fisher-Rao metric is defined via the manifold while this Newton metric is defined via the loss function.
-As we will discuss more in Part V, computing Riemannians gradient with this Newton  metric are often more computaitonally intensive compared to the Fisher-Rao metric. Moreover, Riemannian gradients with this Newton  metric are dependent on the convexity of the loss function (see more about this in Part V).</p>
-
 
         
       </section>
@@ -696,6 +667,35 @@ The main propose...</p>
 This blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that,
 
   The FIM plays an ess...</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2021/07/ICML/" rel="permalink">Structured Natural Gradient Descent (ICML 2021)
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  9 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">More about this work [1]: (Youtube) talk, ICML paper, workshop paper,
+poster
+
+</p>
   </article>
 </div>
         
