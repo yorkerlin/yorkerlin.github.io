@@ -267,12 +267,14 @@ Given an intrinsic parametrization $\tau$ containing the point, we consider the 
   </tbody>
 </table>
 
+<h2 id="transformation-rules-for-natural-gradients-and-euclidean-gradients">Transformation Rules for Natural Gradients and Euclidean Gradients</h2>
+
 <p>Intuitively, the following identity should hold for any two (intrinsic) parametrizations $\tau$ and $\lambda$.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 h(\gamma(t)) = h_\tau(\gamma_\tau(t)) = h_\lambda(\gamma_\lambda(t))
 \end{aligned}
-$$</code> where we consider $t$ is fixed.</p>
+$$</code> where we consider $t$ to be fixed.</p>
 
 <p>Technically speaking,  domain <code class="language-plaintext highlighter-rouge">$\mathbf{I}_\tau$</code> of curve <code class="language-plaintext highlighter-rouge">$\gamma_\tau(t)$</code> and  domain <code class="language-plaintext highlighter-rouge">$\mathbf{I}_\lambda$</code> of curve <code class="language-plaintext highlighter-rouge">$\gamma_\lambda(t)$</code> may be different. However, both domains are open intervals containing 0 since both <code class="language-plaintext highlighter-rouge">$\gamma_\tau(0)=\tau_0$</code> and <code class="language-plaintext highlighter-rouge">$\gamma_\lambda(0)=\lambda_0$</code>  are parametric representations of the same point $\mathbf{x}_0$.</p>
 
@@ -346,7 +348,7 @@ $$</code></p>
 \tag{4}\label{4}
 $$</code></p>
 
-<p>Let $J_{ki}:=\frac{\partial \lambda^k(\tau) }{ \partial \tau^i }$ denotes the $(k,i)$ entry of the Jacobian matrix. We illustrate our matrix notation in a 2D case as below.</p>
+<p>Let <code class="language-plaintext highlighter-rouge">$J_{ki}:=\frac{\partial \lambda^k(\tau) }{ \partial \tau^i }$</code> denotes the $(k,i)$ entry of the Jacobian matrix. We illustrate our matrix notation in a 2D case as below.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -378,8 +380,9 @@ $$</code></p>
 \begin{aligned}
 \mathbf{g}_\tau^T =  \mathbf{g}_\lambda^T \mathbf{J}
 \end{aligned}\tag{6}\label{6},
-$$</code>
-where <span style="color:red"><strong>row</strong></span> vector <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\tau^T$</code> can be computed via a vector-Jacobian product in any standard Auto-Diff toolbox given that <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\lambda$</code> is pre-computed.</p>
+$$</code></p>
+
+<p>Note: <span style="color:red"><strong>row</strong></span> vector <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\tau^T$</code> can be computed via a vector-Jacobian product in any standard Auto-Diff toolbox given that <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\lambda$</code> is pre-computed.</p>
 
 <p>By Eq <code class="language-plaintext highlighter-rouge">$\eqref{3}$</code>, we obtain the transformation rule for Riemannian gradients as
 <code class="language-plaintext highlighter-rouge">$$
@@ -388,20 +391,23 @@ where <span style="color:red"><strong>row</strong></span> vector <code class="la
 \end{aligned}\tag{7}\label{7}
 $$</code> where $\mathbf{Q}:=\mathbf{J}^{-1}$ is also a Jacobian matrix and $Q_{ki}=\frac{\partial \tau^k(\lambda)}{\partial \lambda^i}$ is the $(k,i)$ entry of matrix $\mathbf{Q}$.</p>
 
+<p>Note: <span style="color:red"><strong>column</strong></span> vector <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\tau$</code> can be computed via a Jacobian-vector product used in forward-mode differentiation given that <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\lambda$</code> is pre-computed.</p>
+
 <p>The elementwise expression of the transformation rule for Riemannian gradients (denoted by a column vector) is
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 (g_\tau)^k
  = \sum_{i}  \frac{ \partial \tau^k(\lambda)  }{\color{red} {\partial  \lambda^i} }  \color{red} {(g_\lambda)^i}
 \end{aligned},
-$$</code> 
-where  <span style="color:red"><strong>column</strong></span> vector <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\tau$</code> can be computed via a Jacobian-vector product used in forward-mode differentiation given that <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\lambda$</code> is pre-computed.</p>
+$$</code></p>
 
 <p>Note that these transformation rules are valid  when the Jacobian matrix is square and non-singular.
 As we discussed in Part I about <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">intrinsic parameterizations</a>, the transformation map between $\tau$ and $\lambda$ must be bi-jective, which implies the Jacoabian matrix is square. 
 Moreover, the map and its inverse map should be smooth, which implies that the Jacobian matrix is well-defined and non-singular.</p>
 
-<p>Finally, we give a transformation rule for the Fisher information matrix as defined at <a href="/posts/2021/09/Geomopt01/#fisher-rao-metric">Part I</a>.</p>
+<h2 id="transformation-rule-for-the-fisher-information-matrix">Transformation Rule for the Fisher Information Matrix</h2>
+
+<p>Now, we give a transformation rule for the Fisher information matrix as defined at <a href="/posts/2021/09/Geomopt01/#fisher-rao-metric">Part I</a>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -458,7 +464,7 @@ $$</code></p>
 &amp;= [\mathbf{J}^{-1} \hat{\mathbf{g}}_\lambda]^T \mathbf{F}_{\tau} (\tau_0) \mathbf{J}^{-1} \hat{\mathbf{g}}_\lambda \\
 &amp;= [\hat{\mathbf{g}}_\lambda]^T [ \mathbf{J}^{-T}  \mathbf{F}_{\tau} (\tau_0) \mathbf{J}^{-1} ] \hat{\mathbf{g}}_\lambda \\
 &amp;= [\hat{\mathbf{g}}_\lambda]^T  \mathbf{F}_{\lambda} (\lambda_0)  \hat{\mathbf{g}}_\lambda = \| \hat{\mathbf{g}}_\lambda \|^2_{F_{\lambda_0}}
-\end{aligned}
+\end{aligned}\tag{8}\label{8}
 $$</code></p>
 
 <h1 id="riemannian-steepest-direction-is-invariant">Riemannian Steepest Direction is Invariant</h1>
@@ -477,7 +483,8 @@ $$</code></p>
 \end{aligned}
 $$</code></p>
 
-<p>We can easily to verify the following identities.
+<p>We can easily to verify the following identities since
+<code class="language-plaintext highlighter-rouge">$ \|\hat{\mathbf{g}}_\lambda\|_{ F_{\lambda_0} } =  \|\hat{\mathbf{g}}_\tau\|_{ F_{\tau_0} }  $</code>  in <code class="language-plaintext highlighter-rouge">$\eqref{8}$</code>.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{g}_\tau^T   \mathbf{v}^{(opt)}_{\tau}   &amp; =   \mathbf{g}_\lambda^T  \mathbf{v}^{(opt)}_{\lambda} &amp; \,\,\, \text{(invariance of a directional derivative)}  \\
@@ -626,6 +633,34 @@ This also implies that Euclidean gradient descent is not invariant under a param
     
     <h2 class="archive__item-title" itemprop="headline">
       
+        <a href="/posts/2021/12/Geomopt05/" rel="permalink">Part V: Efficient Natural Gradient Descent for Exponential Family
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
         <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural and Riemannian  Gradient Descent
 </a>
       
@@ -636,7 +671,7 @@ This also implies that Euclidean gradient descent is not invariant under a param
 
 
 
-  10 minute read
+  13 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
@@ -699,35 +734,6 @@ The main propose...</p>
 This blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that,
 
   The FIM plays an ess...</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/07/ICML/" rel="permalink">Structured Natural Gradient Descent (ICML 2021)
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  9 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">More about this work [1]: (Youtube) talk, ICML paper, workshop paper,
-poster
-
-</p>
   </article>
 </div>
         
