@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-14T22:50:00+00:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part V: Efficient Natural Gradient Descent for Exponential Family</title><link href="/posts/2021/12/Geomopt05/" rel="alternate" type="text/html" title="Part V: Efficient Natural Gradient Descent for Exponential Family" /><published>2021-12-14T00:00:00+00:00</published><updated>2021-12-14T00:00:00+00:00</updated><id>/posts/2021/12/Geomopt05</id><content type="html" xml:base="/posts/2021/12/Geomopt05/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Riemannian Manifold" /><category term="Exponential Family" /><summary type="html">Warning: working in Progress (incomplete)</summary></entry><entry><title type="html">Part IV: Natural and Riemannian Gradient Descent</title><link href="/posts/2021/11/Geomopt04/" rel="alternate" type="text/html" title="Part IV: Natural and Riemannian Gradient Descent" /><published>2021-11-15T00:00:00+00:00</published><updated>2021-11-15T00:00:00+00:00</updated><id>/posts/2021/11/Geomopt04</id><content type="html" xml:base="/posts/2021/11/Geomopt04/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-15T01:38:40+00:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part V: Efficient Natural Gradient Descent for Exponential Family</title><link href="/posts/2021/12/Geomopt05/" rel="alternate" type="text/html" title="Part V: Efficient Natural Gradient Descent for Exponential Family" /><published>2021-12-14T00:00:00+00:00</published><updated>2021-12-14T00:00:00+00:00</updated><id>/posts/2021/12/Geomopt05</id><content type="html" xml:base="/posts/2021/12/Geomopt05/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Riemannian Manifold" /><category term="Exponential Family" /><summary type="html">Warning: working in Progress (incomplete)</summary></entry><entry><title type="html">Part IV: Natural and Riemannian Gradient Descent</title><link href="/posts/2021/11/Geomopt04/" rel="alternate" type="text/html" title="Part IV: Natural and Riemannian Gradient Descent" /><published>2021-11-15T00:00:00+00:00</published><updated>2021-11-15T00:00:00+00:00</updated><id>/posts/2021/11/Geomopt04</id><content type="html" xml:base="/posts/2021/11/Geomopt04/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;This blog post should help readers to understand natural-gradient descent and Riemannian gradient descent.&lt;/p&gt;
@@ -106,7 +106,7 @@ It is easy to show that &lt;code class=&quot;language-plaintext highlighter-roug
 Therefore, updates in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{3}$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{4}$&lt;/code&gt; are equivalent.&lt;/p&gt;
 
 &lt;h1 id=&quot;riemannian-gradient-descent-and-its-non-linear-invariance&quot;&gt;Riemannian Gradient Descent and its (Non-linear) Invariance&lt;/h1&gt;
-
+&lt;hr /&gt;
 &lt;p&gt;Now we discuss a gradient-based method that is invariant to any intrinsic parameter transformation.
 We will first introduce the concept of a (one-dimensional) geodesic $\gamma(t)$, which is the “shortest curve” on a manifold with a Riemannian metric (e.g., the Fisher-Rao metric).
 Recall that in  &lt;a href=&quot;/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional&quot;&gt;Part II&lt;/a&gt; we only define a distance between two Riemannian gradients evaluated at the same point. We can use the length of a geodesic to define the distance between two points on the manifold, which is known as the Rao distance in statistics.&lt;/p&gt;
@@ -143,7 +143,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 Although Riemannian gradient descent is nice, the expoential map or the geodesic often does not have a closed form expression.&lt;/p&gt;
 
 &lt;h1 id=&quot;many-faces-of-natural-gradient-descent&quot;&gt;Many faces of Natural-gradient Descent&lt;/h1&gt;
-
+&lt;hr /&gt;
 &lt;h2 id=&quot;natural-gradient-descent-as-inexact-riemannian-gradient-descent&quot;&gt;Natural-gradient Descent as Inexact Riemannian Gradient Descent&lt;/h2&gt;
 
 &lt;p&gt;Natural-gradient descent can be viewed as a first-order (linear) approximation of the geodesic, which implies that natural-gradient descent is indeed an inexact Riemannian gradient update.
@@ -247,6 +247,7 @@ Moreover, damping introduces an additional tuning hyper-parameter and destories 
 &lt;/ol&gt;
 
 &lt;h1 id=&quot;euclidean-gradient-descent-is-not-linearly-invariant&quot;&gt;Euclidean Gradient Descent is NOT (Linearly) Invariant&lt;/h1&gt;
+&lt;hr /&gt;
 &lt;p&gt;For simplicity, consider an unconstrained optimization problem.
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
@@ -275,8 +276,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 \end{aligned}\tag{6}\label{6}
 $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\mathbf{g}}_{\lambda_k} := \nabla_\lambda h_\lambda(\lambda_k)$&lt;/code&gt; is a Euclidean gradient.&lt;/p&gt;
 
-&lt;p&gt;hi
-Notices that Euclidean gradients follow the &lt;a href=&quot;/posts/2021/11/Geomopt03/#transformation-rules-for-natural-gradients-and-euclidean-gradients&quot;&gt;transformation rule&lt;/a&gt;  as&lt;/p&gt;
+&lt;p&gt;Note that Euclidean gradients follow the &lt;a href=&quot;/posts/2021/11/Geomopt03/#transformation-rules-for-natural-gradients-and-euclidean-gradients&quot;&gt;transformation rule&lt;/a&gt;  as&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
@@ -299,19 +299,19 @@ updates in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\
 Therefore,  Euclidean gradient descent is not invariant.&lt;/p&gt;
 
 &lt;h1 id=&quot;newtons-method-is-linearly-invariant&quot;&gt;Newton’s Method is Linearly Invariant&lt;/h1&gt;
-
-&lt;p&gt;For simplicity, consider an unconstrained optimization problem over a strongly convex funcion &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$h_\tau$&lt;/code&gt;.
+&lt;hr /&gt;
+&lt;p&gt;For simplicity, consider an unconstrained convex optimization problem.
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \min_{\tau \in \mathcal{R}^K } h_\tau(\tau)
 \end{aligned}
-$$&lt;/code&gt;&lt;/p&gt;
+$$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$h_\tau(\tau)$&lt;/code&gt; is strongly convex and twice continuously differentiable w.r.t. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau$&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Newton’s method in parametrization &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau$&lt;/code&gt; is
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \tau_{k+1} \leftarrow \tau_{k} - \alpha \mathbf{H}^{-1}_\tau(\tau_k) {\mathbf{g}}_{\tau_k} 
-\end{aligned}\tag{7}\label{7}
+\end{aligned}
 $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\mathbf{g}}_{\tau_k} := \nabla_\tau h_\tau(\tau_k)$&lt;/code&gt; is a Euclidean gradient and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{H}_\tau(\tau_k):=\nabla_\tau^2 h_\tau(\tau_k)$&lt;/code&gt; is the Hessian.&lt;/p&gt;
 
 &lt;p&gt;Consider a reparametrization  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda$&lt;/code&gt; so that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda=\mathbf{U} \tau$&lt;/code&gt;, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{U}$&lt;/code&gt; is a constant (square) invertible matrix. 
@@ -319,13 +319,13 @@ $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&
 \begin{aligned}
 \min_{\lambda \in \mathcal{R}^K } h_\lambda(\lambda):= h_\tau( \mathbf{U}^{-1} \lambda)
 \end{aligned}
-$$&lt;/code&gt;&lt;/p&gt;
+$$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$h_\lambda(\lambda)$&lt;/code&gt; is also stronly convex w.r.t. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda$&lt;/code&gt; due to  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{7}$&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;The Euclidean gradient descent (GD) in parametrization &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda$&lt;/code&gt; is
+&lt;p&gt;Newton’s method  in parametrization &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda$&lt;/code&gt; is
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \lambda_{k+1} \leftarrow \lambda_{k} - \alpha \mathbf{H}^{-1}_\lambda(\lambda_k) {\mathbf{g}}_{\lambda_k} 
-\end{aligned}\tag{8}\label{8}
+\end{aligned} 
 $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\mathbf{g}}_{\lambda_k} := \nabla_\lambda h_\lambda(\lambda_k)$&lt;/code&gt; is a Euclidean gradient and
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{H}_\tau(\lambda_k):=\nabla_\lambda^2 h_\lambda(\lambda_k)$&lt;/code&gt; is the Hessian.&lt;/p&gt;
 
@@ -340,17 +340,17 @@ matrix as&lt;/p&gt;
 \begin{aligned}
 \mathbf{H}_{\tau} (\tau_k) &amp;amp;= \nabla_\tau ( \mathbf{g}_{\tau_k} ) \\
 &amp;amp;=\nabla_\tau ( \mathbf{J}^T \mathbf{g}_{\lambda_k} ) \\
-&amp;amp;=\mathbf{J}^T\nabla_\tau (  \mathbf{g}_{\lambda_k} ) \,\,\,\,\text{(for a linear transformation, } \mathbf{J} \text{ is a
+&amp;amp;=\mathbf{J}^T\nabla_\tau (  \mathbf{g}_{\lambda_k} ) \,\,\,\,\text{(for a linear transformation, } \mathbf{J} = \mathbf{U} \text{ is a
 constant matrix)}   \\
 &amp;amp;=\mathbf{J}^T\nabla_\lambda (  \mathbf{g}_{\lambda_k} )\mathbf{J} \\ 
 &amp;amp;=\mathbf{J}^T \mathbf{H}_{\lambda} (\lambda_k)\mathbf{J} 
-\end{aligned}
+\end{aligned}\tag{7}\label{7}
 $$&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;span style=&quot;color:red&quot;&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;/span&gt;: The Hessian is not valid metric since it does not follow the transformation
-rule like the Fisher-Rao metric for  any non-linear (intrinstic) transformation.&lt;/p&gt;
+rule of a metric in non-linear cases.&lt;/p&gt;
 
-&lt;p&gt;Therefore, the direction in Newton’s method denoted by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tilde{\mathbf{g}}_{\tau_k} := \mathbf{H}^{-1}_\tau(\tau_k) \mathbf{g}_{\tau_k}$&lt;/code&gt; is transformed like natural-gradient in linear cases.&lt;/p&gt;
+&lt;p&gt;Therefore, the direction in Newton’s method denoted by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tilde{\mathbf{g}}_{\tau_k} := \mathbf{H}^{-1}_\tau(\tau_k) \mathbf{g}_{\tau_k}$&lt;/code&gt; is transformed like natural-gradients in &lt;strong&gt;linear&lt;/strong&gt; cases as&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}

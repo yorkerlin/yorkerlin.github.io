@@ -298,7 +298,7 @@ It is easy to show that <code class="language-plaintext highlighter-rouge">$\tau
 Therefore, updates in <code class="language-plaintext highlighter-rouge">$\eqref{3}$</code> and <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code> are equivalent.</p>
 
 <h1 id="riemannian-gradient-descent-and-its-non-linear-invariance">Riemannian Gradient Descent and its (Non-linear) Invariance</h1>
-
+<hr />
 <p>Now we discuss a gradient-based method that is invariant to any intrinsic parameter transformation.
 We will first introduce the concept of a (one-dimensional) geodesic $\gamma(t)$, which is the “shortest curve” on a manifold with a Riemannian metric (e.g., the Fisher-Rao metric).
 Recall that in  <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a> we only define a distance between two Riemannian gradients evaluated at the same point. We can use the length of a geodesic to define the distance between two points on the manifold, which is known as the Rao distance in statistics.</p>
@@ -335,7 +335,7 @@ $$</code></p>
 Although Riemannian gradient descent is nice, the expoential map or the geodesic often does not have a closed form expression.</p>
 
 <h1 id="many-faces-of-natural-gradient-descent">Many faces of Natural-gradient Descent</h1>
-
+<hr />
 <h2 id="natural-gradient-descent-as-inexact-riemannian-gradient-descent">Natural-gradient Descent as Inexact Riemannian Gradient Descent</h2>
 
 <p>Natural-gradient descent can be viewed as a first-order (linear) approximation of the geodesic, which implies that natural-gradient descent is indeed an inexact Riemannian gradient update.
@@ -439,6 +439,7 @@ Moreover, damping introduces an additional tuning hyper-parameter and destories 
 </ol>
 
 <h1 id="euclidean-gradient-descent-is-not-linearly-invariant">Euclidean Gradient Descent is NOT (Linearly) Invariant</h1>
+<hr />
 <p>For simplicity, consider an unconstrained optimization problem.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -467,8 +468,7 @@ $$</code></p>
 \end{aligned}\tag{6}\label{6}
 $$</code> where <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_{\lambda_k} := \nabla_\lambda h_\lambda(\lambda_k)$</code> is a Euclidean gradient.</p>
 
-<p>hi
-Notices that Euclidean gradients follow the <a href="/posts/2021/11/Geomopt03/#transformation-rules-for-natural-gradients-and-euclidean-gradients">transformation rule</a>  as</p>
+<p>Note that Euclidean gradients follow the <a href="/posts/2021/11/Geomopt03/#transformation-rules-for-natural-gradients-and-euclidean-gradients">transformation rule</a>  as</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -491,19 +491,19 @@ updates in <code class="language-plaintext highlighter-rouge">$\eqref{5}$</code>
 Therefore,  Euclidean gradient descent is not invariant.</p>
 
 <h1 id="newtons-method-is-linearly-invariant">Newton’s Method is Linearly Invariant</h1>
-
-<p>For simplicity, consider an unconstrained optimization problem over a strongly convex funcion <code class="language-plaintext highlighter-rouge">$h_\tau$</code>.
+<hr />
+<p>For simplicity, consider an unconstrained convex optimization problem.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \min_{\tau \in \mathcal{R}^K } h_\tau(\tau)
 \end{aligned}
-$$</code></p>
+$$</code> where <code class="language-plaintext highlighter-rouge">$h_\tau(\tau)$</code> is strongly convex and twice continuously differentiable w.r.t. <code class="language-plaintext highlighter-rouge">$\tau$</code>.</p>
 
 <p>Newton’s method in parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code> is
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \tau_{k+1} \leftarrow \tau_{k} - \alpha \mathbf{H}^{-1}_\tau(\tau_k) {\mathbf{g}}_{\tau_k} 
-\end{aligned}\tag{7}\label{7}
+\end{aligned}
 $$</code> where <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_{\tau_k} := \nabla_\tau h_\tau(\tau_k)$</code> is a Euclidean gradient and <code class="language-plaintext highlighter-rouge">$\mathbf{H}_\tau(\tau_k):=\nabla_\tau^2 h_\tau(\tau_k)$</code> is the Hessian.</p>
 
 <p>Consider a reparametrization  <code class="language-plaintext highlighter-rouge">$\lambda$</code> so that <code class="language-plaintext highlighter-rouge">$\lambda=\mathbf{U} \tau$</code>, where <code class="language-plaintext highlighter-rouge">$\mathbf{U}$</code> is a constant (square) invertible matrix. 
@@ -511,13 +511,13 @@ $$</code> where <code class="language-plaintext highlighter-rouge">${\mathbf{g}}
 \begin{aligned}
 \min_{\lambda \in \mathcal{R}^K } h_\lambda(\lambda):= h_\tau( \mathbf{U}^{-1} \lambda)
 \end{aligned}
-$$</code></p>
+$$</code> where <code class="language-plaintext highlighter-rouge">$h_\lambda(\lambda)$</code> is also stronly convex w.r.t. <code class="language-plaintext highlighter-rouge">$\lambda$</code> due to  <code class="language-plaintext highlighter-rouge">$\eqref{7}$</code>.</p>
 
-<p>The Euclidean gradient descent (GD) in parametrization <code class="language-plaintext highlighter-rouge">$\lambda$</code> is
+<p>Newton’s method  in parametrization <code class="language-plaintext highlighter-rouge">$\lambda$</code> is
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \lambda_{k+1} \leftarrow \lambda_{k} - \alpha \mathbf{H}^{-1}_\lambda(\lambda_k) {\mathbf{g}}_{\lambda_k} 
-\end{aligned}\tag{8}\label{8}
+\end{aligned} 
 $$</code> where <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_{\lambda_k} := \nabla_\lambda h_\lambda(\lambda_k)$</code> is a Euclidean gradient and
 <code class="language-plaintext highlighter-rouge">$\mathbf{H}_\tau(\lambda_k):=\nabla_\lambda^2 h_\lambda(\lambda_k)$</code> is the Hessian.</p>
 
@@ -532,17 +532,17 @@ matrix as</p>
 \begin{aligned}
 \mathbf{H}_{\tau} (\tau_k) &amp;= \nabla_\tau ( \mathbf{g}_{\tau_k} ) \\
 &amp;=\nabla_\tau ( \mathbf{J}^T \mathbf{g}_{\lambda_k} ) \\
-&amp;=\mathbf{J}^T\nabla_\tau (  \mathbf{g}_{\lambda_k} ) \,\,\,\,\text{(for a linear transformation, } \mathbf{J} \text{ is a
+&amp;=\mathbf{J}^T\nabla_\tau (  \mathbf{g}_{\lambda_k} ) \,\,\,\,\text{(for a linear transformation, } \mathbf{J} = \mathbf{U} \text{ is a
 constant matrix)}   \\
 &amp;=\mathbf{J}^T\nabla_\lambda (  \mathbf{g}_{\lambda_k} )\mathbf{J} \\ 
 &amp;=\mathbf{J}^T \mathbf{H}_{\lambda} (\lambda_k)\mathbf{J} 
-\end{aligned}
+\end{aligned}\tag{7}\label{7}
 $$</code></p>
 
 <p><span style="color:red"><strong>Warning</strong></span>: The Hessian is not valid metric since it does not follow the transformation
-rule like the Fisher-Rao metric for  any non-linear (intrinstic) transformation.</p>
+rule of a metric in non-linear cases.</p>
 
-<p>Therefore, the direction in Newton’s method denoted by <code class="language-plaintext highlighter-rouge">$\tilde{\mathbf{g}}_{\tau_k} := \mathbf{H}^{-1}_\tau(\tau_k) \mathbf{g}_{\tau_k}$</code> is transformed like natural-gradient in linear cases.</p>
+<p>Therefore, the direction in Newton’s method denoted by <code class="language-plaintext highlighter-rouge">$\tilde{\mathbf{g}}_{\tau_k} := \mathbf{H}^{-1}_\tau(\tau_k) \mathbf{g}_{\tau_k}$</code> is transformed like natural-gradients in <strong>linear</strong> cases as</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
