@@ -182,7 +182,7 @@
 
 
 
-  12 minute read
+  13 minute read
 </p>
           
         </header>
@@ -390,7 +390,7 @@ In such cases,  unconstrained mirror descent also recovers natural-gradient desc
 
 <p><span style="color:red"><strong>Warning</strong></span>:
 The connection bewteen natural-gradient descent and proximal-gradient/mirror descent breaks down when
-the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is constrained and open. In constraint cases, these methods are distinct.</p>
+the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is constrained and open. In constrained cases, these methods are distinct from each other. We will cover more about this point in <a href="/posts/2021/12/Geomopt05/">Part V</a>.</p>
 
 <h1 id="natural-gradient-descent-in-non-intrinstic-parameter-spaces">Natural-gradient Descent in Non-intrinstic Parameter Spaces</h1>
 <hr />
@@ -421,7 +421,7 @@ The iteration cost of natural-gradient descent in this parameter space $\Omega_\
 
       <p>Now, consider the equivalent Gaussian family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |\mathbf{\mu}_0,  \mathbf{\Sigma}_0)  \Big|  \mathbf{\mu}_0 \in \mathcal{R}^d,  \mathbf{\Sigma}_0  \succ \mathbf{0}  \}$</code> with <code class="language-plaintext highlighter-rouge">$\lambda =( \mu_0,\Sigma_0 ) $</code>, where $\lambda$ is an intrinsic parameterization of the Gaussian family.</p>
 
-      <p>As we will shown in <a href="/posts/2021/12/Geomopt05/">Part V</a>, the iteration cost of natural-gradient descent in this parameter space $\Omega_\lambda$ will be $O(d^3)$ if we exploit structures of the exact non-singular FIM.</p>
+      <p>As we will show in <a href="/posts/2021/12/Geomopt05/">Part V</a>, the iteration cost of natural-gradient descent in this parameter space $\Omega_\lambda$ will be $O(d^3)$ if we exploit structures of the exact non-singular FIM.</p>
     </blockquote>
   </li>
   <li>It is tempting to approximate the singular FIM by an emprical FIM with a scalar damping term and use Woodbury matrix identity to reduce the iteration cost of computing natural-gradients. However, sample-based emprical approximations could be problematic.
@@ -529,9 +529,6 @@ constant matrix)}   \\
 \end{aligned}\tag{7}\label{7}
 $$</code></p>
 
-<p><span style="color:red"><strong>Warning</strong></span>: The Hessian is not a valid manifold metric since it does not follow the transformation
-rule of a metric in non-linear cases.</p>
-
 <p>Therefore, the direction in Newton’s method denoted by <code class="language-plaintext highlighter-rouge">$\tilde{\mathbf{g}}_{\tau_k} := \mathbf{H}^{-1}_\tau(\tau_k) \mathbf{g}_{\tau_k}$</code> is transformed like natural-gradients in <strong>linear</strong> cases as</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
@@ -546,6 +543,24 @@ rule of a metric in non-linear cases.</p>
 $$</code> where by the definition we have <code class="language-plaintext highlighter-rouge">$\mathbf{Q}= \mathbf{J}^{-1}$</code>.</p>
 
 <p>The consequence is that Newton’s method like natural-gradient descent is linearly invariant.</p>
+
+<p><span style="color:red"><strong>Warning</strong></span>: The Hessian <code class="language-plaintext highlighter-rouge">$\mathbf{H}_\tau(\tau_k)=\nabla_\tau^2 h_\tau(\tau_k)$</code>  is not a valid manifold metric since it does not follow the transformation
+rule of a metric in non-linear cases.</p>
+
+<p>Contrastingly,  the Fisher information matrix is a valid manifold metric. Recall that we can compute the Fisher matrix  as <code class="language-plaintext highlighter-rouge">$\mathbf{F}_\tau(\tau) = E_{p(w|\tau)}\big[ -\nabla_\tau^2 \log p(w|\tau) \big]$</code>. Given a non-linear intrinstic reparametrization <code class="language-plaintext highlighter-rouge">$\lambda$</code>, the Jacobian matrix <code class="language-plaintext highlighter-rouge">$\mathbf{J}(\tau_k)$</code> is no longer a constant matrix but a square and non-singular matrix.
+In this case, the <a href="/posts/2021/11/Geomopt03/#transformation-rule-for-the-fisher-information-matrix">transformation rule</a> still holds thanks to the expectation of the score function.</p>
+
+<p><code class="language-plaintext highlighter-rouge">$$
+\begin{aligned}
+\mathbf{F}_\tau(\tau_k) &amp;= E_{p(w|\tau_k)}\big[ -\nabla_\tau^2 \log p(w|\tau_k) \big]  \\
+ &amp;= E_{p(w|\lambda_k)}\big[ -\nabla_\tau^2 \log p(w|\tau_k) \big]  \\
+ &amp;= E_{p(w|\lambda_k)}\big[ -\nabla_\tau [ \mathbf{J}^T(\tau_k) \nabla_\lambda \log p(w|\lambda_k)]  \big]  \\
+  &amp;= -    \mathbf{J}^T(\tau_k)   E_{p(w|\lambda_k)}\big[  \nabla_\tau  \nabla_\lambda \log p(w|\lambda_k) \big]   - [\nabla_\tau \mathbf{J}^T(\tau_k)  ] \underbrace{ E_{p(w|\lambda_k)}\big[  \nabla_\lambda \log p(w|\lambda_k) \big] }_{ =0 \text{ (the expectation of the score is zero)}  }  \\
+&amp;= -    \mathbf{J}^T(\tau_k)   E_{p(w|\lambda_k)}\big[  [\nabla_\lambda^2 \log p(w|\lambda_k) ] \mathbf{J }(\tau_k) \big] \\
+&amp;= -    \mathbf{J}^T(\tau_k)    E_{p(w|\lambda_k)}\big[  \nabla_\lambda^2 \log p(w|\lambda_k) \big] \mathbf{J}(\tau_k) \\
+&amp;=\mathbf{J }^T(\tau_k)  \mathbf{F}_\lambda(\lambda_k) \mathbf{J}(\tau_k)  
+\end{aligned}
+$$</code></p>
 
 
         
