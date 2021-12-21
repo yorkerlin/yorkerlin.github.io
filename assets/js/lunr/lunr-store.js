@@ -70,12 +70,12 @@ var store = [{
         "url": "/posts/2021/11/Geomopt03/",
         "teaser":null},{
         "title": "Part IV: Natural and Riemannian  Gradient Descent",
-        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should help readers to understand natural-gradient descent and Riemannian gradient descent. We will give an informal introduction with a focus on high level of ideas. Two kinds of Spaces As we disucssed in Part II, the parameter space $\\Omega_\\tau$ and the...","categories": [],
+        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should help readers to understand natural-gradient descent and Riemannian gradient descent.We also discuss some invariance property of natural-gradient descent, Riemannian gradient descent, and Newton’s method. We will give an informal introduction with a focus on high level of ideas. Two kinds...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/11/Geomopt04/",
         "teaser":null},{
-        "title": "Part V: Efficient Natural Gradient Descent for Exponential Family",
-        "excerpt":"Warning: working in Progress (incomplete) ","categories": [],
+        "title": "Part V: Efficient Natural-gradient Methods for Exponential Family",
+        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should show that we can efficiently implement natural-gradient methods in many cases. We will give an informal introduction with a focus on high level of ideas. Exponential Family An expoential family takes the following (canonical) form as$$\\begin{aligned}p(\\mathbf{w}|\\mathbf{\\eta}) = h_\\eta(\\mathbf{w}) \\exp( \\langle...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold","Exponential Family"],
         "url": "/posts/2021/12/Geomopt05/",
         "teaser":null},{
