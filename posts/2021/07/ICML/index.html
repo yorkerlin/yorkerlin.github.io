@@ -182,7 +182,7 @@
 
 
 
-  9 minute read
+  10 minute read
 </p>
           
         </header>
@@ -196,14 +196,14 @@
 <h1 id="introduction">Introduction</h1>
 
 <p>Natural-gradient descent (NGD) on structured parameter spaces  is computationally challenging.
-We propose a flexible and efficient NGD method to incorporate structures via matrix groups.</p>
+We propose a flexible and efficient NGD method to incorporate structures via matrix Lie groups.</p>
 
 <p>Our NGD method</p>
 <ul>
   <li>generalizes the exponential natural evolutionary strategy <a class="citation" href="#glasmachers2010exponential">[2]</a></li>
   <li>recovers existing  Newton-like algorithms</li>
   <li>yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance <a class="citation" href="#lin2021structured">[3]</a></li>
-  <li>gives new NGD to learn structured covariances of Gaussian, Wishart and their mixtures</li>
+  <li>gives new NGD updates to learn structured covariances of Gaussian, Wishart and their mixtures</li>
 </ul>
 
 <p>Applications of our method:</p>
@@ -211,7 +211,7 @@ We propose a flexible and efficient NGD method to incorporate structures via mat
   <li>deep learning (structured adaptive-gradient),</li>
   <li>non-convex optimization (structured 2nd-order),</li>
   <li>evolution strategies (gradient-free),</li>
-  <li>variational inference (multimodal density with Monte Carlo gradient).</li>
+  <li>variational inference (multimodal density with Monte Carlo reparameterization gradients).</li>
 </ul>
 
 <hr />
@@ -226,7 +226,7 @@ as optimization over a parametric family <code class="language-plaintext highlig
 $$</code>
 where <code class="language-plaintext highlighter-rouge">$\mathbf{w}$</code> is the decision variable,  <code class="language-plaintext highlighter-rouge">$\ell(\mathbf{w})$</code> is a loss function, <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is the parameter space of <code class="language-plaintext highlighter-rouge">$q$</code>, and <code class="language-plaintext highlighter-rouge">$\gamma\ge 0$</code> is a constant.</p>
 
-<p>Gradient descent and natural-gradient descent  to solve <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code>:
+<p>Using gradient descent and natural-gradient descent to solve <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code>:
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \textrm{GD: } &amp;\tau_{t+1} \leftarrow \tau_t - \alpha \nabla_{\tau_t} \mathcal{L}(\tau) \\
@@ -316,9 +316,9 @@ $$</code> where <code class="language-plaintext highlighter-rouge">$\mathbf{F}_{
 <p>The global, auxiliary, and local parameterizations are:
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-        \tau &amp;= \Big\{\mu \in \mathcal{R}^p, \mathbf{S} \in \mathcal{S}_{++}^{p\times p} \Big\},  &amp; \mathbf{S}: \text{positive-definite matrix space } \\
-        \lambda &amp; = \Big\{ \mu \in  \mathcal{R}^p , \mathbf{B} \in\mathrm{GL}^{p\times p} \Big\}, &amp;\mathbf{B}: \text{ (closed) matrix Lie group}\\
-        \eta &amp;= \Big\{ \delta\in  \mathcal{R}^p, \mathbf{M} \in\mathcal{S}^{p\times p}  \Big\}, &amp; \mathbf{M}: \text{ Lie sub-algebra }
+        \tau &amp;= \Big\{\mu \in \mathcal{R}^p, \mathbf{S} \in \mathcal{S}_{++}^{p\times p} \Big\},  &amp; \mathbf{S}: \text{positive-definite matrix} \\
+        \lambda &amp; = \Big\{ \mu \in  \mathcal{R}^p , \mathbf{B} \in\mathrm{GL}^{p\times p} \Big\}, &amp;\mathbf{B}: \text{ (closed) matrix Lie group member}\\
+        \eta &amp;= \Big\{ \delta\in  \mathcal{R}^p, \mathbf{M} \in\mathcal{S}^{p\times p}  \Big\}, &amp; \mathbf{M}: \text{ Lie sub-algebra member}
 \end{aligned}
 $$</code></p>
 
@@ -418,8 +418,8 @@ $$</code> where $\mathbf{B}$ is a <span style="color:red"><strong>dense</strong>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} \mathbf{B}_A &amp;  \mathbf{0}  \\ \mathbf{B}_C &amp;  \mathbf{B}_D  \end{bmatrix}$</code></td>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} \mathbf{B}_A &amp;  \mathbf{B}_B  \\ \mathbf{0} &amp;  \mathbf{B}_D  \end{bmatrix}$</code></td>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} \mathbf{B}_A &amp;  \mathbf{0}  \\ \mathbf{B}_C &amp;  \begin{bmatrix} \mathbf{B}_{D} &amp; \mathbf{0} \\ \mathbf{B}_{3} &amp; \mathbf{B}_{4} \end{bmatrix} \end{bmatrix}$</code></td>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} a &amp;  0  \\ c &amp;  d  \end{bmatrix} \otimes \begin{bmatrix} \alpha &amp;  0 &amp; 0 \\ \beta_1 &amp; \gamma_1 &amp; 0 \\ \beta_2 &amp; 0 &amp; \gamma_2     \end{bmatrix} $</code></td>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} a &amp; 0 &amp; 0 &amp;0 \\ b &amp;  a &amp; 0 &amp; 0  \\ c &amp; b &amp; a &amp; 0 \\ d &amp; c &amp; b &amp; a \end{bmatrix}$</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} d &amp;  0  \\ s &amp;  t  \end{bmatrix} \otimes \begin{bmatrix} r &amp;  0 &amp; 0 \\ {b}_1 &amp; {o}_1 &amp; 0 \\ {b}_2 &amp; 0 &amp; {o}_2     \end{bmatrix} $</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} r &amp; 0 &amp; 0 &amp;0 \\ y &amp;  r &amp; 0 &amp; 0  \\ g &amp; y &amp; r &amp; 0 \\ b &amp; g &amp; y &amp; r \end{bmatrix}$</code></td>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\begin{bmatrix} \mathbf{B}_{D_1} &amp; \mathbf{0} &amp; \mathbf{0} \\ \mathbf{B}_{A} &amp; \mathbf{B}_{B} &amp; \mathbf{0} \\ \mathbf{B}_{D_2} &amp; \mathbf{0} &amp; \mathbf{B}_{D_3} \end{bmatrix}$</code></td>
     </tr>
   </tbody>
@@ -557,14 +557,14 @@ $$</code> where $\Sigma=\mathbf{S}^{-1}$ is the covariance.</li>
 </ul>
 
 <details>
-	<summary>Group-structural invariance:</summary>
+	<summary>Group-structural invariance: (Click to expand)</summary>
 <fieldset class="field-set">
     <p>Since <code class="language-plaintext highlighter-rouge">$\mathbf{B} \in {\cal{B}_{\text{up}}}(k)$</code>,  the update in <code class="language-plaintext highlighter-rouge">$\eqref{7}$</code> is invariant under any (group) transform <code class="language-plaintext highlighter-rouge">$\mathbf{R}^T \in  {\cal{B}_{\text{up}}}(k)$</code> of  <code class="language-plaintext highlighter-rouge">$\eqref{5}$</code>  such as <code class="language-plaintext highlighter-rouge">$\min_{y \in \mathcal{R}^p}  \ell(\mathbf{R} \, \mathbf{y})$</code>.</p>
   </fieldset>
 </details>
 
 <details>
-	<summary>Time complexity:</summary>
+	<summary>Time complexity: (Click to expand)</summary>
 <fieldset class="field-set">
     <ul>
       <li><code class="language-plaintext highlighter-rouge">$O(k^2 p)$</code> for triangular structure,</li>
@@ -580,7 +580,7 @@ $$</code> where $\Sigma=\mathbf{S}^{-1}$ is the covariance.</li>
 </details>
 
 <details>
-	<summary>Classical non-convex optimization:</summary>
+	<summary>Classical non-convex optimization: (Click to expand)</summary>
 <fieldset class="field-set">
     <p>200-dim non-separable non-convex functions:</p>
 
@@ -589,33 +589,36 @@ $$</code> where $\Sigma=\mathbf{S}^{-1}$ is the covariance.</li>
 </details>
 
 <h2 id="structured-adaptive-gradient-methods-for-deep-learning">Structured Adaptive-gradient Methods for Deep Learning</h2>
-
-<p>Consider a block-diagonal Gaussian 
-       <code class="language-plaintext highlighter-rouge">$q(\mathbf{w}|\tau)=\prod_{i} q(\mathbf{w}^i|\mu^i,\mathbf{S}^i)$</code> with a Kronecker product group at each <code class="language-plaintext highlighter-rouge">$i$</code>-th layer.</p>
+<p>At each NN layer,
+consider a  Gaussian family
+       <code class="language-plaintext highlighter-rouge">$q(\mathbf{w}|\mu,\mathbf{S})$</code> with a Kronecker product structure, where <code class="language-plaintext highlighter-rouge">$\tau=(\mu,\mathbf{S})$</code>.</p>
 
 <p>Our method gives adaptive-gradient updates with group-structural invariance by
  approximating <code class="language-plaintext highlighter-rouge">$\nabla_{\mu_t}^2 \ell( \mu)$</code>  in <code class="language-plaintext highlighter-rouge">$\eqref{8}$</code> using the Gauss-Newton.</p>
 
-<p>The Kronecker product of two structured groups further reduces the time complexity.</p>
+<p>The Kronecker product (<code class="language-plaintext highlighter-rouge">$\mathbf{B}=\mathbf{B}_1 \otimes \mathbf{B}_2$</code>) of two sparse structured groups (<code class="language-plaintext highlighter-rouge">$\mathbf{B}
+_1$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{B}_2$</code>) further reduces the time complexity, where precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}=\mathbf{B}\mathbf{B}^T= (\mathbf{B}_1 \mathbf{B}_1^T) \otimes (\mathbf{B}_2 \mathbf{B}_2^T)$</code></p>
 
 <details>
-	<summary>Time complexity:</summary>
+	<summary>Time complexity: (Click to expand)</summary>
 <fieldset class="field-set">
     <ul>
-      <li><code class="language-plaintext highlighter-rouge">$O(k p)$</code> for triangular structure,</li>
-      <li><code class="language-plaintext highlighter-rouge">$O( (k_1+k_2) p)$</code> for hierarchical structure.</li>
+      <li><code class="language-plaintext highlighter-rouge">$O(k p)$</code> for our Kronecker product with triangular groups, where <code class="language-plaintext highlighter-rouge">$0&lt;k&lt;p^{1/2}$</code></li>
+      <li><code class="language-plaintext highlighter-rouge">$O( (k_1+k_2) p)$</code> for our  Kronecker product with hierarchical groups, where <code class="language-plaintext highlighter-rouge">$0&lt;k_1+k_2&lt;p^{1/2}$</code></li>
+      <li><code class="language-plaintext highlighter-rouge">$O(p)$</code> for Adam and our diagonal groups</li>
+      <li><code class="language-plaintext highlighter-rouge">$O(p^{3/2})$</code> for KFAC and our Kronecker product with dense groups</li>
     </ul>
 
     <p>Implementation:</p>
     <ul>
-      <li>Automatically parallelized by Auto-Differentiation,</li>
-      <li>No sequential conjugate-gradient (CG) steps.</li>
+      <li>Automatically parallelized by Auto-Differentiation</li>
+      <li>No sequential conjugate-gradient (CG) steps</li>
     </ul>
   </fieldset>
 </details>
 
 <details>
-	<summary>Image classification problems:</summary>
+	<summary>Image classification problems: (Click to expand)</summary>
 <fieldset class="field-set">
     <p>Kronecker product of lower-triangular groups for a CNN</p>
 
@@ -628,11 +631,11 @@ $$</code> where $\Sigma=\mathbf{S}^{-1}$ is the covariance.</li>
 <p>Our NGD</p>
 <ul>
   <li>can use structured Gaussian mixtures as flexiable variational distributions: <code class="language-plaintext highlighter-rouge">$q(\mathbf{w}|\tau)=\frac{1}{K}\sum_{k=1}^{K}q(\mathbf{w}|\mu_k,\mathbf{S}_k)$</code></li>
-  <li>gives efficient stochastic natural-gradient variational methods beyond mean-field</li>
+  <li>gives efficient stochastic natural-gradient variational methods beyond mean-field/diagonal covariance</li>
 </ul>
 
 <details>
-	<summary>Approximating multimodal distributions (80-dim mixture of Student's Ts):</summary>
+	<summary>Approximating 80-dim multimodal distributions: (Click to expand)</summary>
 <fieldset class="field-set">
     <p>First 8 marginal distributions of our approximation (mixture with a block upper-triangular group, where <code class="language-plaintext highlighter-rouge">$k=5$</code>)</p>
 
@@ -884,7 +887,7 @@ We will also discuss why the Euclidean steepest direction is NOT i...</p>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2021 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2022 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

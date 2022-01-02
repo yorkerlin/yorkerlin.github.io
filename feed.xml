@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-28T06:11:05+00:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00+00:00</published><updated>2021-12-22T00:00:00+00:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-02T16:40:17+00:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00+00:00</published><updated>2021-12-22T00:00:00+00:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;This blog post should show that we can efficiently implement natural-gradient methods in many cases.&lt;/p&gt;
@@ -697,8 +697,9 @@ We also discuss some invariance property of natural-gradient descent, Riemannian
 &lt;p&gt;As we disucssed in &lt;a href=&quot;/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional&quot;&gt;Part II&lt;/a&gt;, the parameter space $\Omega_\tau$ and the tangent space denoted by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$T\mathcal{M}_{\tau_0}$&lt;/code&gt; at point $\tau_0$ are different spaces. 
 Given  &lt;a href=&quot;/posts/2021/09/Geomopt01/#intrinsic-parameterizations&quot;&gt;intrinsic parametrization&lt;/a&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau$&lt;/code&gt;,  the tangent space is a vector space and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$T\mathcal{M}_{\tau_0}=\mathcal{R}^K$&lt;/code&gt; while the parameter space $\Omega_\tau$ is like a local vector space in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathcal{R}^K$&lt;/code&gt;, where $K$ is the dimension of the manifold. Moreover, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau$&lt;/code&gt; is often an open (proper) subset of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$T\mathcal{M}_{\tau_0}$&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;In a manifold case, we have to explicitly distinguish the difference between the representation of a point (parameter) and a vector (Riemannian gradient).
-The following figure illustrates the difference between the &lt;strong&gt;domain&lt;/strong&gt; of these two spaces. Moreover, the &lt;strong&gt;norm/distance&lt;/strong&gt; in each of these two spaces is defined differently.&lt;/p&gt;
+&lt;p&gt;In manifold cases, we have to explicitly distinguish the difference between the representation of a point (parameter) and a vector (Riemannian gradient).
+The following figure illustrates the difference between the &lt;strong&gt;domain&lt;/strong&gt; of these two spaces. Moreover, the &lt;strong&gt;norm/distance&lt;/strong&gt; in each of these two spaces is defined differently. 
+Mathematically speaking, the (Riemannian) gradient space is much simpler and nicer than the parameter space.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/img/sphere.png&quot; width=&quot;500&quot; /&gt;&lt;/p&gt;
 
@@ -712,7 +713,11 @@ The following figure illustrates the difference between the &lt;strong&gt;domain
 \end{aligned}\tag{1}\label{1}
 $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\hat{\mathbf{g}}_{\tau_k}$&lt;/code&gt; is a natural/Riemannian gradient evaluated at point &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau_{k}$&lt;/code&gt; and $\alpha&amp;gt;0$ is a step-size.&lt;/p&gt;
 
-&lt;p&gt;The update in Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt; is valid since the parameter space $\Omega_\tau$  has a local vector-space structure thanks to the use of an intrinsic parametrization.
+&lt;p&gt;This update in Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt; is inspired by the standard vector update in the &lt;strong&gt;gradient space&lt;/strong&gt;.
+By choosing an intrinstic parametrization, this update is also valid in the &lt;strong&gt;parameter space&lt;/strong&gt; when the step-size is small
+enough.&lt;/p&gt;
+
+&lt;p&gt;The update in the parameter space is valid since the parameter space $\Omega_\tau$ has a local vector-space structure thanks to the use of an intrinsic parametrization.
 However, when $\Omega_\tau$ is a proper subset of $T\mathcal{M}_{\tau_k}$ (i.e., &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau \neq T\mathcal{M}_{\tau_k} $&lt;/code&gt;), the update in Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt; is valid only when the step-size $\alpha$ is small enough so that  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau_{k+1} \in \Omega_\tau$&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;span style=&quot;color:red&quot;&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;/span&gt;:
@@ -833,7 +838,7 @@ Equiavalently, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&g
 $$&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;The invariance of this update is due to the uniqueness of ODE and transformation rules for natural-gradients, Fisher information matrix, and Christoffel symbols. We will not discuss this further in this post to avoid complicated derivations. 
-Although Riemannian gradient descent is nice, the expoential map or the geodesic often does not have a closed form expression.&lt;/p&gt;
+Although Riemannian gradient descent is nice, the exponential map or the geodesic often does not have a closed form expression.&lt;/p&gt;
 
 &lt;h1 id=&quot;many-faces-of-natural-gradient-descent&quot;&gt;Many faces of Natural-gradient Descent&lt;/h1&gt;
 &lt;hr /&gt;
@@ -1705,12 +1710,12 @@ Under parametrization $\mathbf{\tau}$, we have the following parametric represen
 
 &lt;p&gt;Under &lt;strong&gt;intrinsic&lt;/strong&gt; parametrization $\tau$, we have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau \subset \mathcal{R}^2$&lt;/code&gt;. Thus, we can perform this operation in $\Omega_\tau$ space: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau_0 +t\mathbf{v}(\tau_0) \in \Omega_\tau$&lt;/code&gt; when scalar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$|t|$&lt;/code&gt; is small enough. Note that we only define the &lt;a href=&quot;#distance-induced-by-the-fisher-rao-metric&quot;&gt;distance&lt;/a&gt; between two vectors in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathcal{R}^2$&lt;/code&gt; space. The distance between two points in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau$&lt;/code&gt; space is undefined in this post.&lt;/p&gt;
 
-&lt;p&gt;(Parameterization-free repesentation of  vector $\mathbf{v}$ ):&lt;/p&gt;
+&lt;h2 id=&quot;parameterization-free-repesentation-of--vector-mathbfv&quot;&gt;Parameterization-free repesentation of  vector $\mathbf{v}$&lt;/h2&gt;
 
 &lt;p&gt;The tangent vector $\mathbf{v}$ at point $\mathbf{x_0}$  can be viewed as the &lt;strong&gt;tangent direction&lt;/strong&gt; of a (1-dimensional) smooth curve $\gamma(t) \in \mathcal{M}$, where $\gamma(0)=\mathbf{x_0}$,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\frac{d {\gamma}(t) }{d t} \Big|_{t=0}=\mathbf{v}$&lt;/code&gt; and the support of $\gamma(t)$ denoted by $\mathbf{I}$ is an open interval in  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathcal{R}^1$&lt;/code&gt; containing 0. 
 Since a curve $\gamma(t)$ is a geometric object, this is a parameterization-free repesentation of a vector.&lt;/p&gt;
 
-&lt;p&gt;(Parameterization-dependent repesentation of vector $\mathbf{v}$ ):&lt;/p&gt;
+&lt;h2 id=&quot;parameterization-dependent-repesentation-of-vector-mathbfv&quot;&gt;Parameterization-dependent repesentation of vector $\mathbf{v}$&lt;/h2&gt;
 
 &lt;p&gt;Given intrinsic parametrization $\tau$, we can define the parametric representation of the curve denoted by ${\gamma}_\tau(t)$, where the domain is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{I}_\tau \subset \mathcal{R}^1$&lt;/code&gt;.
 The parametric representation of vector &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{v}$&lt;/code&gt; is defined as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{v}(\mathbf{\tau}_0):= \frac{d {\gamma}_{\tau}(t) }{d t} \Big|_{t=0}$&lt;/code&gt;, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\gamma}_{\tau}(0)=\tau_0$&lt;/code&gt;.&lt;/p&gt;
@@ -1742,10 +1747,12 @@ Under parameterization $\mathbf{\tau}$, we can locally re-expressed the function
  of curve $\gamma(t)$ at $\mathbf{x}_0$ since  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\gamma}_\tau(t)$&lt;/code&gt; is the parametric representation of $\gamma(t)$.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Last but not least,
-we can also define vector additions and real scalar products in a tangent vector space  by using tangent directions of curves in the manifold with/without a parameterization.&lt;/p&gt;
+&lt;h2 id=&quot;riemannian-gradient-space-has-a-vector-space-structure&quot;&gt;(Riemannian) gradient space has a vector-space structure&lt;/h2&gt;
 
-&lt;p&gt;A vector space structure is an integral part of a tangent &lt;strong&gt;vector&lt;/strong&gt; space. On the other hand, we have to use an intrinsic parametrization $\tau$ to artificially create a local vector space structure in parameter space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau$&lt;/code&gt; which is a parametric representation of a set of &lt;strong&gt;points&lt;/strong&gt; in a manifold.&lt;/p&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Riemannian Manifold" /><summary type="html">Goal This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. The main propose of this post is to show how to compute/define a natural-gradient. The space of natural-gradients evaluated at the same point is called a tangent space at that point.</summary></entry><entry><title type="html">Part I: Manifolds with the Fisher-Rao Metric</title><link href="/posts/2021/09/Geomopt01/" rel="alternate" type="text/html" title="Part I: Manifolds with the Fisher-Rao Metric" /><published>2021-09-06T00:00:00+00:00</published><updated>2021-09-06T00:00:00+00:00</updated><id>/posts/2021/09/Geomopt01</id><content type="html" xml:base="/posts/2021/09/Geomopt01/">&lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
+&lt;p&gt;We can also define vector additions and real scalar products in a tangent vector space by using tangent directions of curves in the manifold with/without a parameterization.&lt;/p&gt;
+
+&lt;p&gt;The key takeway is that a vector space structure is an integral part of a tangent &lt;strong&gt;vector&lt;/strong&gt; space. On the other hand, we have to use an intrinsic parametrization $\tau$ to artificially create a local vector space structure in parameter space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau$&lt;/code&gt;. Recall that a parameter space is a parametric representation of a set of &lt;strong&gt;points&lt;/strong&gt; in a manifold.
+We will discuss more about this in &lt;a href=&quot;/posts/2021/11/Geomopt04/#two-kinds-of-spaces&quot;&gt;Part IV&lt;/a&gt;&lt;/p&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Riemannian Manifold" /><summary type="html">Goal This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. The main propose of this post is to show how to compute/define a natural-gradient. The space of natural-gradients evaluated at the same point is called a tangent space at that point.</summary></entry><entry><title type="html">Part I: Manifolds with the Fisher-Rao Metric</title><link href="/posts/2021/09/Geomopt01/" rel="alternate" type="text/html" title="Part I: Manifolds with the Fisher-Rao Metric" /><published>2021-09-06T00:00:00+00:00</published><updated>2021-09-06T00:00:00+00:00</updated><id>/posts/2021/09/Geomopt01</id><content type="html" xml:base="/posts/2021/09/Geomopt01/">&lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;This blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that,&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;The FIM plays an essential role in statistics and machine learning&lt;/li&gt;
@@ -1819,7 +1826,7 @@ By doing so, we can exploit the geometric structure of a parametric family denot
   &lt;tbody&gt;
     &lt;tr&gt;
       &lt;td style=&quot;text-align: left&quot;&gt;Least Square&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;observation $(x,y)$&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;observation &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$(x,y)$&lt;/code&gt;&lt;/td&gt;
       &lt;td style=&quot;text-align: right&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$p(x,y|\tau)$&lt;/code&gt;&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
@@ -1926,13 +1933,13 @@ The partial derivatives are
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
  \partial_{\mu} \log \mathcal{N}(w |\mu,\sigma) = \frac{w-\mu}{\sigma}, \,\,\, \partial_{\sigma} \log \mathcal{N}(w |\mu,\sigma) = \frac{ (w-\mu)^2 }{2 \sigma^2} - \frac{1}{2\sigma} 
-\end{aligned} \tag{4}\label{4}
+\end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
   &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
  \partial_{\mu} \log \mathcal{N}(w |\mu,\sigma) \Big|_{\mu=0,\sigma=1}= w, \,\,\, \partial_{\sigma} \log \mathcal{N}(w |\mu,\sigma) \Big|_{\mu=0,\sigma=1} = \frac{ w^2 -1 }{2}  
-\end{aligned} \tag{5}\label{5}
+\end{aligned}
 $$&lt;/code&gt;
 If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ c_1 w + c_2  (\frac{ w^2 -1 }{2}) = 0$&lt;/code&gt; holds for any $w$, we have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$c_1=c_2=0$&lt;/code&gt;, which implies  linear independence.&lt;/p&gt;
 
@@ -1949,12 +1956,12 @@ The partial derivatives are&lt;/p&gt;
   &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
  \partial_{\pi_0} \log \mathcal{B}(w |\pi_0, \pi_1) = \mathcal{B}(w |\pi_0, \pi_1)  (\mathcal{I}(w=0)-\mathcal{I}(w=1)) \frac{\pi_1}{(\pi_0+\pi_1)^2}   
-\end{aligned} \tag{6}\label{6}
+\end{aligned}
 $$&lt;/code&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \partial_{\pi_1} \log \mathcal{B}(w |\pi_0, \pi_1) = \mathcal{B}(w |\pi_0, \pi_1)  (\mathcal{I}(w=0)-\mathcal{I}(w=1)) \frac{-\pi_0}{ (\pi_0+\pi_1 )^2} 
-\end{aligned} \tag{7}\label{7}
+\end{aligned}
 $$&lt;/code&gt;
 Note that when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$c_0 = \pi_0 \neq 0 $&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$c_1= \pi_1 \neq 0$&lt;/code&gt;, we have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$c_0 \frac{\pi_1}{(\pi_0+\pi_1)^2}  + c_1 \frac{-\pi_0}{ (\pi_0+\pi_1 )^2} = 0$&lt;/code&gt;.&lt;/p&gt;
 
@@ -1982,7 +1989,7 @@ The main reason is that the parameter space is not open in $\mathcal{R}^2$.&lt;/
 Note that the metric could be ill-defined since the expectation may not exist.&lt;/p&gt;
 
 &lt;p&gt;Given a parameterization,  we can express the metric in a matrix form as
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathbf{F}(\tau) := E_{p(wh|\tau) }  [ \Big( \nabla_{\tau} \log p(w|\tau ) \Big)  \Big(\nabla_{\tau} \log (w|\tau) \Big)^T ]$&lt;/code&gt;,
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathbf{F}(\tau) := E_{p(wtau) }  [ \Big( \nabla_{\tau} \log p(w|\tau ) \Big)  \Big(\nabla_{\tau} \log (w|\tau) \Big)^T ]$&lt;/code&gt;,
 where $K$ is the number of entries of parameter array $\tau$ and 
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \nabla_{\tau} \log p(w|\tau ) := [ \partial_{\tau_1} \log p(w|\tau ), \cdots, \partial_{\tau_K} \log p(w|\tau ) ]^T  $&lt;/code&gt; is a column vector.&lt;/p&gt;
 
@@ -2015,13 +2022,13 @@ It is possible to define FIM under a non-intrinstic parameterization. However, F
 The following computation is not correct. Do you make similar mistakes like this?&lt;/p&gt;
 
   &lt;p&gt;Let &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$  p(w|\tau ) =  \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) \pi_1$&lt;/code&gt;, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau = (\pi_0,\pi_1)$&lt;/code&gt;. The derivative is
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$  \begin{aligned} \nabla_{\tau} \log p(w|\tau ) = \frac{1}{p(w|\tau )} [\mathcal{I}(w=0) ,  \mathcal{I}(w=1)]^T  \end{aligned} \tag{8}\label{8}$$&lt;/code&gt;
-Thus, by Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{8}$&lt;/code&gt;, FIM under this  parameterization is&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$  \begin{aligned} \nabla_{\tau} \log p(w|\tau ) = \frac{1}{p(w|\tau )} [\mathcal{I}(w=0) ,  \mathcal{I}(w=1)]^T  \end{aligned} \tag{4}\label{4}$$&lt;/code&gt;
+Thus, by Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{4}$&lt;/code&gt;, FIM under this  parameterization is&lt;/p&gt;
 
-  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$  \begin{aligned} F(\tau) = E_{p(w|\tau) } [ \frac{1}{p^2(w|\tau)} \begin{bmatrix} \mathcal{I}^2(w=0) &amp;amp;  \mathcal{I}(w=1)  \mathcal{I}(w=0) \\  \mathcal{I}(w=0)  \mathcal{I}(w=1) &amp;amp;  \mathcal{I}^2(w=1) \end{bmatrix} ]   = \begin{bmatrix} \frac{1}{\pi_0} &amp;amp;  0 \\ 0 &amp;amp;  \frac{1}{\pi_1} \end{bmatrix} \end{aligned} \tag{9}\label{9}$$&lt;/code&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$  \begin{aligned} F(\tau) = E_{p(w|\tau) } [ \frac{1}{p^2(w|\tau)} \begin{bmatrix} \mathcal{I}^2(w=0) &amp;amp;  \mathcal{I}(w=1)  \mathcal{I}(w=0) \\  \mathcal{I}(w=0)  \mathcal{I}(w=1) &amp;amp;  \mathcal{I}^2(w=1) \end{bmatrix} ]   = \begin{bmatrix} \frac{1}{\pi_0} &amp;amp;  0 \\ 0 &amp;amp;  \frac{1}{\pi_1} \end{bmatrix} \end{aligned}$$&lt;/code&gt;
 This computation is not correct. Do you know why it is not correct?&lt;/p&gt;
 
-  &lt;p&gt;The key reason is the equality constraint &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \pi_0+\pi_1=1 $&lt;/code&gt;. Thus, Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{8}$&lt;/code&gt; is &lt;strong&gt;incorrect&lt;/strong&gt;.&lt;/p&gt;
+  &lt;p&gt;The key reason is the equality constraint &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \pi_0+\pi_1=1 $&lt;/code&gt;. Thus, Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{4}$&lt;/code&gt; is &lt;strong&gt;incorrect&lt;/strong&gt;.&lt;/p&gt;
 
   &lt;p&gt;By definition, a Bernoulli distribution is valid only when the constraint holds. 
 Thus, the constraint &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \pi_0+\pi_1=1 $&lt;/code&gt; must be satisifed when we compute the Fisher matrix since the computation involves the expectation of this distribution.&lt;/p&gt;
@@ -2096,14 +2103,14 @@ We now illustrate this by examples.&lt;/p&gt;
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 
 &lt;p&gt;Natural-gradient descent (NGD) on structured parameter spaces  is computationally challenging.
-We propose a flexible and efficient NGD method to incorporate structures via matrix groups.&lt;/p&gt;
+We propose a flexible and efficient NGD method to incorporate structures via matrix Lie groups.&lt;/p&gt;
 
 &lt;p&gt;Our NGD method&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;generalizes the exponential natural evolutionary strategy &lt;a class=&quot;citation&quot; href=&quot;#glasmachers2010exponential&quot;&gt;[2]&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;recovers existing  Newton-like algorithms&lt;/li&gt;
   &lt;li&gt;yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance &lt;a class=&quot;citation&quot; href=&quot;#lin2021structured&quot;&gt;[3]&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;gives new NGD to learn structured covariances of Gaussian, Wishart and their mixtures&lt;/li&gt;
+  &lt;li&gt;gives new NGD updates to learn structured covariances of Gaussian, Wishart and their mixtures&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Applications of our method:&lt;/p&gt;
@@ -2111,7 +2118,7 @@ We propose a flexible and efficient NGD method to incorporate structures via mat
   &lt;li&gt;deep learning (structured adaptive-gradient),&lt;/li&gt;
   &lt;li&gt;non-convex optimization (structured 2nd-order),&lt;/li&gt;
   &lt;li&gt;evolution strategies (gradient-free),&lt;/li&gt;
-  &lt;li&gt;variational inference (multimodal density with Monte Carlo gradient).&lt;/li&gt;
+  &lt;li&gt;variational inference (multimodal density with Monte Carlo reparameterization gradients).&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;hr /&gt;
@@ -2126,7 +2133,7 @@ as optimization over a parametric family &lt;code class=&quot;language-plaintext
 $$&lt;/code&gt;
 where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{w}$&lt;/code&gt; is the decision variable,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\ell(\mathbf{w})$&lt;/code&gt; is a loss function, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau$&lt;/code&gt; is the parameter space of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q$&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\gamma\ge 0$&lt;/code&gt; is a constant.&lt;/p&gt;
 
-&lt;p&gt;Gradient descent and natural-gradient descent  to solve &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt;:
+&lt;p&gt;Using gradient descent and natural-gradient descent to solve &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt;:
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \textrm{GD: } &amp;amp;\tau_{t+1} \leftarrow \tau_t - \alpha \nabla_{\tau_t} \mathcal{L}(\tau) \\
@@ -2216,9 +2223,9 @@ $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&
 &lt;p&gt;The global, auxiliary, and local parameterizations are:
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
-        \tau &amp;amp;= \Big\{\mu \in \mathcal{R}^p, \mathbf{S} \in \mathcal{S}_{++}^{p\times p} \Big\},  &amp;amp; \mathbf{S}: \text{positive-definite matrix space } \\
-        \lambda &amp;amp; = \Big\{ \mu \in  \mathcal{R}^p , \mathbf{B} \in\mathrm{GL}^{p\times p} \Big\}, &amp;amp;\mathbf{B}: \text{ (closed) matrix Lie group}\\
-        \eta &amp;amp;= \Big\{ \delta\in  \mathcal{R}^p, \mathbf{M} \in\mathcal{S}^{p\times p}  \Big\}, &amp;amp; \mathbf{M}: \text{ Lie sub-algebra }
+        \tau &amp;amp;= \Big\{\mu \in \mathcal{R}^p, \mathbf{S} \in \mathcal{S}_{++}^{p\times p} \Big\},  &amp;amp; \mathbf{S}: \text{positive-definite matrix} \\
+        \lambda &amp;amp; = \Big\{ \mu \in  \mathcal{R}^p , \mathbf{B} \in\mathrm{GL}^{p\times p} \Big\}, &amp;amp;\mathbf{B}: \text{ (closed) matrix Lie group member}\\
+        \eta &amp;amp;= \Big\{ \delta\in  \mathcal{R}^p, \mathbf{M} \in\mathcal{S}^{p\times p}  \Big\}, &amp;amp; \mathbf{M}: \text{ Lie sub-algebra member}
 \end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
@@ -2318,8 +2325,8 @@ $$&lt;/code&gt; where $\mathbf{B}$ is a &lt;span style=&quot;color:red&quot;&gt;
       &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} \mathbf{B}_A &amp;amp;  \mathbf{0}  \\ \mathbf{B}_C &amp;amp;  \mathbf{B}_D  \end{bmatrix}$&lt;/code&gt;&lt;/td&gt;
       &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} \mathbf{B}_A &amp;amp;  \mathbf{B}_B  \\ \mathbf{0} &amp;amp;  \mathbf{B}_D  \end{bmatrix}$&lt;/code&gt;&lt;/td&gt;
       &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} \mathbf{B}_A &amp;amp;  \mathbf{0}  \\ \mathbf{B}_C &amp;amp;  \begin{bmatrix} \mathbf{B}_{D} &amp;amp; \mathbf{0} \\ \mathbf{B}_{3} &amp;amp; \mathbf{B}_{4} \end{bmatrix} \end{bmatrix}$&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} a &amp;amp;  0  \\ c &amp;amp;  d  \end{bmatrix} \otimes \begin{bmatrix} \alpha &amp;amp;  0 &amp;amp; 0 \\ \beta_1 &amp;amp; \gamma_1 &amp;amp; 0 \\ \beta_2 &amp;amp; 0 &amp;amp; \gamma_2     \end{bmatrix} $&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} a &amp;amp; 0 &amp;amp; 0 &amp;amp;0 \\ b &amp;amp;  a &amp;amp; 0 &amp;amp; 0  \\ c &amp;amp; b &amp;amp; a &amp;amp; 0 \\ d &amp;amp; c &amp;amp; b &amp;amp; a \end{bmatrix}$&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} d &amp;amp;  0  \\ s &amp;amp;  t  \end{bmatrix} \otimes \begin{bmatrix} r &amp;amp;  0 &amp;amp; 0 \\ {b}_1 &amp;amp; {o}_1 &amp;amp; 0 \\ {b}_2 &amp;amp; 0 &amp;amp; {o}_2     \end{bmatrix} $&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} r &amp;amp; 0 &amp;amp; 0 &amp;amp;0 \\ y &amp;amp;  r &amp;amp; 0 &amp;amp; 0  \\ g &amp;amp; y &amp;amp; r &amp;amp; 0 \\ b &amp;amp; g &amp;amp; y &amp;amp; r \end{bmatrix}$&lt;/code&gt;&lt;/td&gt;
       &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\begin{bmatrix} \mathbf{B}_{D_1} &amp;amp; \mathbf{0} &amp;amp; \mathbf{0} \\ \mathbf{B}_{A} &amp;amp; \mathbf{B}_{B} &amp;amp; \mathbf{0} \\ \mathbf{B}_{D_2} &amp;amp; \mathbf{0} &amp;amp; \mathbf{B}_{D_3} \end{bmatrix}$&lt;/code&gt;&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
@@ -2457,14 +2464,14 @@ $$&lt;/code&gt; where $\Sigma=\mathbf{S}^{-1}$ is the covariance.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;details&gt;
-	&lt;summary&gt;Group-structural invariance:&lt;/summary&gt;
+	&lt;summary&gt;Group-structural invariance: (Click to expand)&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
     &lt;p&gt;Since &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{B} \in {\cal{B}_{\text{up}}}(k)$&lt;/code&gt;,  the update in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{7}$&lt;/code&gt; is invariant under any (group) transform &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{R}^T \in  {\cal{B}_{\text{up}}}(k)$&lt;/code&gt; of  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{5}$&lt;/code&gt;  such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\min_{y \in \mathcal{R}^p}  \ell(\mathbf{R} \, \mathbf{y})$&lt;/code&gt;.&lt;/p&gt;
   &lt;/fieldset&gt;
 &lt;/details&gt;
 
 &lt;details&gt;
-	&lt;summary&gt;Time complexity:&lt;/summary&gt;
+	&lt;summary&gt;Time complexity: (Click to expand)&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
     &lt;ul&gt;
       &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O(k^2 p)$&lt;/code&gt; for triangular structure,&lt;/li&gt;
@@ -2480,7 +2487,7 @@ $$&lt;/code&gt; where $\Sigma=\mathbf{S}^{-1}$ is the covariance.&lt;/li&gt;
 &lt;/details&gt;
 
 &lt;details&gt;
-	&lt;summary&gt;Classical non-convex optimization:&lt;/summary&gt;
+	&lt;summary&gt;Classical non-convex optimization: (Click to expand)&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
     &lt;p&gt;200-dim non-separable non-convex functions:&lt;/p&gt;
 
@@ -2489,33 +2496,36 @@ $$&lt;/code&gt; where $\Sigma=\mathbf{S}^{-1}$ is the covariance.&lt;/li&gt;
 &lt;/details&gt;
 
 &lt;h2 id=&quot;structured-adaptive-gradient-methods-for-deep-learning&quot;&gt;Structured Adaptive-gradient Methods for Deep Learning&lt;/h2&gt;
-
-&lt;p&gt;Consider a block-diagonal Gaussian 
-       &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(\mathbf{w}|\tau)=\prod_{i} q(\mathbf{w}^i|\mu^i,\mathbf{S}^i)$&lt;/code&gt; with a Kronecker product group at each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$i$&lt;/code&gt;-th layer.&lt;/p&gt;
+&lt;p&gt;At each NN layer,
+consider a  Gaussian family
+       &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(\mathbf{w}|\mu,\mathbf{S})$&lt;/code&gt; with a Kronecker product structure, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau=(\mu,\mathbf{S})$&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Our method gives adaptive-gradient updates with group-structural invariance by
  approximating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\nabla_{\mu_t}^2 \ell( \mu)$&lt;/code&gt;  in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{8}$&lt;/code&gt; using the Gauss-Newton.&lt;/p&gt;
 
-&lt;p&gt;The Kronecker product of two structured groups further reduces the time complexity.&lt;/p&gt;
+&lt;p&gt;The Kronecker product (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{B}=\mathbf{B}_1 \otimes \mathbf{B}_2$&lt;/code&gt;) of two sparse structured groups (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{B}
+_1$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{B}_2$&lt;/code&gt;) further reduces the time complexity, where precision &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{S}=\mathbf{B}\mathbf{B}^T= (\mathbf{B}_1 \mathbf{B}_1^T) \otimes (\mathbf{B}_2 \mathbf{B}_2^T)$&lt;/code&gt;&lt;/p&gt;
 
 &lt;details&gt;
-	&lt;summary&gt;Time complexity:&lt;/summary&gt;
+	&lt;summary&gt;Time complexity: (Click to expand)&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
     &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O(k p)$&lt;/code&gt; for triangular structure,&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O( (k_1+k_2) p)$&lt;/code&gt; for hierarchical structure.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O(k p)$&lt;/code&gt; for our Kronecker product with triangular groups, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$0&amp;lt;k&amp;lt;p^{1/2}$&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O( (k_1+k_2) p)$&lt;/code&gt; for our  Kronecker product with hierarchical groups, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$0&amp;lt;k_1+k_2&amp;lt;p^{1/2}$&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O(p)$&lt;/code&gt; for Adam and our diagonal groups&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O(p^{3/2})$&lt;/code&gt; for KFAC and our Kronecker product with dense groups&lt;/li&gt;
     &lt;/ul&gt;
 
     &lt;p&gt;Implementation:&lt;/p&gt;
     &lt;ul&gt;
-      &lt;li&gt;Automatically parallelized by Auto-Differentiation,&lt;/li&gt;
-      &lt;li&gt;No sequential conjugate-gradient (CG) steps.&lt;/li&gt;
+      &lt;li&gt;Automatically parallelized by Auto-Differentiation&lt;/li&gt;
+      &lt;li&gt;No sequential conjugate-gradient (CG) steps&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/fieldset&gt;
 &lt;/details&gt;
 
 &lt;details&gt;
-	&lt;summary&gt;Image classification problems:&lt;/summary&gt;
+	&lt;summary&gt;Image classification problems: (Click to expand)&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
     &lt;p&gt;Kronecker product of lower-triangular groups for a CNN&lt;/p&gt;
 
@@ -2528,11 +2538,11 @@ $$&lt;/code&gt; where $\Sigma=\mathbf{S}^{-1}$ is the covariance.&lt;/li&gt;
 &lt;p&gt;Our NGD&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;can use structured Gaussian mixtures as flexiable variational distributions: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(\mathbf{w}|\tau)=\frac{1}{K}\sum_{k=1}^{K}q(\mathbf{w}|\mu_k,\mathbf{S}_k)$&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;gives efficient stochastic natural-gradient variational methods beyond mean-field&lt;/li&gt;
+  &lt;li&gt;gives efficient stochastic natural-gradient variational methods beyond mean-field/diagonal covariance&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;details&gt;
-	&lt;summary&gt;Approximating multimodal distributions (80-dim mixture of Student's Ts):&lt;/summary&gt;
+	&lt;summary&gt;Approximating 80-dim multimodal distributions: (Click to expand)&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
     &lt;p&gt;First 8 marginal distributions of our approximation (mixture with a block upper-triangular group, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$k=5$&lt;/code&gt;)&lt;/p&gt;
 
