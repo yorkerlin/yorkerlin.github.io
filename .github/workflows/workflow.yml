@@ -42,8 +42,9 @@ jobs:
         set -xo pipefail
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        rsync --remove-source-files img/nb_* _site/img/
-        rsync --remove-source-files img/20* _site/img/
+        rm -rf _site/img/nb_* _site/img/20*
+        mv img/nb_* _site/img/
+        mv img/20* _site/img/
         git checkout master
         ls -Q | grep -v _site | xargs rm -rf
         mv _site/* .
