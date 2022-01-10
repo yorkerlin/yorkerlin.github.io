@@ -9,19 +9,19 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Part II: Natural-Gradients Evaluted at one Point - Wu Lin</title>
-<meta name="description" content="GoalThis blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to compute/define a natural-gradient.The space of natural-gradients evaluated at the same point is called a tangent space at that point.">
+<!-- begin _includes/seo.html --><title>Part II: Natural-Gradients Evaluated at one Point - Wu Lin</title>
+<meta name="description" content="GoalThis blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to define and compute natural-gradients.The space of natural-gradients evaluated at the same point is called a tangent space at that point.">
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Part II: Natural-Gradients Evaluted at one Point">
+<meta property="og:title" content="Part II: Natural-Gradients Evaluated at one Point">
 <meta property="og:url" content="/posts/2021/10/Geomopt02/">
 
 
-  <meta property="og:description" content="GoalThis blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to compute/define a natural-gradient.The space of natural-gradients evaluated at the same point is called a tangent space at that point.">
+  <meta property="og:description" content="GoalThis blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to define and compute natural-gradients.The space of natural-gradients evaluated at the same point is called a tangent space at that point.">
 
 
 
@@ -166,15 +166,15 @@
   
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Part II: Natural-Gradients Evaluted at one Point">
-    <meta itemprop="description" content="GoalThis blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to compute/define a natural-gradient.The space of natural-gradients evaluated at the same point is called a tangent space at that point.">
+    <meta itemprop="headline" content="Part II: Natural-Gradients Evaluated at one Point">
+    <meta itemprop="description" content="GoalThis blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to define and compute natural-gradients.The space of natural-gradients evaluated at the same point is called a tangent space at that point.">
     <meta itemprop="datePublished" content="October 04, 2021">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Part II: Natural-Gradients Evaluted at one Point
+          <h1 id="page-title" class="page__title" itemprop="headline">Part II: Natural-Gradients Evaluated at one Point
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -182,7 +182,7 @@
 
 
 
-  11 minute read
+  13 minute read
 </p>
           
         </header>
@@ -192,7 +192,7 @@
         
         <h2 id="goal">Goal</h2>
 <p>This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.
-The main propose of this post is to show how to compute/define a natural-gradient.
+The main propose of this post is to show how to define and compute natural-gradients.
 The space of natural-gradients evaluated at the same point is called a tangent space at that point.</p>
 
 <p>We will give an informal introduction with a focus on high level of ideas.</p>
@@ -201,14 +201,20 @@ The space of natural-gradients evaluated at the same point is called a tangent s
 <hr />
 <p>Before we discuss natural-gradients, we first revisit Euclidean gradients.</p>
 
-<p>We will show a Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we extend the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a natural-gradient.</p>
+<p>We will show a (unit) Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we extend the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a natural-gradient.</p>
 
-<p>Given a smooth scalar function $\min_{\tau \in \mathcal{R}^K } \,\,f(\mathbf{\tau})$ in a <strong>vector space</strong> <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, we can define the (Euclidean) steepest direction at current <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> as the optimal solution to the following optimization problem. We can express the optimization problem in terms of a <strong>directional derivative</strong> along vector $\mathbf{v}$. We assume <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)  \neq \mathbf{0}$</code>.
-<code class="language-plaintext highlighter-rouge">$$
+<p>Given a smooth scalar function $\min_{\tau \in \mathcal{R}^K } \,\,f(\mathbf{\tau})$ in a <strong>vector space</strong> <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, we can define the (Euclidean) steepest direction at current <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> as the optimal solution to the following optimization problem. We can express the optimization problem in terms of a <strong>directional derivative</strong> along vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code>.
+We assume <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)  \neq \mathbf{0}$</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \min_{\|v\|^2=1} \lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t} = ( \nabla_\tau f(\mathbf{\tau}_0) )^T \mathbf{v} 
 \end{aligned}\tag{1}\label{1}
 $$</code></p>
+
+<div class="notice--info">
+  <p>Each possible vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> lives in the same (vector) space at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.</p>
+</div>
 
 <p>It is easy to see that the optimal solution of Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}= -\frac{\nabla_\tau f(\mathbf{\tau}_0) }{\|\nabla_\tau f(\mathbf{\tau}_0) \|}$</code>, which is the (Euclidean) steepest direction at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.</p>
 
@@ -216,30 +222,43 @@ $$</code></p>
 <hr />
 
 <p>To generalize  the steepest direction at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> in a Riemannian manifold, we first formulate a similar optimization problem like Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> in the manifold case.
-To do so, we have to define the length of a vector in manifold cases. In <a href="/posts/2021/11/Geomopt03/#standard-euclidean-gradients-are-not-invariant">Part III</a>, we will show that the (standard) length does not perseve under a parameter transform while the length induced by the Fisher-Rao metric does.</p>
+To do so, we have to define the length of a vector in manifold cases. In <a href="/posts/2021/11/Geomopt03/#standard-euclidean-gradients-are-not-invariant">Part III</a>, we will show that the (standard) length does not perseve under a parameter transformation while the length induced by the Fisher-Rao metric does.</p>
 
-<p>As mentioned at <a href="/posts/2021/09/Geomopt01/#fisher-rao-metric">Part I</a>, the FIM $\mathbf{F}$ should be positive definite. We can use FIM to define the length/norm of a vector (e.g., a Riemannian gradient) $\mathbf{v}$ at a point in a manifold via a weighted inner product.
+<p>As mentioned at <a href="/posts/2021/09/Geomopt01/#fisher-rao-metric">Part I</a>, the FIM $\mathbf{F}$ should be positive definite. We can use the FIM to define the length/norm of a vector (e.g., a Riemannian gradient) $\mathbf{v}$ at a point in a manifold via a weighted inner product.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \|\mathbf{v}\|_F := \sqrt{\mathbf{v}^T \mathbf{F} \mathbf{v}}
 \end{aligned}
 $$</code></p>
 
-<p>The positive-definiteness of FIM is essential since we do not want a non-zero vector has a zero length.</p>
+<p>The positive-definiteness of the FIM is essential since we do not want a non-zero vector has a zero length.</p>
 
-<p>The distance (and orthogonality) between two <span style="color:red">vectors</span> at the <span style="color:red">same</span>  point is also induced by FIM since we can define them by the inner product as
+<p>The distance (and orthogonality) between two <span style="color:red">vectors</span> at  <span style="color:red">point <code class="language-plaintext highlighter-rouge">$\tau_0$</code></span>  is also induced by the FIM since we can define them by the inner product as
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 d(\mathbf{v},\mathbf{w}) := \|\mathbf{v}-\mathbf{w}\|_F
 \end{aligned}
 $$</code>
-where <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{w}$</code> are two vectors evaluted at point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.</p>
+where vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{w}$</code> live in the same (vector) space at point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.</p>
+
+<p><img src="/img/tmanifold.png" width="300" /></p>
 
 <p>In manifold cases, we have to distinguish the difference between a point (e.g., parameter array $\tau_0$) and a vector (e.g., Riemannian gradient under a parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code>).
 This point is crucial to (natural) gradient-based methods in <a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a>.</p>
 
-<p><span style="color:red"><strong>Warning</strong></span>: We do NOT define the distance between two points in the manifold, which will be discussed <a href="#riemannian-gradients-as-tangent-vectors-optional">here</a>.
-We also do NOT define the distance between a vector at one point and another vector at a distinct point.</p>
+<div class="notice--danger">
+  <p><strong>Warning</strong>:</p>
+  <ul>
+    <li>
+      <p>We do NOT define how to compute the distance between two points in the manifold, which will be discussed <a href="#riemannian-gradients-as-tangent-vectors-optional">here</a>.</p>
+    </li>
+    <li>
+      <p>We also do NOT define how to compute the distance between a vector at point <code class="language-plaintext highlighter-rouge">$\tau_0$</code> and another vector at a distinct point
+<code class="language-plaintext highlighter-rouge">$\tau_1$</code>, which involves the concept of <a href="https://en.wikipedia.org/wiki/Parallel_transport">parallel transport</a> in a curved space. For simplicity, we do not define how to parallelly transport a
+vector in this post.</p>
+    </li>
+  </ul>
+</div>
 
 <h1 id="directional-derivatives-in-a-manifold">Directional derivatives in a manifold</h1>
 <hr />
@@ -256,44 +275,66 @@ Therefore, when $|t|$ is small enough, <code class="language-plaintext highlight
 Note that we only require <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} \in \Omega_\tau$</code> when $|t|$ is small enough. When $|t|$ is small enough, this is possible since a line segment <code class="language-plaintext highlighter-rouge">$ \mathbf{\tau}_0+t\mathbf{v} \in E$</code> and <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>.
  Technically, this is because  $\Omega_\tau$ is an open set in $\mathcal{R}^K$, where $K$ is the number of entires of parameter array <code class="language-plaintext highlighter-rouge">$\tau$</code>.</p>
 
-<p>Under <strong>intrinsic</strong> parameterization $\mathbf{\tau}$, the directional derivative remains the same as in the Euclidean case thanks to the <strong>local vector space</strong> structure.
-<code class="language-plaintext highlighter-rouge">$$\begin{aligned} \lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t} = ( \nabla_\tau f(\mathbf{\tau}_0))^T \mathbf{v} \end{aligned}$$</code>.</p>
+<p>Under <strong>intrinsic</strong> parameterization $\mathbf{\tau}$, the directional derivative remains the same as in the Euclidean case thanks to the <strong>local vector space</strong> structure in <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>.
+<code class="language-plaintext highlighter-rouge">$$\begin{aligned} \lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t} = ( \nabla_\tau f(\mathbf{\tau}_0))^T \mathbf{v}. \end{aligned}$$</code></p>
+
+<div class="notice--danger">
+  <p>Note:</p>
+  <ul>
+    <li>
+      <p><code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}$</code> lives in the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> when scalar <code class="language-plaintext highlighter-rouge">$|t|$</code> is small enough</p>
+    </li>
+    <li>
+      <p>vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> lives in a distinct space. This space is called the tangent vector space <code class="language-plaintext highlighter-rouge">$\mathcal{R}^k$</code> at current point <code class="language-plaintext highlighter-rouge">$\tau_0$</code></p>
+    </li>
+  </ul>
+
+</div>
+
+<p><img src="/img/sphere.png" width="500" /></p>
 
 <p>The following example illustrates directional derivatives in manifold cases.</p>
 
-<details>
-<summary>Valid case:</summary>
+<div class="notice--info">
+  <details>
+<summary>Valid case: (click to expand)</summary>
 <fieldset class="field-set">
-    <blockquote>
+      <blockquote>
 
-      <p><code class="language-plaintext highlighter-rouge">$\tau$</code> is a <strong>local intrinsic</strong> parameterization for the unit sphere.</p>
+        <p><code class="language-plaintext highlighter-rouge">$\tau$</code> is a <strong>local intrinsic</strong> parameterization for the unit sphere.</p>
 
-      <p>The line segment from <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> to <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} $</code>  is shown in blue, which is the parameter representation of the yellow curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> in the manifold.
+        <p>The line segment from <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> to <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} $</code>  is shown in blue, which is the parameter representation of the yellow curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> in the manifold.
 We will show later that Riemannian gradient vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> under this parametrization at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> is the <strong>parameter representation</strong> of the tangent vector of curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> at point <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code>.</p>
 
-      <p><img src="/img/sphere_simple.png" width="500" /></p>
+        <p><img src="/img/sphere_simple.png" width="500" /></p>
 
-      <p><strong>Warning</strong>: Curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> is NOT the shortest curve in the manifold between <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{x}_1$</code>.</p>
-    </blockquote>
-  </fieldset>
+        <div class="notice--danger">
+          <p><strong>Warning</strong>:
+Curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> often is NOT the shortest curve in the manifold from <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code> to  <code class="language-plaintext highlighter-rouge">$\mathbf{x}_1$</code>.</p>
+        </div>
+      </blockquote>
+    </fieldset>
 </details>
+</div>
 
-<details>
-<summary>Invalid case:</summary>
+<div class="notice--info">
+  <details>
+<summary>Invalid case: (click to expand)</summary>
 <fieldset class="field-set">
-    <blockquote>
+      <blockquote>
 
-      <p>A directional derivative can be ill-defined under a <strong>non-intrinsic</strong> parameterization.</p>
+        <p>A directional derivative can be ill-defined under a <strong>non-intrinsic</strong> parameterization.</p>
 
-      <p>We use <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">parameterization 3</a> for unit circle <code class="language-plaintext highlighter-rouge">$\mathcal{S}^1$</code>, where the red line segment passes through <code class="language-plaintext highlighter-rouge">$\tau_0=(0,1) \in \mathcal{S}^1 $</code>.</p>
+        <p>We use <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">parameterization 3</a> for unit circle <code class="language-plaintext highlighter-rouge">$\mathcal{S}^1$</code>, where the red line segment passes through <code class="language-plaintext highlighter-rouge">$\tau_0=(0,1) \in \mathcal{S}^1 $</code>.</p>
 
-      <p><img src="/img/tangent_non.png" alt="Figure 1" /></p>
+        <p><img src="/img/tangent_non.png" alt="Figure 1" /></p>
 
-      <p>Any other point <code class="language-plaintext highlighter-rouge">$\tau_0 + t\mathbf{v}$</code> in the line segment leaves the manifold for <code class="language-plaintext highlighter-rouge">$t\neq 0$</code> and thus, <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau}_0+t\mathbf{v})$</code> is not well-defined.
+        <p>Any  point <code class="language-plaintext highlighter-rouge">$\tau_0 + t\mathbf{v}$</code> in the line segment leaves the manifold when <code class="language-plaintext highlighter-rouge">$t\neq 0$</code>.  Thus, <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau}_0+t\mathbf{v})$</code> is not well-defined.
 The main reason is that <code class="language-plaintext highlighter-rouge">$\tau$</code> is not an intrinsic parameterization.</p>
-    </blockquote>
-  </fieldset>
+      </blockquote>
+    </fieldset>
 </details>
+</div>
 
 <h1 id="riemannian-steepest-direction">Riemannian steepest direction</h1>
 <hr />
@@ -305,35 +346,39 @@ Now, we can introduce the Riemannian steepest direction. We will use this to def
 \begin{aligned}
 \min_{ \color{red} {\|v\|_{F}^2=1} } ( \nabla_\tau f(\mathbf{\tau}_0) )^T  \mathbf{v} 
 \end{aligned} \tag{2}\label{2}
-$$</code> 
-where $\mathbf{v}$ can be any (Riemannian) vector at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> satisfied the norm constraint.</p>
+$$</code></p>
+
+<div class="notice--info">
+  <p>Each possible (Riemannian) vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> lives in the same (tangent) vector space at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.</p>
+</div>
 
 <p>The Lagrangian function of this problem is given below, where $\lambda$ is a Lagrange multiplier. 
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 L(\mathbf{v},\lambda) =  ( \nabla_\tau f(\mathbf{\tau}_0))^T \mathbf{v} + \lambda (\|v\|_{F}^2 - 1) = \mathbf{v}^T \nabla_\tau f(\mathbf{\tau}_0) + \lambda (\mathbf{v}^T \mathbf{F}(\mathbf{\tau}_0) \mathbf{v}  - 1) 
 \end{aligned}
-$$</code> where <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\mathbf{\tau}_0)$</code> is FIM evaluated at point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.</p>
+$$</code> where <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\mathbf{\tau}_0)$</code> is the FIM evaluated at point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.</p>
 
-<p>One of the Karush–Kuhn–Tucker (KKT) necessary conditions implies that
+<p>One of the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions">Karush–Kuhn–Tucker</a> (KKT) necessary conditions implies that
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{0} = \nabla_{v} L(\mathbf{v}_{\text{opt}},\lambda) = \nabla_\tau f(\mathbf{\tau}_0) + 2 \lambda \mathbf{F}(\mathbf{\tau}_0) \mathbf{v}_{\text{opt}}
 \end{aligned}
 $$</code>
-When $\lambda \neq 0$, vector 	<code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}$</code> should be proportional to <code class="language-plaintext highlighter-rouge">$\mathbf{F}^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0)$</code>, where  <code class="language-plaintext highlighter-rouge">$\mathbf{F}^{-1}(\mathbf{\tau}_0)$</code> is well-defined since FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\mathbf{\tau}_0)$</code> is positive definite.</p>
+When $\lambda \neq 0$, vector 	<code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}$</code> should be proportional to <code class="language-plaintext highlighter-rouge">$\mathbf{F}^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0)$</code>, where  <code class="language-plaintext highlighter-rouge">$\mathbf{F}^{-1}(\mathbf{\tau}_0)$</code> is well-defined since the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\mathbf{\tau}_0)$</code> is positive definite.</p>
 
 <p>We can show that the optimal solution of Eq. <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> is <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}= -\frac{ \mathbf{F}^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0) }{\| \mathbf{F}^{-1}(\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_F}$</code>, which gives us the Riemannian steepest direction at current <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.</p>
 
 <p>The <strong>Euclidean</strong> steepest direction <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{euclid}}= -\frac{ \nabla_\tau f(\mathbf{\tau}_0) }{\| \nabla_\tau f(\mathbf{\tau}_0) \|_F}$</code> is <strong>not</strong> the optimal solution of  Eq. <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> when <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\tau_0) \neq \mathbf{I}$</code>.
 We will illustrate this by using an example.</p>
 
-<details>
-<summary>Euclidean steepest direction is not the optimal solution of  Eq. $\eqref{2}$</summary>
+<div class="notice--info">
+  <details>
+<summary>Euclidean steepest direction is not the optimal solution of  Eq. $\eqref{2}$ (click to expand)</summary>
 <fieldset class="field-set">
-    <blockquote>
+      <blockquote>
 
-      <p>Consider <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\tau_0)=\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; \frac{1}{2} \end{bmatrix}$</code> and <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)=\begin{bmatrix} 1\\1 \end{bmatrix}$</code>.
+        <p>Consider <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\tau_0)=\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; \frac{1}{2} \end{bmatrix}$</code> and <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)=\begin{bmatrix} 1\\1 \end{bmatrix}$</code>.
 We have the following results
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -342,42 +387,50 @@ We have the following results
 \end{aligned}
 $$</code></p>
 
-      <p><code class="language-plaintext highlighter-rouge">$$
+        <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{v}_{\text{opt}} = -\begin{bmatrix} \frac{1}{\sqrt{3}} \\ \frac{2}{\sqrt{3}} \end{bmatrix}; \,\,\,
 \mathbf{v}_{\text{euclid}}=
 -\begin{bmatrix} \sqrt{\frac{2}{3}} \\ \sqrt{\frac{2}{3}} \end{bmatrix}\end{aligned}
 $$</code></p>
 
-      <p><code class="language-plaintext highlighter-rouge">$$
+        <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{v}_{\text{opt}}^T \nabla_\tau f(\mathbf{\tau}_0)= -\sqrt{3}  &lt;  -\frac{2\sqrt{2}}{\sqrt{3}} = \mathbf{v}_{\text{euclid}}^T \nabla_\tau f(\mathbf{\tau}_0) 
 \end{aligned}
 $$</code></p>
 
-      <p>Therefore, the Euclidean steepest direction <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{euclid}}$</code> is not the optimal solution of  Eq. <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code>.</p>
-    </blockquote>
-  </fieldset>
+        <p>Therefore, the Euclidean steepest direction <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{euclid}}$</code> is not the optimal solution of  Eq. <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code>.</p>
+      </blockquote>
+    </fieldset>
 </details>
+</div>
 
-<p>Given a scalar function $f(\mathbf{\tau})$, if its <strong>Euclidean</strong> (steepest) gradient is $\nabla_\tau f(\mathbf{\tau})$, its <strong>Riemannian</strong> (steepest) gradient is defined as $ \mathbf{F}^{-1}(\mathbf{\tau}) \nabla_\tau f(\mathbf{\tau})$ in literature.
+<p>Given a scalar function <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau})$</code>, if its (un-normalized) <strong>Euclidean</strong> (steepest) gradient is <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau})$</code>, its (un-normalized) <strong>Riemannian</strong> (steepest) gradient is defined as <code class="language-plaintext highlighter-rouge">$ \mathbf{F}^{-1}(\mathbf{\tau}) \nabla_\tau f(\mathbf{\tau})$</code>.
 We use a learning-rate to control the length of a gradient instead of normalizing its length. 
-Since we use the Fisher-Rao metric, the Riemannian gradient is also known as the <strong>natural</strong> gradient.</p>
+Since we use the Fisher-Rao metric <code class="language-plaintext highlighter-rouge">$\mathbf{F}$</code>, the Riemannian gradient is also known as the <strong>natural</strong> gradient.</p>
 
-<details>
-<summary>Example: multivariate Gaussian</summary>
+<div class="notice--info">
+  <details>
+<summary>Example: multivariate Gaussian (click to expand)</summary>
 <fieldset class="field-set">
-    <blockquote>
+      <blockquote>
 
-      <p>Consider a $d$-dimensional Gaussian family with zero mean and precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> discussed in <a href="/posts/2021/09/Geomopt01/#manifold-dimension">Part I</a>. <br />
-We specify an intrinsic parameterization $\mathbf{\tau}$ of the family as <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathrm{MatH}(\tau) = \mathbf{S}   \succ \mathbf{0} \}$</code> with parametrization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code>, where <code class="language-plaintext highlighter-rouge">$\tau$</code> is a $\frac{d(d+1)}{2}$-dim array and map $\mathrm{MatH}()$ is the inverse map of  the <a href="https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vectorization">half-vectorization function</a> $\mathrm{vech}()$.</p>
+        <p>Consider a $d$-dimensional Gaussian family $\mathbf{\tau}$ of the family as <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathbf{S}   \succ \mathbf{0} \}$</code> with zero mean and precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> discussed in <a href="/posts/2021/09/Geomopt01/#dimensionality-of-a-manifold">Part I</a>.</p>
 
-      <p>Technically speaking, <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> is NOT an intrinsic parameter due to the symmetry constraint. In other words, FIM w.r.t. <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> will be singular if  <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> is considered as a matrix parameter with $d^2$ degrees of freedom.</p>
+        <p>Parametrization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code> is intrinsic while
+<code class="language-plaintext highlighter-rouge">$\eta = \mathrm{vec}(\mathbf{S})$</code> is not, where
+map $\mathrm{vech}()$ is the <a href="https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vectorization">half-vectorization map</a> and map <code class="language-plaintext highlighter-rouge">$\mathrm{vec}()$</code> is the standard vectorization map.
+Note that <code class="language-plaintext highlighter-rouge">$\tau$</code> is a <code class="language-plaintext highlighter-rouge">$\frac{d(d+1)}{2}$</code>-dim parameter array while <code class="language-plaintext highlighter-rouge">$\eta$</code> is <code class="language-plaintext highlighter-rouge">$d^2$</code>-dim parameter array,</p>
 
-      <p>In the literature, a natural gradient w.r.t. <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> is defined as <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}(\mathbf{v})$</code>, where <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> is a natural-gradient w.r.t. <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{S})$</code>.</p>
-    </blockquote>
-  </fieldset>
+        <p>In other words, the FIM w.r.t. <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>  is singular if  <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> is considered as a matrix parameter with $d^2$ degrees of freedom.
+Strictly speaking, a natural gradient/vector w.r.t. <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> is not well-defined.</p>
+
+        <p>In the literature, a natural gradient w.r.t. <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> is  defined as <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}(\mathbf{v})$</code>, where <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> is a valid natural gradient w.r.t. intrinsic parameter <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{S})$</code>.</p>
+      </blockquote>
+    </fieldset>
 </details>
+</div>
 
 <h1 id="riemannian-gradients-as-tangent-vectors-optional">Riemannian gradients as tangent vectors (optional)</h1>
 <hr />
@@ -423,7 +476,10 @@ Under parametrization $\mathbf{\tau}$, we have the following parametric represen
 
 <p>Note that  <code class="language-plaintext highlighter-rouge">$\tau_0$</code> is a parameter array, which is a representation of a point $\mathbf{x}_0$ while $\mathbf{v}(\tau_0)$ is  a Riemannian gradient, which is a representation of the tangent vector of curve <code class="language-plaintext highlighter-rouge">$\gamma$</code> at point $\mathbf{x}_0$.</p>
 
-<p><strong>Warning</strong>: Be aware of the differences shown in the table.</p>
+<div class="notice--danger">
+  <p><strong>Warning</strong>:
+Be aware of the differences shown in the table.</p>
+</div>
 
 <table>
   <thead>
@@ -452,12 +508,12 @@ Under parametrization $\mathbf{\tau}$, we have the following parametric represen
 
 <p>Under <strong>intrinsic</strong> parametrization $\tau$, we have <code class="language-plaintext highlighter-rouge">$\Omega_\tau \subset \mathcal{R}^2$</code>. Thus, we can perform this operation in $\Omega_\tau$ space: <code class="language-plaintext highlighter-rouge">$\tau_0 +t\mathbf{v}(\tau_0) \in \Omega_\tau$</code> when scalar <code class="language-plaintext highlighter-rouge">$|t|$</code> is small enough. Note that we only define the <a href="#distance-induced-by-the-fisher-rao-metric">distance</a> between two vectors in the <code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code> space. The distance between two points in the <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> space is undefined in this post.</p>
 
-<h2 id="parameterization-free-repesentation-of--vector-mathbfv">Parameterization-free repesentation of  vector $\mathbf{v}$</h2>
+<h2 id="parameterization-free-representation-of--vector-mathbfv">Parameterization-free representation of  vector $\mathbf{v}$</h2>
 
 <p>The tangent vector $\mathbf{v}$ at point $\mathbf{x_0}$  can be viewed as the <strong>tangent direction</strong> of a (1-dimensional) smooth curve $\gamma(t) \in \mathcal{M}$, where $\gamma(0)=\mathbf{x_0}$,  <code class="language-plaintext highlighter-rouge">$\frac{d {\gamma}(t) }{d t} \Big|_{t=0}=\mathbf{v}$</code> and the support of $\gamma(t)$ denoted by $\mathbf{I}$ is an open interval in  <code class="language-plaintext highlighter-rouge">$\mathcal{R}^1$</code> containing 0. 
 Since a curve $\gamma(t)$ is a geometric object, this is a parameterization-free repesentation of a vector.</p>
 
-<h2 id="parameterization-dependent-repesentation-of-vector-mathbfv">Parameterization-dependent repesentation of vector $\mathbf{v}$</h2>
+<h2 id="parameterization-dependent-representation-of-vector-mathbfv">Parameterization-dependent representation of vector $\mathbf{v}$</h2>
 
 <p>Given intrinsic parametrization $\tau$, we can define the parametric representation of the curve denoted by ${\gamma}_\tau(t)$, where the domain is <code class="language-plaintext highlighter-rouge">$\mathbf{I}_\tau \subset \mathcal{R}^1$</code>.
 The parametric representation of vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> is defined as <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0):= \frac{d {\gamma}_{\tau}(t) }{d t} \Big|_{t=0}$</code>, where <code class="language-plaintext highlighter-rouge">${\gamma}_{\tau}(0)=\tau_0$</code>.</p>
@@ -475,15 +531,19 @@ and the blue line segment <code class="language-plaintext highlighter-rouge">${\
 
 <blockquote>
 
-  <p>Consider a smooth scalar function defined in the manifold $h: \mathcal{M} \to \mathcal{R}$. In the unit sphere case, consider <code class="language-plaintext highlighter-rouge">$h(\mathbf{x})$</code> subject to <code class="language-plaintext highlighter-rouge">$\mathbf{x}^T \mathbf{x}=1$</code>.
+  <p>Consider a smooth scalar function defined in the manifold $h: \mathcal{M} \to \mathcal{R}$. In the unit sphere case, consider <code class="language-plaintext highlighter-rouge">$h(\mathbf{z})$</code> subject to <code class="language-plaintext highlighter-rouge">$\mathbf{z}^T \mathbf{z}=1$</code>.
 Under parameterization $\mathbf{\tau}$, we can locally re-expressed the function as <code class="language-plaintext highlighter-rouge">$h_\tau(\mathbf{\tau}):=h( (\tau_x,\tau_y,\sqrt{1-\tau_x^2-\tau_y^2}) )$</code> where <code class="language-plaintext highlighter-rouge">$\tau \in \Omega_\tau$</code>.</p>
 
   <p>By the definition of a directional derivative, the following identity holds for any smooth scalar function $h$: <code class="language-plaintext highlighter-rouge">$[\nabla h_\tau(\mathbf{\tau}_0)]^T \mathbf{v}(\mathbf{\tau}_0) =\frac{d h_\tau({\gamma}_\tau(t)) }{d t} \Big|_{t=0}$</code>, where $h_\tau$ is the parametric representation of  $h$ . Note that <code class="language-plaintext highlighter-rouge">$(h_\tau \circ {\gamma}_\tau) (t)$</code> is a function defined from <code class="language-plaintext highlighter-rouge">$\mathbf{I}_\tau $</code> to $\mathcal{R}^1$, where domain <code class="language-plaintext highlighter-rouge">$\mathbf{I}_\tau \subset \mathcal{R}^1$</code>.</p>
 
-  <p>The <span style="color:red"> <strong>key</strong> </span> observation is that function <code class="language-plaintext highlighter-rouge">$(h_\tau \circ {\gamma}_\tau) (t)$</code> becomes a scalar function defined in $\mathcal{R}^1$ thanks to parametrization $\tau$. Thus, we can use the standard chain rule.</p>
+  <div class="notice--danger">
+    <p>The key  observation:</p>
+
+    <p>Function <code class="language-plaintext highlighter-rouge">$(h_\tau \circ {\gamma}_\tau) (t)$</code> becomes a standard real-scalar function thanks to parametrization $\tau$. Thus, we can safely use the standard chain rule.</p>
+  </div>
 
   <p>By the chain rule, we have <code class="language-plaintext highlighter-rouge">$\frac{d h_\tau({\gamma}_\tau(t)) }{d t} \Big|_{t=0}=[\nabla h_\tau(\mathbf{\tau}_0)]^T  \frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}$</code>, where <code class="language-plaintext highlighter-rouge">${\gamma}_\tau(0)=\tau_0$</code>. Thus,
-<code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0) =  \frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}$</code> since <code class="language-plaintext highlighter-rouge">$\nabla h_\tau(\mathbf{\tau}_0)$</code> can be arbitrary.</p>
+<code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0) =  \frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}$</code> since (Euclidean gradient) <code class="language-plaintext highlighter-rouge">$\nabla h_\tau(\mathbf{\tau}_0)$</code> is an arbitrary vector in $\mathcal{R}^2$ and <code class="language-plaintext highlighter-rouge">$\tau$</code> is a 2-dim parameter array.</p>
 
   <p>In summary, a Riemannian gradient <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0)$</code> can be viewed as a parametric representation of the tangent vector 
  of curve $\gamma(t)$ at $\mathbf{x}_0$ since  <code class="language-plaintext highlighter-rouge">${\gamma}_\tau(t)$</code> is the parametric representation of $\gamma(t)$.</p>
@@ -493,8 +553,135 @@ Under parameterization $\mathbf{\tau}$, we can locally re-expressed the function
 
 <p>We can also define vector additions and real scalar products in a tangent vector space by using tangent directions of curves in the manifold with/without a parameterization.</p>
 
-<p>The key takeway is that a vector space structure is an integral part of a tangent <strong>vector</strong> space. On the other hand, we have to use an intrinsic parametrization $\tau$ to artificially create a local vector space structure in parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>. Recall that a parameter space is a parametric representation of a set of <strong>points</strong> in a manifold.
+<p>The key takeway is that a vector space structure is an integral part of a tangent <strong>vector</strong> space. On the other hand, we have to use an intrinsic parametrization $\tau$ to artificially create a local vector space structure in parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>. Recall that a parameter space is a parametric representation of a  set of <strong>points</strong> in a manifold.
 We will discuss more about this in <a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a></p>
+
+<h1 id="notebook">Notebook</h1>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">jax.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">;</span> <span class="n">config</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="s">"jax_enable_x64"</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="n">jnp</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span><span class="p">,</span> <span class="n">jit</span><span class="p">,</span> <span class="n">value_and_grad</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">colors</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">loss_lik</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span> <span class="n">b2</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span> <span class="n">a2</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+    <span class="n">ls</span> <span class="o">=</span> <span class="n">b1</span><span class="o">*</span><span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">a1</span><span class="o">*</span><span class="n">mu</span><span class="o">+</span><span class="n">a1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">b2</span><span class="o">*</span><span class="p">((</span><span class="n">mu</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="mf">3.0</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="o">-</span><span class="mf">3.0</span><span class="o">*</span><span class="n">a2</span><span class="o">*</span><span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="p">)</span><span class="o">+</span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">a2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">mu</span><span class="o">-</span><span class="n">a2</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mf">4.0</span><span class="o">/</span><span class="n">v</span>
+    <span class="k">return</span> <span class="n">ls</span>
+
+<span class="o">@</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">loss_pre</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="k">return</span> <span class="n">loss_lik</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="mf">1.0</span><span class="o">/</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="n">jnp</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">loss_f_pre</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">value_and_grad</span><span class="p">(</span><span class="n">loss_pre</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gd</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_fun</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#For plotting  
+</span>    
+    <span class="n">cur_params</span> <span class="o">=</span> <span class="n">init_params</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        
+        <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">g</span><span class="p">)</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span> <span class="c1">#Euclidean gradient
+</span>        <span class="n">mu_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">s_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+        <span class="n">J_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        
+        <span class="n">cur_params</span>  <span class="o">=</span> <span class="n">cur_params</span> <span class="o">-</span> <span class="n">step_size</span><span class="o">*</span> <span class="n">g</span> <span class="c1">#GD
+</span>
+    <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span>
+    <span class="n">J_history</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="n">mu_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+
+    <span class="k">return</span> <span class="n">J_history</span><span class="p">,</span> <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ngd_pre</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_fun</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#For plotting  
+</span>    
+    <span class="n">cur_params</span> <span class="o">=</span> <span class="n">init_params</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">)</span><span class="o">=</span><span class="n">cur_params</span>
+        <span class="p">(</span><span class="n">val</span><span class="p">,(</span><span class="n">g_mu</span><span class="p">,</span><span class="n">g_s</span><span class="p">))</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span>
+        <span class="n">ng</span> <span class="o">=</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="n">g_mu</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">g_s</span> <span class="p">]</span> <span class="p">)</span> <span class="c1">#Natural gradient
+</span>
+        <span class="n">mu_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">s_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+        <span class="n">J_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        
+        <span class="n">cur_params</span>  <span class="o">=</span> <span class="n">cur_params</span> <span class="o">-</span> <span class="n">step_size</span><span class="o">*</span> <span class="n">ng</span>     <span class="c1">#NGD
+</span> 
+    <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span>
+    <span class="n">J_history</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="n">mu_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+
+    <span class="k">return</span> <span class="n">J_history</span><span class="p">,</span> <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Setup of meshgrid of theta values
+</span><span class="n">mu_list</span><span class="p">,</span> <span class="n">s_list</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">),</span><span class="n">np</span><span class="p">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">800</span><span class="p">))</span>
+
+<span class="c1">#Computing the cost function for each theta combination
+</span><span class="n">zs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span>  <span class="p">[</span><span class="n">loss_pre</span><span class="p">(</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">])</span> <span class="p">)</span> 
+                     <span class="k">for</span> <span class="n">mu</span><span class="p">,</span><span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">mu_list</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">s_list</span><span class="p">))</span> <span class="p">]</span> <span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">zs</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mu_list</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">mu_0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.0</span>
+<span class="n">s_0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">max_num_iters</span> <span class="o">=</span> <span class="mi">200</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init_params</span> <span class="o">=</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">mu_0</span><span class="p">,</span><span class="n">s_0</span><span class="p">])</span>
+<span class="n">gd_pre_history</span><span class="p">,</span> <span class="n">mu_gd_pre_hist</span><span class="p">,</span> <span class="n">s_gd_pre_hist</span> <span class="o">=</span> <span class="n">gd</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_f_pre</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mf">1e-2</span><span class="p">,</span> 
+                                                   <span class="n">num_iters</span><span class="o">=</span><span class="n">max_num_iters</span><span class="p">)</span>
+<span class="n">anglesx_gd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_gd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_gd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">anglesy_gd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_gd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_gd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init_params</span> <span class="o">=</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">mu_0</span><span class="p">,</span><span class="n">s_0</span><span class="p">])</span>
+<span class="n">ngd_pre_history</span><span class="p">,</span> <span class="n">mu_ngd_pre_hist</span><span class="p">,</span> <span class="n">s_ngd_pre_hist</span> <span class="o">=</span> <span class="n">ngd_pre</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_f_pre</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mf">1e-2</span><span class="p">,</span> 
+                                                           <span class="n">num_iters</span><span class="o">=</span><span class="n">max_num_iters</span><span class="p">)</span>
+<span class="n">anglesx_ngd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_ngd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_ngd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">anglesy_ngd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_ngd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_ngd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">contour</span><span class="p">(</span><span class="n">mu_list</span><span class="p">,</span> <span class="n">s_list</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s">'jet'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">mu_gd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s_gd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">anglesx_gd_pre</span><span class="p">,</span> <span class="n">anglesy_gd_pre</span><span class="p">,</span> 
+          <span class="n">label</span><span class="o">=</span><span class="s">'GD $(\mu,s)$'</span><span class="p">,</span> <span class="n">scale_units</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">angles</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'g'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="p">.</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">mu_ngd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s_ngd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">anglesx_ngd_pre</span><span class="p">,</span> <span class="n">anglesy_ngd_pre</span><span class="p">,</span> 
+          <span class="n">label</span><span class="o">=</span><span class="s">'NGD $(\mu,s)$'</span><span class="p">,</span> <span class="n">scale_units</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">angles</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="p">.</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$\mu$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$s$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper right'</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">))),</span><span class="n">gd_pre_history</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">'GD $(\mu,s)$'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">))),</span><span class="n">ngd_pre_history</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">'NGD $(\mu,s)$'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper right'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'# of iters'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'loss'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/img/nb_gd_vs_ngd/nb_gd_vs_ngd_7_0.png" alt="png" class="center-image" /></p>
+
 
         
       </section>
@@ -541,7 +728,7 @@ We will discuss more about this in <a href="/posts/2021/11/Geomopt04/#two-kinds-
     <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Part+II%3A+Natural-Gradients+Evaluted+at+one+Point%20informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Part+II%3A+Natural-Gradients+Evaluated+at+one+Point%20informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -693,7 +880,7 @@ We will discuss more about this in <a href="/posts/2021/11/Geomopt04/#two-kinds-
 
 
 
-  9 minute read
+  10 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Goal

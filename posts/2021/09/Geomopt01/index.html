@@ -182,7 +182,7 @@
 
 
 
-  12 minute read
+  16 minute read
 </p>
           
         </header>
@@ -201,10 +201,19 @@
 
 <h1 id="motivation">Motivation</h1>
 <hr />
-<p>Let’s start with some motivation: why should we care about geometric structures of probability distributions?
-Probability distributions form the backbone of majority of machine-learning approaches, for example, any approach that uses probabilistic modeling is built upon such distributions. 
-For all such cases, we can exploit the underlying geometric structure, induced by the Fisher-Rao metric, which is the topic of this blog. 
-Below, we give some common examples from machine learning, where probability  distributions naturally arise.</p>
+<p>Let’s start with some motivation: why should we care about geometric structures of probability distributions?</p>
+
+<p>The answer is that by exploiting geometric structures, we could</p>
+<ul>
+  <li>design efficient and simple algorithms for machine learning <a class="citation" href="#amari1998natural">[1]</a></li>
+  <li>design methods that are robust and invariant to re-parametrization <a class="citation" href="#lin2021tractable">[2]</a></li>
+  <li>better understand models and algorithms through the lens of differential geometry, information geometry, and invariant theory <a class="citation" href="#liang2019fisher">[3]</a></li>
+</ul>
+
+<p>Probability distributions form the backbone of majority of machine-learning approaches, for example, any approach that uses probabilistic modeling is built upon such distributions. 
+For all such cases, we can exploit the underlying geometric structure, induced by the Fisher-Rao metric, which is the topic of this blog.</p>
+
+<p>Below, we give some common examples from machine learning, where probability distributions naturally arise.</p>
 
 <blockquote>
   <p>Least Square (Empirical Risk Minimization):</p>
@@ -218,10 +227,8 @@ Below, we give some common examples from machine learning, where probability  di
 $$</code>
 Here <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathcal{N}(y | x^T\tau,1) p(x) $</code> is assumed to be the data-generating distribution, and the least-square loss is the finite-sample approximation of the expectation. The normal distribution is denoted by <code class="language-plaintext highlighter-rouge">$ \mathcal{N} (y | x^T\tau,1) $</code> with mean <code class="language-plaintext highlighter-rouge">$ x^T\tau $</code> and variance <code class="language-plaintext highlighter-rouge">$ 1 $</code>.</p>
 
-  <p>Algorithms such as  <strong>Fisher scoring</strong> and <strong>(emprical) natural-gradient descent</strong> are commonly used methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code>.</p>
+  <p>Algorithms such as  <strong>Fisher scoring</strong> and <strong>(emprical) natural-gradient descent</strong> <a class="citation" href="#martens2020new">[4]</a> are commonly used methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code>.</p>
 </blockquote>
-
-<!--- \stackrel{\eqref{1}} (Eq. `$\eqref{1}$`) --->
 
 <blockquote>
   <p>Variational Inference:</p>
@@ -234,7 +241,7 @@ Here <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathc
 $$</code>
 where <code class="language-plaintext highlighter-rouge">$ \mathrm{KL} [ q(z) ||  p(z) ] :=  E_{ {q(z)} } [ \log \big(\frac{q(z)}{p(z)}\big) ]$</code> is the Kullback–Leibler divergence.</p>
 
-  <p>The <strong>natural-gradient variatioal inference</strong> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric.</p>
+  <p>The <strong>natural-gradient variatioal inference</strong> <a class="citation" href="#khan2017conjugate">[5]</a> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric.</p>
 </blockquote>
 
 <blockquote>
@@ -246,8 +253,8 @@ where <code class="language-plaintext highlighter-rouge">$ \mathrm{KL} [ q(z) ||
 \min_{\tau}  E_{ \color{red}  {\pi(a | \tau)} } [ h(a)  ]
 \end{aligned} \tag{3}\label{3}
 $$</code>
-The <strong>natural evolution strategies</strong> is an algorithm that speeds up the search process by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$\pi(a|\tau)$</code>.
-In the context of reinforcement learning,  <code class="language-plaintext highlighter-rouge">$ \pi(a | \tau ) $</code> is known as the policy distribution to generate actions and the natural evolution strategies is known as the <strong>natural policy gradient</strong> method.</p>
+The <strong>natural evolution strategies</strong> <a class="citation" href="#wierstra2014natural">[6]</a> is an algorithm that speeds up the search process by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$\pi(a|\tau)$</code>.
+In the context of reinforcement learning,  <code class="language-plaintext highlighter-rouge">$ \pi(a | \tau ) $</code> is known as the policy distribution to generate actions and the natural evolution strategies is known as the <strong>natural policy gradient</strong> method <a class="citation" href="#kakade2001natural">[7]</a>.</p>
 </blockquote>
 
 <p>In these examples, we can express the objective function in terms of an expectation under a parametric family highlighted in red. 
@@ -287,21 +294,27 @@ The following figure illustrates four distributions in a Gaussian family denoted
 
 <p><img src="/img/gauss1d.png" alt="Figure 2" title="Source:Wikipedia" /></p>
 
-<h1 id="intrinsic-parameterizations">Intrinsic Parameterizations</h1>
+<h1 id="intrinsic-parameterizations">Intrinsic Parameterizations<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></h1>
 <hr />
-<p>We start by discussing parameterizations for a distribution family. As we will see, a proper parameterization plays an important role in defining FIM.
+<p>We start by discussing parameterizations for a distribution family. As we will see, a proper parameterization plays an important role in defining the FIM.
 We can not use an arbitrary differentiable parameterization to represent a geometric structure.
-This structure is also known as a manifold structure. A (smooth) manifold should be locally like a “flat” vector space. For example, consider the (curved) Earth surface. It looks like a (locally) flat space to us.</p>
+This structure is also known as a manifold structure <a class="citation" href="#lee2013introduction">[8]</a>. A (smooth) manifold should be locally like a “flat” vector space. For example, consider the (curved) Earth surface. It looks like a (locally) flat space to us.</p>
 
 <p>The main reason of using an intrinsic parameterization is (1) the topology of a parameter space is nice. (2) The (exact) FIM is non-singular and well-defined (finite).
 These properties will play a key role in <a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-in-an-intrinsic-parameter-space">Part IV</a> for natural-gradient descent.</p>
 
-<p>We require that a manifold should be locally like a vector space denoted by $ E $ under a parameterization.
-A local vector-space structure means that we can do <strong>local vector additions</strong> and <strong>local real scalar products</strong> (see <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a> for the details.)</p>
+<p>We require that a manifold should be locally like a vector space denoted by <code class="language-plaintext highlighter-rouge">$ E $</code> under a parameterization. Informally, we refer to 
+such structure as a local vector-space structure.</p>
+
+<div class="notice--info">
+  <p>Local <strong>vector-space structure</strong>:</p>
+
+  <p>It supports local <strong>vector additions</strong> and local <strong>real scalar products</strong> (see <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a> for the details.)</p>
+</div>
 
 <p>Intuitively, this vector-space structure means that a local (small) perturbation $ E $ at each point should not take out of the parameter space.
 Technically, the parameter space denoted by $\Omega_\tau$ should be an <strong>open</strong> set in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where <code class="language-plaintext highlighter-rouge">$K$</code> is the number of entries of a parameter array.
-As we will see soon, FIM is a <code class="language-plaintext highlighter-rouge">$K$</code>-by-<code class="language-plaintext highlighter-rouge">$K$</code> matrix.</p>
+As we will see soon, the FIM is a <code class="language-plaintext highlighter-rouge">$K$</code>-by-<code class="language-plaintext highlighter-rouge">$K$</code> matrix.</p>
 
 <p>To illustrate this, let’s consider a unit circle in $\mathcal{R}^2$ as shown in the Figure.
 Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consider its center as the origin.</p>
@@ -350,13 +363,19 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 
 <h1 id="intrinsic-parameterizations-for-parametric-families">Intrinsic Parameterizations for Parametric families</h1>
 <hr />
-<p>Now, we discuss how to choose a parameterization given a parametric family so that we can exploit the geometric structure induced by the Fisher-Rao metric.</p>
+<p>Now, we discuss how to choose a parameterization given a parametric family so that we can exploit the geometric structure <a class="citation" href="#amari2016information">[9]</a> induced by the Fisher-Rao metric.</p>
 
 <p>Given a parametric distribution family <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code> indexed by its parameter <code class="language-plaintext highlighter-rouge">$\tau$</code>, <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code> should be smooth w.r.t. <code class="language-plaintext highlighter-rouge">$ \tau $</code> by considering <code class="language-plaintext highlighter-rouge">$ w $</code> to be fixed.
 We say a parametrization is <strong>intrinsic</strong> if the following condition for parameter (array) <code class="language-plaintext highlighter-rouge">$\tau $</code> holds:</p>
 
-<p><strong>Regularity Condition</strong>:  The set of partial derivatives 
-<code class="language-plaintext highlighter-rouge">$ \{ \partial_{\tau_i} \log p(w|\tau) \} $</code>  should be linearly independent. In other words, <code class="language-plaintext highlighter-rouge">$\sum_i c_i \partial_{\tau_i} \log p(w|\tau)= 0 $</code>, where constant <code class="language-plaintext highlighter-rouge">$c_i$</code> must be zero and the value of <code class="language-plaintext highlighter-rouge">$c_i$</code> does not depent on  <code class="language-plaintext highlighter-rouge">$w$</code>.</p>
+<div class="notice--info">
+  <p><strong>Regularity Condition</strong>:</p>
+
+  <p>The set of partial derivatives 
+<code class="language-plaintext highlighter-rouge">$ \{ \partial_{\tau_i} \log p(w|\tau) \} $</code>  should be linearly independent.</p>
+
+  <p>In other words, <code class="language-plaintext highlighter-rouge">$\sum_i c_i \partial_{\tau_i} \log p(w|\tau)= 0 $</code> holds only when constant <code class="language-plaintext highlighter-rouge">$c_i$</code> is zero and the value of <code class="language-plaintext highlighter-rouge">$c_i$</code> does not depent on  <code class="language-plaintext highlighter-rouge">$w$</code>.</p>
+</div>
 
 <p>Note that this regularity condition implicitly assumes that the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is an open set in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code> due to the definition of the partial derivatives, where K is the number of entries in parameter array <code class="language-plaintext highlighter-rouge">$\tau$</code>.
 We will discuss more about this at <a href="#caveats-of-the-fisher-matrix-computation">here</a>.</p>
@@ -366,17 +385,17 @@ We will discuss more about this at <a href="#caveats-of-the-fisher-matrix-comput
 <blockquote>
   <p>Example 1 (Intrinsic parameterization):</p>
 
-  <p>We will show that the regularity condition holds. Consider a 1-dimensional Gaussian family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |\mu,\sigma) \Big| \mu \in \mathcal{R}, \sigma&gt;0 \}$</code> with mean <code class="language-plaintext highlighter-rouge">$\mu$</code>, variant <code class="language-plaintext highlighter-rouge">$\sigma$</code>, and parametrization <code class="language-plaintext highlighter-rouge">$\tau = (\mu,\sigma) $</code>.
+  <p>We will show that the regularity condition holds. Consider a 1-dimensional Gaussian family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |\mu,\sigma) \Big| \mu \in \mathcal{R}, \sigma&gt;0 \}$</code> with mean <code class="language-plaintext highlighter-rouge">$\mu$</code>, variance <code class="language-plaintext highlighter-rouge">$\sigma$</code>, and parametrization <code class="language-plaintext highlighter-rouge">$\tau = (\mu,\sigma) $</code>.
 The partial derivatives are
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
- \partial_{\mu} \log \mathcal{N}(w |\mu,\sigma) = \frac{w-\mu}{\sigma}, \,\,\, \partial_{\sigma} \log \mathcal{N}(w |\mu,\sigma) = \frac{ (w-\mu)^2 }{2 \sigma^2} - \frac{1}{2\sigma} 
+\partial_{\mu} \log \mathcal{N}(w |\mu,\sigma) = \frac{w-\mu}{\sigma}, \,\,\, \partial_{\sigma} \log \mathcal{N}(w |\mu,\sigma) = \frac{ (w-\mu)^2 }{2 \sigma^2} - \frac{1}{2\sigma} 
 \end{aligned}
 $$</code></p>
 
   <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
- \partial_{\mu} \log \mathcal{N}(w |\mu,\sigma) \Big|_{\mu=0,\sigma=1}= w, \,\,\, \partial_{\sigma} \log \mathcal{N}(w |\mu,\sigma) \Big|_{\mu=0,\sigma=1} = \frac{ w^2 -1 }{2}  
+\partial_{\mu} \log \mathcal{N}(w |\mu,\sigma) \Big|_{\mu=0,\sigma=1}= w, \,\,\, \partial_{\sigma} \log \mathcal{N}(w |\mu,\sigma) \Big|_{\mu=0,\sigma=1} = \frac{ w^2 -1 }{2}  
 \end{aligned}
 $$</code>
 If <code class="language-plaintext highlighter-rouge">$ c_1 w + c_2  (\frac{ w^2 -1 }{2}) = 0$</code> holds for any $w$, we have <code class="language-plaintext highlighter-rouge">$c_1=c_2=0$</code>, which implies  linear independence.</p>
@@ -393,7 +412,7 @@ The partial derivatives are</p>
 
   <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
- \partial_{\pi_0} \log \mathcal{B}(w |\pi_0, \pi_1) = \mathcal{B}(w |\pi_0, \pi_1)  (\mathcal{I}(w=0)-\mathcal{I}(w=1)) \frac{\pi_1}{(\pi_0+\pi_1)^2}   
+\partial_{\pi_0} \log \mathcal{B}(w |\pi_0, \pi_1) = \mathcal{B}(w |\pi_0, \pi_1)  (\mathcal{I}(w=0)-\mathcal{I}(w=1)) \frac{\pi_1}{(\pi_0+\pi_1)^2}   
 \end{aligned}
 $$</code>
 <code class="language-plaintext highlighter-rouge">$$
@@ -422,76 +441,146 @@ The main reason is that the parameter space is not open in $\mathcal{R}^2$.</p>
 
 <h1 id="fisher-rao-metric">Fisher-Rao Metric</h1>
 <hr />
-<p>Given an intrinstic parameterization, we can define the Fisher-Rao metric under this parameterization as:
-<code class="language-plaintext highlighter-rouge">$ F_{ij}(\tau) := E_{p(w|\tau) }  [ \Big( \partial_{\tau_i} \log p(w|\tau ) \Big)  \Big(\partial_{\tau_j} \log (w|\tau) \Big) ]$</code>.
+<p>As we can see from the <a href="#motivation">previous section</a>, we can use the Fisher-Rao metric to design fast and efficient algorithms.
+In statistics, this metric is closely related to  maximum likelihood estimation, central limit theorem, and principle of maximum entropy.
+These statistical principles <a class="citation" href="#casella2002statistical">[10]</a> play essential roles in training and estimating machine learning models.
+Moreover, the Fisher-Rao metric has been theorically and emprically used in machine learning and statistics.</p>
+
+<p>Given an intrinsic parameterization, we can define the Fisher-Rao metric under this parameterization as:
+<code class="language-plaintext highlighter-rouge">$$
+\begin{aligned}
+F_{ij}(\tau) := E_{p(w|\tau) }  [ \Big( \partial_{\tau_i} \log p(w|\tau ) \Big)  \Big(\partial_{\tau_j} \log (w|\tau) \Big) ].
+\end{aligned}
+$$</code>
 Note that the metric could be ill-defined since the expectation may not exist.</p>
 
-<p>Given a parameterization,  we can express the metric in a matrix form as
-<code class="language-plaintext highlighter-rouge">$ \mathbf{F}(\tau) := E_{p(wtau) }  [ \Big( \nabla_{\tau} \log p(w|\tau ) \Big)  \Big(\nabla_{\tau} \log (w|\tau) \Big)^T ]$</code>,
+<p>Given a parameterization,  we can express the metric in a matrix form as</p>
+
+<p><code class="language-plaintext highlighter-rouge">$$
+\begin{aligned}
+\mathbf{F}(\tau) := E_{ p(w|\tau) }  [ \Big( \nabla_{\tau} \log p(w|\tau ) \Big)  \Big(\nabla_{\tau} \log (w|\tau) \Big)^T ],
+\end{aligned}
+$$</code>
 where $K$ is the number of entries of parameter array $\tau$ and 
 <code class="language-plaintext highlighter-rouge">$ \nabla_{\tau} \log p(w|\tau ) := [ \partial_{\tau_1} \log p(w|\tau ), \cdots, \partial_{\tau_K} \log p(w|\tau ) ]^T  $</code> is a column vector.</p>
 
-<p>The matrix form is also known as the <strong>Fisher information matrix</strong> (FIM). Obviously, FIM depends on the choice of parameterizations. In many cases,  we could also compute FIM as
+<p>The matrix form is also known as the <strong>Fisher information matrix</strong> (FIM). Obviously, the FIM depends on the choice of parameterizations. In many cases,  we could also compute the FIM as
 <code class="language-plaintext highlighter-rouge">$ \mathbf{F}(\tau) := - E_{p(w|\tau) }  [  \nabla_{\tau}^2 \log p(w|\tau )  ]$</code>.</p>
 
-<p>The regularity condition guarantees that FIM is non-singular if the matrix exists.
+<p>The regularity condition guarantees that the FIM is non-singular if the matrix exists.
 The condition is also related to the model identification in maximum likelihood estimation.</p>
 
 <p>In the following discussion, we will assume the metric is well-defined.
-In such cases, the Fisher-Rao metric is a valid Riemannian metric since the corresponding FIM is positive definite everywhere in an <strong>intrinsic</strong> parameter space.
-The Fisher-Rao metric is <strong>special</strong> since it is closely related to  maximum likelihood estimation, central limit theorem, and principle of maximum entropy.</p>
+In such cases, the Fisher-Rao metric is a valid Riemannian metric <a class="citation" href="#lee2018introduction">[11]</a> since the corresponding FIM is positive definite everywhere in an <strong>intrinsic</strong> parameter space.</p>
 
-<p><span style="color:red"><strong>Warning</strong></span>: An arbitrary Riemannian metric often is NOT useful for applications in machine learning.</p>
+<div class="notice--danger">
+  <p><strong>Warning</strong>:
+An arbitrary Riemannian metric often is NOT useful for applications in machine learning and statistics.</p>
+</div>
 
 <p>Recall that when we perform a parameter transformation, we require both the transformation map and its inverse map to be smooth.
-If this smoothness requirement is satisfied, we can obtain a new intrinsic parameterization via the transformation.
+If this smoothness requirement<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> is satisfied, we can obtain a new intrinsic parameterization via the transformation.
 In <a href="/posts/2021/11/Geomopt03/#Pparameter-transform-and-invariance">Part III</a>,
-we will show FIM is also positive definite under this new intrinsic parameterization.</p>
+we will show the FIM is also positive definite under this new intrinsic parameterization.</p>
 
 <h1 id="caveats-of-the-fisher-matrix-computation">Caveats of the Fisher matrix computation</h1>
 <hr />
 <p>There are some caveats when it comes to the Fisher matrix computation. In particular, the regularity condition should be satisfied.
-It is possible to define FIM under a non-intrinstic parameterization. However, FIM often is singular or ill-defined under a non-intrinstic  parameterization as shown below.</p>
+It is possible to define the FIM under a non-intrinsic parameterization. However, the FIM often is singular or ill-defined under a non-intrinsic  parameterization as shown below.</p>
 
 <blockquote>
   <p>Example 1 (Ill-defined FIM):</p>
 
-  <p>Consider Bernoulli family  <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) \pi_1  \Big| \pi_0&gt;0, \pi_1&gt;0, \pi_0+\pi_1=1  \}$</code> with parameter <code class="language-plaintext highlighter-rouge">$\tau = (\pi_0,\pi_1)$</code>.
+  <p>Consider Bernoulli family  <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) \pi_1  \Big| \pi_0&gt;0, \pi_1&gt;0, \pi_0+\pi_1=1  \}$</code> with non-intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau = (\pi_0,\pi_1)$</code>.
 The following computation is not correct. Do you make similar mistakes like this?</p>
 
   <p>Let <code class="language-plaintext highlighter-rouge">$  p(w|\tau ) =  \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) \pi_1$</code>, where <code class="language-plaintext highlighter-rouge">$\tau = (\pi_0,\pi_1)$</code>. The derivative is
 <code class="language-plaintext highlighter-rouge">$$  \begin{aligned} \nabla_{\tau} \log p(w|\tau ) = \frac{1}{p(w|\tau )} [\mathcal{I}(w=0) ,  \mathcal{I}(w=1)]^T  \end{aligned} \tag{4}\label{4}$$</code>
-Thus, by Eq. <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code>, FIM under this  parameterization is</p>
+Thus, by Eq. <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code>, the FIM under this  parameterization is</p>
 
-  <p><code class="language-plaintext highlighter-rouge">$$  \begin{aligned} F(\tau) = E_{p(w|\tau) } [ \frac{1}{p^2(w|\tau)} \begin{bmatrix} \mathcal{I}^2(w=0) &amp;  \mathcal{I}(w=1)  \mathcal{I}(w=0) \\  \mathcal{I}(w=0)  \mathcal{I}(w=1) &amp;  \mathcal{I}^2(w=1) \end{bmatrix} ]   = \begin{bmatrix} \frac{1}{\pi_0} &amp;  0 \\ 0 &amp;  \frac{1}{\pi_1} \end{bmatrix} \end{aligned}$$</code>
-This computation is not correct. Do you know why it is not correct?</p>
+  <p><code class="language-plaintext highlighter-rouge">$$  \begin{aligned} F(\tau) = E_{p(w|\tau) } [ \frac{1}{p^2(w|\tau)} \begin{bmatrix} \mathcal{I}^2(w=0) &amp;  \mathcal{I}(w=1)  \mathcal{I}(w=0) \\  \mathcal{I}(w=0)  \mathcal{I}(w=1) &amp;  \mathcal{I}^2(w=1) \end{bmatrix} ]   = \begin{bmatrix} \frac{1}{\pi_0} &amp;  0 \\ 0 &amp;  \frac{1}{\pi_1} \end{bmatrix} \end{aligned}$$</code></p>
+  <div class="notice--danger">
+    <p>This computation is not correct. Do you know why?</p>
+  </div>
 
-  <p>The key reason is the equality constraint <code class="language-plaintext highlighter-rouge">$ \pi_0+\pi_1=1 $</code>. Thus, Eq. <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code> is <strong>incorrect</strong>.</p>
+  <div class="notice--info">
+    <details>
+<summary>Reason: (Click to expand)</summary>
+<fieldset class="field-set">
+        <p>The key reason is the equality constraint <code class="language-plaintext highlighter-rouge">$ \pi_0+\pi_1=1 $</code>. Thus, Eq. <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code> is <strong>incorrect</strong>.</p>
 
-  <p>By definition, a Bernoulli distribution is valid only when the constraint holds. 
-Thus, the constraint <code class="language-plaintext highlighter-rouge">$ \pi_0+\pi_1=1 $</code> must be satisifed when we compute the Fisher matrix since the computation involves the expectation of this distribution.</p>
+        <p>By definition, a Bernoulli distribution is valid only when the constraint holds. 
+Thus, the constraint <code class="language-plaintext highlighter-rouge">$ \pi_0+\pi_1=1 $</code> must be satisifed when we compute the Fisher matrix since the computation involves computing the expectation w.r.t. this distribution.</p>
 
-  <p>Note that the gradient is defined as <code class="language-plaintext highlighter-rouge">$ \nabla_{\tau} \log p(w|\tau ) := [ \partial_{\pi_0} \log p(w|\tau ), \partial_{\pi_1} \log p(w|\tau ) ]^T $</code>.</p>
+        <p>Note that the gradient is defined as <code class="language-plaintext highlighter-rouge">$ \nabla_{\tau} \log p(w|\tau ) := [ \partial_{\pi_0} \log p(w|\tau ), \partial_{\pi_1} \log p(w|\tau ) ]^T $</code>.</p>
 
-  <p>Unfortunately, these partial derivatives do not exist. By the definition of  partial derivative <code class="language-plaintext highlighter-rouge">$ \partial_{\pi_0} \log p(w|\tau )$</code>, we fix <code class="language-plaintext highlighter-rouge">$\pi_1$</code> and allow <code class="language-plaintext highlighter-rouge">$\pi_0$</code> to change.
+        <p>Unfortunately, these partial derivatives do not exist. By the definition of  partial derivative <code class="language-plaintext highlighter-rouge">$ \partial_{\pi_0} \log p(w|\tau )$</code>, we fix <code class="language-plaintext highlighter-rouge">$\pi_1$</code> and allow <code class="language-plaintext highlighter-rouge">$\pi_0$</code> to change.
 However, given that <code class="language-plaintext highlighter-rouge">$\pi_1$</code> is fixed and <code class="language-plaintext highlighter-rouge">$ \pi_0 $</code> is fully determined by <code class="language-plaintext highlighter-rouge">$\pi_1$</code> due to the equality constraint <code class="language-plaintext highlighter-rouge">$ \pi_0+\pi_1=1 $</code>. 
 Therefore, <code class="language-plaintext highlighter-rouge">$  \partial_{\pi_0} \log p(w|\tau ) $</code> is not well-defined.
 In other words, the above Fisher matrix computation is not correct since <code class="language-plaintext highlighter-rouge">$ \nabla_{\tau} \log p(w|\tau ) $</code> does not exist.</p>
+      </fieldset>
+</details>
+  </div>
 </blockquote>
 
 <blockquote>
   <p>Example 2  (Singular FIM):</p>
 
-  <p>Consider Bernoulli family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \frac{\pi_0}{\pi_0+\pi_1} + \mathcal{I}(w=1) \frac{\pi_1}{\pi_0+\pi_1} \Big| \pi_0&gt;0, \pi_1&gt;0  \}$</code> with parameter <code class="language-plaintext highlighter-rouge">$\tau = (\pi_0,\pi_1) $</code>.</p>
+  <p>Consider Bernoulli family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \frac{\pi_0}{\pi_0+\pi_1} + \mathcal{I}(w=1) \frac{\pi_1}{\pi_0+\pi_1} \Big| \pi_0&gt;0, \pi_1&gt;0  \}$</code> with  non-intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau = (\pi_0,\pi_1) $</code>.</p>
 
-  <p>We can show that FIM under this  parameterization is singular.</p>
+  <p>The FIM under this  parameterization is singular as shown below.</p>
 
-  <p>A Bernoulli family with a non-singular FIM can be defined as <code class="language-plaintext highlighter-rouge">$\{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) (1-\pi_0)  \Big| 0&lt; \pi_0 &lt; 1  \}$</code> with parameter <code class="language-plaintext highlighter-rouge">$\tau = \pi_0$</code>.</p>
+  <p>Let <code class="language-plaintext highlighter-rouge">$  p(w|\tau ) =  \mathcal{I}(w=0)  \frac{\pi_0}{\pi_0+\pi_1}+ \mathcal{I}(w=1)  \frac{\pi_1}{\pi_0+\pi_1}$</code>, where <code class="language-plaintext highlighter-rouge">$\tau = (\pi_0,\pi_1)$</code>. The derivative is</p>
+
+  <p><code class="language-plaintext highlighter-rouge">$$ 
+\begin{aligned}
+\nabla_{\tau} \log p(w|\tau ) = \frac{ \mathcal{I}(w=0) - \mathcal{I}(w=1)  }{p(w|\tau )} [\frac{\pi_1}{(\pi_0+\pi_1)^2} , \frac{-\pi_0}{(\pi_0+\pi_1)^2}]^T 
+\end{aligned}
+$$</code></p>
+
+  <p>Thus, the FIM under this  parameterization is
+<code class="language-plaintext highlighter-rouge">$$
+\begin{aligned} 
+F(\tau) = E_{p(w|\tau) } [ \frac{( \mathcal{I}(w=0) - \mathcal{I}(w=1))^2 }{p^2(w|\tau)} \begin{bmatrix} \frac{\pi_1^2}{(\pi_0+\pi_1)^4}  &amp; \frac{-\pi_0 \pi_1}{(\pi_0+\pi_1)^4} \\ \frac{-\pi_0 \pi_1}{(\pi_0+\pi_1)^4}  &amp;  \frac{\pi_0^2}{(\pi_0+\pi_1)^4} \end{bmatrix} ]   =\frac{1}{(\pi_0+\pi_1)^2} \begin{bmatrix} \frac{\pi_1}{\pi_0} &amp;  -1 \\ -1 &amp;  \frac{\pi_0}{\pi_1} \end{bmatrix}
+\end{aligned}
+$$</code>
+where this FIM is singular since the matrix determinant is zero as shown below. <code class="language-plaintext highlighter-rouge">$$
+\begin{aligned}
+\mathrm{det}\big( \begin{bmatrix} \frac{\pi_1}{\pi_0} &amp;  -1 \\ -1 &amp;  \frac{\pi_0}{\pi_1} \end{bmatrix}\big) = 0.
+\end{aligned}
+$$</code></p>
 </blockquote>
 
-<h1 id="manifold-dimension">Manifold Dimension</h1>
+<p>Now, we give an example to show that the FIM of a Bernoulli family can be non-singular when we use an instrinsic parameterization.</p>
+
+<blockquote>
+  <p>Example 3  (Non-singular FIM):</p>
+
+  <p>Consider Bernoulli family <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{I}(w=0) \pi + \mathcal{I}(w=1) (1-\pi)  \Big| 0&lt;\pi&lt;1 \}$</code> with  <strong>intrinsic</strong> parameter <code class="language-plaintext highlighter-rouge">$\tau = \pi $</code>.</p>
+
+  <p>The FIM under this parameterization is non-singular as shown below.</p>
+
+  <p>Let <code class="language-plaintext highlighter-rouge">$  p(w|\tau ) =  \mathcal{I}(w=0) \pi+ \mathcal{I}(w=1) (1-\pi)$</code>, where <code class="language-plaintext highlighter-rouge">$\tau = \pi$</code>. The derivative is
+<code class="language-plaintext highlighter-rouge">$$
+\begin{aligned} \nabla_{\tau} \log p(w|\tau ) = \frac{\mathcal{I}(w=0) - \mathcal{I}(w=1)}{ \mathcal{I}(w=0) \pi + \mathcal{I}(w=1) (1-\pi) }  \end{aligned}
+$$</code></p>
+
+  <p>Thus, the FIM under this  parameterization is
+<code class="language-plaintext highlighter-rouge">$$
+\begin{aligned}
+F(\tau) &amp;= E_{p(w|\tau) } [ \frac{ (\mathcal{I}(w=0) - \mathcal{I}(w=1) )^2 }{ (\mathcal{I}(w=0) \pi + \mathcal{I}(w=1) (1-\pi) )^2 }  ]\\
+&amp; = \pi \frac{1^2}{ \pi^2} + (1-\pi) \frac{(-1)^2}{(1-\pi)^2} \\
+&amp;= \frac{1}{\pi } + \frac{1}{1-\pi} = \frac{1}{\pi(1-\pi)}&gt; 0
+\end{aligned}
+$$</code></p>
+
+</blockquote>
+
+<h1 id="dimensionality-of-a-manifold">Dimensionality of a manifold</h1>
 <hr />
-<p>We can define the dimension of a manifold by using the dimension of an intrinsic parametrization. Mathematically, we can show that any intrinsic parametrization of a manifold has the same degrees of freedom.
+<p>We can define the dimension of a manifold by using the  degrees of freedom of an intrinsic parametrization.
+Mathematically speaking, we can show that any intrinsic parametrization of a manifold has the same degrees of freedom <a class="citation" href="#lee2013introduction">[8]</a>.
+This also gives us a tool to help identify non-manifold cases.
 We now illustrate this by examples.</p>
 
 <table>
@@ -499,7 +588,7 @@ We now illustrate this by examples.</p>
     <tr>
       <th style="text-align: center">unit circle</th>
       <th style="text-align: center">open unit ball</th>
-      <th style="text-align: center">closed ball</th>
+      <th style="text-align: center">closed unit ball</th>
     </tr>
   </thead>
   <tbody>
@@ -516,7 +605,14 @@ We now illustrate this by examples.</p>
   </tbody>
 </table>
 
-<p>We will disucss more about the following statistical  manifolds in <a href="/posts/2021/10/Geomopt02/#riemannian-steepest-direction">Part II</a>.</p>
+<p>As we shown in <a href="#intrinsic-parameterizations">the previous section</a>, a unit circle is a 1-dimensional manifold.  We can similarly show that an open unit ball is a 2-dimensional manifold.</p>
+
+<p>However, a closed
+unit ball is NOT a manifold since its interior is  an open unit ball and its boundary is a unit circle.
+The  circle and the open unit ball do not have the same dimensionality.</p>
+
+<p>For statistical  manifolds, 
+ consider the following  manifolds. We will discuss more about them in <a href="/posts/2021/10/Geomopt02/#riemannian-steepest-direction">Part II</a>.</p>
 
 <table>
   <thead>
@@ -528,7 +624,7 @@ We now illustrate this by examples.</p>
   <tbody>
     <tr>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |0,s^{-1}) \Big|  s&gt;0 \}$</code> with precision <code class="language-plaintext highlighter-rouge">$s$</code> <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = s $</code></td>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathrm{MatH}(\tau) = \mathbf{S}   \succ \mathbf{0} \}$</code> with precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>  <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code> is  a $\frac{d(d+1)}{2}$-dim array.  <br />  Map $\mathrm{MatH}()$ is the inverse map of <br /> the <a href="https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vectorization">half-vectorization function</a> <code class="language-plaintext highlighter-rouge">$\mathrm{vech}()$</code>. <br />   <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{S})$</code> is a <code class="language-plaintext highlighter-rouge">$\frac{d(d + 1)}{2}$</code>-dim array <br />  obtained by vectorizing only the lower triangular part of (symmetric) <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>.</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathrm{MatH}(\tau) = \mathbf{S}   \succ \mathbf{0} \}$</code> with precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>  <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code> is  a $\frac{d(d+1)}{2}$-dim array.</td>
     </tr>
     <tr>
       <td style="text-align: center">1-dim statistical manifold</td>
@@ -537,6 +633,64 @@ We now illustrate this by examples.</p>
   </tbody>
 </table>
 
+<p>We  use 
+the <a href="https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vectorization">half-vectorization map</a> <code class="language-plaintext highlighter-rouge">$\mathrm{vech}()$</code>.
+The map <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{S})$</code>  returns  a <code class="language-plaintext highlighter-rouge">$\frac{d(d + 1)}{2}$</code>-dim array obtained by vectorizing only the lower triangular part of a (symmetric) <code class="language-plaintext highlighter-rouge">$d$</code>-by-<code class="language-plaintext highlighter-rouge">$d$</code> matrix <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>.
+The map <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}()$</code> is the inverse map of  <code class="language-plaintext highlighter-rouge">$\mathrm{vech}()$</code>.</p>
+
+<p>The following example illustrates these two maps.</p>
+<blockquote>
+  <p>Consider the following symmetric 2-by-2 matrix</p>
+
+  <p><code class="language-plaintext highlighter-rouge">$$
+\mathbf{S} = 
+\begin{aligned}
+\begin{bmatrix} 2 &amp;  -1 \\  -1  &amp; 3  \end{bmatrix}
+\end{aligned}
+$$</code>
+The output of map <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{S})$</code> is
+<code class="language-plaintext highlighter-rouge">$$
+\mathbf{v}:=\mathrm{vech}(\mathbf{S}) = 
+\begin{aligned}
+\begin{bmatrix} 2  \\  -1  \\ 3  \end{bmatrix}
+\end{aligned}
+$$</code></p>
+
+  <p>The output of  map <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}(\mathbf{v})$</code> is
+<code class="language-plaintext highlighter-rouge">$$
+\mathrm{MatH}(\mathbf{v}) = 
+\begin{aligned}
+\begin{bmatrix} 2 &amp;  -1 \\  -1  &amp; 3  \end{bmatrix}
+\end{aligned}
+$$</code></p>
+</blockquote>
+
+<hr />
+<h1 id="references">References</h1>
+<p class="bibliography"><p><span id="amari1998natural">[1] S.-I. Amari, "Natural gradient works efficiently in learning," <i>Neural computation</i> <b>10</b>:251–276 (1998).</span></p>
+<p><span id="lin2021tractable">[2] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Tractable structured natural gradient descent using local parameterizations," <i>International Conference on Machine Learning (ICML)</i> (2021).</span></p>
+<p><span id="liang2019fisher">[3] T. Liang, T. Poggio, A. Rakhlin, &amp; J. Stokes, "Fisher-rao metric, geometry, and complexity of neural networks," <i>The 22nd International Conference on Artificial Intelligence and Statistics</i> (PMLR, 2019), pp. 888–896.</span></p>
+<p><span id="martens2020new">[4] J. Martens, "New Insights and Perspectives on the Natural Gradient Method," <i>Journal of Machine Learning Research</i> <b>21</b>:1–76 (2020).</span></p>
+<p><span id="khan2017conjugate">[5] M. Khan &amp; W. Lin, "Conjugate-computation variational inference: Converting variational inference in non-conjugate models to inferences in conjugate models," <i>Artificial Intelligence and Statistics</i> (PMLR, 2017), pp. 878–887.</span></p>
+<p><span id="wierstra2014natural">[6] D. Wierstra, T. Schaul, T. Glasmachers, Y. Sun, J. Peters, &amp; J. Schmidhuber, "Natural evolution strategies," <i>The Journal of Machine Learning Research</i> <b>15</b>:949–980 (2014).</span></p>
+<p><span id="kakade2001natural">[7] S. M. Kakade, "A natural policy gradient," <i>Advances in neural information processing systems</i> <b>14</b> (2001).</span></p>
+<p><span id="lee2013introduction">[8] J. M. Lee, <i>Introduction to smooth  manifolds</i> (Springer, 2013).</span></p>
+<p><span id="amari2016information">[9] S.-ichi Amari, <i>Information geometry and its applications</i> (Springer, 2016).</span></p>
+<p><span id="casella2002statistical">[10] G. Casella &amp; R. L. Berger, <i>Statistical inference</i> (2002).</span></p>
+<p><span id="lee2018introduction">[11] J. M. Lee, <i>Introduction to Riemannian manifolds</i> (Springer, 2018).</span></p></p>
+
+<h2 id="footnotes">Footnotes:</h2>
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>In differential geometry, an intrinsic parametrization is known as a coordinate chart. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>In differential geometry, the smoothness requirement is known as a diffeomorphism. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
 
         
       </section>
@@ -616,7 +770,7 @@ We now illustrate this by examples.</p>
 ">Previous</a>
     
     
-      <a href="/posts/2021/10/Geomopt02/" class="pagination--pager" title="Part II: Natural-Gradients Evaluted at one Point
+      <a href="/posts/2021/10/Geomopt02/" class="pagination--pager" title="Part II: Natural-Gradients Evaluated at one Point
 ">Next</a>
     
   </nav>
@@ -735,7 +889,7 @@ We now illustrate this by examples.</p>
 
 
 
-  9 minute read
+  10 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Goal
