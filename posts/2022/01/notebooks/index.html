@@ -1,0 +1,570 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>GD and NGD - Wu Lin</title>
+<meta name="description" content="%matplotlib inlinefrom jax.config import config; config.update(&quot;jax_enable_x64&quot;, True)import jax.numpy as jnpfrom jax import grad, jit, value_and_gradimport numpy as npfrom matplotlib import pyplot as pltfrom matplotlib import ticker, colors">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Wu Lin">
+<meta property="og:title" content="GD and NGD">
+<meta property="og:url" content="/posts/2022/01/notebooks/">
+
+
+  <meta property="og:description" content="%matplotlib inlinefrom jax.config import config; config.update(&quot;jax_enable_x64&quot;, True)import jax.numpy as jnpfrom jax import grad, jit, value_and_gradimport numpy as npfrom matplotlib import pyplot as pltfrom matplotlib import ticker, colors">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2020-01-08T00:00:00-08:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/posts/2022/01/notebooks/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Wu Lin",
+      "url": "https://github.com/pages/yorkerlin/yorkerlin.github.io",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wu Lin Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single mywide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Wu Lin</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="/" >Home</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="/news/" >News</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="/year-archive/" >Blog Posts</a>
+            </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="GD and NGD">
+    <meta itemprop="description" content="%matplotlib inlinefrom jax.config import config; config.update(&quot;jax_enable_x64&quot;, True)import jax.numpy as jnpfrom jax import grad, jit, value_and_gradimport numpy as npfrom matplotlib import pyplot as pltfrom matplotlib import ticker, colors">
+    <meta itemprop="datePublished" content="January 08, 2020">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">GD and NGD
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  1 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">jax.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">;</span> <span class="n">config</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="s">"jax_enable_x64"</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="n">jnp</span>
+<span class="kn">from</span> <span class="nn">jax</span> <span class="kn">import</span> <span class="n">grad</span><span class="p">,</span> <span class="n">jit</span><span class="p">,</span> <span class="n">value_and_grad</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">ticker</span><span class="p">,</span> <span class="n">colors</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">loss_lik</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span> <span class="n">b2</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+    <span class="n">a1</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span> <span class="n">a2</span> <span class="o">=</span> <span class="mf">5.0</span><span class="p">;</span>
+    <span class="n">ls</span> <span class="o">=</span> <span class="n">b1</span><span class="o">*</span><span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="o">-</span><span class="mf">2.0</span><span class="o">*</span><span class="n">a1</span><span class="o">*</span><span class="n">mu</span><span class="o">+</span><span class="n">a1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="n">b2</span><span class="o">*</span><span class="p">((</span><span class="n">mu</span><span class="o">**</span><span class="mi">3</span><span class="o">+</span><span class="mf">3.0</span><span class="o">*</span><span class="n">mu</span><span class="o">*</span><span class="n">v</span><span class="p">)</span><span class="o">-</span><span class="mf">3.0</span><span class="o">*</span><span class="n">a2</span><span class="o">*</span><span class="p">(</span><span class="n">mu</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="n">v</span><span class="p">)</span><span class="o">+</span><span class="mf">3.0</span><span class="o">*</span><span class="p">(</span><span class="n">a2</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">mu</span><span class="o">-</span><span class="n">a2</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mf">4.0</span><span class="o">/</span><span class="n">v</span>
+    <span class="k">return</span> <span class="n">ls</span>
+
+<span class="o">@</span><span class="n">jit</span>
+<span class="k">def</span> <span class="nf">loss_pre</span><span class="p">(</span><span class="n">params</span><span class="p">):</span>
+    <span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="n">params</span>
+    <span class="k">return</span> <span class="n">loss_lik</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="mf">1.0</span><span class="o">/</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="n">jnp</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+<span class="n">loss_f_pre</span> <span class="o">=</span> <span class="n">jit</span><span class="p">(</span><span class="n">value_and_grad</span><span class="p">(</span><span class="n">loss_pre</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">gd</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_fun</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#For plotting  
+</span>    
+    <span class="n">cur_params</span> <span class="o">=</span> <span class="n">init_params</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        
+        <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">g</span><span class="p">)</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span> <span class="c1">#Euclidean gradient
+</span>        <span class="n">mu_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">s_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+        <span class="n">J_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        
+        <span class="n">cur_params</span>  <span class="o">=</span> <span class="n">cur_params</span> <span class="o">-</span> <span class="n">step_size</span><span class="o">*</span> <span class="n">g</span> <span class="c1">#GD
+</span>
+    <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span>
+    <span class="n">J_history</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="n">mu_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+
+    <span class="k">return</span> <span class="n">J_history</span><span class="p">,</span> <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">ngd_pre</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_fun</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">num_iters</span><span class="p">):</span>
+    <span class="n">J_history</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#For plotting  
+</span>    
+    <span class="n">cur_params</span> <span class="o">=</span> <span class="n">init_params</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_iters</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">)</span><span class="o">=</span><span class="n">cur_params</span>
+        <span class="p">(</span><span class="n">val</span><span class="p">,(</span><span class="n">g_mu</span><span class="p">,</span><span class="n">g_s</span><span class="p">))</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span>
+        <span class="n">ng</span> <span class="o">=</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="n">g_mu</span><span class="o">/</span><span class="n">s</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">g_s</span> <span class="p">]</span> <span class="p">)</span> <span class="c1">#Natural gradient
+</span>
+        <span class="n">mu_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">s_hist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+        <span class="n">J_history</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+        
+        <span class="n">cur_params</span>  <span class="o">=</span> <span class="n">cur_params</span> <span class="o">-</span> <span class="n">step_size</span><span class="o">*</span> <span class="n">ng</span>     <span class="c1">#NGD
+</span> 
+    <span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">loss_fun</span><span class="p">(</span><span class="n">cur_params</span><span class="p">)</span>
+    <span class="n">J_history</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="n">mu_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s_hist</span><span class="p">[</span><span class="n">num_iters</span><span class="p">]</span> <span class="o">=</span> <span class="n">cur_params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+
+    <span class="k">return</span> <span class="n">J_history</span><span class="p">,</span> <span class="n">mu_hist</span><span class="p">,</span> <span class="n">s_hist</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Setup of meshgrid of theta values
+</span><span class="n">mu_list</span><span class="p">,</span> <span class="n">s_list</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">200</span><span class="p">),</span><span class="n">np</span><span class="p">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">800</span><span class="p">))</span>
+
+<span class="c1">#Computing the cost function for each theta combination
+</span><span class="n">zs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span>  <span class="p">[</span><span class="n">loss_pre</span><span class="p">(</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">mu</span><span class="p">,</span><span class="n">s</span><span class="p">])</span> <span class="p">)</span> 
+                     <span class="k">for</span> <span class="n">mu</span><span class="p">,</span><span class="n">s</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">mu_list</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="n">ravel</span><span class="p">(</span><span class="n">s_list</span><span class="p">))</span> <span class="p">]</span> <span class="p">)</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">zs</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">mu_list</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">mu_0</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.0</span>
+<span class="n">s_0</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">max_num_iters</span> <span class="o">=</span> <span class="mi">200</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init_params</span> <span class="o">=</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">mu_0</span><span class="p">,</span><span class="n">s_0</span><span class="p">])</span>
+<span class="n">gd_pre_history</span><span class="p">,</span> <span class="n">mu_gd_pre_hist</span><span class="p">,</span> <span class="n">s_gd_pre_hist</span> <span class="o">=</span> <span class="n">gd</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_f_pre</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mf">1e-2</span><span class="p">,</span> 
+                                                   <span class="n">num_iters</span><span class="o">=</span><span class="n">max_num_iters</span><span class="p">)</span>
+<span class="n">anglesx_gd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_gd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_gd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">anglesy_gd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_gd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_gd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">init_params</span> <span class="o">=</span> <span class="n">jnp</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="n">mu_0</span><span class="p">,</span><span class="n">s_0</span><span class="p">])</span>
+<span class="n">ngd_pre_history</span><span class="p">,</span> <span class="n">mu_ngd_pre_hist</span><span class="p">,</span> <span class="n">s_ngd_pre_hist</span> <span class="o">=</span> <span class="n">ngd_pre</span><span class="p">(</span><span class="n">init_params</span><span class="p">,</span> <span class="n">loss_f_pre</span><span class="p">,</span> <span class="n">step_size</span> <span class="o">=</span> <span class="mf">1e-2</span><span class="p">,</span> 
+                                                           <span class="n">num_iters</span><span class="o">=</span><span class="n">max_num_iters</span><span class="p">)</span>
+<span class="n">anglesx_ngd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_ngd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">mu_ngd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">anglesy_ngd_pre</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_ngd_pre_hist</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">s_ngd_pre_hist</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">contour</span><span class="p">(</span><span class="n">mu_list</span><span class="p">,</span> <span class="n">s_list</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s">'jet'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">mu_gd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s_gd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">anglesx_gd_pre</span><span class="p">,</span> <span class="n">anglesy_gd_pre</span><span class="p">,</span> 
+          <span class="n">label</span><span class="o">=</span><span class="s">'GD $(\mu,s)$'</span><span class="p">,</span> <span class="n">scale_units</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">angles</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'g'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="p">.</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">mu_ngd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">s_ngd_pre_hist</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">anglesx_ngd_pre</span><span class="p">,</span> <span class="n">anglesy_ngd_pre</span><span class="p">,</span> 
+          <span class="n">label</span><span class="o">=</span><span class="s">'NGD $(\mu,s)$'</span><span class="p">,</span> <span class="n">scale_units</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">angles</span> <span class="o">=</span> <span class="s">'xy'</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="p">.</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'$\mu$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'$s$'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper right'</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">))),</span><span class="n">gd_pre_history</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">'GD $(\mu,s)$'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">'g'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_num_iters</span><span class="o">+</span><span class="mi">1</span><span class="p">))),</span><span class="n">ngd_pre_history</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">'NGD $(\mu,s)$'</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">'r'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">'upper right'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'# of iters'</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'loss'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/img/2022-01-08-gd_vs_ngd_notebook/2022-01-08-gd_vs_ngd_notebook_7_0.png" alt="png" class="center-image" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2020-01-08T00:00:00-08:00">January 08, 2020</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=GD+and+NGD%20informationgeometryML.github.io%2Fposts%2F2022%2F01%2Fnotebooks%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2022%2F01%2Fnotebooks%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=informationgeometryML.github.io%2Fposts%2F2022%2F01%2Fnotebooks%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+
+
+
+     
+
+  <script src="https://utteranc.es/client.js"
+    repo=yorkerlin/yorkerlin.github.io
+    issue-term=url
+    label=blog-comments
+    theme=github-light
+    crossorigin= "anonymous"
+    async>
+  </script>
+
+
+
+
+
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/posts/2021/07/ICML/" class="pagination--pager" title="Structured Natural Gradient Descent (ICML 2021)
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2021/12/Geomopt06/" rel="permalink">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  5 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2021/12/Geomopt05/" rel="permalink">Part V: Efficient Natural-gradient Methods for Exponential Family
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  15 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural and Riemannian  Gradient Descent
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  14 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/posts/2021/11/Geomopt03/" rel="permalink">Part III: Invariance of Natural-Gradients
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  10 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Goal
+This blog post should help readers to understand the invariance of natural-gradients.
+We will also discuss why the Euclidean steepest direction is NOT i...</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow</strong></li>
+    
+    
+    
+    
+      <li><a href="https://github.com/yorkerlin"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2022 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+
+
+
+
+
+-->
+    <!--
+
+  <script src="https://utteranc.es/client.js"
+    repo=yorkerlin/yorkerlin.github.io
+    issue-term=url
+    label=blog-comments
+    theme=github-light
+    crossorigin= "anonymous"
+    async>
+  </script>
+
+-->
+  
+
+
+
+
+
+  
+    <script src="/assets/js/custom.js"></script>
+  
+    <script src="/assets/js/translations.js"></script>
+  
+    <script src="/assets/js/math-code.js"></script>
+  
+
+
+
+  </body>
+</html>
+

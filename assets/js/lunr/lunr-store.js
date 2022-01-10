@@ -49,6 +49,11 @@ var store = [{
         "tags": [],
         "url": "/news/news/",
         "teaser":null},{
+        "title": "GD and NGD",
+        "excerpt":"%matplotlib inlinefrom jax.config import config; config.update(\"jax_enable_x64\", True)import jax.numpy as jnpfrom jax import grad, jit, value_and_gradimport numpy as npfrom matplotlib import pyplot as pltfrom matplotlib import ticker, colors@jitdef loss_lik(mu,v): b1 = 0.5; b2 = 0.01; a1 = 2.0; a2 = 5.0; ls = b1*(mu**2+v-2.0*a1*mu+a1**2)+b2*((mu**3+3.0*mu*v)-3.0*a2*(mu**2+v)+3.0*(a2**2)*mu-a2**3)+4.0/v return ls@jitdef loss_pre(params): (mu,s) = params return...","categories": [],
+        "tags": [],
+        "url": "/posts/2022/01/notebooks/",
+        "teaser":null},{
         "title": "Structured Natural Gradient Descent (ICML 2021)",
         "excerpt":"More about this work [1]: (Youtube) talk, ICML paper, workshop paper,poster Introduction Natural-gradient descent (NGD) on structured parameter spaces is computationally challenging.We propose a flexible and efficient NGD method to incorporate structures via matrix Lie groups. Our NGD method generalizes the exponential natural evolutionary strategy [2] recovers existing Newton-like algorithms...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Matrix Lie Groups"],
