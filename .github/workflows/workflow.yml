@@ -43,6 +43,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         rm -rf _site/img/nb_*
+        rm -rf _site/img/*_notebook
         mv img/nb_* _site/img/
         mv img/*_notebook _site/img/
         git checkout master
