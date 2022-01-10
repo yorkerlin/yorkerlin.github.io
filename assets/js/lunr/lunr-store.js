@@ -51,7 +51,7 @@ var store = [{
         "teaser":null},{
         "title": "GD and NGD",
         "excerpt":"%matplotlib inlinefrom jax.config import config; config.update(\"jax_enable_x64\", True)import jax.numpy as jnpfrom jax import grad, jit, value_and_gradimport numpy as npfrom matplotlib import pyplot as pltfrom matplotlib import ticker, colors@jitdef loss_lik(mu,v): b1 = 0.5; b2 = 0.01; a1 = 2.0; a2 = 5.0; ls = b1*(mu**2+v-2.0*a1*mu+a1**2)+b2*((mu**3+3.0*mu*v)-3.0*a2*(mu**2+v)+3.0*(a2**2)*mu-a2**3)+4.0/v return ls@jitdef loss_pre(params): (mu,s) = params return...","categories": [],
-        "tags": [],
+        "tags": ["Natural Gradient Descent","Python"],
         "url": "/posts/2022/01/notebooks/",
         "teaser":null},{
         "title": "Structured Natural Gradient Descent (ICML 2021)",
