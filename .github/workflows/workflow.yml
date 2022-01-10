@@ -42,10 +42,8 @@ jobs:
         set -xo pipefail
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        rm -rf _site/img/nb_*
-        ls _site/img | grep -P "^20[0-9]{2}.*" | xargs -d"\n" rm -rf
-        mv img/nb_* _site/img/
-        mv img/20* _site/img/
+        rsync --remove-source-files img/nb_* _site/img/
+        rsync --remove-source-files img/20* _site/img/
         git checkout master
         ls -Q | grep -v _site | xargs rm -rf
         mv _site/* .
