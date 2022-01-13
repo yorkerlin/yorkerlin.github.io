@@ -306,7 +306,7 @@ These properties will play a key role in <a href="/posts/2021/11/Geomopt04/#natu
 <p>We require that a manifold should be locally like a vector space denoted by <code class="language-plaintext highlighter-rouge">$ E $</code> under a parameterization. Informally, we refer to 
 such structure as a local vector-space structure.</p>
 
-<div class="notice--info">
+<div class="notice--success">
   <p>Local <strong>vector-space structure</strong>:</p>
 
   <p>It supports local <strong>vector additions</strong> and local <strong>real scalar products</strong> (see <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a> for the details.)</p>
@@ -368,7 +368,7 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 <p>Given a parametric distribution family <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code> indexed by its parameter <code class="language-plaintext highlighter-rouge">$\tau$</code>, <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code> should be smooth w.r.t. <code class="language-plaintext highlighter-rouge">$ \tau $</code> by considering <code class="language-plaintext highlighter-rouge">$ w $</code> to be fixed.
 We say a parametrization is <strong>intrinsic</strong> if the following condition for parameter (array) <code class="language-plaintext highlighter-rouge">$\tau $</code> holds:</p>
 
-<div class="notice--info">
+<div class="notice--success">
   <p><strong>Regularity Condition</strong>:</p>
 
   <p>The set of partial derivatives 
@@ -638,11 +638,14 @@ the <a href="https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vect
 The map <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{S})$</code>  returns  a <code class="language-plaintext highlighter-rouge">$\frac{d(d + 1)}{2}$</code>-dim array obtained by vectorizing only the lower triangular part of a (symmetric) <code class="language-plaintext highlighter-rouge">$d$</code>-by-<code class="language-plaintext highlighter-rouge">$d$</code> matrix <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>.
 The map <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}()$</code> is the inverse map of  <code class="language-plaintext highlighter-rouge">$\mathrm{vech}()$</code>.</p>
 
-<p>The following example illustrates these two maps.</p>
-<blockquote>
-  <p>Consider the following symmetric 2-by-2 matrix</p>
+<div class="notice--info">
+  <details>
+<summary>Illustration of these maps (click to expand)</summary>
+<fieldset class="field-set">
+      <blockquote>
+        <p>Consider the following symmetric 2-by-2 matrix</p>
 
-  <p><code class="language-plaintext highlighter-rouge">$$
+        <p><code class="language-plaintext highlighter-rouge">$$
 \mathbf{S} = 
 \begin{aligned}
 \begin{bmatrix} 2 &amp;  -1 \\  -1  &amp; 3  \end{bmatrix}
@@ -656,14 +659,17 @@ The output of map <code class="language-plaintext highlighter-rouge">$\mathrm{ve
 \end{aligned}
 $$</code></p>
 
-  <p>The output of  map <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}(\mathbf{v})$</code> is
+        <p>The output of  map <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}(\mathbf{v})$</code> is
 <code class="language-plaintext highlighter-rouge">$$
 \mathrm{MatH}(\mathbf{v}) = 
 \begin{aligned}
 \begin{bmatrix} 2 &amp;  -1 \\  -1  &amp; 3  \end{bmatrix}
 \end{aligned}
 $$</code></p>
-</blockquote>
+      </blockquote>
+    </fieldset>
+</details>
+</div>
 
 <hr />
 <h1 id="references">References</h1>
@@ -834,7 +840,7 @@ $$</code></p>
 
 
 
-  15 minute read
+  18 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
@@ -862,7 +868,7 @@ $$</code></p>
 
 
 
-  14 minute read
+  18 minute read
 </p>
     
     <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
