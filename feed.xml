@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-13T10:34:39-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-14T11:35:07-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;This blog post should show that we can efficiently implement natural-gradient methods in many cases.&lt;/p&gt;
@@ -997,7 +997,7 @@ $$&lt;/code&gt; where the geodesic is uniquely determined by the initial conditi
 &lt;p&gt;For a &lt;a href=&quot;https://en.wikipedia.org/wiki/Geodesic_manifold&quot;&gt;geodesically complete&lt;/a&gt; manifold, the domain of the geodesic is the whole space  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{I}_{\tau}
 =\mathcal{R}$&lt;/code&gt;. We will only consider this case in this post.&lt;/p&gt;
 
-&lt;p&gt;To avoid writing down the differential equations of a geodesic (i.e., Christoffel symbols), 
+&lt;p&gt;To avoid writing down the differential equations of a geodesic (i.e., &lt;a href=&quot;https://en.wikipedia.org/wiki/Levi-Civita_connection#Christoffel_symbols&quot;&gt;Christoffel symbols&lt;/a&gt; or &lt;a href=&quot;https://en.wikipedia.org/wiki/Connection_form#Example:_the_Levi-Civita_connection&quot;&gt;connection 1-form&lt;/a&gt;  ), 
 researchers refer to it as the manifold exponential map.
 Given an intrinsic parametrization $\tau$,
 the  map at point $\tau_0$  is defined as
@@ -1007,13 +1007,14 @@ the  map at point $\tau_0$  is defined as
 \mathbf{v}_{\tau_0} &amp;amp; \mapsto \gamma_\tau(1) \,\,\,\, \textrm{s.t.} \,\,\,\,\,\, \gamma_\tau(0) = \tau_0;\,\,\,\,\,\,
 \frac{d \gamma_\tau(t) }{d t} \Big|_{t=0} = \mathbf{v}_{\tau_0}
 \end{aligned}
-$$&lt;/code&gt;  where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$t$&lt;/code&gt; is fixed to be 1 and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau_0$&lt;/code&gt; denotes the initial point under a parametrization.&lt;/p&gt;
+$$&lt;/code&gt;  where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$t$&lt;/code&gt; is fixed to be 1 and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau_0$&lt;/code&gt; denotes the initial point under  parametrization &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau$&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;notice--danger&quot;&gt;
   &lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;:&lt;/p&gt;
 
-  &lt;p&gt;The exponential map defined here is a parametric representation of a geodesic curve.
-Since the map is a representation of the curve, the form of the map does depend on the choice of  parametrizations.&lt;/p&gt;
+  &lt;p&gt;We use 
+a parametric representation of a geodesic curve to define the exponential map.
+Thus, the form of the map does depend on the choice of parametrizations.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Now, we can define a Riemannian gradient method.
@@ -1286,11 +1287,11 @@ We now discuss issues when it comes to  natural-gradient descent over non-intrin
 
             &lt;p&gt;If we  use the following initialization such that all $C$ components have the same mean &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mu_0$&lt;/code&gt; and the same covariance &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{\Sigma}_0$&lt;/code&gt;, this family becomes a Gaussian family.
 In this case,
-$\tau$ a non-intrinsic parameterization for the Gaussian family. Note that the FIM is singular under
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau$&lt;/code&gt; is a non-intrinsic parameterization for a Gaussian family. Note that the FIM is singular under
  parametrization $\tau$.
 The iteration cost of natural-gradient descent in this parameter space $\Omega_\tau$ will be $O(C^3 d^6)$ if  Moore–Penrose inverse is employed.&lt;/p&gt;
 
-            &lt;p&gt;Now, consider the equivalent Gaussian family &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \{ \mathcal{N}(w |\mathbf{\mu},  \mathbf{\Sigma})  \Big|  \mathbf{\mu} \in \mathcal{R}^d,  \mathbf{\Sigma}  \succ \mathbf{0}  \}$&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda =( \mu,\mathrm{vech}(\mathbf{\Sigma}) ) $&lt;/code&gt;, where $\lambda$ is an intrinsic parameterization of the Gaussian family and initialized by 
+            &lt;p&gt;Now, consider an equivalent Gaussian family &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \{ \mathcal{N}(w |\mathbf{\mu},  \mathbf{\Sigma})  \Big|  \mathbf{\mu} \in \mathcal{R}^d,  \mathbf{\Sigma}  \succ \mathbf{0}  \}$&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda =( \mu,\mathrm{vech}(\mathbf{\Sigma}) ) $&lt;/code&gt;, where $\lambda$ is an intrinsic parameterization of the Gaussian family and initialized by 
 mean $\mu_0$ and  covariance $\mathbf{\Sigma}_0$.&lt;/p&gt;
 
             &lt;p&gt;As we will show in &lt;a href=&quot;/posts/2021/12/Geomopt05/&quot;&gt;Part V&lt;/a&gt;, the iteration cost of natural-gradient descent in this parameter space $\Omega_\lambda$ will be $O(d^3)$ if we exploit structures of the exact non-singular FIM.&lt;/p&gt;
@@ -1762,7 +1763,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Now, we discuss the parameter transformation between $\tau$ and $\lambda$, where we can express $\lambda$ in terms of $\tau$ denoted by $\lambda(\tau)$.&lt;/p&gt;
 
-&lt;p&gt;By the (standard) chain rule for a Euclidean gradient, we has
+&lt;p&gt;By the (standard) chain rule for a Euclidean gradient&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;, we has
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 (g_\tau)_i = \sum_{k}  \color{red}{ (g_\lambda)_k} \frac{\color{red}{ \partial \lambda^k(\tau) }}{ \partial \tau^i } 
@@ -1830,13 +1831,13 @@ $$&lt;/code&gt;&lt;/p&gt;
 \end{aligned},
 $$&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Note that these transformation rules are valid  when the Jacobian matrix is square and non-singular.
+&lt;p&gt;Note that these transformation rules are valid  when the Jacobian matrix &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{J}$&lt;/code&gt; is square and non-singular.
 As we discussed in Part I about &lt;a href=&quot;/posts/2021/09/Geomopt01/#intrinsic-parameterizations&quot;&gt;intrinsic parameterizations&lt;/a&gt;, the transformation map between $\tau$ and $\lambda$ must be bi-jective, which implies the Jacoabian matrix is square. 
 Moreover, the map and its inverse map should be smooth, which implies that the Jacobian matrix is well-defined and non-singular.&lt;/p&gt;
 
 &lt;h2 id=&quot;transformation-rule-for-the-fisher-information-matrix&quot;&gt;Transformation Rule for the Fisher Information Matrix&lt;/h2&gt;
 
-&lt;p&gt;Now, we give a transformation rule for the Fisher information matrix as defined at &lt;a href=&quot;/posts/2021/09/Geomopt01/#fisher-rao-metric&quot;&gt;Part I&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Now, we discuss a transformation rule for the Fisher information matrix (FIM) as defined at &lt;a href=&quot;/posts/2021/09/Geomopt01/#fisher-rao-metric&quot;&gt;Part I&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
@@ -1850,7 +1851,7 @@ Since $ \log p(w|\tau )$ can be considered as a scalar function $h$ defined on t
 \end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Thus, the Fisher metric can be computed as
+&lt;p&gt;Thus, the FIM can be computed as
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
  F_{ij}(\tau_0) &amp;amp;= E_{p(w|\tau_0) }  [ \Big( \partial_{\tau_i} \log p(w|\tau_0 ) \Big)  \Big(\partial_{\tau_j} \log p(w|\tau_0) \Big) ] \\
@@ -1876,7 +1877,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 \end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;We can re-express the above expression in a matrix form as below. This is the transformation rule for the Fisher information matrix.&lt;/p&gt;
+&lt;p&gt;We can re-express the above expression in a matrix form as below. This is the transformation rule for the FIM.&lt;/p&gt;
 
 &lt;div class=&quot;notice--success&quot;&gt;
   &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
@@ -1925,7 +1926,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 \end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;We can easily to verify the following identities since
+&lt;p&gt;We can easily verify the following identities since
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \|\hat{\mathbf{g}}_\lambda\|_{ F_{\lambda_0} } =  \|\hat{\mathbf{g}}_\tau\|_{ F_{\tau_0} }  $&lt;/code&gt; as shown in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{9}$&lt;/code&gt;.
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
@@ -1974,7 +1975,17 @@ Moreover, Euclidean gradient descent is not invariant under a parameter transfor
 &lt;hr /&gt;
 &lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 &lt;p class=&quot;bibliography&quot;&gt;&lt;p&gt;&lt;span id=&quot;lin2021tractable&quot;&gt;[1] W. Lin, F. Nielsen, M. E. Khan, &amp;amp; M. Schmidt, &quot;Tractable structured natural gradient descent using local parameterizations,&quot; &lt;i&gt;International Conference on Machine Learning (ICML)&lt;/i&gt; (2021).&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&quot;salimbeni2018natural&quot;&gt;[2] H. Salimbeni, S. Eleftheriadis, &amp;amp; J. Hensman, &quot;Natural gradients in practice: Non-conjugate variational inference in Gaussian process models,&quot; &lt;i&gt;International Conference on Artificial Intelligence and Statistics&lt;/i&gt; (PMLR, 2018), pp. 689–697.&lt;/span&gt;&lt;/p&gt;&lt;/p&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Riemannian Manifold" /><summary type="html">Goal This blog post should help readers to understand the invariance of natural-gradients. We will also discuss why the Euclidean steepest direction is NOT invariant.</summary></entry><entry><title type="html">Part II: Natural-Gradients Evaluated at one Point</title><link href="/posts/2021/10/Geomopt02/" rel="alternate" type="text/html" title="Part II: Natural-Gradients Evaluated at one Point" /><published>2021-10-04T00:00:00-07:00</published><updated>2021-10-04T00:00:00-07:00</updated><id>/posts/2021/10/Geomopt02</id><content type="html" xml:base="/posts/2021/10/Geomopt02/">&lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
+&lt;p&gt;&lt;span id=&quot;salimbeni2018natural&quot;&gt;[2] H. Salimbeni, S. Eleftheriadis, &amp;amp; J. Hensman, &quot;Natural gradients in practice: Non-conjugate variational inference in Gaussian process models,&quot; &lt;i&gt;International Conference on Artificial Intelligence and Statistics&lt;/i&gt; (PMLR, 2018), pp. 689–697.&lt;/span&gt;&lt;/p&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;footnotes&quot;&gt;Footnotes:&lt;/h2&gt;
+
+&lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
+  &lt;ol&gt;
+    &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;We assume readers are familar with the transformation rule for Euclidean gradients. In differential geometry, this transformation rule can also be shown by using an abstract coordinate map. We avoid defining this map for simplicity. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/div&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Riemannian Manifold" /><summary type="html">Goal This blog post should help readers to understand the invariance of natural-gradients. We will also discuss why the Euclidean steepest direction is NOT invariant.</summary></entry><entry><title type="html">Part II: Natural-Gradients Evaluated at one Point</title><link href="/posts/2021/10/Geomopt02/" rel="alternate" type="text/html" title="Part II: Natural-Gradients Evaluated at one Point" /><published>2021-10-04T00:00:00-07:00</published><updated>2021-10-04T00:00:00-07:00</updated><id>/posts/2021/10/Geomopt02</id><content type="html" xml:base="/posts/2021/10/Geomopt02/">&lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.
 The main propose of this post is to show how to define and compute natural-gradients.
 The space of natural-gradients evaluated at the same point is called a tangent space at that point.&lt;/p&gt;
