@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-14T11:35:07-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-14T20:27:21-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;This blog post should show that we can efficiently implement natural-gradient methods in many cases.&lt;/p&gt;
@@ -524,8 +524,8 @@ Now, we show how to efficiently compute natural-gradients in this case.&lt;/p&gt
 &lt;div class=&quot;notice--success&quot;&gt;
   &lt;p&gt;&lt;strong&gt;Claim&lt;/strong&gt;:&lt;/p&gt;
 
-  &lt;p&gt;We can efficiently   compute natural-gradients 
-in $O( d^3 )$ iteration cost&lt;/p&gt;
+  &lt;p&gt;We can efficiently  compute natural-gradients 
+in $O( d^3 )$ iteration cost in this case.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;div class=&quot;notice--info&quot;&gt;
@@ -563,7 +563,7 @@ $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \frac{\partial \ell}{\partial \mu} &amp;amp;= \mathbf{g}_\mu^T \\
-\frac{\partial \ell}{\partial \mathbf{V} } &amp;amp; =\mathbf{g}_{V} \,\,\,\, ( \mathbf{V} \text{ is a d-by-d matrix with } d^2  \text{ degrees of freedom} ) \\
+\frac{\partial \ell}{\partial V } &amp;amp; =\mathbf{g}_{V} \,\,\,\, ( \mathbf{V} \text{ is a d-by-d matrix with } d^2  \text{ degrees of freedom} ) \\
 \frac{\partial \ell}{\partial \Sigma } &amp;amp; =\mathbf{g}_{\Sigma} \,\,\,\, ( \Sigma \text{ is a d-by-d matrix with } \frac{d(d+1)}{2}  \text{ degrees of freedom} ) \\
 \frac{\partial \ell}{\partial \mathrm{vec2h}(\Sigma)} &amp;amp;=  ( \mathrm{vech}(\mathbf{g}_{V}))^T 
 \end{aligned}
@@ -764,12 +764,13 @@ where  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\pi =
 \mathbf{m}_{k+1} \leftarrow \arg \min_{x \in \Omega_m}\{ \langle \nabla_m \ell(\mathbf{m}_k), \mathbf{x}-\mathbf{m}_k  \rangle + \frac{1}{\alpha}  \mathrm{B}_{A^*_\eta}(\mathbf{x},\mathbf{m}_k) \}
 \end{aligned}\tag{7}\label{7}
 $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{m}_{k} \in \Omega_m$&lt;/code&gt;,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\nabla_m \ell(\mathbf{m}_k):= \nabla_m f(\eta(\mathbf{m}_k))$&lt;/code&gt; and the Bregman divergence &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathrm{B}_{A^*_\eta}(\cdot,\cdot)$&lt;/code&gt; is well-defined
-since  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$A^*_\eta$&lt;/code&gt; is strictly convex in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_m$&lt;/code&gt;.&lt;/p&gt;
+since  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$A^*_\eta$&lt;/code&gt; is strictly convex in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_m$&lt;/code&gt;.
+Recall  that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_m$&lt;/code&gt; can still be constrained.&lt;/p&gt;
 
 &lt;div class=&quot;notice--success&quot;&gt;
   &lt;p&gt;&lt;strong&gt;Claim&lt;/strong&gt;:&lt;/p&gt;
 
-  &lt;p&gt;when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\eta = \mathcal{R}^K$&lt;/code&gt;, the solution of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{7}$&lt;/code&gt; is equivalent to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eta_{k+1}  \leftarrow  \eta_k - \alpha \nabla_m \ell(\mathbf{m}_k)$&lt;/code&gt;.&lt;/p&gt;
+  &lt;p&gt;When &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\eta = \mathcal{R}^K$&lt;/code&gt;, the solution of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{7}$&lt;/code&gt; is equivalent to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eta_{k+1}  \leftarrow  \eta_k - \alpha \nabla_m \ell(\mathbf{m}_k)$&lt;/code&gt;.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;div class=&quot;notice--info&quot;&gt;
@@ -1036,7 +1037,7 @@ Although Riemannian gradient descent is nice, the exponential map or the geodesi
 &lt;hr /&gt;
 &lt;h2 id=&quot;natural-gradient-descent-as-inexact-riemannian-gradient-descent&quot;&gt;Natural-gradient Descent as Inexact Riemannian Gradient Descent&lt;/h2&gt;
 
-&lt;p&gt;Natural-gradient descent can be viewed as a first-order (linear) approximation of the geodesic, which implies that natural-gradient descent is indeed an inexact Riemannian gradient update.
+&lt;p&gt;Natural-gradient descent can be derived from a first-order (linear) approximation of the geodesic, which implies that natural-gradient descent is indeed an inexact Riemannian gradient update.
 Natural-gradient descent is linearly invariant due to the approximation.&lt;/p&gt;
 
 &lt;p&gt;Consider a first-order Taylor approximation at $t=0$ of the geodesic shown below.
@@ -1053,7 +1054,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Recall that the exponential map is defined via the geodesic &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\gamma_\tau(1)$&lt;/code&gt;.
-We can use an approximation of the geodesic to define a new map (A.K.A. the Euclidean retraction map) as shown below.
+We can use this approximation of the geodesic to define a new map (A.K.A. the Euclidean retraction map) as shown below.
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \mathrm{Ret}_{\tau_0}(\mathbf{v}_{\tau_0}) := \gamma_\tau(0) + \frac{d  \gamma_\tau(t)}{d t} \Big|_{t=0} (1-0) =\tau_0 + \mathbf{v}_{\tau_0}
@@ -1134,10 +1135,10 @@ $$&lt;/code&gt; where &lt;code class=&quot;language-plaintext highlighter-rouge&
 &lt;fieldset class=&quot;field-set&quot;&gt;
       &lt;p&gt;Proof:&lt;/p&gt;
 
-      &lt;p&gt;We will show that the second-order Talor approximation at $\mathbf{y}=\tau_k$ can be re-expressed as below.
+      &lt;p&gt;We will show that the second-order Talor approximation denoted by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathrm{D}(\mathbf{y},\tau_k)$&lt;/code&gt;  can be expressed as below.
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
-\mathrm{D}(\mathbf{y},\tau_k) = \underbrace{\mathrm{D}_f(\tau_k,\tau_k)}_{=0} + (\mathbf{y}-\tau_k)^T \underbrace{ [\nabla_y  \mathrm{D}_f(\mathbf{y},\tau_k) \big|_{y=\tau_k}]}_{=0} +\frac{1}{2} (\mathbf{y}-\tau_k)^T \underbrace{ [\nabla_y^2  \mathrm{D}_f(\mathbf{y},\tau_k)\big|_{y=\tau_k}]}_{ =\mathbf{F}_\tau(\tau_k) } (\mathbf{y}-\tau_k)
+\mathrm{D}(\mathbf{y},\tau_k) := \underbrace{\mathrm{D}_f(\tau_k,\tau_k)}_{=0} + (\mathbf{y}-\tau_k)^T \underbrace{ [\nabla_y  \mathrm{D}_f(\mathbf{y},\tau_k) \big|_{y=\tau_k}]}_{=0} +\frac{1}{2} (\mathbf{y}-\tau_k)^T \underbrace{ [\nabla_y^2  \mathrm{D}_f(\mathbf{y},\tau_k)\big|_{y=\tau_k}]}_{ =\mathbf{F}_\tau(\tau_k) } (\mathbf{y}-\tau_k)
 \end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
@@ -1162,11 +1163,13 @@ $$&lt;/code&gt;&lt;/p&gt;
       &lt;p&gt;Note that when $y=\tau_k$, we can simplify the expression since 
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\dot{f}\big(\frac{p(w|y)}{p(w|\tau_k)}\big)=\dot{f}(1)$&lt;/code&gt; is a constant.
 Therefore,
-`\(\begin{aligned}
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
+\begin{aligned}
 \nabla_y \mathrm{D}_f(\mathbf{y},\tau_k) \big|_{y=\tau_k}  
 =\int_w  \dot{f}(1) \nabla_y p(w|\mathbf{y}) \big|_{y=\tau_k} dw =  
 \dot{f}(1)  \nabla_y \underbrace{\Big[ \int_w   p(w|\mathbf{y}) dw \Big]}_{=1} \Big|_{y=\tau_k} = 0.
-\end{aligned}\).&lt;/p&gt;
+\end{aligned}
+$$&lt;/code&gt;&lt;/p&gt;
 
       &lt;p&gt;For the second-order term, we have
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
