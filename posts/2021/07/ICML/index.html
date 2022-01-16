@@ -195,8 +195,43 @@
 
 <h1 id="introduction">Introduction</h1>
 
-<p>Natural-gradient descent (NGD) on structured parameter spaces  is computationally challenging.
-We propose a flexible and efficient NGD method to incorporate structures via matrix Lie groups.</p>
+<h2 id="motivation">Motivation</h2>
+
+<p>Many problems in optimization, inference, and search can be solved via natural-gradient descent (NGD)</p>
+
+<p>Structures play an essential role in</p>
+<ul>
+  <li>Preconditioners for gradient-free, adaptive-gradient, and second-order methods</li>
+  <li>Posterior Gaussian approximation for variational inference</li>
+</ul>
+
+<p>Natural-gradient descent on structured parameter spaces is computationally challenging.</p>
+
+<p>Existing works in NGD</p>
+<ul>
+  <li>Limited structures due to the complicated Fisher information matrix (FIM)</li>
+  <li>Ad-hoc approximations for handling the singularity and cost reductions</li>
+  <li>Inefficient and complicated natural-gradient computation</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Existing approach for rank-one covariance</th>
+      <th style="text-align: center">Our NGD for rank-one covariance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/img/icml2021-fig02.png" width="500" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-fig04.png" width="500" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="our-contributions">Our Contributions</h2>
+
+<p>We propose a flexible and efficient NGD method to incorporate structures via matrix Lie groups.</p>
 
 <p>Our NGD method</p>
 <ul>
@@ -214,28 +249,6 @@ We propose a flexible and efficient NGD method to incorporate structures via mat
   <li>evolution strategies (gradient-free),</li>
   <li>variational inference (multimodal density with Monte Carlo reparameterization gradients).</li>
 </ul>
-
-<p>Issues in existing works:</p>
-<ul>
-  <li>Limited structures and singularity of the Fisher information matrix (FIM)</li>
-  <li>Ad-hoc approximations for cost reductions</li>
-  <li>Complicated and inefficient NG computation</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">Existing approach for rank-one covariance</th>
-      <th style="text-align: center">Our NGD for rank-one covariance</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center"><img src="/img/icml2021-fig02.png" width="500" /></td>
-      <td style="text-align: center"><img src="/img/icml2021-fig04.png" width="500" /></td>
-    </tr>
-  </tbody>
-</table>
 
 <h1 id="ngd-for-optimization-inference-and-search">NGD for Optimization, Inference, and Search</h1>
 
