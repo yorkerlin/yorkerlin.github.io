@@ -1,8 +1,8 @@
 # About Me
 
-PhD student working on computational aspects of differential, geometric, and algebraic structures. My research so far has mostly focused on geometric methods for machine learninng such as
-* approximate inference using information geometry structures
-* numerical optimization using manifold structures and Lie groups
+PhD student working on computational aspects of differential, geometric, and algebraic structures. My research so far has mostly focused on geometric methods for machine learninng:
+* approximate inference using differential geometry and information geometry
+* numerical optimization using manifolds and Lie groups
 
 For generalized natural-gradient methods, please see 
 * Structured natural-gradient descent: [Talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [ICML Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
