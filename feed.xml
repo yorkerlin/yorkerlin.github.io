@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-21T12:37:08-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-21T17:31:22-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h1 id=&quot;handling-parameter-constraints&quot;&gt;Handling Parameter Constraints&lt;/h1&gt;
 &lt;hr /&gt;
@@ -2560,7 +2560,9 @@ plt.show()
 For all such cases, we can exploit the underlying geometric structure, induced by the Fisher-Rao metric, which is the topic of this blog.&lt;/p&gt;
 
 &lt;p&gt;Below, we give some common examples from machine learning, where probability distributions naturally arise.
-In these cases, we can exploit the structure to design efficient learning algorithms.&lt;/p&gt;
+In these cases, we can exploit the structure to design efficient learning algorithms. More applications of this
+geometric structure 
+can be found at (missing reference) and (missing reference).&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Least Square (Empirical Risk Minimization):&lt;/p&gt;
@@ -2591,7 +2593,7 @@ Here &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ p(x,y 
 $$&lt;/code&gt;
 where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathrm{KL} [ q(z) ||  p(z) ] :=  E_{ {q(z)} } [ \log \big(\frac{q(z)}{p(z)}\big) ]$&lt;/code&gt; is the Kullback–Leibler divergence.&lt;/p&gt;
 
-  &lt;p&gt;The &lt;strong&gt;natural-gradient variatioal inference&lt;/strong&gt; &lt;a class=&quot;citation&quot; href=&quot;#khan2017conjugate&quot;&gt;[5]&lt;/a&gt; is an algorithm that speeds up the inference by exploiting the geometry of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(z|\tau)$&lt;/code&gt; induced by the Fisher-Rao metric.&lt;/p&gt;
+  &lt;p&gt;The &lt;strong&gt;natural-gradient variational inference&lt;/strong&gt; &lt;a class=&quot;citation&quot; href=&quot;#khan2017conjugate&quot;&gt;[5]&lt;/a&gt; is an algorithm that speeds up the inference by exploiting the geometry of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(z|\tau)$&lt;/code&gt; induced by the Fisher-Rao metric.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;

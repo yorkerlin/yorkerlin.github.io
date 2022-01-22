@@ -232,7 +232,9 @@
 For all such cases, we can exploit the underlying geometric structure, induced by the Fisher-Rao metric, which is the topic of this blog.</p>
 
 <p>Below, we give some common examples from machine learning, where probability distributions naturally arise.
-In these cases, we can exploit the structure to design efficient learning algorithms.</p>
+In these cases, we can exploit the structure to design efficient learning algorithms. More applications of this
+geometric structure 
+can be found at (missing reference) and (missing reference).</p>
 
 <blockquote>
   <p>Least Square (Empirical Risk Minimization):</p>
@@ -263,7 +265,7 @@ Here <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathc
 $$</code>
 where <code class="language-plaintext highlighter-rouge">$ \mathrm{KL} [ q(z) ||  p(z) ] :=  E_{ {q(z)} } [ \log \big(\frac{q(z)}{p(z)}\big) ]$</code> is the Kullback–Leibler divergence.</p>
 
-  <p>The <strong>natural-gradient variatioal inference</strong> <a class="citation" href="#khan2017conjugate">[5]</a> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric.</p>
+  <p>The <strong>natural-gradient variational inference</strong> <a class="citation" href="#khan2017conjugate">[5]</a> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric.</p>
 </blockquote>
 
 <blockquote>
