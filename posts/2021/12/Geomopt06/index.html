@@ -182,7 +182,7 @@
 
 
 
-  3 minute read
+  4 minute read
 </p>
           
         </header>
@@ -251,7 +251,7 @@ $$</code></p>
 Recall that in
 <a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-as-unconstrained-proximal-gradient-descent">Part IV</a>,
 we show that natural-gradient descent can be viewed as an  proximal-gradient method, where we use the
-second-order Taylor expansion of <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k) = \mathrm{KL} [p(\mathbf{w}|\eta_k) || p(\mathbf{w}|\mathbf{y})]$</code> at <code class="language-plaintext highlighter-rouge">$y=\eta_k$</code>, where the KL divergence is  a f-divergence.</p>
+second-order Taylor expansion of any f-divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)$</code> at <code class="language-plaintext highlighter-rouge">$y=\eta_k$</code> such as the KL divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)= \mathrm{KL} [p(\mathbf{w}|\eta_k) || p(\mathbf{w}|\mathbf{y})]$</code>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -262,19 +262,35 @@ $$</code></p>
 
 <h2 id="proximal-gradient-descent">Proximal Gradient Descent</h2>
 
-<p>We could also obtain proximal natural-gradient descent without the Taylor expansion.
-Recall that the KL divergence is also a Bregman divergence <code class="language-plaintext highlighter-rouge">$\mathrm{B}_{A_\eta}(\cdot,\cdot)$</code> equipped with the log-partition function <code class="language-plaintext highlighter-rouge">$A_\eta$</code>.</p>
+<p>We could also obtain proximal gradient descent by using a f-divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)$</code> without the Taylor expansion.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-\eta_{k+1} \leftarrow \arg\min_{\color{blue}{y} \in  \Omega_\eta  } \{ \langle \nabla_\eta \ell_\eta(\eta_k),\color{blue}{\mathbf{y}}-\eta_k \rangle   + \frac{1}{\alpha} \underbrace{ \mathrm{KL} [p(\mathbf{w}|\eta_k) || p(\mathbf{w}|\color{blue}{\mathbf{y}})]}_{ = \mathrm{B}_{A_\eta}(\mathbf{\eta}_k,\color{blue}{\mathbf{y}})}  \} 
+\eta_{k+1} \leftarrow \arg\min_{\color{blue}{y} \in  \Omega_\eta  } \{ \langle \nabla_\eta \ell_\eta(\eta_k),\color{blue}{\mathbf{y}}-\eta_k \rangle   + \frac{1}{\alpha} \mathrm{D}_f(\mathbf{y},\eta_k)  \} 
 \end{aligned}\tag{2}\label{2}
 $$</code></p>
+
+<p>We have the following additional results, when the f-divergence is choosen to be a KL divergence.</p>
+
+<ul>
+  <li>
+    <p>The KL divergence <code class="language-plaintext highlighter-rouge">$\mathrm{KL} [p(\mathbf{w}|\eta_k) || p(\mathbf{w}|\color{red}{\mathbf{y}})]=\mathrm{D}_f(\color{red}{\mathbf{y}},\eta_k)$</code> is a f-divergence. The
+second-order Taylor approximation   at 
+ <code class="language-plaintext highlighter-rouge">$\mathbf{y}=\eta_k$</code> is <code class="language-plaintext highlighter-rouge">$\frac{1}{2} (\mathbf{y}-\eta_k)^T \mathbf{F}_{\eta}(\eta_k) (\mathbf{y}-\eta_k)$</code>.
+This establishes the connection between NGD and proximal gradient descent.</p>
+  </li>
+  <li>
+    <p>The <strong>reverse</strong> KL divergence <code class="language-plaintext highlighter-rouge">$\mathrm{KL} [p(\mathbf{w}|\color{red} {\mathbf{y}} ) || p(\mathbf{w}|\eta_k)]=\mathrm{B}_{A_\eta}(\color{red}{\mathbf{y}},\eta_k)$</code> is a Bregman divergence in this case.
+The
+second-order Taylor approximation  of the reverse KL divergence at <code class="language-plaintext highlighter-rouge">$\mathbf{y}=\eta_k$</code> gives the same approximation as <code class="language-plaintext highlighter-rouge">$\frac{1}{2} (\mathbf{y}-\eta_k)^T \mathbf{F}_{\eta}(\eta_k) (\mathbf{y}-\eta_k)$</code>.
+This establishes the connection between NGD and mirror descent.</p>
+  </li>
+</ul>
 
 <div class="notice--success">
   <p><strong>Note</strong>:</p>
 
-  <p>The KL divergence is the only divergence that is both a Csiszar f-divergence and a Bregman divergence.</p>
+  <p>The KL divergence is the only divergence <a class="citation" href="#amari2016information">[1]</a> that is both a  f-divergence and a Bregman divergence.</p>
 </div>
 
 <h2 id="mirror-descent">Mirror Descent</h2>
@@ -287,7 +303,7 @@ $$</code>
 where 
 <code class="language-plaintext highlighter-rouge">$\nabla_m \ell_m(\mathbf{m}_k) = \nabla_m \ell_\eta( \underbrace{ \eta(\mathbf{m}_k)}_{=\eta_k} )=  \mathbf{F}_\eta^{-1} (\eta_k) \nabla_\eta \ell_\eta(\eta_k)$</code>.</p>
 
-<p>We could also perform the constrained mirror descent in the natural parameter space as
+<p>We could also perform  mirror descent in the natural parameter space as
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{\eta}_{k+1} \leftarrow \arg \min_{\color{blue}{y} \in \Omega_\eta}\{ \langle \nabla_\eta \ell_\eta(\mathbf{\eta}_k), \color{blue}{\mathbf{y}}-\mathbf{\eta}_k  \rangle + \frac{1}{\alpha}  \mathrm{B}_{A_\eta}(\color{blue}{\mathbf{y}},\mathbf{\eta}_k) \}
@@ -297,9 +313,7 @@ $$</code></p>
 <div class="notice--danger">
   <p><strong>Warning</strong>:</p>
 
-  <ul>
-    <li><code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> and  <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code>  gives distinct updates since the KL divergence is not symmetric.</li>
-  </ul>
+  <p>Without the Taylor approximation,  <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> and  <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code> are distinct updates even when the KL divergence is used.</p>
 </div>
 
 <h2 id="adaptive-step-size-selection">Adaptive Step-size Selection</h2>
@@ -323,7 +337,7 @@ The step-size selection precedure has to check the constraint at each iteration 
 <a href="/posts/2021/11/Geomopt04/#riemannian-gradient-descent-and-its-non-linear-invariance">Part IV</a>, which is a generalization of natural-gradient descent. 
 Note that this approach is completely different from mirror descent.</p>
 
-<p>To avoid solving the geodeisc ODE to get the manifold exponential map, we could use an (inexact) geodesic, which
+<p>To avoid solving the geodeisc ODE, we could use an approximation of the geodesic, which
 induces a retraction map.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -337,11 +351,12 @@ we have to carefully select a retraction map to handle the parameter constraint.
 For a general parameter constraint <code class="language-plaintext highlighter-rouge">$\Omega_\eta$</code>, it can be difficult to come out an efficient retraction map to satisfy
 the constraint.</p>
 
-<p>For positive-definite constraints in <code class="language-plaintext highlighter-rouge">$\Omega_\eta$</code>, please see <a class="citation" href="#lin2020handling">[1]</a> as an example to derive efficient Riemannian gradient updates.</p>
+<p>For positive-definite constraints in <code class="language-plaintext highlighter-rouge">$\Omega_\eta$</code>, please see <a class="citation" href="#lin2020handling">[2]</a> as an example to derive efficient Riemannian gradient updates.</p>
 
 <hr />
 <h1 id="references">References</h1>
-<p class="bibliography"><p><span id="lin2020handling">[1] W. Lin, M. Schmidt, &amp; M. E. Khan, "Handling the positive-definite constraint in the bayesian learning rule," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 6116–6126.</span></p></p>
+<p class="bibliography"><p><span id="amari2016information">[1] S.-ichi Amari, <i>Information geometry and its applications</i> (Springer, 2016).</span></p>
+<p><span id="lin2020handling">[2] W. Lin, M. Schmidt, &amp; M. E. Khan, "Handling the positive-definite constraint in the bayesian learning rule," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 6116–6126.</span></p></p>
 
 
         
