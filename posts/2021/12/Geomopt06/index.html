@@ -251,7 +251,7 @@ $$</code></p>
 Recall that in
 <a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-as-unconstrained-proximal-gradient-descent">Part IV</a>,
 we show that natural-gradient descent can be viewed as an  proximal-gradient method, where we use the
-second-order Taylor expansion of any f-divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)$</code> at <code class="language-plaintext highlighter-rouge">$y=\eta_k$</code> such as the KL divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)= \mathrm{KL} [p(\mathbf{w}|\eta_k) || p(\mathbf{w}|\mathbf{y})]$</code>.</p>
+second-order Taylor  approximation of any f-divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)$</code> at <code class="language-plaintext highlighter-rouge">$y=\eta_k$</code> such as the KL divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)= \mathrm{KL} [p(\mathbf{w}|\eta_k) || p(\mathbf{w}|\mathbf{y})]$</code>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -262,7 +262,7 @@ $$</code></p>
 
 <h2 id="proximal-gradient-descent">Proximal Gradient Descent</h2>
 
-<p>We could also obtain proximal gradient descent by using a f-divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)$</code> without the Taylor expansion.</p>
+<p>We could also obtain proximal gradient descent by using a f-divergence <code class="language-plaintext highlighter-rouge">$\mathrm{D}_f(\mathbf{y},\eta_k)$</code> without the Taylor approximation.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -270,7 +270,7 @@ $$</code></p>
 \end{aligned}\tag{2}\label{2}
 $$</code></p>
 
-<p>We have the following additional results, when the f-divergence is choosen to be a KL divergence.</p>
+<p>We have the following additional results, when the f-divergence is chosen to be a KL divergence.</p>
 
 <ul>
   <li>
