@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-25T17:38:02-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-01-26T00:35:44-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
@@ -65,7 +65,7 @@ second-order Taylor  approximation of any f-divergence &lt;code class=&quot;lang
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
-\mathrm{D}_f(\mathbf{y},\eta_k) \approx \frac{1}{2\alpha} (\mathbf{y}-\eta_k)^T \mathbf{F}_{\eta}(\eta_k) (\mathbf{y}-\eta_k)
+\mathrm{D}_f(\mathbf{y},\eta_k) \approx \frac{1}{2} (\mathbf{y}-\eta_k)^T \mathbf{F}_{\eta}(\eta_k) (\mathbf{y}-\eta_k)
 \end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
@@ -2644,7 +2644,7 @@ For all such cases, we can exploit the underlying geometric structure, induced b
 &lt;p&gt;Below, we give some common examples from machine learning, where probability distributions naturally arise.
 In these cases, we can exploit the structure to design efficient learning algorithms. More applications of this
 geometric structure 
-can be found at &lt;a class=&quot;citation&quot; href=&quot;#duan2020ngboost&quot;&gt;[4]&lt;/a&gt; and &lt;a class=&quot;citation&quot; href=&quot;#ollivier2018online&quot;&gt;[5]&lt;/a&gt;.&lt;/p&gt;
+can be found at &lt;a class=&quot;citation&quot; href=&quot;#duan2020ngboost&quot;&gt;[4]&lt;/a&gt; and &lt;a class=&quot;citation&quot; href=&quot;#le2007topmoumoute&quot;&gt;[5]&lt;/a&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Least Square (Empirical Risk Minimization):&lt;/p&gt;
@@ -2661,7 +2661,8 @@ _{ \text{ constant w.r.t. } \tau }
 $$&lt;/code&gt;
 Here &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ p(x,y | \tau) = \mathcal{N}(y | x^T\tau,1) p(x) $&lt;/code&gt; is assumed to be the data-generating distribution, and the least-square loss is the finite-sample approximation of the expectation. The normal distribution is denoted by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathcal{N} (y | x^T\tau,1) $&lt;/code&gt; with mean &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ x^T\tau $&lt;/code&gt; and variance &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ 1 $&lt;/code&gt;.&lt;/p&gt;
 
-  &lt;p&gt;Algorithms such as  &lt;a href=&quot;https://en.wikipedia.org/wiki/Scoring_algorithm#Fisher_scoring&quot;&gt;&lt;strong&gt;Fisher scoring&lt;/strong&gt;&lt;/a&gt;  and &lt;strong&gt;(emprical) natural-gradient descent&lt;/strong&gt; &lt;a class=&quot;citation&quot; href=&quot;#martens2020new&quot;&gt;[6]&lt;/a&gt; are commonly used methods that exploit the geometric structure of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$p(x,y | \tau)$&lt;/code&gt;.  These algorithms can be generalized to neural network cases &lt;a class=&quot;citation&quot; href=&quot;#martens2020new&quot;&gt;[6]&lt;/a&gt; from a frequentist viewpoint.&lt;/p&gt;
+  &lt;p&gt;Algorithms such as  &lt;a href=&quot;https://en.wikipedia.org/wiki/Scoring_algorithm#Fisher_scoring&quot;&gt;&lt;strong&gt;Fisher scoring&lt;/strong&gt;&lt;/a&gt;  and &lt;strong&gt;(emprical) natural-gradient descent&lt;/strong&gt; &lt;a class=&quot;citation&quot; href=&quot;#martens2020new&quot;&gt;[6]&lt;/a&gt; are commonly used methods that exploit the geometric structure of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$p(x,y | \tau)$&lt;/code&gt;. These algorithms are derived from a frequentist perspective.
+We can also generalize this approach to neural network cases &lt;a class=&quot;citation&quot; href=&quot;#martens2020new&quot;&gt;[6]&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
@@ -2675,7 +2676,9 @@ Here &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ p(x,y 
 $$&lt;/code&gt;
 where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathrm{KL} [ q(z) ||  p(z) ] :=  E_{ {q(z)} } [ \log \big(\frac{q(z)}{p(z)}\big) ]$&lt;/code&gt; is the Kullback–Leibler divergence.&lt;/p&gt;
 
-  &lt;p&gt;The &lt;strong&gt;natural-gradient variational inference&lt;/strong&gt; &lt;a class=&quot;citation&quot; href=&quot;#khan2017conjugate&quot;&gt;[7]&lt;/a&gt; is an algorithm that speeds up the inference by exploiting the geometry of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(z|\tau)$&lt;/code&gt; induced by the Fisher-Rao metric. This approach can be generalized to neural network cases &lt;a class=&quot;citation&quot; href=&quot;#lin2021tractable&quot;&gt;[2]&lt;/a&gt; &lt;a class=&quot;citation&quot; href=&quot;#osawa2019practical&quot;&gt;[8]&lt;/a&gt;  from a Bayesian viewpoint.&lt;/p&gt;
+  &lt;p&gt;The &lt;strong&gt;natural-gradient variational inference&lt;/strong&gt; &lt;a class=&quot;citation&quot; href=&quot;#khan2017conjugate&quot;&gt;[7]&lt;/a&gt; is an algorithm that speeds up the inference by exploiting the geometry of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(z|\tau)$&lt;/code&gt; induced by the Fisher-Rao metric.
+This approach is derived from a Bayesian  perspective.
+We can  generalize to this idea  to neural network cases &lt;a class=&quot;citation&quot; href=&quot;#lin2021tractable&quot;&gt;[2]&lt;/a&gt; &lt;a class=&quot;citation&quot; href=&quot;#osawa2019practical&quot;&gt;[8]&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
@@ -2724,7 +2727,7 @@ By doing so, we can exploit the geometric structure of a parametric family denot
 &lt;div class=&quot;notice--success&quot;&gt;
   &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;:&lt;/p&gt;
 
-  &lt;p&gt;In machine learning applications, these algorithms such as &lt;a class=&quot;citation&quot; href=&quot;#lin2021tractable&quot;&gt;[2]&lt;/a&gt;  &lt;a class=&quot;citation&quot; href=&quot;#martens2020new&quot;&gt;[6]&lt;/a&gt; &lt;a class=&quot;citation&quot; href=&quot;#khan2017conjugate&quot;&gt;[7]&lt;/a&gt; &lt;a class=&quot;citation&quot; href=&quot;#osawa2019practical&quot;&gt;[8]&lt;/a&gt;  &lt;a class=&quot;citation&quot; href=&quot;#wierstra2014natural&quot;&gt;[9]&lt;/a&gt;  &lt;a class=&quot;citation&quot; href=&quot;#kakade2001natural&quot;&gt;[10]&lt;/a&gt; can be efficiently implemented without
+  &lt;p&gt;In general, we may have to compute or estimate the inverse of the FIM. However, in many useful machine learning applications, algorithms such as &lt;a class=&quot;citation&quot; href=&quot;#lin2021tractable&quot;&gt;[2]&lt;/a&gt;  &lt;a class=&quot;citation&quot; href=&quot;#martens2020new&quot;&gt;[6]&lt;/a&gt; &lt;a class=&quot;citation&quot; href=&quot;#khan2017conjugate&quot;&gt;[7]&lt;/a&gt; &lt;a class=&quot;citation&quot; href=&quot;#osawa2019practical&quot;&gt;[8]&lt;/a&gt;  &lt;a class=&quot;citation&quot; href=&quot;#wierstra2014natural&quot;&gt;[9]&lt;/a&gt;  &lt;a class=&quot;citation&quot; href=&quot;#kakade2001natural&quot;&gt;[10]&lt;/a&gt; can be efficiently implemented without
 explicitly computing the inverse of the FIM.&lt;/p&gt;
 
   &lt;p&gt;See 
@@ -2779,7 +2782,7 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 
   &lt;p&gt;This parametrization is called an &lt;strong&gt;intrinsic&lt;/strong&gt; parameterization.&lt;/p&gt;
 
-  &lt;p&gt;We can similarly define a (local) parametrization at each point of the circle. In fact, we can use  four (local) parameterizations to represent the circle as shown below.&lt;/p&gt;
+  &lt;p&gt;We can similarly define a (local) parametrization at each point of the circle. In fact, we can use  finite (local) parameterizations to represent the circle as shown below.&lt;/p&gt;
 
   &lt;p&gt;&lt;img src=&quot;/img/charts.png&quot; title=&quot;Source:Wikipedia&quot; width=&quot;200&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2793,8 +2796,9 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 
   &lt;p&gt;This map $f$ is bijective and smooth. However, the parameter space is not open in $\mathcal{R}$. Moreover, its inverse map $f^{-1}$ is &lt;strong&gt;not&lt;/strong&gt; continous at point $(0,1) \in  \mathcal{S}^1$.&lt;/p&gt;
 
-  &lt;p&gt;This smoothness requirement of the inverse map is essential when it comes to reparametrization (A.K.A. parameter transformation). The requirement gives us a way to generate new intrinsic parameterizations. In other words, the Jacobian matrix is non-singular if the requirement is satisfied. Thus, we can safely use the chain rule and inverse function theorem.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+&lt;p&gt;As shown in Parametrization 2, this smoothness requirement of the inverse map is essential when it comes to reparametrization (A.K.A. parameter transformation). The smoothness of a map and the inverse map togeher gives us a way to generate new intrinsic parameterizations. In other words, the Jacobian matrix is non-singular if the requirement is satisfied. Thus, we can safely use the chain rule and inverse function theorem.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Parametrization 3 (Non-intrinsic parameterization):&lt;/p&gt;
@@ -3123,7 +3127,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&quot;lin2021tractable&quot;&gt;[2] W. Lin, F. Nielsen, M. E. Khan, &amp;amp; M. Schmidt, &quot;Tractable structured natural gradient descent using local parameterizations,&quot; &lt;i&gt;International Conference on Machine Learning (ICML)&lt;/i&gt; (2021).&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&quot;liang2019fisher&quot;&gt;[3] T. Liang, T. Poggio, A. Rakhlin, &amp;amp; J. Stokes, &quot;Fisher-rao metric, geometry, and complexity of neural networks,&quot; &lt;i&gt;The 22nd International Conference on Artificial Intelligence and Statistics&lt;/i&gt; (PMLR, 2019), pp. 888–896.&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&quot;duan2020ngboost&quot;&gt;[4] T. Duan, A. Anand, D. Y. Ding, K. K. Thai, S. Basu, A. Ng, &amp;amp; A. Schuler, &quot;Ngboost: Natural gradient boosting for probabilistic prediction,&quot; &lt;i&gt;International Conference on Machine Learning&lt;/i&gt; (PMLR, 2020), pp. 2690–2700.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&quot;ollivier2018online&quot;&gt;[5] Y. Ollivier, &quot;Online natural gradient as a Kalman filter,&quot; &lt;i&gt;Electronic Journal of Statistics&lt;/i&gt; &lt;b&gt;12&lt;/b&gt;:2930–2961 (2018).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&quot;le2007topmoumoute&quot;&gt;[5] N. Le Roux, P.-A. Manzagol, &amp;amp; Y. Bengio, &quot;Topmoumoute Online Natural Gradient Algorithm.,&quot; &lt;i&gt;NIPS&lt;/i&gt; (Citeseer, 2007), pp. 849–856.&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&quot;martens2020new&quot;&gt;[6] J. Martens, &quot;New Insights and Perspectives on the Natural Gradient Method,&quot; &lt;i&gt;Journal of Machine Learning Research&lt;/i&gt; &lt;b&gt;21&lt;/b&gt;:1–76 (2020).&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&quot;khan2017conjugate&quot;&gt;[7] M. Khan &amp;amp; W. Lin, &quot;Conjugate-computation variational inference: Converting variational inference in non-conjugate models to inferences in conjugate models,&quot; &lt;i&gt;Artificial Intelligence and Statistics&lt;/i&gt; (PMLR, 2017), pp. 878–887.&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span id=&quot;osawa2019practical&quot;&gt;[8] K. Osawa, S. Swaroop, A. Jain, R. Eschenhagen, R. E. Turner, R. Yokota, &amp;amp; M. E. Khan, &quot;Practical deep learning with Bayesian principles,&quot; &lt;i&gt;Proceedings of the 33rd International Conference on Neural Information Processing Systems&lt;/i&gt; (2019), pp. 4287–4299.&lt;/span&gt;&lt;/p&gt;

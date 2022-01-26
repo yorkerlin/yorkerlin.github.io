@@ -234,7 +234,7 @@ For all such cases, we can exploit the underlying geometric structure, induced b
 <p>Below, we give some common examples from machine learning, where probability distributions naturally arise.
 In these cases, we can exploit the structure to design efficient learning algorithms. More applications of this
 geometric structure 
-can be found at <a class="citation" href="#duan2020ngboost">[4]</a> and <a class="citation" href="#ollivier2018online">[5]</a>.</p>
+can be found at <a class="citation" href="#duan2020ngboost">[4]</a> and <a class="citation" href="#le2007topmoumoute">[5]</a>.</p>
 
 <blockquote>
   <p>Least Square (Empirical Risk Minimization):</p>
@@ -251,7 +251,8 @@ _{ \text{ constant w.r.t. } \tau }
 $$</code>
 Here <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathcal{N}(y | x^T\tau,1) p(x) $</code> is assumed to be the data-generating distribution, and the least-square loss is the finite-sample approximation of the expectation. The normal distribution is denoted by <code class="language-plaintext highlighter-rouge">$ \mathcal{N} (y | x^T\tau,1) $</code> with mean <code class="language-plaintext highlighter-rouge">$ x^T\tau $</code> and variance <code class="language-plaintext highlighter-rouge">$ 1 $</code>.</p>
 
-  <p>Algorithms such as  <a href="https://en.wikipedia.org/wiki/Scoring_algorithm#Fisher_scoring"><strong>Fisher scoring</strong></a>  and <strong>(emprical) natural-gradient descent</strong> <a class="citation" href="#martens2020new">[6]</a> are commonly used methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code>.  These algorithms can be generalized to neural network cases <a class="citation" href="#martens2020new">[6]</a> from a frequentist viewpoint.</p>
+  <p>Algorithms such as  <a href="https://en.wikipedia.org/wiki/Scoring_algorithm#Fisher_scoring"><strong>Fisher scoring</strong></a>  and <strong>(emprical) natural-gradient descent</strong> <a class="citation" href="#martens2020new">[6]</a> are commonly used methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code>. These algorithms are derived from a frequentist perspective.
+We can also generalize this approach to neural network cases <a class="citation" href="#martens2020new">[6]</a>.</p>
 </blockquote>
 
 <blockquote>
@@ -265,7 +266,9 @@ Here <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathc
 $$</code>
 where <code class="language-plaintext highlighter-rouge">$ \mathrm{KL} [ q(z) ||  p(z) ] :=  E_{ {q(z)} } [ \log \big(\frac{q(z)}{p(z)}\big) ]$</code> is the Kullback–Leibler divergence.</p>
 
-  <p>The <strong>natural-gradient variational inference</strong> <a class="citation" href="#khan2017conjugate">[7]</a> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric. This approach can be generalized to neural network cases <a class="citation" href="#lin2021tractable">[2]</a> <a class="citation" href="#osawa2019practical">[8]</a>  from a Bayesian viewpoint.</p>
+  <p>The <strong>natural-gradient variational inference</strong> <a class="citation" href="#khan2017conjugate">[7]</a> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric.
+This approach is derived from a Bayesian  perspective.
+We can  generalize to this idea  to neural network cases <a class="citation" href="#lin2021tractable">[2]</a> <a class="citation" href="#osawa2019practical">[8]</a>.</p>
 </blockquote>
 
 <blockquote>
@@ -314,7 +317,7 @@ By doing so, we can exploit the geometric structure of a parametric family denot
 <div class="notice--success">
   <p><strong>Note</strong>:</p>
 
-  <p>In machine learning applications, these algorithms such as <a class="citation" href="#lin2021tractable">[2]</a>  <a class="citation" href="#martens2020new">[6]</a> <a class="citation" href="#khan2017conjugate">[7]</a> <a class="citation" href="#osawa2019practical">[8]</a>  <a class="citation" href="#wierstra2014natural">[9]</a>  <a class="citation" href="#kakade2001natural">[10]</a> can be efficiently implemented without
+  <p>In general, we may have to compute or estimate the inverse of the FIM. However, in many useful machine learning applications, algorithms such as <a class="citation" href="#lin2021tractable">[2]</a>  <a class="citation" href="#martens2020new">[6]</a> <a class="citation" href="#khan2017conjugate">[7]</a> <a class="citation" href="#osawa2019practical">[8]</a>  <a class="citation" href="#wierstra2014natural">[9]</a>  <a class="citation" href="#kakade2001natural">[10]</a> can be efficiently implemented without
 explicitly computing the inverse of the FIM.</p>
 
   <p>See 
@@ -369,7 +372,7 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 
   <p>This parametrization is called an <strong>intrinsic</strong> parameterization.</p>
 
-  <p>We can similarly define a (local) parametrization at each point of the circle. In fact, we can use  four (local) parameterizations to represent the circle as shown below.</p>
+  <p>We can similarly define a (local) parametrization at each point of the circle. In fact, we can use  finite (local) parameterizations to represent the circle as shown below.</p>
 
   <p><img src="/img/charts.png" title="Source:Wikipedia" width="200" /></p>
 </blockquote>
@@ -383,8 +386,9 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 
   <p>This map $f$ is bijective and smooth. However, the parameter space is not open in $\mathcal{R}$. Moreover, its inverse map $f^{-1}$ is <strong>not</strong> continous at point $(0,1) \in  \mathcal{S}^1$.</p>
 
-  <p>This smoothness requirement of the inverse map is essential when it comes to reparametrization (A.K.A. parameter transformation). The requirement gives us a way to generate new intrinsic parameterizations. In other words, the Jacobian matrix is non-singular if the requirement is satisfied. Thus, we can safely use the chain rule and inverse function theorem.</p>
 </blockquote>
+
+<p>As shown in Parametrization 2, this smoothness requirement of the inverse map is essential when it comes to reparametrization (A.K.A. parameter transformation). The smoothness of a map and the inverse map togeher gives us a way to generate new intrinsic parameterizations. In other words, the Jacobian matrix is non-singular if the requirement is satisfied. Thus, we can safely use the chain rule and inverse function theorem.</p>
 
 <blockquote>
   <p>Parametrization 3 (Non-intrinsic parameterization):</p>
@@ -713,7 +717,7 @@ $$</code></p>
 <p><span id="lin2021tractable">[2] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Tractable structured natural gradient descent using local parameterizations," <i>International Conference on Machine Learning (ICML)</i> (2021).</span></p>
 <p><span id="liang2019fisher">[3] T. Liang, T. Poggio, A. Rakhlin, &amp; J. Stokes, "Fisher-rao metric, geometry, and complexity of neural networks," <i>The 22nd International Conference on Artificial Intelligence and Statistics</i> (PMLR, 2019), pp. 888–896.</span></p>
 <p><span id="duan2020ngboost">[4] T. Duan, A. Anand, D. Y. Ding, K. K. Thai, S. Basu, A. Ng, &amp; A. Schuler, "Ngboost: Natural gradient boosting for probabilistic prediction," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 2690–2700.</span></p>
-<p><span id="ollivier2018online">[5] Y. Ollivier, "Online natural gradient as a Kalman filter," <i>Electronic Journal of Statistics</i> <b>12</b>:2930–2961 (2018).</span></p>
+<p><span id="le2007topmoumoute">[5] N. Le Roux, P.-A. Manzagol, &amp; Y. Bengio, "Topmoumoute Online Natural Gradient Algorithm.," <i>NIPS</i> (Citeseer, 2007), pp. 849–856.</span></p>
 <p><span id="martens2020new">[6] J. Martens, "New Insights and Perspectives on the Natural Gradient Method," <i>Journal of Machine Learning Research</i> <b>21</b>:1–76 (2020).</span></p>
 <p><span id="khan2017conjugate">[7] M. Khan &amp; W. Lin, "Conjugate-computation variational inference: Converting variational inference in non-conjugate models to inferences in conjugate models," <i>Artificial Intelligence and Statistics</i> (PMLR, 2017), pp. 878–887.</span></p>
 <p><span id="osawa2019practical">[8] K. Osawa, S. Swaroop, A. Jain, R. Eschenhagen, R. E. Turner, R. Yokota, &amp; M. E. Khan, "Practical deep learning with Bayesian principles," <i>Proceedings of the 33rd International Conference on Neural Information Processing Systems</i> (2019), pp. 4287–4299.</span></p>
