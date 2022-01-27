@@ -344,7 +344,7 @@ This structure is also known as a manifold structure <a class="citation" href="#
 These properties will play a key role in <a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-in-an-intrinsic-parameter-space">Part IV</a> for natural-gradient descent.
 As we will see later that every intrinsic parametrization of a manifold has the same degrees of freedom.</p>
 
-<p>We require that a manifold should be locally like a vector space denoted by <code class="language-plaintext highlighter-rouge">$ E $</code> under a parameterization. Informally, we refer to 
+<p>We require that a manifold should be locally like a vector space denoted by <code class="language-plaintext highlighter-rouge">$ E $</code> under an intrinsic parameterization. Informally, we refer to 
 such structure as a local vector-space structure.</p>
 
 <div class="notice--success">
@@ -353,12 +353,12 @@ such structure as a local vector-space structure.</p>
   <p>It supports local <strong>vector additions</strong>,  local <strong>real scalar products</strong>, and their algebraic laws (i.e., the distributive law). (see <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a> for the details.)</p>
 </div>
 
-<p>Intuitively, this vector-space structure means that a local (small) perturbation $ E $ at each point should stay in the parameter space.
+<p>Intuitively, this vector-space structure means that a local (small) perturbation <code class="language-plaintext highlighter-rouge">$ E $</code> at each point should stay in the parameter space.
 Technically, the parameter space denoted by $\Omega_\tau$ should be an <strong>open</strong> set in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where <code class="language-plaintext highlighter-rouge">$K$</code> is the number of entries of a parameter array.
 As we will see soon, the FIM is a <code class="language-plaintext highlighter-rouge">$K$</code>-by-<code class="language-plaintext highlighter-rouge">$K$</code> matrix.</p>
 
-<p>To illustrate this, let’s consider a unit circle in $\mathcal{R}^2$ as shown in the Figure.
-Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consider its center as the origin.</p>
+<p>To illustrate this, let’s consider a unit circle in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code> as shown in the Figure.
+Clearly, a point <code class="language-plaintext highlighter-rouge">$ (0,1) $</code> highlighted in green is in the circle, where we consider its center as the origin.</p>
 
 <p><img src="/img/circle.png" title="Source:Wikipedia" width="300" /></p>
 
@@ -374,7 +374,7 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
 
   <p>This parametrization is called an <strong>intrinsic</strong> parameterization.</p>
 
-  <p>We can similarly define a (local) parametrization at each point of the circle. In fact, we can use  finite (local) parameterizations to represent the circle as shown below.</p>
+  <p>We can similarly define a (local) parametrization at each point of the circle. In fact, we can use  finite (local) parameterizations to represent the whole circle as shown below.</p>
 
   <p><img src="/img/charts.png" title="Source:Wikipedia" width="200" /></p>
 </blockquote>
@@ -387,6 +387,7 @@ Clearly, a point $ (0,1) $ highlighted in green is in the circle, where we consi
   <p>A (global) parametrization of the circle is <code class="language-plaintext highlighter-rouge">$\{ f(\theta) | \theta \in [0,2\pi)  \}$</code>, where we use one (scalar) parameter.</p>
 
   <p>This map $f$ is bijective and smooth. However, the parameter space is not open in $\mathcal{R}$. Moreover, its inverse map $f^{-1}$ is <strong>not</strong> continous at point $(0,1) \in  \mathcal{S}^1$.
+This parametrization is not intrinsic.
 In fact, there does not exist a (single) <strong>global</strong> and intrinsic parametrization to represent the circle.</p>
 </blockquote>
 
@@ -666,7 +667,7 @@ The  circle and the open unit ball do not have the same dimensionality.</p>
   <tbody>
     <tr>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |0,s^{-1}) \Big|  s&gt;0 \}$</code> with precision <code class="language-plaintext highlighter-rouge">$s$</code> <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = s $</code></td>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathrm{MatH}(\tau) = \mathbf{S}   \succ \mathbf{0} \}$</code> with precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>  <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code> is  a $\frac{d(d+1)}{2}$-dim array.</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathrm{MatH}(\tau) = \mathbf{S}   \succ \mathbf{0} \}$</code> with precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>  <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code>.</td>
     </tr>
     <tr>
       <td style="text-align: center">1-dim statistical manifold</td>
