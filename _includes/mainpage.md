@@ -1,6 +1,6 @@
 # About Me
 
-PhD student working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **approximate inference** and  **numerical optimization** in machine learning
+PhD student working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **approximate inference** and  **numerical optimization** in machine learning.
 
 For generalized natural-gradient methods, please see 
 * Structured natural-gradient descent: [Talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [ICML Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
