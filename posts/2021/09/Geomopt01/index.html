@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Part I: Smooth Manifolds with the Fisher-Rao Metric - Wu Lin</title>
-<meta name="description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that  The FIM plays an essential role in statistics and machine learning  For a parametric distribution family, it induces a Riemannian geometric-structure">
+<meta name="description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM) under a parametrization. The purpose is to show that  The FIM plays an essential role in statistics and machine learning  For a parametric distribution family, the FIM induces a Riemannian geometric-structure">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="/posts/2021/09/Geomopt01/">
 
 
-  <meta property="og:description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that  The FIM plays an essential role in statistics and machine learning  For a parametric distribution family, it induces a Riemannian geometric-structure">
+  <meta property="og:description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM) under a parametrization. The purpose is to show that  The FIM plays an essential role in statistics and machine learning  For a parametric distribution family, the FIM induces a Riemannian geometric-structure">
 
 
 
@@ -167,7 +167,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Part I: Smooth Manifolds with the Fisher-Rao Metric">
-    <meta itemprop="description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that  The FIM plays an essential role in statistics and machine learning  For a parametric distribution family, it induces a Riemannian geometric-structure">
+    <meta itemprop="description" content="GoalThis blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM) under a parametrization. The purpose is to show that  The FIM plays an essential role in statistics and machine learning  For a parametric distribution family, the FIM induces a Riemannian geometric-structure">
     <meta itemprop="datePublished" content="September 06, 2021">
     
 
@@ -191,10 +191,10 @@
       <section class="page__content" itemprop="text">
         
         <h2 id="goal">Goal</h2>
-<p>This blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM). The purpose is to show that</p>
+<p>This blog post focuses on the Fisher-Rao metric, also known as the Fisher information matrix (FIM) under a parametrization. The purpose is to show that</p>
 <ul>
   <li>The FIM plays an essential role in statistics and machine learning</li>
-  <li>For a parametric distribution family, it induces a <strong>Riemannian</strong> geometric-structure</li>
+  <li>For a parametric distribution family, the FIM induces a <strong>Riemannian</strong> geometric-structure</li>
 </ul>
 
 <p>The discussion here is informal and focuses on more on intuitions, rather than rigor.</p>
@@ -507,7 +507,7 @@ $$</code>
 where $K$ is the number of entries of parameter array $\tau$ and 
 <code class="language-plaintext highlighter-rouge">$ \nabla_{\tau} \log p(w|\tau ) := [ \partial_{\tau_1} \log p(w|\tau ), \cdots, \partial_{\tau_K} \log p(w|\tau ) ]^T  $</code> is a column vector.</p>
 
-<p>The matrix form is also known as the <strong>Fisher information matrix</strong> (FIM). Obviously, the FIM depends on the choice of parameterizations. In many cases,  we could also compute the FIM as
+<p>The matrix form is also known as the <strong>Fisher information matrix</strong> (FIM). Obviously, the form of the FIM depends on the choice of parameterizations. In many cases,  we could also compute the FIM as
 <code class="language-plaintext highlighter-rouge">$ \mathbf{F}(\tau) := - E_{p(w|\tau) }  [  \nabla_{\tau}^2 \log p(w|\tau )  ]$</code>.</p>
 
 <p>The regularity condition guarantees that the FIM is non-singular if the matrix exists.
