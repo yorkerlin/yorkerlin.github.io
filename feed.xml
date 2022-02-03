@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-01T11:59:56-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-02-03T00:44:22-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
@@ -3058,12 +3058,12 @@ $$&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Structures play an essential role in&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Preconditioners for gradient-free, adaptive-gradient, and second-order methods&lt;/li&gt;
-  &lt;li&gt;Covariance matrices in variational Gaussian approximation&lt;/li&gt;
+  &lt;li&gt;Covariance matrices in variational Gaussian approximation &lt;a class=&quot;citation&quot; href=&quot;#opper2009variational&quot;&gt;[2]&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;Natural-gradient descent on structured parameter spaces is computationally challenging.&lt;/p&gt;
 
-&lt;p&gt;Existing works in NGD&lt;/p&gt;
+&lt;p&gt;Limitations of existing NGD methods:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Limited structures due to the complicated Fisher information matrix (FIM)&lt;/li&gt;
   &lt;li&gt;Ad-hoc approximations for handling the singular FIM and cost reductions&lt;/li&gt;
@@ -3091,9 +3091,9 @@ $$&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Our NGD method&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;generalizes the exponential natural evolutionary strategy &lt;a class=&quot;citation&quot; href=&quot;#glasmachers2010exponential&quot;&gt;[2]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;generalizes the exponential natural evolutionary strategy &lt;a class=&quot;citation&quot; href=&quot;#glasmachers2010exponential&quot;&gt;[3]&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;recovers existing  Newton-like algorithms&lt;/li&gt;
-  &lt;li&gt;yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance &lt;a class=&quot;citation&quot; href=&quot;#lin2021structured&quot;&gt;[3]&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance &lt;a class=&quot;citation&quot; href=&quot;#lin2021structured&quot;&gt;[4]&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;gives new NGD updates to learn structured covariances of Gaussian, Wishart and their mixtures&lt;/li&gt;
   &lt;li&gt;is a systemic approach to incorporate a range of structures&lt;/li&gt;
 &lt;/ul&gt;
@@ -3109,8 +3109,8 @@ $$&lt;/code&gt;&lt;/p&gt;
 &lt;hr /&gt;
 &lt;h1 id=&quot;ngd-for-optimization-inference-and-search&quot;&gt;NGD for Optimization, Inference, and Search&lt;/h1&gt;
 
-&lt;p&gt;A unified view for problems in optimization, inference, and search
-as optimization over a parametric family &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(w|\tau)$&lt;/code&gt;:
+&lt;p&gt;A unified  view for problems in optimization, inference, and search
+as optimization over  (variational) parametric family &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(w|\tau)$&lt;/code&gt;:
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
    \min_{ \tau \in \Omega_\tau } \mathcal{L}(\tau):= \mathrm{E}_{q(\text{w}| \tau )} \big[ \ell(\mathbf{w}) \big] + \gamma \mathrm{E}_{q(\text{w} |\tau )} \big[ \log q(w|\tau) \big] 
@@ -3124,7 +3124,9 @@ where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathb
 \textrm{GD: } &amp;amp;\tau_{t+1} \leftarrow \tau_t - \alpha \nabla_{\tau_t} \mathcal{L}(\tau) \\
 \textrm{Standard NGD: } &amp;amp; \tau_{t+1} \leftarrow \tau_t - \beta\,\, \big[ \mathbf{F}_{\tau} (\tau_t) \big]^{-1} \nabla_{\tau_t} \mathcal{L}(\tau)
 \end{aligned} 
-$$&lt;/code&gt;&lt;/p&gt;
+$$&lt;/code&gt;
+where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{F}_{\tau} (\tau_t)$&lt;/code&gt; is the FIM of distribution &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$q(w|\tau)$&lt;/code&gt; at &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau=\tau_t$&lt;/code&gt;.
+For an introduction to natural-gradient methods, see this &lt;a href=&quot;/posts/2021/09/Geomopt01/&quot;&gt;blog&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Advantages of NGD:&lt;/p&gt;
 &lt;ul&gt;
@@ -3235,7 +3237,7 @@ $$&lt;/code&gt;&lt;/p&gt;
   &lt;ul&gt;
     &lt;li&gt;keep natural-gradient computation tractable&lt;/li&gt;
     &lt;li&gt;maintain numerical stability&lt;/li&gt;
-    &lt;li&gt;have lower iteration cost compared to  the map in &lt;a class=&quot;citation&quot; href=&quot;#glasmachers2010exponential&quot;&gt;[2]&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;have lower iteration cost compared to  the map in &lt;a class=&quot;citation&quot; href=&quot;#glasmachers2010exponential&quot;&gt;[3]&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;
 
@@ -3257,7 +3259,7 @@ where &lt;span style=&quot;color:red&quot;&gt;&lt;strong&gt;tractable&lt;/strong
 \end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{g}_\mu$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{g}_{\Sigma}$&lt;/code&gt; are Euclidean gradients of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt; computed via Stein’s lemma &lt;a class=&quot;citation&quot; href=&quot;#lin2019stein&quot;&gt;[4]&lt;/a&gt; :
+&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{g}_\mu$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{g}_{\Sigma}$&lt;/code&gt; are Euclidean gradients of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt; computed via Stein’s lemma &lt;a class=&quot;citation&quot; href=&quot;#lin2019stein&quot;&gt;[5]&lt;/a&gt; :
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
 \mathbf{g}_\mu = \nabla_{\mu}\mathcal{L}(\tau) = E_{q}{ \big[ \nabla_w \ell( \mathbf{w} ) \big] }, \,\,\,\,\,
@@ -3275,7 +3277,7 @@ $$&lt;/code&gt;&lt;/p&gt;
  \end{aligned}
 $$&lt;/code&gt; where $\mathbf{B}$ is a &lt;span style=&quot;color:red&quot;&gt;&lt;strong&gt;dense&lt;/strong&gt;&lt;/span&gt; matrix in matrix group &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathrm{GL}^{p\times p}$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{G}_t := E_{q(w|\tau_t)}{ \big[ \nabla_w^2 \ell(\mathbf{w}) ] } -\gamma \mathbf{S}_t$&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;The second-order term shown in red is used for the positive-definite constraint &lt;a class=&quot;citation&quot; href=&quot;#lin2020handling&quot;&gt;[5]&lt;/a&gt; known as a retraction in Riemannian gradient descent (RGD).  The higher-order term &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O(\beta^3)$&lt;/code&gt; will be used for structured precision in the next section.&lt;/p&gt;
+&lt;p&gt;The second-order term shown in red is used for the positive-definite constraint &lt;a class=&quot;citation&quot; href=&quot;#lin2020handling&quot;&gt;[6]&lt;/a&gt; known as a retraction in Riemannian gradient descent (RGD).  The higher-order term &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$O(\beta^3)$&lt;/code&gt; will be used for structured precision in the next section.&lt;/p&gt;
 
 &lt;p&gt;Well-known structures in matrix $\mathbf{B}$ are illustrated in the following figure.&lt;/p&gt;
 
@@ -3345,10 +3347,10 @@ a &lt;span style=&quot;color:red&quot;&gt;block upper-triangular&lt;/span&gt; su
 {\cal{B}_{\text{up}}}(k)  := \Big\{ 
 \begin{bmatrix}
 \mathbf{B}_A &amp;amp;  \mathbf{B}_B  \\
- \mathbf{0} &amp;amp; \mathbf{B}_D
-      \end{bmatrix} \Big| &amp;amp; \mathbf{B}_A \in \mathrm{GL}^{k \times k},\,
- \mathbf{B}_D  \in{\cal D}^{(p-k) \times (p-k)}_{++}  \Big\},\,\,
- \end{aligned}
+\mathbf{0} &amp;amp; \mathbf{B}_D
+     \end{bmatrix} \Big| &amp;amp; \mathbf{B}_A \in \mathrm{GL}^{k \times k},\,
+\mathbf{B}_D  \in{\cal D}^{(p-k) \times (p-k)}_{++}  \Big\},\,\,
+\end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
   &lt;p&gt;When &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$k=0$&lt;/code&gt;, the space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\cal{B}_{\text{up}}}(0) = {\cal D}^{p \times p}_{++}$&lt;/code&gt; becomes  the diagonal case.
@@ -3361,19 +3363,19 @@ When &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$k=p$&lt
 {\cal{M}_{\text{up}}}(k):  = \Big\{ 
 \begin{bmatrix}
 \mathbf{M}_A &amp;amp;  \mathbf{M}_B  \\
- \mathbf{0} &amp;amp; \mathbf{M}_D
-      \end{bmatrix} \Big| &amp;amp;  \mathbf{M}_A \in{\cal S}^{k \times k}, \,
- \mathbf{M}_D  \in{\cal D}^{(p-k) \times (p-k)} \Big\}
- \end{aligned}
+\mathbf{0} &amp;amp; \mathbf{M}_D
+     \end{bmatrix} \Big| &amp;amp;  \mathbf{M}_A \in{\cal S}^{k \times k}, \,
+\mathbf{M}_D  \in{\cal D}^{(p-k) \times (p-k)} \Big\}
+\end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
   &lt;p&gt;The global, auxiliary, and local parameterizations :
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
-       \tau &amp;amp;= \Big\{\mu \in \mathcal{R}^p,  \mathbf{S}=\mathbf{B} \mathbf{B}^T \in \mathcal{S}_{++}^{p\times p} | \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\}, \\
-        \lambda &amp;amp; = \Big\{ \mu \in \mathcal{R}^p,  \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\},\\
-        \eta &amp;amp;= \Big\{ \delta\in \mathcal{R}^p,  \mathbf{M} \in {\cal{M}_{\text{up}}}(k)   \Big\}.
- \end{aligned}
+      \tau &amp;amp;= \Big\{\mu \in \mathcal{R}^p,  \mathbf{S}=\mathbf{B} \mathbf{B}^T \in \mathcal{S}_{++}^{p\times p} | \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\}, \\
+       \lambda &amp;amp; = \Big\{ \mu \in \mathcal{R}^p,  \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\},\\
+       \eta &amp;amp;= \Big\{ \delta\in \mathcal{R}^p,  \mathbf{M} \in {\cal{M}_{\text{up}}}(k)   \Big\}.
+\end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
 
   &lt;p&gt;Maps &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\psi$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\phi_{\lambda_t}$&lt;/code&gt; are defined in  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{3}$&lt;/code&gt;.
@@ -3383,24 +3385,35 @@ Our NGD update in the auxiliary space is shown below, where we assume $\eta_0=\m
       &lt;legend class=&quot;leg-title&quot;&gt;&lt;span style=&quot;color:red&quot;&gt;Structure-preserving update in $\lambda$ space&lt;/span&gt;&lt;/legend&gt;
       &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
-  \Big\{ \begin{array}{c} \mu_{t+1} \\ \mathbf{B}_{t+1} \end{array} \Big\} = \lambda_{t+1} = 
-  \phi_{\lambda_t} \big( \eta_0-\beta \hat{\mathbf{g}}_{\eta_0}^{(t)} \big)
-  =\Big\{ \begin{array}{c}  \mu_t - \beta \mathbf{B}_{t}^{-T} \mathbf{B}_t^{-1} \mathbf{g}_{\mu_t} \\ 
+ \Big\{ \begin{array}{c} \mu_{t+1} \\ \mathbf{B}_{t+1} \end{array} \Big\} = \lambda_{t+1} = 
+ \phi_{\lambda_t} \big( \eta_0-\beta \hat{\mathbf{g}}_{\eta_0}^{(t)} \big)
+ =\Big\{ \begin{array}{c}  \mu_t - \beta \mathbf{B}_{t}^{-T} \mathbf{B}_t^{-1} \mathbf{g}_{\mu_t} \\ 
 \mathbf{B}_t  \mathbf{h} \Big( \beta \mathbf{C}_{\text{up}} \odot \kappa_{\text{up}}\big( 2 \mathbf{B}_t^{-1} \mathbf{g}_{\Sigma_t} \mathbf{B}_t^{-T} \big) \Big)  \end{array} \Big\}   
- \end{aligned}
+\end{aligned}
 $$&lt;/code&gt;&lt;/p&gt;
     &lt;/fieldset&gt;
   &lt;/div&gt;
   &lt;p&gt;where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\odot$&lt;/code&gt; is the elementwise product ,
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\kappa_{\text{up}}(\mathbf{X}) \in {\cal{M}_{\text{up}}}(k)$&lt;/code&gt; extracts non-zero entries of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\cal{M}_{\text{up}}}(k)$&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{X}$&lt;/code&gt;, and
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathbf{C}_{\text{up}} = 
- \begin{bmatrix}
+\begin{bmatrix}
 \frac{1}{2} \mathbb{1} &amp;amp;  \mathbb{1}   \\
- \mathbf{0} &amp;amp; \frac{1}{2} \mathbf{I}_D
-      \end{bmatrix}  \in {\cal{M}_{\text{up}}}(k)$&lt;/code&gt;.&lt;/p&gt;
+\mathbf{0} &amp;amp; \frac{1}{2} \mathbf{I}_D
+     \end{bmatrix}  \in {\cal{M}_{\text{up}}}(k)$&lt;/code&gt;.&lt;/p&gt;
 
-  &lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathbf{B}_{t+1} \in {\cal{B}_{\text{up}}}(k)$&lt;/code&gt; thanks to the property of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\cal{M}_{\text{up}}(k)$&lt;/code&gt;:
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{h}\big(\mathbf{M}\big) \in {\cal{B}_{\text{up}}}(k) $&lt;/code&gt; for any &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{M} \in \cal{M}_{\text{up}}(k)$&lt;/code&gt;.&lt;/p&gt;
+  &lt;p&gt;Note that (see &lt;a class=&quot;citation&quot; href=&quot;#lin2021tractable&quot;&gt;[1]&lt;/a&gt;  for the detail)&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$ \mathbf{B}_{t+1} \in$&lt;/code&gt; matrix Lie group &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\cal{B}_{\text{up}}}(k)$&lt;/code&gt; since 
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
+      \begin{aligned}
+           &amp;amp;\mathbf{h}\big(\mathbf{M}\big) \in {\cal{B}_{\text{up}}}(k) \text{ for }  \mathbf{M} \in \text{ Lie sub-algebra } \cal{M}_{\text{up}}(k) \,\,\,\,  &amp;amp;( \mathbf{h}(\cdot): \text{Lie-group retraction map}) \\
+          &amp;amp;\mathbf{B}_{t} \in {\cal{B}_{\text{up}}}(k)  \,\,\,\, &amp;amp; (\text{by construction}) \\
+          &amp;amp;\mathbf{B}_{t+1} =  \mathbf{B}_{t}\mathbf{h}\big(\mathbf{M}\big)  \,\,\,\, &amp;amp; (\text{closed under the group product}) 
+      \end{aligned}
+  $$&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{B}$&lt;/code&gt; also induces a low-rank-plus-diagonal structure in covariance
+matrix &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Sigma=\mathbf{S}^{-1}$&lt;/code&gt;, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{S}=\mathbf{B}\mathbf{B}^T$&lt;/code&gt;.&lt;/li&gt;
+  &lt;/ul&gt;
 &lt;/blockquote&gt;
 
 &lt;div class=&quot;notice--success&quot;&gt;
@@ -3557,10 +3570,11 @@ _1$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&q
 &lt;hr /&gt;
 &lt;h1 id=&quot;references&quot;&gt;References&lt;/h1&gt;
 &lt;p class=&quot;bibliography&quot;&gt;&lt;p&gt;&lt;span id=&quot;lin2021tractable&quot;&gt;[1] W. Lin, F. Nielsen, M. E. Khan, &amp;amp; M. Schmidt, &quot;Tractable structured natural gradient descent using local parameterizations,&quot; &lt;i&gt;International Conference on Machine Learning (ICML)&lt;/i&gt; (2021).&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&quot;glasmachers2010exponential&quot;&gt;[2] T. Glasmachers, T. Schaul, S. Yi, D. Wierstra, &amp;amp; J. Schmidhuber, &quot;Exponential natural evolution strategies,&quot; &lt;i&gt;Proceedings of the 12th annual conference on Genetic and evolutionary computation&lt;/i&gt; (2010), pp. 393–400.&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&quot;lin2021structured&quot;&gt;[3] W. Lin, F. Nielsen, M. E. Khan, &amp;amp; M. Schmidt, &quot;Structured second-order methods via natural gradient descent,&quot; &lt;i&gt;arXiv preprint arXiv:2107.10884&lt;/i&gt; (2021).&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&quot;lin2019stein&quot;&gt;[4] W. Lin, M. E. Khan, &amp;amp; M. Schmidt, &quot;Stein’s Lemma for the Reparameterization Trick with Exponential Family Mixtures,&quot; &lt;i&gt;arXiv preprint arXiv:1910.13398&lt;/i&gt; (2019).&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span id=&quot;lin2020handling&quot;&gt;[5] W. Lin, M. Schmidt, &amp;amp; M. E. Khan, &quot;Handling the positive-definite constraint in the bayesian learning rule,&quot; &lt;i&gt;International Conference on Machine Learning&lt;/i&gt; (PMLR, 2020), pp. 6116–6126.&lt;/span&gt;&lt;/p&gt;&lt;/p&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Matrix Lie Groups" /><category term="Exponential Family" /><summary type="html">More about this work [1]: (Youtube) talk, ICML paper, workshop paper, poster</summary></entry><entry><title type="html">GD and NGD</title><link href="/posts/2022/01/notebooks/" rel="alternate" type="text/html" title="GD and NGD" /><published>2020-01-08T00:00:00-08:00</published><updated>2020-01-08T00:00:00-08:00</updated><id>/posts/2022/01/gd_vs_ngd</id><content type="html" xml:base="/posts/2022/01/notebooks/">&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matplotlib&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline&lt;/span&gt;
+&lt;p&gt;&lt;span id=&quot;opper2009variational&quot;&gt;[2] M. Opper &amp;amp; C. Archambeau, &quot;The variational Gaussian approximation revisited,&quot; &lt;i&gt;Neural computation&lt;/i&gt; &lt;b&gt;21&lt;/b&gt;:786–792 (2009).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&quot;glasmachers2010exponential&quot;&gt;[3] T. Glasmachers, T. Schaul, S. Yi, D. Wierstra, &amp;amp; J. Schmidhuber, &quot;Exponential natural evolution strategies,&quot; &lt;i&gt;Proceedings of the 12th annual conference on Genetic and evolutionary computation&lt;/i&gt; (2010), pp. 393–400.&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&quot;lin2021structured&quot;&gt;[4] W. Lin, F. Nielsen, M. E. Khan, &amp;amp; M. Schmidt, &quot;Structured second-order methods via natural gradient descent,&quot; &lt;i&gt;arXiv preprint arXiv:2107.10884&lt;/i&gt; (2021).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&quot;lin2019stein&quot;&gt;[5] W. Lin, M. E. Khan, &amp;amp; M. Schmidt, &quot;Stein’s Lemma for the Reparameterization Trick with Exponential Family Mixtures,&quot; &lt;i&gt;arXiv preprint arXiv:1910.13398&lt;/i&gt; (2019).&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span id=&quot;lin2020handling&quot;&gt;[6] W. Lin, M. Schmidt, &amp;amp; M. E. Khan, &quot;Handling the positive-definite constraint in the bayesian learning rule,&quot; &lt;i&gt;International Conference on Machine Learning&lt;/i&gt; (PMLR, 2020), pp. 6116–6126.&lt;/span&gt;&lt;/p&gt;&lt;/p&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Matrix Lie Groups" /><category term="Exponential Family" /><summary type="html">More about this work [1]: (Youtube) talk, ICML paper, workshop paper, poster</summary></entry><entry><title type="html">GD and NGD</title><link href="/posts/2022/01/notebooks/" rel="alternate" type="text/html" title="GD and NGD" /><published>2020-01-08T00:00:00-08:00</published><updated>2020-01-08T00:00:00-08:00</updated><id>/posts/2022/01/gd_vs_ngd</id><content type="html" xml:base="/posts/2022/01/notebooks/">&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matplotlib&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inline&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;jax.config&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;jax_enable_x64&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;jax.numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jnp&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;jax&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;grad&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value_and_grad&lt;/span&gt;

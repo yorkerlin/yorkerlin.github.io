@@ -182,7 +182,7 @@
 
 
 
-  10 minute read
+  11 minute read
 </p>
           
         </header>
@@ -202,12 +202,12 @@
 <p>Structures play an essential role in</p>
 <ul>
   <li>Preconditioners for gradient-free, adaptive-gradient, and second-order methods</li>
-  <li>Covariance matrices in variational Gaussian approximation</li>
+  <li>Covariance matrices in variational Gaussian approximation <a class="citation" href="#opper2009variational">[2]</a></li>
 </ul>
 
 <p>Natural-gradient descent on structured parameter spaces is computationally challenging.</p>
 
-<p>Existing works in NGD</p>
+<p>Limitations of existing NGD methods:</p>
 <ul>
   <li>Limited structures due to the complicated Fisher information matrix (FIM)</li>
   <li>Ad-hoc approximations for handling the singular FIM and cost reductions</li>
@@ -235,9 +235,9 @@
 
 <p>Our NGD method</p>
 <ul>
-  <li>generalizes the exponential natural evolutionary strategy <a class="citation" href="#glasmachers2010exponential">[2]</a></li>
+  <li>generalizes the exponential natural evolutionary strategy <a class="citation" href="#glasmachers2010exponential">[3]</a></li>
   <li>recovers existing  Newton-like algorithms</li>
-  <li>yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance <a class="citation" href="#lin2021structured">[3]</a></li>
+  <li>yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance <a class="citation" href="#lin2021structured">[4]</a></li>
   <li>gives new NGD updates to learn structured covariances of Gaussian, Wishart and their mixtures</li>
   <li>is a systemic approach to incorporate a range of structures</li>
 </ul>
@@ -253,8 +253,8 @@
 <hr />
 <h1 id="ngd-for-optimization-inference-and-search">NGD for Optimization, Inference, and Search</h1>
 
-<p>A unified view for problems in optimization, inference, and search
-as optimization over a parametric family <code class="language-plaintext highlighter-rouge">$q(w|\tau)$</code>:
+<p>A unified  view for problems in optimization, inference, and search
+as optimization over  (variational) parametric family <code class="language-plaintext highlighter-rouge">$q(w|\tau)$</code>:
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
    \min_{ \tau \in \Omega_\tau } \mathcal{L}(\tau):= \mathrm{E}_{q(\text{w}| \tau )} \big[ \ell(\mathbf{w}) \big] + \gamma \mathrm{E}_{q(\text{w} |\tau )} \big[ \log q(w|\tau) \big] 
@@ -268,7 +268,9 @@ where <code class="language-plaintext highlighter-rouge">$\mathbf{w}$</code> is 
 \textrm{GD: } &amp;\tau_{t+1} \leftarrow \tau_t - \alpha \nabla_{\tau_t} \mathcal{L}(\tau) \\
 \textrm{Standard NGD: } &amp; \tau_{t+1} \leftarrow \tau_t - \beta\,\, \big[ \mathbf{F}_{\tau} (\tau_t) \big]^{-1} \nabla_{\tau_t} \mathcal{L}(\tau)
 \end{aligned} 
-$$</code></p>
+$$</code>
+where <code class="language-plaintext highlighter-rouge">$\mathbf{F}_{\tau} (\tau_t)$</code> is the FIM of distribution <code class="language-plaintext highlighter-rouge">$q(w|\tau)$</code> at <code class="language-plaintext highlighter-rouge">$\tau=\tau_t$</code>.
+For an introduction to natural-gradient methods, see this <a href="/posts/2021/09/Geomopt01/">blog</a>.</p>
 
 <p>Advantages of NGD:</p>
 <ul>
@@ -379,7 +381,7 @@ $$</code></p>
   <ul>
     <li>keep natural-gradient computation tractable</li>
     <li>maintain numerical stability</li>
-    <li>have lower iteration cost compared to  the map in <a class="citation" href="#glasmachers2010exponential">[2]</a></li>
+    <li>have lower iteration cost compared to  the map in <a class="citation" href="#glasmachers2010exponential">[3]</a></li>
   </ul>
 </div>
 
@@ -401,7 +403,7 @@ where <span style="color:red"><strong>tractable</strong></span> natural-gradient
 \end{aligned}
 $$</code></p>
 
-<p>Note that <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\mu$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{g}_{\Sigma}$</code> are Euclidean gradients of <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> computed via Stein’s lemma <a class="citation" href="#lin2019stein">[4]</a> :
+<p>Note that <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\mu$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{g}_{\Sigma}$</code> are Euclidean gradients of <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> computed via Stein’s lemma <a class="citation" href="#lin2019stein">[5]</a> :
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{g}_\mu = \nabla_{\mu}\mathcal{L}(\tau) = E_{q}{ \big[ \nabla_w \ell( \mathbf{w} ) \big] }, \,\,\,\,\,
@@ -419,7 +421,7 @@ $$</code></p>
  \end{aligned}
 $$</code> where $\mathbf{B}$ is a <span style="color:red"><strong>dense</strong></span> matrix in matrix group <code class="language-plaintext highlighter-rouge">$\mathrm{GL}^{p\times p}$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{G}_t := E_{q(w|\tau_t)}{ \big[ \nabla_w^2 \ell(\mathbf{w}) ] } -\gamma \mathbf{S}_t$</code>.</p>
 
-<p>The second-order term shown in red is used for the positive-definite constraint <a class="citation" href="#lin2020handling">[5]</a> known as a retraction in Riemannian gradient descent (RGD).  The higher-order term <code class="language-plaintext highlighter-rouge">$O(\beta^3)$</code> will be used for structured precision in the next section.</p>
+<p>The second-order term shown in red is used for the positive-definite constraint <a class="citation" href="#lin2020handling">[6]</a> known as a retraction in Riemannian gradient descent (RGD).  The higher-order term <code class="language-plaintext highlighter-rouge">$O(\beta^3)$</code> will be used for structured precision in the next section.</p>
 
 <p>Well-known structures in matrix $\mathbf{B}$ are illustrated in the following figure.</p>
 
@@ -489,10 +491,10 @@ a <span style="color:red">block upper-triangular</span> sub-group of <code class
 {\cal{B}_{\text{up}}}(k)  := \Big\{ 
 \begin{bmatrix}
 \mathbf{B}_A &amp;  \mathbf{B}_B  \\
- \mathbf{0} &amp; \mathbf{B}_D
-      \end{bmatrix} \Big| &amp; \mathbf{B}_A \in \mathrm{GL}^{k \times k},\,
- \mathbf{B}_D  \in{\cal D}^{(p-k) \times (p-k)}_{++}  \Big\},\,\,
- \end{aligned}
+\mathbf{0} &amp; \mathbf{B}_D
+     \end{bmatrix} \Big| &amp; \mathbf{B}_A \in \mathrm{GL}^{k \times k},\,
+\mathbf{B}_D  \in{\cal D}^{(p-k) \times (p-k)}_{++}  \Big\},\,\,
+\end{aligned}
 $$</code></p>
 
   <p>When <code class="language-plaintext highlighter-rouge">$k=0$</code>, the space <code class="language-plaintext highlighter-rouge">${\cal{B}_{\text{up}}}(0) = {\cal D}^{p \times p}_{++}$</code> becomes  the diagonal case.
@@ -505,19 +507,19 @@ When <code class="language-plaintext highlighter-rouge">$k=p$</code>, <code clas
 {\cal{M}_{\text{up}}}(k):  = \Big\{ 
 \begin{bmatrix}
 \mathbf{M}_A &amp;  \mathbf{M}_B  \\
- \mathbf{0} &amp; \mathbf{M}_D
-      \end{bmatrix} \Big| &amp;  \mathbf{M}_A \in{\cal S}^{k \times k}, \,
- \mathbf{M}_D  \in{\cal D}^{(p-k) \times (p-k)} \Big\}
- \end{aligned}
+\mathbf{0} &amp; \mathbf{M}_D
+     \end{bmatrix} \Big| &amp;  \mathbf{M}_A \in{\cal S}^{k \times k}, \,
+\mathbf{M}_D  \in{\cal D}^{(p-k) \times (p-k)} \Big\}
+\end{aligned}
 $$</code></p>
 
   <p>The global, auxiliary, and local parameterizations :
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-       \tau &amp;= \Big\{\mu \in \mathcal{R}^p,  \mathbf{S}=\mathbf{B} \mathbf{B}^T \in \mathcal{S}_{++}^{p\times p} | \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\}, \\
-        \lambda &amp; = \Big\{ \mu \in \mathcal{R}^p,  \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\},\\
-        \eta &amp;= \Big\{ \delta\in \mathcal{R}^p,  \mathbf{M} \in {\cal{M}_{\text{up}}}(k)   \Big\}.
- \end{aligned}
+      \tau &amp;= \Big\{\mu \in \mathcal{R}^p,  \mathbf{S}=\mathbf{B} \mathbf{B}^T \in \mathcal{S}_{++}^{p\times p} | \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\}, \\
+       \lambda &amp; = \Big\{ \mu \in \mathcal{R}^p,  \mathbf{B} \in {\cal{B}_{\text{up}}}(k) \Big\},\\
+       \eta &amp;= \Big\{ \delta\in \mathcal{R}^p,  \mathbf{M} \in {\cal{M}_{\text{up}}}(k)   \Big\}.
+\end{aligned}
 $$</code></p>
 
   <p>Maps <code class="language-plaintext highlighter-rouge">$\psi$</code> and <code class="language-plaintext highlighter-rouge">$\phi_{\lambda_t}$</code> are defined in  <code class="language-plaintext highlighter-rouge">$\eqref{3}$</code>.
@@ -527,24 +529,35 @@ Our NGD update in the auxiliary space is shown below, where we assume $\eta_0=\m
       <legend class="leg-title"><span style="color:red">Structure-preserving update in $\lambda$ space</span></legend>
       <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-  \Big\{ \begin{array}{c} \mu_{t+1} \\ \mathbf{B}_{t+1} \end{array} \Big\} = \lambda_{t+1} = 
-  \phi_{\lambda_t} \big( \eta_0-\beta \hat{\mathbf{g}}_{\eta_0}^{(t)} \big)
-  =\Big\{ \begin{array}{c}  \mu_t - \beta \mathbf{B}_{t}^{-T} \mathbf{B}_t^{-1} \mathbf{g}_{\mu_t} \\ 
+ \Big\{ \begin{array}{c} \mu_{t+1} \\ \mathbf{B}_{t+1} \end{array} \Big\} = \lambda_{t+1} = 
+ \phi_{\lambda_t} \big( \eta_0-\beta \hat{\mathbf{g}}_{\eta_0}^{(t)} \big)
+ =\Big\{ \begin{array}{c}  \mu_t - \beta \mathbf{B}_{t}^{-T} \mathbf{B}_t^{-1} \mathbf{g}_{\mu_t} \\ 
 \mathbf{B}_t  \mathbf{h} \Big( \beta \mathbf{C}_{\text{up}} \odot \kappa_{\text{up}}\big( 2 \mathbf{B}_t^{-1} \mathbf{g}_{\Sigma_t} \mathbf{B}_t^{-T} \big) \Big)  \end{array} \Big\}   
- \end{aligned}
+\end{aligned}
 $$</code></p>
     </fieldset>
   </div>
   <p>where <code class="language-plaintext highlighter-rouge">$\odot$</code> is the elementwise product ,
 <code class="language-plaintext highlighter-rouge">$\kappa_{\text{up}}(\mathbf{X}) \in {\cal{M}_{\text{up}}}(k)$</code> extracts non-zero entries of <code class="language-plaintext highlighter-rouge">${\cal{M}_{\text{up}}}(k)$</code> from <code class="language-plaintext highlighter-rouge">$\mathbf{X}$</code>, and
 <code class="language-plaintext highlighter-rouge">$ \mathbf{C}_{\text{up}} = 
- \begin{bmatrix}
+\begin{bmatrix}
 \frac{1}{2} \mathbb{1} &amp;  \mathbb{1}   \\
- \mathbf{0} &amp; \frac{1}{2} \mathbf{I}_D
-      \end{bmatrix}  \in {\cal{M}_{\text{up}}}(k)$</code>.</p>
+\mathbf{0} &amp; \frac{1}{2} \mathbf{I}_D
+     \end{bmatrix}  \in {\cal{M}_{\text{up}}}(k)$</code>.</p>
 
-  <p>Note that <code class="language-plaintext highlighter-rouge">$ \mathbf{B}_{t+1} \in {\cal{B}_{\text{up}}}(k)$</code> thanks to the property of <code class="language-plaintext highlighter-rouge">$\cal{M}_{\text{up}}(k)$</code>:
-<code class="language-plaintext highlighter-rouge">$\mathbf{h}\big(\mathbf{M}\big) \in {\cal{B}_{\text{up}}}(k) $</code> for any <code class="language-plaintext highlighter-rouge">$\mathbf{M} \in \cal{M}_{\text{up}}(k)$</code>.</p>
+  <p>Note that (see <a class="citation" href="#lin2021tractable">[1]</a>  for the detail)</p>
+  <ul>
+    <li><code class="language-plaintext highlighter-rouge">$ \mathbf{B}_{t+1} \in$</code> matrix Lie group <code class="language-plaintext highlighter-rouge">${\cal{B}_{\text{up}}}(k)$</code> since 
+  <code class="language-plaintext highlighter-rouge">$$
+      \begin{aligned}
+           &amp;\mathbf{h}\big(\mathbf{M}\big) \in {\cal{B}_{\text{up}}}(k) \text{ for }  \mathbf{M} \in \text{ Lie sub-algebra } \cal{M}_{\text{up}}(k) \,\,\,\,  &amp;( \mathbf{h}(\cdot): \text{Lie-group retraction map}) \\
+          &amp;\mathbf{B}_{t} \in {\cal{B}_{\text{up}}}(k)  \,\,\,\, &amp; (\text{by construction}) \\
+          &amp;\mathbf{B}_{t+1} =  \mathbf{B}_{t}\mathbf{h}\big(\mathbf{M}\big)  \,\,\,\, &amp; (\text{closed under the group product}) 
+      \end{aligned}
+  $$</code></li>
+    <li><code class="language-plaintext highlighter-rouge">$\mathbf{B}$</code> also induces a low-rank-plus-diagonal structure in covariance
+matrix <code class="language-plaintext highlighter-rouge">$\Sigma=\mathbf{S}^{-1}$</code>, where <code class="language-plaintext highlighter-rouge">$\mathbf{S}=\mathbf{B}\mathbf{B}^T$</code>.</li>
+  </ul>
 </blockquote>
 
 <div class="notice--success">
@@ -701,10 +714,11 @@ _1$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{B}_2$
 <hr />
 <h1 id="references">References</h1>
 <p class="bibliography"><p><span id="lin2021tractable">[1] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Tractable structured natural gradient descent using local parameterizations," <i>International Conference on Machine Learning (ICML)</i> (2021).</span></p>
-<p><span id="glasmachers2010exponential">[2] T. Glasmachers, T. Schaul, S. Yi, D. Wierstra, &amp; J. Schmidhuber, "Exponential natural evolution strategies," <i>Proceedings of the 12th annual conference on Genetic and evolutionary computation</i> (2010), pp. 393–400.</span></p>
-<p><span id="lin2021structured">[3] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Structured second-order methods via natural gradient descent," <i>arXiv preprint arXiv:2107.10884</i> (2021).</span></p>
-<p><span id="lin2019stein">[4] W. Lin, M. E. Khan, &amp; M. Schmidt, "Stein’s Lemma for the Reparameterization Trick with Exponential Family Mixtures," <i>arXiv preprint arXiv:1910.13398</i> (2019).</span></p>
-<p><span id="lin2020handling">[5] W. Lin, M. Schmidt, &amp; M. E. Khan, "Handling the positive-definite constraint in the bayesian learning rule," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 6116–6126.</span></p></p>
+<p><span id="opper2009variational">[2] M. Opper &amp; C. Archambeau, "The variational Gaussian approximation revisited," <i>Neural computation</i> <b>21</b>:786–792 (2009).</span></p>
+<p><span id="glasmachers2010exponential">[3] T. Glasmachers, T. Schaul, S. Yi, D. Wierstra, &amp; J. Schmidhuber, "Exponential natural evolution strategies," <i>Proceedings of the 12th annual conference on Genetic and evolutionary computation</i> (2010), pp. 393–400.</span></p>
+<p><span id="lin2021structured">[4] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Structured second-order methods via natural gradient descent," <i>arXiv preprint arXiv:2107.10884</i> (2021).</span></p>
+<p><span id="lin2019stein">[5] W. Lin, M. E. Khan, &amp; M. Schmidt, "Stein’s Lemma for the Reparameterization Trick with Exponential Family Mixtures," <i>arXiv preprint arXiv:1910.13398</i> (2019).</span></p>
+<p><span id="lin2020handling">[6] W. Lin, M. Schmidt, &amp; M. E. Khan, "Handling the positive-definite constraint in the bayesian learning rule," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 6116–6126.</span></p></p>
 
 
         
