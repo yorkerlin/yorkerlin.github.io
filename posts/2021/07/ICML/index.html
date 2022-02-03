@@ -201,7 +201,7 @@
 
 <p>Structures play an essential role in</p>
 <ul>
-  <li>Preconditioners for gradient-free, adaptive-gradient, and second-order methods</li>
+  <li>Preconditioners for gradient-free, first-order, and second-order methods</li>
   <li>Covariance matrices in variational Gaussian approximation <a class="citation" href="#opper2009variational">[2]</a></li>
 </ul>
 
@@ -377,11 +377,11 @@ $$</code></p>
 
 <div class="notice--info">
 
-  <p>We propose using map <code class="language-plaintext highlighter-rouge">$\mathbf{h}()$</code> to</p>
+  <p>We propose using Lie-group retraction map <code class="language-plaintext highlighter-rouge">$\mathbf{h}()$</code> to</p>
   <ul>
     <li>keep natural-gradient computation tractable</li>
     <li>maintain numerical stability</li>
-    <li>have lower iteration cost compared to  the map in <a class="citation" href="#glasmachers2010exponential">[3]</a></li>
+    <li>have much lower iteration cost compared to the matrix exponential map suggested in <a class="citation" href="#glasmachers2010exponential">[3]</a></li>
   </ul>
 </div>
 
@@ -403,7 +403,7 @@ where <span style="color:red"><strong>tractable</strong></span> natural-gradient
 \end{aligned}
 $$</code></p>
 
-<p>Note that <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\mu$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{g}_{\Sigma}$</code> are Euclidean gradients of <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> computed via Stein’s lemma <a class="citation" href="#lin2019stein">[5]</a> :
+<p>Note that <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\mu$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{g}_{\Sigma}$</code> are Euclidean gradients of <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> computed via Stein’s lemma <a class="citation" href="#opper2009variational">[2]</a> <a class="citation" href="#lin2019stein">[5]</a> :
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{g}_\mu = \nabla_{\mu}\mathcal{L}(\tau) = E_{q}{ \big[ \nabla_w \ell( \mathbf{w} ) \big] }, \,\,\,\,\,
