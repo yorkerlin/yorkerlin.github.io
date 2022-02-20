@@ -59,10 +59,10 @@ var store = [{
         "tags": ["Natural Gradient Descent","Information Geometry","Matrix Lie Groups","Exponential Family"],
         "url": "/posts/2021/07/ICML/",
         "teaser":null},{
-        "title": "Geomopt01",
-        "excerpt":"–title: ‘Part I: Smooth Manifolds with the Fisher-Rao Metric’date: 2021-09-06permalink: /posts/2021/09/Geomopt01/tags: Natural Gradient Descent Information Geometry Riemannian Manifold Goal This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following concepts, useful to ensure non-singular FIMs: Regularity conditions and...","categories": [],
-        "tags": [],
-        "url": "/Geomopt01/",
+        "title": "Part I: Smooth Manifolds with the Fisher-Rao Metric",
+        "excerpt":"Goal This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following concepts, useful to ensure non-singular FIMs: Regularity conditions and intrinsic parameterizations of a distribution Dimensionality of a smooth manifoldThe discussion here is informal and focuses on more...","categories": [],
+        "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
+        "url": "/posts/2021/09/Geomopt01/",
         "teaser":null},{
         "title": "Part II: Natural-Gradients Evaluated at one Point",
         "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.The main propose of this post is to show how to define and compute natural-gradients.The space of natural-gradients evaluated at the same point is called a...","categories": [],
