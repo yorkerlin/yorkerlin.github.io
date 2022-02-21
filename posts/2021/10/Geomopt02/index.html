@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Part II: Natural-Gradients Evaluated at one Point - Wu Lin</title>
+<!-- begin _includes/seo.html --><title>Part II: Derivation of Natural-gradients - Wu Lin</title>
 <meta name="description" content="Warning: working in Progress (incomplete)">
 
 
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Part II: Natural-Gradients Evaluated at one Point">
+<meta property="og:title" content="Part II: Derivation of Natural-gradients">
 <meta property="og:url" content="/posts/2021/10/Geomopt02/">
 
 
@@ -166,7 +166,7 @@
   
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Part II: Natural-Gradients Evaluated at one Point">
+    <meta itemprop="headline" content="Part II: Derivation of Natural-gradients">
     <meta itemprop="description" content="Warning: working in Progress (incomplete)">
     <meta itemprop="datePublished" content="October 04, 2021">
     
@@ -174,7 +174,7 @@
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Part II: Natural-Gradients Evaluated at one Point
+          <h1 id="page-title" class="page__title" itemprop="headline">Part II: Derivation of Natural-gradients
 </h1>
           
             <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
@@ -193,11 +193,34 @@
         <p>Warning: working in Progress (incomplete)</p>
 
 <h2 id="goal">Goal</h2>
-<p>This blog post should help readers to understand natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric.
-The main propose of this post is to show how to define and compute natural-gradients.
-The space of natural-gradients evaluated at the same point is called a tangent space at that point.</p>
+<p>This blog post focuses on natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:</p>
+<ul>
+  <li>Direction derivatives in a manifold</li>
+  <li>Weighted norm induced by the Fisher-Rao metric</li>
+  <li>Rimannian steepest direction</li>
+  <li>Space of natural-gradients evaluated at the same point</li>
+</ul>
 
-<p>We will give an informal introduction with a focus on high level of ideas.</p>
+<p>The discussion here is informal and focuses on more on intuitions, rather than rigor.</p>
+
+<div class="notice--info">
+  <details>
+<summary>Click to see how to cite this blog post</summary>
+<fieldset class="field-set">
+
+      <div class="language-latex highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021blog02,
+  title = <span class="p">{</span>Derivation of Natural-gradients<span class="p">}</span>,
+  author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
+  url = <span class="p">{</span>https://informationgeometryml.github.io/posts/2021/10/Geomopt02/<span class="p">}</span>, 
+  howpublished = <span class="p">{</span><span class="k">\url</span><span class="p">{</span>https://informationgeometryml.github.io/posts/2021/10/Geomopt02/<span class="p">}}</span>,
+  year = <span class="p">{</span>2021<span class="p">}</span>,
+  note = <span class="p">{</span>Accessed: 2021-10-04<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>      </div>
+    </fieldset>
+</details>
+</div>
 
 <!--<img src="/img/gd_vs_ngd.png"  width="1000"/>-->
 
@@ -205,17 +228,18 @@ The space of natural-gradients evaluated at the same point is called a tangent s
 <hr>
 <p>Before we discuss natural-gradients, we first revisit Euclidean gradients.</p>
 
-<p>We will show a (normalized) Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we extend the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a (normalized) natural-gradient.</p>
+<p>We will show a normalized Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we generlize the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a normalized natural-gradient.</p>
 
-<p>Given a smooth scalar function $\min_{\tau \in \mathcal{R}^K } \,\,f(\mathbf{\tau})$ in a <strong>vector space</strong> <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, we can define the (Euclidean) steepest direction at current <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> as the optimal solution to the following optimization problem,
+<p>Given a smooth scalar function $\min_{\tau \in \mathcal{R}^K } \,\,f(\mathbf{\tau})$ in a <strong>vector space</strong> <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, we can define the (Euclidean) steepest direction at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> as the optimal solution to an  optimization problem,
 where we assume <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)  \neq \mathbf{0}$</code>.
-We can express the optimization problem in terms of a <strong>directional derivative</strong> along vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code>.
-We want to find the optimal directional derivative, which is the steepest direction.
-<code class="language-plaintext highlighter-rouge">$$
+We can express the optimization problem in terms of a <strong>directional derivative</strong> along vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code>. The optimal directional derivative, denoted by <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}$</code>,  is the steepest direction.</p>
+
+<p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \min_{\|v\|^2=1} \lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t} = ( \nabla_\tau f(\mathbf{\tau}_0) )^T \mathbf{v} 
 \end{aligned}\tag{1}\label{1}
 $$</code></p>
+
 <div class="notice--success">
   <p>Note:</p>
 
@@ -224,16 +248,19 @@ $$</code></p>
 
 <p>It is easy to see that the optimal solution of Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}= -\frac{\nabla_\tau f(\mathbf{\tau}_0) }{\|\nabla_\tau f(\mathbf{\tau}_0) \|}$</code>, which is the (Euclidean) steepest direction at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.</p>
 
-<h1 id="distance-induced-by-the-fisher-rao-metric">Distance induced by the Fisher-Rao metric</h1>
+<h1 id="weighted-norm-induced-by-the-fisher-rao-metric">Weighted norm induced by the Fisher-Rao metric</h1>
 <hr>
 
 <p>To generalize  the steepest direction at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> in a Riemannian manifold, we want to formulate a similar optimization problem like Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> in the manifold case.
-To do so, we have to define the length of a vector in manifold cases. In <a href="/posts/2021/11/Geomopt03/#standard-euclidean-gradients-are-not-invariant">Part III</a>, we will show that the (standard) length does not perseve under a parameter transformation while the length induced by the Fisher-Rao metric does.</p>
+To do so, we have to define the length of a vector in manifold cases. In 
+<a href="/posts/2021/11/Geomopt03/#standard-euclidean-gradients-are-not-invariant">Part III</a>, 
+<!--Part III,-->
+we will show that the (standard) length does not perseve under a parameter transformation while the length induced by the Fisher-Rao metric does.</p>
 
-<p>As mentioned at <a href="/posts/2021/09/Geomopt01/#fisher-rao-metric">Part I</a>, the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}$</code> is positive definite everywhere in an intrinsic parameter space. We can use the FIM to define the length/norm of a vector (e.g., a Riemannian gradient) $\mathbf{v}$ at a point in a manifold via a weighted inner product. We use an intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau_0$</code> to represent this point.
+<p>As mentioned at <a href="/posts/2021/09/Geomopt01/#fisher-rao-metric">Part I</a>, the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}$</code> is positive definite everywhere in an intrinsic parameter space. We can use the FIM to define the length/norm of a vector (e.g., a Riemannian gradient) $\mathbf{v}$ at a point in a manifold via a weighted inner product. We use an intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau_0$</code> to represent this point. Note that the FIM is evaluted at current point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-\|\mathbf{v}\|_F := \sqrt{\mathbf{v}^T \mathbf{F} \mathbf{v}}
+\|\mathbf{v}\|_F := \sqrt{\mathbf{v}^T \mathbf{F}(\tau_0) \mathbf{v}}
 \end{aligned}
 $$</code></p>
 
@@ -256,8 +283,10 @@ where vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</co
 the vector space at <code class="language-plaintext highlighter-rouge">$\tau_0$</code>  is just a <code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code> space. We do not care about whether it is embedded in the <code class="language-plaintext highlighter-rouge">$\mathcal{R}^3$</code> space or not.</p>
 </div>
 
-<p>In manifold cases, we have to distinguish the difference between a point (e.g., parameter array $\tau_0$) and a vector (e.g., Riemannian gradient under a parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code>).
-This point is crucial to (natural) gradient-based methods in <a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a>.</p>
+<p>In manifold cases, we have to distinguish the difference between a point (e.g., parameter array $\tau_0$) and a vector (e.g., Riemannian gradient <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> under a parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code>).
+This difference is crucial to (natural) gradient-based methods in 
+<a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a>.
+<!--Part IV.--></p>
 
 <div class="notice--danger">
   <p><strong>Warning</strong>:</p>
@@ -279,7 +308,7 @@ vector in this post.</p>
 The next step is to generalize the concept of directional derivatives in a manifold.</p>
 
 <p>Recall that a manifold should be locally like a vector space under <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations"><strong>intrinsic</strong> parameterization</a> <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}$</code>.
-Using this parameterization, consider an optimization problem $\min_{\tau \in \Omega_\tau } f(\mathbf{\tau})$, where the parameter space $\Omega_\tau$ is determined by the parameterization and the manifold. Recall that we have a local vector space structure in <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> if we parametrize the manifold with an intrinsic parameterization.</p>
+Using this parameterization, consider an optimization problem $\min_{\tau \in \Omega_\tau } f(\mathbf{\tau})$, where the parameter space $\Omega_\tau$ is determined by the choice of a parameterization and the manifold. Recall that we have a local vector space structure in <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> if we parametrize the manifold with an intrinsic parameterization.</p>
 
 <p>Therefore, we can similarly define a directional derivative<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> at <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> along Riemannian vector<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> $\mathbf{v}$ as <code class="language-plaintext highlighter-rouge">$\lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t}$</code>, where $t$ is a scalar real number. The main point is that <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}$</code> stays in the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> thanks to the <strong>local vector space</strong> structure.</p>
 
@@ -496,7 +525,9 @@ Strictly speaking, a natural gradient/vector w.r.t. <code class="language-plaint
 
         <p>In the literature, a natural gradient w.r.t. <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code> is  defined as <code class="language-plaintext highlighter-rouge">$\mathrm{MatH}(\mathbf{v})$</code>, where
 <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> is a valid natural gradient w.r.t. intrinsic parameter <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\mathbf{S})$</code>
-(see  <a href="/posts/2021/12/Geomopt05/#efficient-ngd-for-multivariate-gaussian">Part V</a> for the
+(see<br>
+<a href="/posts/2021/12/Geomopt05/#efficient-ngd-for-multivariate-gaussian">Part V</a>
+for the
 details.)</p>
       </blockquote>
 
@@ -507,7 +538,10 @@ details.)</p>
 <h1 id="riemannian-gradients-as-tangent-vectors-optional">Riemannian gradients as tangent vectors (optional)</h1>
 <hr>
 <p>In the previous section, we only consider Riemannian vectors/gradients under a parametrization $\tau$.
-Now, we will disucss abstract Riemannian vectors without a parametrization <a class="citation" href="#tu2011introduction">[2]</a>. This concept is often used to show the invariance of Riemannian gradients, which will be discussed in <a href="/posts/2021/11/Geomopt03/#parameter-transform-and-invariance">Part III</a>.  In physics, this invariance means that a law of physics should be independent of the choice of (reference) coordinate systems.</p>
+Now, we will disucss abstract Riemannian vectors without a parametrization <a class="citation" href="#tu2011introduction">[2]</a>. This concept is often used to show the invariance of Riemannian gradients, which will be discussed in 
+<a href="/posts/2021/11/Geomopt03/#parameter-transform-and-invariance">Part III</a>.
+<!--Part III.-->
+In physics, this invariance means that a law of physics should be independent of the choice of (reference) coordinate systems.</p>
 
 <p>A Riemannian gradient denoted by $\mathbf{v}(\tau)$ is indeed a tangent vector $\mathbf{v}$ of a smooth curve in the manifold under the parametrization $\tau$. 
 The set of tangent vectors evaluated at $\mathbf{\tau}_0$ is called the tangent space at the corresponding point. 
@@ -699,7 +733,7 @@ We will discuss more about this in <a href="/posts/2021/11/Geomopt04/#two-kinds-
     <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Part+II%3A+Natural-Gradients+Evaluated+at+one+Point%20informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Part+II%3A+Derivation+of+Natural-gradients%20informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
