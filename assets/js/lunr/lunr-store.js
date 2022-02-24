@@ -65,7 +65,7 @@ var store = [{
         "url": "/posts/2021/09/Geomopt01/",
         "teaser":null},{
         "title": "Part II: Derivation of Natural-gradients",
-        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post focuses on natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients: Direction derivatives in a manifold Weighted norm induced by the Fisher-Rao metric Rimannian steepest direction Space of natural-gradients evaluated...","categories": [],
+        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients: Direction derivatives in a manifold Weighted norm induced by the Fisher-Rao metric Rimannian steepest direction Space...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/10/Geomopt02/",
         "teaser":null},{
