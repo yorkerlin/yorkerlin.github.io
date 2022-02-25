@@ -258,7 +258,7 @@ $$</code></p>
   <p><strong>Warning</strong>:</p>
 
   <ul>
-    <li>When  K-dim manifold <code class="language-plaintext highlighter-rouge">$\mathcal{M}\neq \mathcal{R}^K$</code>,  <code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\mathcal{M}) \neq \mathcal{R}^K$</code>.</li>
+    <li>When  K-<a href="/posts/2021/09/Geomopt01/#dimensionality-of-a-manifold">dimensional</a> manifold <code class="language-plaintext highlighter-rouge">$\mathcal{M}\neq \mathcal{R}^K$</code>,  <code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\mathcal{M}) \neq \mathcal{R}^K$</code>.</li>
     <li>By choosing an intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau$</code> in its parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>, we will see that
  <code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\Omega_\tau) \subset \mathcal{R}^K$</code>.</li>
   </ul>
@@ -331,7 +331,7 @@ Using this parameterization, consider an optimization problem $\min_{\tau \in \O
 <p>Recall that we allow a <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">small perturbation</a> <code class="language-plaintext highlighter-rouge">$E$</code> around <code class="language-plaintext highlighter-rouge">$\tau_0$</code> contained in  parameter space  <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> (i.e., <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>) since  <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}$</code> is an intrinsic parameterization.
 Therefore, when $|t|$ is small enough, <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} $</code> stays in the parameter space and <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau}_0+t\mathbf{v})$</code> is well-defined.
 Note that we only require <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} \in \Omega_\tau$</code> when $|t|$ is small enough. When $|t|$ is small enough, this is possible since a line segment <code class="language-plaintext highlighter-rouge">$ \mathbf{\tau}_0+t\mathbf{v} \in E$</code> and <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>.
- Technically, this is because  $\Omega_\tau$ is an open set in $\mathcal{R}^K$, where $K$ is the number of entires of parameter array <code class="language-plaintext highlighter-rouge">$\tau$</code>.</p>
+Technically, this is because <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is an open set in $\mathcal{R}^K$, where $K$ is the number of entires of parameter array <code class="language-plaintext highlighter-rouge">$\tau$</code>.</p>
 
 <p>Under <strong>intrinsic</strong> parameterization $\mathbf{\tau}$, the directional derivative remains the same as in the Euclidean case thanks to the <strong>local vector space</strong> structure in <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>.
 <code class="language-plaintext highlighter-rouge">$$\begin{aligned} \lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t} = ( \nabla_\tau f(\mathbf{\tau}_0))^T \mathbf{v}. \end{aligned}$$</code></p>
@@ -688,7 +688,7 @@ Under parameterization $\mathbf{\tau}$, we can locally re-expressed the function
 <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0) =  \frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}$</code> since (Euclidean gradient) <code class="language-plaintext highlighter-rouge">$\nabla h_\tau(\mathbf{\tau}_0)$</code> is an arbitrary vector in $\mathcal{R}^2$ and <code class="language-plaintext highlighter-rouge">$\tau$</code> is a 2-dim parameter array.</p>
 
   <p>In summary, a Riemannian gradient <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0)$</code> can be viewed as a parametric representation of the tangent vector 
- of curve $\gamma(t)$ at $\mathbf{x}_0$ since  <code class="language-plaintext highlighter-rouge">${\gamma}_\tau(t)$</code> is the parametric representation of $\gamma(t)$.</p>
+of curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> at <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code> since <code class="language-plaintext highlighter-rouge">${\gamma}_\tau(t)$</code> is the parametric representation of <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code>.</p>
 </blockquote>
 
 <h2 id="riemannian-gradient-space-has-a-vector-space-structure">(Riemannian) gradient space has a vector-space structure</h2>
