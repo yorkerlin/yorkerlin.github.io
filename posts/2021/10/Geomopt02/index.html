@@ -226,13 +226,13 @@
 <hr>
 <p>Before we discuss natural-gradients, we first revisit Euclidean gradients.</p>
 
-<p>We will show a normalized Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we generlize the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a normalized natural-gradient.</p>
+<p>We will show a normalized Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we generalize the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a normalized natural-gradient.</p>
 
 <p>Consider a minimization problem <code class="language-plaintext highlighter-rouge">$\min_{\tau \in \mathcal{R}^K } \,\,f(\mathbf{\tau})$</code> over a <strong>vector space</strong> <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>.
 Given the smooth scalar function <code class="language-plaintext highlighter-rouge">$f(\cdot)$</code>, we can define the (Euclidean) steepest direction at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> as the optimal solution to another optimization problem,
 where we assume <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)  \neq \mathbf{0}$</code>.
 We can express the optimization problem in terms of a <strong>directional derivative</strong> along vector <code class="language-plaintext highlighter-rouge">$\mathbf{v} \in T_{\tau_0} (\mathcal{R}^K)$</code>, where
-<code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\mathcal{R}^K)=\mathcal{R}^K$</code> is a vector space at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.
+<code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\mathcal{R}^K)=\mathcal{R}^K$</code> is a vector space attached at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.
 The optimal directional derivative, denoted by <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}$</code>,  is the steepest direction.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
@@ -381,8 +381,10 @@ Now, we can introduce the Riemannian steepest direction <a class="citation" href
 <p>By choosing an intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}$</code>, a minimization problem over a manifold  <code class="language-plaintext highlighter-rouge">$\mathcal{M}$</code> can be translated as
 <code class="language-plaintext highlighter-rouge">$\min_{\tau \in \Omega_\tau } f(\mathbf{\tau})$</code> over  parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>. Recall that <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> has a local vector-space structure.</p>
 
-<p>Assuming <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)  \neq \mathbf{0}$</code>,  we define the Riemannian steepest direction as the optimal solution to the following new optimization problem.  The optimization problem is expressed in terms of a directional derivative along Riemannian vector <code class="language-plaintext highlighter-rouge">$\mathbf{v} \in T_{\tau_0} (\Omega_\tau)$</code>, where <code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\Omega_\tau) = \mathcal{R}^K$</code> is the 
-vector space at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.
+<p>Assuming <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)  \neq \mathbf{0}$</code>,  we define the Riemannian steepest direction as the
+optimal solution to the following new optimization problem.  The optimization problem is expressed in terms of a
+directional derivative along Riemannian vector <code class="language-plaintext highlighter-rouge">$\mathbf{v} \in T_{\tau_0} (\Omega_\tau)$</code>, where <code class="language-plaintext highlighter-rouge">$T_{\tau_0}
+(\Omega_\tau) = \mathcal{R}^K$</code> is a vector space attached at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \min_{ \color{red} {\|v\|_{F}^2=1} } ( \nabla_\tau f(\mathbf{\tau}_0) )^T  \mathbf{v} 
