@@ -222,14 +222,19 @@
 
 <h1 id="motivation">Motivation</h1>
 <p>In machine learning, a common derivation of natural-gradients is via a Talyor expansion of the KL divergence as we will
-discuss in <a href="/posts/2021/11/Geomopt04/#proximal-gradient-descent">Part IV</a>.   However, the derivation has the following limitations:</p>
+discuss in
+<a href="/posts/2021/11/Geomopt04/#proximal-gradient-descent">Part IV</a>.    <!--Part IV--> However, the derivation has the following limitations:</p>
 <ul>
   <li>It does not clearly illustrate the difference between a parameter space and a (natural) gradient space.</li>
   <li>It implicitly assumes that the Fisher information matrix (FIM) is non-singular and the parameter space is open.</li>
 </ul>
 
 <p>These limitations become essential when it comes to constrained parameters (i.e., covariance matrix in a Gaussian family).
-Moreover, a natural gradient (in a gradient space) is invariant as shown in Part III while a natural-gradient update (in a parameter space) is only linearly invariant as discussed in Part IV.
+Moreover, a natural gradient (in a gradient space) is invariant as shown in 
+<!--Part III -->
+<a href="/posts/2021/11/Geomopt03/#riemannian-steepest-direction-is-invariant">Part III</a> while a natural-gradient update (in a parameter space) is only linearly invariant as discussed in
+<!--Part IV.-->
+<a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-in-an-intrinsic-parameter-space">Part IV</a>.
 We will give an alternative derivation of natural-gradients to emphasize the subtlety.</p>
 
 <!--<img src="/img/gd_vs_ngd.png"  width="1000"/>-->
