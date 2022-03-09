@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Part II: Derivation of Natural-gradients - Wu Lin</title>
-<meta name="description" content="Warning: working in Progress (incomplete)">
+<meta name="description" content="GoalThis blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:  Rimannian steepest direction  The difference between a parameter space and a gradient/vector space">
 
 
 
@@ -21,7 +21,7 @@
 <meta property="og:url" content="/posts/2021/10/Geomopt02/">
 
 
-  <meta property="og:description" content="Warning: working in Progress (incomplete)">
+  <meta property="og:description" content="GoalThis blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:  Rimannian steepest direction  The difference between a parameter space and a gradient/vector space">
 
 
 
@@ -167,7 +167,7 @@
 
   <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
     <meta itemprop="headline" content="Part II: Derivation of Natural-gradients">
-    <meta itemprop="description" content="Warning: working in Progress (incomplete)">
+    <meta itemprop="description" content="GoalThis blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:  Rimannian steepest direction  The difference between a parameter space and a gradient/vector space">
     <meta itemprop="datePublished" content="October 04, 2021">
     
 
@@ -190,9 +190,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>Warning: working in Progress (incomplete)</p>
-
-<h2 id="goal">Goal</h2>
+        <h2 id="goal">Goal</h2>
 <p>This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:</p>
 <ul>
   <li>Rimannian steepest direction</li>
@@ -223,7 +221,7 @@
 <h1 id="motivation">Motivation</h1>
 <p>In machine learning, a common derivation of natural-gradients is via a Talyor expansion of the Kullback-Leibler divergence as we will
 discuss in
-<a href="/posts/2021/11/Geomopt04/#proximal-gradient-descent">Part IV</a>.    <!--Part IV--> However, the derivation has the following limitations:</p>
+<a href="/posts/2021/11/Geomopt04/#proximal-gradient-descent">Part IV</a>. However, the derivation has the following limitations:</p>
 <ul>
   <li>It does not clearly illustrate the difference between a parameter space and a (natural) gradient space.</li>
   <li>It implicitly assumes that the Fisher information matrix (FIM) is non-singular and the parameter space is open.</li>
@@ -231,10 +229,9 @@ discuss in
 
 <p>These limitations become essential when it comes to constrained parameters (i.e., covariance matrix in a Gaussian family).
 Moreover, a natural gradient (in a gradient space) is invariant (will show in 
-<!--Part III -->
-<a href="/posts/2021/11/Geomopt03/#riemannian-steepest-direction-is-invariant">Part III</a> ) while a natural-gradient update (in a parameter space) is only linearly invariant (will discuss in
-<!--Part IV.-->
-<a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-is-linearly-invariant">Part IV</a> ).</p>
+<a href="/posts/2021/11/Geomopt03/#riemannian-steepest-direction-is-invariant">Part III</a>)
+while a natural-gradient update (in a parameter space) is only linearly invariant (will discuss in
+<a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-is-linearly-invariant">Part IV</a></p>
 
 <p>We will give an alternative <a href="#riemannian-steepest-direction">derivation</a> of natural-gradients to emphasize the subtlety.</p>
 
@@ -244,11 +241,11 @@ Moreover, a natural gradient (in a gradient space) is invariant (will show in
 
 <p>We will show a normalized Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we will generalize the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a normalized natural-gradient.</p>
 
-<p>Consider a minimization problem <code class="language-plaintext highlighter-rouge">$\min_{\tau \in \mathcal{R}^K } \,\,f(\mathbf{\tau})$</code> over a <strong>vector space</strong> <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>.
+<p>Consider a minimization problem <code class="language-plaintext highlighter-rouge">$\min_{\tau \in \mathcal{R}^K } \,\,f(\mathbf{\tau})$</code> over a <strong>parameter space</strong> <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>.
 Given the smooth scalar function <code class="language-plaintext highlighter-rouge">$f(\cdot)$</code>, we can define the (Euclidean) steepest direction at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> as the optimal solution to another optimization problem,
 where we assume <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)  \neq \mathbf{0}$</code>.
 We can express the optimization problem in terms of a <strong>directional derivative</strong> along vector <code class="language-plaintext highlighter-rouge">$\mathbf{v} \in T_{\tau_0} (\mathcal{R}^K)$</code>, where
-<code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\mathcal{R}^K)=\mathcal{R}^K$</code> is a vector space attached at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.
+<code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\mathcal{R}^K)=\mathcal{R}^K$</code> is a <strong>gradient space</strong> attached at current point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>.
 The optimal directional derivative, denoted by <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}$</code>,  is the steepest direction.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
@@ -273,7 +270,6 @@ $$</code></p>
 <p>To generalize  the steepest direction at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> in a Riemannian manifold, we want to formulate a similar optimization problem like Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> in the manifold case.
 To do so, we have to define the length of a vector in manifold cases. In 
 <a href="/posts/2021/11/Geomopt03/#standard-euclidean-gradients-are-not-invariant">Part III</a>, 
-<!--Part III,-->
 we will show that the (standard) length does not preserve under a parameter transformation while the length induced by the Fisher-Rao metric does.</p>
 
 <p>As mentioned at <a href="/posts/2021/09/Geomopt01/#fisher-rao-metric">Part I</a>, the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}$</code> is positive definite everywhere in an intrinsic parameter space. We can use the FIM to define the length/norm of a vector (e.g., a Riemannian gradient) $\mathbf{v}$ at a point in a manifold via a weighted inner product. We use an intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau_0$</code> to represent this point. Note that the FIM is evaluted at current point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.
@@ -304,8 +300,7 @@ the vector space at <code class="language-plaintext highlighter-rouge">$\tau_0$<
 
 <p>In manifold cases, we have to distinguish the difference between a point (e.g., parameter array $\tau_0$) and a vector (e.g., Riemannian gradient <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> under a parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code>).
 This difference is crucial to (natural) gradient-based methods in 
-<a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a>.
-<!--Part IV.--></p>
+<a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a>.</p>
 
 <div class="notice--danger">
   <p><strong>Warning</strong>:</p>
@@ -332,7 +327,7 @@ Using this parameterization, consider an optimization problem $\min_{\tau \in \O
 
 <p>Recall that we allow a <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">small perturbation</a> <code class="language-plaintext highlighter-rouge">$E$</code> around <code class="language-plaintext highlighter-rouge">$\tau_0$</code> contained in  parameter space  <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> (i.e., <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>) since  <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}$</code> is an intrinsic parameterization.
 Therefore, when $|t|$ is small enough, <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} $</code> stays in the parameter space and <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau}_0+t\mathbf{v})$</code> is well-defined.
-Note that we only require <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} \in \Omega_\tau$</code> when $|t|$ is small enough. When $|t|$ is small enough, this is possible since a line segment <code class="language-plaintext highlighter-rouge">$ \mathbf{\tau}_0+t\mathbf{v} \in E$</code> and <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>.
+Note that we only require <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} \in \Omega_\tau$</code> when <code class="language-plaintext highlighter-rouge">$|t|$</code> is small enough. This is possible since a line segment <code class="language-plaintext highlighter-rouge">$ \mathbf{\tau}_0+t\mathbf{v} \in E$</code> and <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>.
 Technically, this is because <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is an open set in $\mathcal{R}^K$, where $K$ is the number of entires of parameter array <code class="language-plaintext highlighter-rouge">$\tau$</code>.</p>
 
 <p><img src="/img/sphere_simple.png" width="500"></p>
@@ -344,14 +339,18 @@ Technically, this is because <code class="language-plaintext highlighter-rouge">
   <p>Note:</p>
   <ul>
     <li>
-      <p><code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}$</code> lives in the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> when scalar <code class="language-plaintext highlighter-rouge">$|t|$</code> is small enough</p>
+      <p><code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}$</code> stays in the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> when scalar <code class="language-plaintext highlighter-rouge">$|t|$</code> is small enough.</p>
     </li>
     <li>
-      <p>vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> lives in a distinct space. This space is called the tangent vector space <code class="language-plaintext highlighter-rouge">$\mathcal{R}^k$</code> at current point <code class="language-plaintext highlighter-rouge">$\tau_0$</code></p>
+      <p>vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> stays in the tangent vector space <code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\Omega_\tau)$</code> at current point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.</p>
+    </li>
+    <li>
+      <p>In K-<a href="/posts/2021/09/Geomopt01/#dimensionality-of-a-manifold">dimensional</a> manifold cases,  <code class="language-plaintext highlighter-rouge">$\Omega_\tau \subset T_{\tau_0} (\Omega_\tau)=\mathcal{R}^K$</code> illustrated by the following figure.</p>
     </li>
   </ul>
-
 </div>
+
+<p><img src="/img/sphere-1.png" width="800"></p>
 
 <p>The following example illustrates directional derivatives in manifold cases.</p>
 
@@ -414,23 +413,19 @@ directional derivative along Riemannian vector <code class="language-plaintext h
 \end{aligned} \tag{2}\label{2}
 $$</code></p>
 
-<div class="notice--danger">
-  <p><strong>Warning</strong>:</p>
+<div class="notice--info">
+  <details>
+<summary>The optimal solution of  Eq. $\eqref{2}$ is $\mathbf{v}_{\text{opt}}= -\frac{ \mathbf{F}^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0) }{\| \mathbf{F}^{-1}(\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_F}$ (click to see the derivation)</summary>
+<fieldset class="field-set">
 
-  <p>In K-<a href="/posts/2021/09/Geomopt01/#dimensionality-of-a-manifold">dimensional</a> manifold cases, an intrinsic parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is often a <strong>subspace</strong> of <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code> while the Riemannian gradient space  <code class="language-plaintext highlighter-rouge">$T_{\tau_0} (\Omega_\tau)$</code> is the whole space <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code> illustrated by the following figure.</p>
-
-</div>
-
-<p><img src="/img/sphere.png" width="500"></p>
-
-<p>The Lagrangian function of this problem is given below, where $\lambda$ is a Lagrange multiplier. 
+      <p>The Lagrangian function of this problem is given below, where $\lambda$ is a Lagrange multiplier. 
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 L(\mathbf{v},\lambda) =  ( \nabla_\tau f(\mathbf{\tau}_0))^T \mathbf{v} + \lambda (\|v\|_{F}^2 - 1) = \mathbf{v}^T \nabla_\tau f(\mathbf{\tau}_0) + \lambda (\mathbf{v}^T \mathbf{F}(\mathbf{\tau}_0) \mathbf{v}  - 1) 
 \end{aligned}
 $$</code> where <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\mathbf{\tau}_0)$</code> is the FIM evaluated at point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.</p>
 
-<p>One of the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions">Karush–Kuhn–Tucker</a> (KKT) necessary conditions implies that
+      <p>One of the <a href="https://en.wikipedia.org/wiki/Karush%E2%80%93Kuhn%E2%80%93Tucker_conditions">Karush–Kuhn–Tucker</a> (KKT) necessary conditions implies that
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{0} = \nabla_{v} L(\mathbf{v}_{\text{opt}},\lambda) = \nabla_\tau f(\mathbf{\tau}_0) + 2 \lambda \mathbf{F}(\mathbf{\tau}_0) \mathbf{v}_{\text{opt}}
@@ -439,21 +434,17 @@ $$</code>
 Since we assume <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)\neq 0$</code>, the KKT condition implies that <code class="language-plaintext highlighter-rouge">$\lambda \neq 0$</code>.
 Since <code class="language-plaintext highlighter-rouge">$\lambda \neq 0$</code>, vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}$</code> should be proportional to <code class="language-plaintext highlighter-rouge">$\mathbf{F}^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0)$</code>, where  <code class="language-plaintext highlighter-rouge">$\mathbf{F}^{-1}(\mathbf{\tau}_0)$</code> is well-defined since the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\mathbf{\tau}_0)$</code> is positive definite.</p>
 
-<p>Thus, the optimal solution of Eq. <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> is <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}= -\frac{ \mathbf{F}^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0) }{\| \mathbf{F}^{-1}(\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_F}$</code>, which gives us the Riemannian steepest direction at current <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>. 
+      <p>Thus, the optimal solution of Eq. <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> is <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{opt}}= -\frac{ \mathbf{F}^{-1}(\mathbf{\tau}_0) \nabla_\tau f(\mathbf{\tau}_0) }{\| \mathbf{F}^{-1}(\mathbf{\tau}_0)\nabla_\tau f(\mathbf{\tau}_0) \|_F}$</code>, which gives us the Riemannian steepest direction at current <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>. 
 Note that the <strong>Euclidean</strong> steepest direction <code class="language-plaintext highlighter-rouge">$\mathbf{v}_{\text{euclid}}= -\frac{ \nabla_\tau f(\mathbf{\tau}_0) }{\| \nabla_\tau f(\mathbf{\tau}_0) \|_F}$</code> is <strong>not</strong> the optimal solution of  Eq. <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> when <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\tau_0) \neq \mathbf{I}$</code>.
-We will illustrate this by using an example.</p>
+We illustrate this by the following example.</p>
 
-<div class="notice--info">
-  <details>
-<summary>Euclidean steepest direction is not the optimal solution of  Eq. $\eqref{2}$ (click to expand)</summary>
-<fieldset class="field-set">
       <blockquote>
 
         <p>Consider <code class="language-plaintext highlighter-rouge">$\mathbf{F}(\tau_0)=\begin{bmatrix} 1 &amp; 0 \\ 0 &amp; \frac{1}{2} \end{bmatrix}$</code> and <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau}_0)=\begin{bmatrix} 1\\1 \end{bmatrix}$</code>.
 We have the following results
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-\| F^{-1} \nabla_\tau f(\mathbf{\tau}_0) \|_F^2  =  \nabla_\tau^T f(\mathbf{\tau}_0) \mathbf{F}^{-1}(\tau_0) \nabla_\tau f(\mathbf{\tau}_0) = 3; \,\,\,
+\| \mathbf{F}^{-1}(\tau_0) \nabla_\tau f(\mathbf{\tau}_0) \|_F^2  =  \nabla_\tau^T f(\mathbf{\tau}_0) \mathbf{F}^{-1}(\tau_0) \nabla_\tau f(\mathbf{\tau}_0) = 3; \,\,\,
 \| \nabla_\tau f(\mathbf{\tau}_0) \|_F^2  =  \nabla_\tau^T f(\mathbf{\tau}_0) \mathbf{F}(\tau_0) \nabla_\tau f(\mathbf{\tau}_0) = \frac{3}{2}
 \end{aligned}
 $$</code></p>
@@ -477,10 +468,10 @@ $$</code></p>
 </details>
 </div>
 
-<h2 id="definition-of-the-natural-gradient">Definition of the Natural-gradient</h2>
+<h2 id="definition-of-natural-gradients">Definition of Natural-gradients</h2>
 
-<p>Given a scalar function <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau})$</code> with an intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau$</code>, we define its (un-normalized) <strong>Riemannian gradient</strong> as <code class="language-plaintext highlighter-rouge">$ \mathbf{F}_\tau^{-1}(\mathbf{\tau}) \nabla_\tau f(\mathbf{\tau})$</code> if its (un-normalized) <strong>Euclidean gradient</strong> is <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau})$</code>.
-We use a learning-rate to control the length of a gradient instead of normalizing its length. 
+<p>Given a scalar function <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau})$</code> with an intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau$</code>, we define a (un-normalized) <strong>Riemannian gradient</strong> as <code class="language-plaintext highlighter-rouge">$ \mathbf{F}_\tau^{-1}(\mathbf{\tau}) \nabla_\tau f(\mathbf{\tau})$</code>, where we denote the corresponding (un-normalized) <strong>Euclidean gradient</strong> by <code class="language-plaintext highlighter-rouge">$\nabla_\tau f(\mathbf{\tau})$</code>.
+In machine learning, we often use a learning-rate to control the length of a gradient instead of normalizing its length. 
 Since we use the Fisher-Rao metric <code class="language-plaintext highlighter-rouge">$\mathbf{F}$</code>, the Riemannian gradient is also known as the <strong>natural gradient</strong>.</p>
 
 <p>Now, we give an example to illustrate the definition.</p>
@@ -557,7 +548,6 @@ Strictly speaking, a natural gradient/vector w.r.t. <code class="language-plaint
 <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> is a valid natural gradient w.r.t. intrinsic parameter <code class="language-plaintext highlighter-rouge">$\tau=\mathrm{vech}(\mathbf{S})$</code>
 (see<br>
 <a href="/posts/2021/12/Geomopt05/#efficient-ngd-for-multivariate-gaussian">Part V</a>
-<!--Part V-->
 for the
 details.)</p>
       </blockquote>
@@ -571,7 +561,6 @@ details.)</p>
 <p>In the previous section, we only consider Riemannian vectors/gradients under a parametrization $\tau$.
 Now, we will disucss abstract Riemannian vectors without a parametrization <a class="citation" href="#tu2011introduction">[2]</a>. This concept is often used to show the invariance of Riemannian gradients, which will be discussed in 
 <a href="/posts/2021/11/Geomopt03/#parameter-transform-and-invariance">Part III</a>.
-<!--Part III.-->
 In physics, this invariance means that a law of physics should be independent of the choice of (reference) coordinate systems.</p>
 
 <p>A Riemannian gradient denoted by $\mathbf{v}(\tau)$ is indeed a tangent vector $\mathbf{v}$ of a smooth curve in the manifold under the parametrization $\tau$. 
@@ -612,7 +601,7 @@ Under parametrization $\mathbf{\tau}$, we have the following parametric represen
   </tbody>
 </table>
 
-<p><img src="/img/sphere.png" width="500"></p>
+<p><img src="/img/sphere.png" width="800"></p>
 
 <p>Note that  <code class="language-plaintext highlighter-rouge">$\tau_0$</code> is a parameter array, which is a representation of a point $\mathbf{x}_0$ while $\mathbf{v}(\tau_0)$ is  a Riemannian gradient, which is a representation of the tangent vector of curve <code class="language-plaintext highlighter-rouge">$\gamma$</code> at point $\mathbf{x}_0$.</p>
 
@@ -671,7 +660,7 @@ and the blue line segment <code class="language-plaintext highlighter-rouge">${\
   <p>The parametric  representation of the vector is <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0):= \frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}=(v_x,v_y)$</code>.</p>
 </blockquote>
 
-<p><img src="/img/sphere.png" width="500"></p>
+<p><img src="/img/sphere.png" width="800"></p>
 
 <p>A Riemannian gradient <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0)$</code> can be viewed as a parametric representation of tangent vector  $\mathbf{v}$ as shown below.</p>
 
@@ -696,11 +685,10 @@ of curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> a
 </blockquote>
 
 <h2 id="riemannian-gradient-space-has-a-vector-space-structure">(Riemannian) gradient space has a vector-space structure</h2>
+<p>We can similarly define vector additions and real scalar products in a tangent vector space by using the tangent direction of a curve in the manifold with/without a parameterization.</p>
 
-<p>We can also define vector additions and real scalar products in a tangent vector space by using tangent directions of curves in the manifold with/without a parameterization.</p>
-
-<p>The key takeway is that a vector space structure is an integral part of a tangent <strong>vector</strong> space. On the other hand, we have to use an intrinsic parametrization $\tau$ to artificially create a local vector space structure in parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>. Recall that a parameter space is a parametric representation of a  set of <strong>points</strong> in a manifold.
-We will discuss more about this in  <a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a>. <!-- Part IV. --></p>
+<p>The key takeway is that a vector space structure is an integral part of a tangent <strong>vector</strong> space. On the other hand, we have to use an intrinsic parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code> to artificially create a local vector space structure in parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>.
+We will discuss more about this difference in <a href="%7B%20post_url%202021-11-15-Geomopt04%20%7D#two-kinds-of-spaces">Part IV</a>.</p>
 
 <hr>
 <h1 id="references">References</h1>
@@ -716,7 +704,7 @@ We will discuss more about this in  <a href="/posts/2021/11/Geomopt04/#two-kinds
       <p>For simplicity, we avoid defining a (coordinate-free) <a href="https://en.wikipedia.org/wikiCovariant_derivative">covariant derivative</a>, which induces parallel transport. Given a smooth scalar field/function on a manifold, a coordinate representation of the covariant derivative remains the same as the Euclidean case. Note that the standard coordinate derivative  is identical to  the coordinate representation of the covariant derivative when it comes to a scalar field. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
-      <p>A Riemannian gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors">contravariant vector</a> (A.K.A. a Riemannian vector) while a Euclidean gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors">covariant vector</a> (A.K.A. a Riemannian covector). We will discuss their transformation rules in  <a href="/posts/2021/11/Geomopt03/">Part III</a>. <!-- Part III. --> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>A Riemannian gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors">contravariant vector</a> (A.K.A. a Riemannian vector) while a Euclidean gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors">covariant vector</a> (A.K.A. a Riemannian covector). We will discuss their transformation rules in <a href="/posts/2021/11/Geomopt03/">Part III</a>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>
