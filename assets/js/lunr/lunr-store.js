@@ -70,7 +70,7 @@ var store = [{
         "url": "/posts/2021/10/Geomopt02/",
         "teaser":null},{
         "title": "Part III: Invariance of Natural-Gradients",
-        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should help readers to understand the invariance of natural-gradients.We will also discuss why the Euclidean steepest direction is NOT invariant. We will give an informal introduction with a focus on high level of ideas. Parameter Transformation and Invariance In Part II,...","categories": [],
+        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post focuses on the invariance of natural-gradients. We will discuss transformation rules related to natural-gradients and how to compute natural-gradients in a new coordinate system via Automatic Differentiation. However, the Euclidean counterpart in general can be non-invariant, which is the key reason...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/11/Geomopt03/",
         "teaser":null},{

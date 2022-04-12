@@ -182,7 +182,7 @@
 
 
 
-  11 minute read
+  12 minute read
 </p>
           
         </header>
@@ -193,10 +193,33 @@
         <p>Warning: working in Progress (incomplete)</p>
 
 <h2 id="goal">Goal</h2>
-<p>This blog post should help readers to understand the invariance of natural-gradients.
-We will also discuss why the Euclidean steepest direction is NOT invariant.</p>
 
-<p>We will give an informal introduction with a focus on high level of ideas.</p>
+<p>This blog post focuses on the invariance of natural-gradients.</p>
+
+<p>We will discuss  transformation rules related to natural-gradients and how to compute natural-gradients in a new coordinate system via Automatic Differentiation.</p>
+
+<p>However, the Euclidean counterpart in general can be non-invariant, which is the key reason to explain why Euclidean gradient descent is not invariant.</p>
+
+<p>The discussion here is informal and focuses more on intuitions, rather than rigor.</p>
+
+<div class="notice--info">
+  <details>
+<summary>Click to see how to cite this blog post</summary>
+<fieldset class="field-set">
+
+      <div class="language-latex highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021blog03,
+  title = <span class="p">{</span>Invariance of Natural-Gradients<span class="p">}</span>,
+  author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
+  url = <span class="p">{</span>https://informationgeometryml.github.io/posts/2021/11/Geomopt03/<span class="p">}</span>, 
+  howpublished = <span class="p">{</span><span class="k">\url</span><span class="p">{</span>https://informationgeometryml.github.io/posts/2021/11/Geomopt03/<span class="p">}}</span>,
+  year = <span class="p">{</span>2021<span class="p">}</span>,
+  note = <span class="p">{</span>Accessed: 2021-11-02<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>      </div>
+    </fieldset>
+</details>
+</div>
 
 <h1 id="parameter-transformation-and-invariance">Parameter Transformation and Invariance</h1>
 <hr>
