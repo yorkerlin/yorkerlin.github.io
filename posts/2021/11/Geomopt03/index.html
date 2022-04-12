@@ -204,6 +204,33 @@ We will discuss</p>
 
 <p>The discussion here is informal and focuses more on intuitions, rather than rigor.</p>
 
+<div class="notice--info">
+  <details>
+<summary>Click to see how to cite this blog post</summary>
+<fieldset class="field-set">
+
+      <div class="language-latex highlighter-rouge">
+<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021blog03,
+  title = <span class="p">{</span>Invariance of Natural-Gradients<span class="p">}</span>,
+  author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
+  url = <span class="p">{</span>https://informationgeometryml.github.io/posts/2021/11/Geomopt03/<span class="p">}</span>, 
+  howpublished = <span class="p">{</span><span class="k">\url</span><span class="p">{</span>https://informationgeometryml.github.io/posts/2021/11/Geomopt03/<span class="p">}}</span>,
+  year = <span class="p">{</span>2021<span class="p">}</span>,
+  note = <span class="p">{</span>Accessed: 2021-11-02<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>      </div>
+    </fieldset>
+</details>
+</div>
+
+<h1 id="parameter-transformation-and-invariance">Parameter Transformation and Invariance</h1>
+<hr>
+<p>In <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a>, we have shown that a Riemannian gradient is a parametric representation of the tangent direction of a curve in a  manifold.
+Since a curve and its tangent direction are geometric obejects, they should be invariant to the choice of parametrization.
+In other words, geometric properties should be persevered in any valid coordinate system. This is a coordinate-free argument.</p>
+
+<p>The argument could be abstract for beginners. To be more concrete, we consider the corresponding coordinate-dependent argument: geometric properties should remain unchanged if we perform a (valid) parameter transformation. This coordinate-dependent argument also gives us a rule to compute natrual-gradients under a parameter transformation.</p>
+
 <p>The transformation rules are summarized in the following table</p>
 
 <table>
@@ -233,34 +260,7 @@ We will discuss</p>
   </tbody>
 </table>
 
-<div class="notice--info">
-  <details>
-<summary>Click to see how to cite this blog post</summary>
-<fieldset class="field-set">
-
-      <div class="language-latex highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021blog03,
-  title = <span class="p">{</span>Invariance of Natural-Gradients<span class="p">}</span>,
-  author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
-  url = <span class="p">{</span>https://informationgeometryml.github.io/posts/2021/11/Geomopt03/<span class="p">}</span>, 
-  howpublished = <span class="p">{</span><span class="k">\url</span><span class="p">{</span>https://informationgeometryml.github.io/posts/2021/11/Geomopt03/<span class="p">}}</span>,
-  year = <span class="p">{</span>2021<span class="p">}</span>,
-  note = <span class="p">{</span>Accessed: 2021-11-02<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>      </div>
-    </fieldset>
-</details>
-</div>
-
-<h1 id="parameter-transformation-and-invariance">Parameter Transformation and Invariance</h1>
-<hr>
-<p>In <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a>, we have shown that a Riemannian gradient is a parametric representation of the tangent direction of a curve in a  manifold.
-Since a curve and its tangent direction are geometric obejects, they should be invariant to the choice of parametrization.
-In other words, geometric properties should be persevered in any valid coordinate system. This is a coordinate-free argument.</p>
-
-<p>The argument could be abstract for beginners. To be more concrete, we consider the corresponding coordinate-dependent argument: geometric properties should remain unchanged if we perform a (valid) parameter transformation. This coordinate-dependent argument also gives us a rule to compute natrual-gradients under a parameter transformation.</p>
-
-<p>The following example illustrates these transformation rules.</p>
+<p>The following example illustrates these transformation rules shown in the Table.</p>
 <div class="notice--info">
   <details>
 <summary>Univariate Gaussian example: (click to expand)</summary>
