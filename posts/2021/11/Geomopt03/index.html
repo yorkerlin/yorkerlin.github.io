@@ -204,6 +204,35 @@ We will discuss</p>
 
 <p>The discussion here is informal and focuses more on intuitions, rather than rigor.</p>
 
+<p>The transformation rules are summarized in the following table</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Type of  directions</th>
+      <th style="text-align: center">transformation rules</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Euclidean gradient</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\eqref{6}$</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Euclidean steepest descent direction (normalized Euclidean gradient)</td>
+      <td style="text-align: center">Non-invariant</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Riemannian gradient</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\eqref{7}$</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left">Riemannian steepest descent direction (normalized Riemannian gradient)</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\eqref{7}$</code></td>
+    </tr>
+  </tbody>
+</table>
+
 <div class="notice--info">
   <details>
 <summary>Click to see how to cite this blog post</summary>
@@ -230,35 +259,6 @@ Since a curve and its tangent direction are geometric obejects, they should be i
 In other words, geometric properties should be persevered in any valid coordinate system. This is a coordinate-free argument.</p>
 
 <p>The argument could be abstract for beginners. To be more concrete, we consider the corresponding coordinate-dependent argument: geometric properties should remain unchanged if we perform a (valid) parameter transformation. This coordinate-dependent argument also gives us a rule to compute natrual-gradients under a parameter transformation.</p>
-
-<p>The transformation rules are summarized in the following table</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Type of  directions</th>
-      <th style="text-align: center">transformation rules</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left">Euclidean gradient</td>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\eqref{6}$</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Euclidean steepest descent direction (normalized Euclidean gradient)</td>
-      <td style="text-align: center">N/A</td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Riemannian gradient</td>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\eqref{7}$</code></td>
-    </tr>
-    <tr>
-      <td style="text-align: left">Riemannian steepest descent direction (normalized Riemannian gradient)</td>
-      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\eqref{7}$</code></td>
-    </tr>
-  </tbody>
-</table>
 
 <p>The following example illustrates these transformation rules.</p>
 <div class="notice--info">
