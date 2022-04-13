@@ -587,9 +587,8 @@ $$</code></p>
   <p>The Taylor expansion</p>
   <ul>
     <li>uses the distance defined in a (Riemannian) gradient space to approximate the distance in a parameter space.</li>
-    <li>implicitly assumes that the parameter space is <strong>open</strong> due to the definition of the expansion.</li>
+    <li>implicitly assumes that the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is <strong>open</strong> due to the definition of the expansion.</li>
   </ul>
-
 </div>
 
 <p>In <a href="/posts/2021/12/Geomopt05/#natural-gradient-descent-as-unconstrained-mirror-descent">Part V</a>   , we will show that  <code class="language-plaintext highlighter-rouge">$\mathrm{D}(y,\tau_k)$</code> can also be an exact KL divergence when $p(w)$ is an exponential family.
@@ -598,7 +597,7 @@ Under a particular parametrization,  natural-gradient descent also can be viewed
 <div class="notice--danger">
   <p><strong>Warning</strong>:</p>
 
-  <p>The connection bewteen natural-gradient descent and proximal-gradient/mirror descent could break down in constrained cases. We will cover more about this point in <a href="/posts/2021/12/Geomopt06/">Part VI</a>.</p>
+  <p>The connection bewteen natural-gradient descent and proximal-gradient/mirror descent could break down in constrained cases unless <code class="language-plaintext highlighter-rouge">$\alpha$</code> is small enough. We will cover more about this point in <a href="/posts/2021/12/Geomopt06/">Part VI</a>.</p>
 </div>
 
 <h1 id="natural-gradient-descent-in-non-intrinsic-parameter-spaces">Natural-gradient Descent in Non-intrinsic Parameter Spaces</h1>
