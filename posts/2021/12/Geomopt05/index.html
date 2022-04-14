@@ -803,7 +803,7 @@ where  <code class="language-plaintext highlighter-rouge">$\pi = \frac{\exp(\eta
 </details>
 </div>
 
-<p>Now, consider the following mirror descent in the expectation parameter space <code class="language-plaintext highlighter-rouge">$\Omega_m$</code> as</p>
+<p>Now, consider the following mirror descent in the expectation parameter space <code class="language-plaintext highlighter-rouge">$\Omega_m$</code>, where <code class="language-plaintext highlighter-rouge">$alpha&gt;0$</code>.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -853,8 +853,8 @@ By <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code>, <code 
 
         <p>Moreover,
 <code class="language-plaintext highlighter-rouge">$\mathbf{m}(\mathbf{\eta}_{k+1})$</code> is 
-the unique  solution of <code class="language-plaintext highlighter-rouge">$\eqref{7}$</code> since <code class="language-plaintext highlighter-rouge">$\nabla_x^2 u(\mathbf{x}) =\nabla_x^2 A^*_\eta(
-{\mathbf{x}})$</code> is positive-definite for any  <code class="language-plaintext highlighter-rouge">$\mathbf{x} \in \Omega_m$</code> and therefore strictly convex.
+the unique  solution of <code class="language-plaintext highlighter-rouge">$\eqref{7}$</code> since <code class="language-plaintext highlighter-rouge">$\nabla_x^2 u(\mathbf{x}) =\frac{1}{\alpha}\nabla_x^2 A^*_\eta(
+{\mathbf{x}})$</code> is positive-definite for any <code class="language-plaintext highlighter-rouge">$\mathbf{x} \in \Omega_m$</code> and therefore strictly convex.
 In other words, 
 <code class="language-plaintext highlighter-rouge">$\mathbf{m}_{k+1} = \mathbf{m}( {\mathbf{\eta}_{k+1}}) $</code>.</p>
 
