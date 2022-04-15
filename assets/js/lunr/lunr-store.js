@@ -70,7 +70,7 @@ var store = [{
         "url": "/posts/2021/10/Geomopt02/",
         "teaser":null},{
         "title": "Part III: Invariance of Natural-Gradients",
-        "excerpt":"Goal This blog post focuses on the invariance of natural-gradients.We will discuss transformation rules related to natural-gradients and the computation via Automatic Differentiation. the non-invariance of the Euclidean counterpart. The discussion here is informal and focuses more on intuitions, rather than rigor. Click to see how to cite this blog...","categories": [],
+        "excerpt":"Goal This blog post focuses on invariant properties of natural-gradients.We will discuss transformation rules of natural-gradients and the computation of re-parametrized natural-gradients via Automatic Differentiation. non-invariance of the Euclidean counterpart. The discussion here is informal and focuses more on intuitions, rather than rigor. Click to see how to cite this...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/11/Geomopt03/",
         "teaser":null},{
