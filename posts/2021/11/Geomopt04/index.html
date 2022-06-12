@@ -202,8 +202,8 @@ We also discuss some invariance property of natural-gradient descent, Riemannian
 <hr>
 <p>We will discuss (Riemannian) gradient spaces and parameter spaces for gradient-based updates.</p>
 
-<p>As we disucssed in <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a>, the parameter space $\Omega_\tau$ and the tangent space denoted by <code class="language-plaintext highlighter-rouge">$T\mathcal{M}_{\tau_0}$</code> at point $\tau_0$ are two distinct spaces. 
-Given  <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">intrinsic parametrization</a>  <code class="language-plaintext highlighter-rouge">$\tau$</code>,  the tangent space is a (complete) vector space and <code class="language-plaintext highlighter-rouge">$T\mathcal{M}_{\tau_0}=\mathcal{R}^K$</code> while the parameter space $\Omega_\tau$ is like a local vector space in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where $K$ is the dimension of the manifold. In other words, <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is often an open (proper) subset of <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>.</p>
+<p>As we disucssed in <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a>, the parameter space $\Omega_\tau$ and the tangent space denoted by <code class="language-plaintext highlighter-rouge">$T_{\tau_0}\mathcal{M}$</code> at point $\tau_0$ are two distinct spaces. 
+Given  <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">intrinsic parametrization</a>  <code class="language-plaintext highlighter-rouge">$\tau$</code>,  the tangent space is a (complete) vector space and <code class="language-plaintext highlighter-rouge">$T_{\tau_0}\mathcal{M}=\mathcal{R}^K$</code> while the parameter space $\Omega_\tau$ is like a local vector space in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where $K$ is the dimension of the manifold. In other words, <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is often an open (proper) subset of <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>.</p>
 
 <p>In manifold cases, we have to explicitly distinguish the difference between the representation of a point (parameter) and a vector (Riemannian gradient).  These two spaces are different in many aspects such as
 the domain and the distance.
@@ -232,7 +232,7 @@ By choosing an intrinsic parametrization, this update is also valid in the <stro
 enough.</p>
 
 <p>The update in the parameter space is valid since the parameter space $\Omega_\tau$ has a local vector-space structure thanks to the use of an intrinsic parametrization.
-However, when $\Omega_\tau$ is a proper subset of $T\mathcal{M}_{\tau_k}$ (i.e., <code class="language-plaintext highlighter-rouge">$\Omega_\tau \neq T\mathcal{M}_{\tau_k} $</code>), the update in Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is valid only when the step-size $\alpha$ is small enough so that  <code class="language-plaintext highlighter-rouge">$\tau_{k+1} \in \Omega_\tau$</code>.</p>
+However, when $\Omega_\tau$ is a proper subset of <code class="language-plaintext highlighter-rouge">$T_{\tau_k}\mathcal{M}$</code> (i.e., <code class="language-plaintext highlighter-rouge">$\Omega_\tau \neq T_{\tau_k}\mathcal{M} $</code>), the update in Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is valid only when the step-size $\alpha$ is small enough so that  <code class="language-plaintext highlighter-rouge">$\tau_{k+1} \in \Omega_\tau$</code>.</p>
 
 <div class="notice--danger">
   <p><strong>Warning</strong>:</p>
@@ -265,14 +265,14 @@ The parameter transformation can be non-linear.</p>
 
 <p>It is natural to expect that natural-gradient descent has a similar property. Unfortunately, natural-gradient descent is only invariant under an intrinsic <strong>linear</strong> transformation. Note that Newton’s method is also linearly invariant while Euclidean gradient descent is not.</p>
 
-<p>Let’s consider the following (scalar) optimization problem on a smooth manifold $\mathcal{M}$ with the Fisher-Rao metric <code class="language-plaintext highlighter-rouge">$F$</code>.
+<p>Let’s consider the following (scalar) optimization problem on a smooth manifold <code class="language-plaintext highlighter-rouge">$\mathcal{M}$</code> with the Fisher-Rao metric <code class="language-plaintext highlighter-rouge">$F$</code>.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \min_{x \in \mathcal{M}} h(x)
 \end{aligned}\tag{2}\label{2}
 $$</code></p>
 
-<p>Note that $\mathcal{M}$ in general does not have a vector-space structure. 
+<p>Note that <code class="language-plaintext highlighter-rouge">$\mathcal{M}$</code> in general does not have a vector-space structure. 
 We has to <strong>artificially</strong> choose an intrinsic parameterization $\tau$ so that the parameter space $\Omega_\tau$ at least has a local  vector-space structure.
 The problem in <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> can be re-expressed as below.
 <code class="language-plaintext highlighter-rouge">$$
@@ -354,7 +354,7 @@ Given an intrinsic parametrization $\tau$,
 the  map at point $\tau_0$  is defined as
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-\mathrm{Exp}_{\tau_0}\colon  T\mathcal{M}_{\tau_0} &amp; \mapsto \mathcal{M}\\
+\mathrm{Exp}_{\tau_0}\colon  T_{\tau_0}\mathcal{M} &amp; \mapsto \mathcal{M}\\
 \mathbf{v}_{\tau_0} &amp; \mapsto \gamma_\tau(1) \,\,\,\, \textrm{s.t.} \,\,\,\,\,\, \gamma_\tau(0) = \tau_0;\,\,\,\,\,\,
 \frac{d \gamma_\tau(t) }{d t} \Big|_{t=0} = \mathbf{v}_{\tau_0}
 \end{aligned}
