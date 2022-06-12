@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-11T13:42:20-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-12T10:05:38-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
@@ -1583,6 +1583,8 @@ We will discuss&lt;/p&gt;
 
 &lt;h1 id=&quot;parameter-transformation-and-invariance&quot;&gt;Parameter Transformation and Invariance&lt;/h1&gt;
 &lt;hr /&gt;
+&lt;p&gt;Recall that a Riemannian gradient is also known as a &lt;strong&gt;natural gradient&lt;/strong&gt; since we use the Fisher-Rao metric &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{F}$&lt;/code&gt; as the Riemannian metric.&lt;/p&gt;
+
 &lt;p&gt;In &lt;a href=&quot;/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional&quot;&gt;Part II&lt;/a&gt;, we have shown that a Riemannian gradient is a parametric representation of the tangent direction of a curve in a  manifold.
 Since a curve and its tangent direction are geometric obejects, they should be invariant to the choice of parametrization.
 In other words, geometric properties should be persevered in any valid coordinate system. This is a coordinate-free argument.&lt;/p&gt;
@@ -1785,7 +1787,7 @@ Given an intrinsic parametrization $\tau$ containing the point, we consider the 
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h2 id=&quot;transformation-rules-for-natural-gradients-and-euclidean-gradients&quot;&gt;Transformation Rules for Natural Gradients and Euclidean Gradients&lt;/h2&gt;
+&lt;h2 id=&quot;transformation-rules-for-riemannian-gradients-and-euclidean-gradients&quot;&gt;Transformation Rules for Riemannian Gradients and Euclidean Gradients&lt;/h2&gt;
 
 &lt;p&gt;Intuitively, the following identity should hold for any two (intrinsic) parametrizations $\tau$ and $\lambda$.
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
