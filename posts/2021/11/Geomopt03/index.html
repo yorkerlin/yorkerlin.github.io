@@ -434,7 +434,7 @@ Given an intrinsic parametrization $\tau$ containing the point, we consider the 
 <p>Intuitively, the following identity should hold for any two (intrinsic) parametrizations $\tau$ and $\lambda$.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-h(\gamma(t)) = h_\tau(\gamma_\tau(t)) = h_\lambda(\gamma_\lambda(t))
+h(\gamma(t)) = \underbrace{[h \circ \Psi_\tau^{-1}]}_{h_\tau}( \underbrace{ \Psi_\tau( \gamma(t) ) }_{:= \gamma_\tau(t)  }  ) = \underbrace{[h \circ \Psi_\lambda^{-1}]}_{h_\lambda}( \underbrace{ \Psi_\lambda( \gamma(t) ) }_{:= \gamma_\lambda(t)  }  )
 \end{aligned}
 $$</code> where we consider $t$ to be fixed.</p>
 
@@ -730,7 +730,7 @@ Moreover, Euclidean gradient descent is not invariant under a parameter transfor
       <p>In differential geometry, a Euclidean gradient is also known as a coordinate representation of a cotangent vector. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
     <li id="fn:2" role="doc-endnote">
-      <p>We assume readers are familar with the transformation rule for Euclidean gradients. In differential geometry, this transformation rule can also be shown by using an abstract coordinate map. We avoid defining this map for simplicity. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+      <p>We assume readers are familar with the transformation rule for Euclidean gradients. In differential geometry, this transformation rule can also be shown that <code class="language-plaintext highlighter-rouge">$\tau(t)=\gamma_\tau(t)$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{J}= \Psi_\lambda \circ \Psi_\tau^{-1}$</code>, where $\Psi_\tau$ is known as the coordinate map for parametrization $\tau$. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
   </ol>
 </div>
