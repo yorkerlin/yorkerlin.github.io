@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-18T05:29:21-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-18T11:09:45-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
@@ -41,15 +41,16 @@ equivalent in exponential family cases even when &lt;code class=&quot;language-p
 &lt;/div&gt;
 
 &lt;h2 id=&quot;implicit-unconstrained-reparametrization&quot;&gt;Implicit Unconstrained Reparametrization&lt;/h2&gt;
-&lt;p&gt;A straightforward approach to handle a constrain is via a unconstrained reparametrization, where we use the
+&lt;p&gt;A straightforward approach to handle a constraint is via an unconstrained reparametrization, where we use the
 transformation rule for natural-gradients as discussed in 
  &lt;a href=&quot;/posts/2021/11/Geomopt03/&quot;&gt;Part III&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;However, we have to compute the Jacobian matrix used the transformation rule.
 It could be possible to use Auto-Diff to compute natural-gradients as suggested by
  &lt;a class=&quot;citation&quot; href=&quot;#salimbeni2018natural&quot;&gt;[1]&lt;/a&gt;.
- However, a global unconstrained reparametrization can easily destroy structures in a parameter space.
- Moreover, it is often difficult for Auto-Diff to exploit sparsity such as automatically using a sparse linear solver. Please see Appendix G of &lt;a class=&quot;citation&quot; href=&quot;#lin2021tractable&quot;&gt;[2]&lt;/a&gt; for detailed discussion about this issue.&lt;/p&gt;
+ However, a global unconstrained reparametrization can easily destroy structures in a parameter space due to the
+ Jacobian matrix.
+ Moreover, it is often difficult for Auto-Diff to exploit sparsity such as automatically using a sparse linear solver. Please see Appendix G.1 of &lt;a class=&quot;citation&quot; href=&quot;#lin2021tractable&quot;&gt;[2]&lt;/a&gt; for detailed discussion about this issue.&lt;/p&gt;
 
 &lt;h2 id=&quot;projected-natural-gradient-descent&quot;&gt;Projected Natural Gradient Descent&lt;/h2&gt;
 &lt;p&gt;Another straightforward approach from natural-gradient descent is the projected natural-gradient descent, where we  use 

@@ -233,15 +233,16 @@ equivalent in exponential family cases even when <code class="language-plaintext
 </div>
 
 <h2 id="implicit-unconstrained-reparametrization">Implicit Unconstrained Reparametrization</h2>
-<p>A straightforward approach to handle a constrain is via a unconstrained reparametrization, where we use the
+<p>A straightforward approach to handle a constraint is via an unconstrained reparametrization, where we use the
 transformation rule for natural-gradients as discussed in 
  <a href="/posts/2021/11/Geomopt03/">Part III</a>.</p>
 
 <p>However, we have to compute the Jacobian matrix used the transformation rule.
 It could be possible to use Auto-Diff to compute natural-gradients as suggested by
  <a class="citation" href="#salimbeni2018natural">[1]</a>.
- However, a global unconstrained reparametrization can easily destroy structures in a parameter space.
- Moreover, it is often difficult for Auto-Diff to exploit sparsity such as automatically using a sparse linear solver. Please see Appendix G of <a class="citation" href="#lin2021tractable">[2]</a> for detailed discussion about this issue.</p>
+ However, a global unconstrained reparametrization can easily destroy structures in a parameter space due to the
+ Jacobian matrix.
+ Moreover, it is often difficult for Auto-Diff to exploit sparsity such as automatically using a sparse linear solver. Please see Appendix G.1 of <a class="citation" href="#lin2021tractable">[2]</a> for detailed discussion about this issue.</p>
 
 <h2 id="projected-natural-gradient-descent">Projected Natural Gradient Descent</h2>
 <p>Another straightforward approach from natural-gradient descent is the projected natural-gradient descent, where we  use 
