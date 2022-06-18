@@ -1,7 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-18T11:09:45-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-06-18T11:21:20-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
+
+&lt;div class=&quot;notice--info&quot;&gt;
+  &lt;details&gt;
+&lt;summary&gt;Click to see how to cite this blog post&lt;/summary&gt;
+&lt;fieldset class=&quot;field-set&quot;&gt;
+
+      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021NGDblog06,
+  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Introduction to Natural-gradient Descent: Part VI&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  author = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/year-archive/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
+  howpublished = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/12/Geomopt06/&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;,
+  year = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;2021&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  note = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Accessed: 2021-12-22&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/fieldset&gt;
+&lt;/details&gt;
+&lt;/div&gt;
 
 &lt;h1 id=&quot;handling-parameter-constraints&quot;&gt;Handling Parameter Constraints&lt;/h1&gt;
 &lt;hr /&gt;
@@ -201,6 +219,24 @@ the constraint.&lt;/p&gt;
 &lt;p&gt;This blog post should show that we can efficiently implement natural-gradient methods in many cases.&lt;/p&gt;
 
 &lt;p&gt;We will give an informal introduction with a focus on high level of ideas.&lt;/p&gt;
+
+&lt;div class=&quot;notice--info&quot;&gt;
+  &lt;details&gt;
+&lt;summary&gt;Click to see how to cite this blog post&lt;/summary&gt;
+&lt;fieldset class=&quot;field-set&quot;&gt;
+
+      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021NGDblog05,
+  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Introduction to Natural-gradient Descent: Part V&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  author = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/year-archive/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
+  howpublished = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/12/Geomopt05/&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;,
+  year = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;2021&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  note = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Accessed: 2021-12-14&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/fieldset&gt;
+&lt;/details&gt;
+&lt;/div&gt;
 
 &lt;h1 id=&quot;exponential-family&quot;&gt;Exponential Family&lt;/h1&gt;
 &lt;hr /&gt;
@@ -908,6 +944,24 @@ We also discuss some invariance property of natural-gradient descent, Riemannian
 
 &lt;p&gt;We will give an informal introduction with a focus on high level of ideas.&lt;/p&gt;
 
+&lt;div class=&quot;notice--info&quot;&gt;
+  &lt;details&gt;
+&lt;summary&gt;Click to see how to cite this blog post&lt;/summary&gt;
+&lt;fieldset class=&quot;field-set&quot;&gt;
+
+      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021NGDblog04,
+  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Introduction to Natural-gradient Descent: Part IV&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  author = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/year-archive/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
+  howpublished = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/11/Geomopt04/&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;,
+  year = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;2021&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+  note = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Accessed: 2021-11-15&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;      &lt;/div&gt;
+    &lt;/fieldset&gt;
+&lt;/details&gt;
+&lt;/div&gt;
+
 &lt;h1 id=&quot;two-kinds-of-spaces&quot;&gt;Two kinds of Spaces&lt;/h1&gt;
 &lt;hr /&gt;
 &lt;p&gt;We will discuss (Riemannian) gradient spaces and parameter spaces for gradient-based updates.&lt;/p&gt;
@@ -1582,10 +1636,10 @@ We will discuss&lt;/p&gt;
 &lt;summary&gt;Click to see how to cite this blog post&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
 
-      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021blog03,
-  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Invariance of Natural-Gradients&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021NGDblog03,
+  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Introduction to Natural-gradient Descent: Part III&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
   author = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
-  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/11/Geomopt03/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
+  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/year-archive/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
   howpublished = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/11/Geomopt03/&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;,
   year = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;2021&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
   note = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Accessed: 2021-11-02&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -2115,10 +2169,10 @@ Moreover, Euclidean gradient descent is not invariant under a parameter transfor
 &lt;summary&gt;Click to see how to cite this blog post&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
 
-      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021blog02,
-  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Derivation of Natural-gradients&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021NGDblog02,
+  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Introduction to Natural-gradient Descent: Part II&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
   author = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
-  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/10/Geomopt02/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
+  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/year-archive/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
   howpublished = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/10/Geomopt02/&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;,
   year = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;2021&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
   note = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Accessed: 2021-10-04&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
@@ -2627,10 +2681,10 @@ We will discuss more about this difference in &lt;a href=&quot;/posts/2021/11/Ge
 &lt;summary&gt;Click to see how to cite this blog post&lt;/summary&gt;
 &lt;fieldset class=&quot;field-set&quot;&gt;
 
-      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021blog01,
-  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Smooth Manifolds with the Fisher-Rao Metric&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
+      &lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@misc&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;lin2021NGDblog01,
+  title = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Introduction to Natural-gradient Descent: Part I&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
   author = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
-  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/09/Geomopt01/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
+  url = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/year-archive/&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;, 
   howpublished = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;\url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;https://informationgeometryml.github.io/posts/2021/09/Geomopt01/&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;,
   year = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;2021&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;,
   note = &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;Accessed: 2021-09-06&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;

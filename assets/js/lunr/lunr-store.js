@@ -75,17 +75,17 @@ var store = [{
         "url": "/posts/2021/11/Geomopt03/",
         "teaser":null},{
         "title": "Part IV: Natural and Riemannian  Gradient Descent",
-        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should help readers to understand natural-gradient descent and Riemannian gradient descent.We also discuss some invariance property of natural-gradient descent, Riemannian gradient descent, and Newton’s method. We will give an informal introduction with a focus on high level of ideas. Two kinds...","categories": [],
+        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should help readers to understand natural-gradient descent and Riemannian gradient descent.We also discuss some invariance property of natural-gradient descent, Riemannian gradient descent, and Newton’s method. We will give an informal introduction with a focus on high level of ideas. Click to...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/11/Geomopt04/",
         "teaser":null},{
         "title": "Part V: Efficient Natural-gradient Methods for Exponential Family",
-        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should show that we can efficiently implement natural-gradient methods in many cases. We will give an informal introduction with a focus on high level of ideas. Exponential Family An exponential family takes the following (canonical) form as$$\\begin{aligned}p(\\mathbf{w}|\\mathbf{\\eta}) = h_\\eta(\\mathbf{w}) \\exp( \\langle...","categories": [],
+        "excerpt":"Warning: working in Progress (incomplete) Goal This blog post should show that we can efficiently implement natural-gradient methods in many cases. We will give an informal introduction with a focus on high level of ideas. Click to see how to cite this blog post @misc{lin2021NGDblog05, title = {Introduction to Natural-gradient...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold","Exponential Family"],
         "url": "/posts/2021/12/Geomopt05/",
         "teaser":null},{
         "title": "Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods",
-        "excerpt":"Warning: working in Progress (Part VI is incomplete) Goal In this blog post, we discuss about how to handle parameter constraints of exponential family. Handling Parameter Constraints Recall that in Part IV, we discuss the many faces of NGD in unconstrained cases. These methods could also be exteneded in constrained...","categories": [],
+        "excerpt":"Warning: working in Progress (Part VI is incomplete) Goal In this blog post, we discuss about how to handle parameter constraints of exponential family. Click to see how to cite this blog post @misc{lin2021NGDblog06, title = {Introduction to Natural-gradient Descent: Part VI}, author = {Lin, Wu and Nielsen, Frank and...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold","Exponential Family"],
         "url": "/posts/2021/12/Geomopt06/",
         "teaser":null},{
