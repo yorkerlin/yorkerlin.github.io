@@ -431,12 +431,13 @@ Given an intrinsic parametrization $\tau$ containing the point, we consider the 
 
 <h2 id="transformation-rules-for-riemannian-gradients-and-euclidean-gradients">Transformation Rules for Riemannian Gradients and Euclidean Gradients</h2>
 
-<p>Intuitively, the following identity should hold for any two (intrinsic) parametrizations $\tau$ and $\lambda$.
+<p>Intuitively, the following identity should hold for any two intrinsic parametrizations <code class="language-plaintext highlighter-rouge">$\tau$</code> and <code class="language-plaintext highlighter-rouge">$\lambda$</code>
+that represent a common sub-set of points in a manifold.
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 h(\gamma(t)) = \underbrace{[h \circ \Psi_\tau^{-1}]}_{h_\tau}( \underbrace{ \Psi_\tau( \gamma(t) ) }_{:= \gamma_\tau(t)  }  ) = \underbrace{[h \circ \Psi_\lambda^{-1}]}_{h_\lambda}( \underbrace{ \Psi_\lambda( \gamma(t) ) }_{:= \gamma_\lambda(t)  }  )
 \end{aligned}
-$$</code> where we consider $t$ to be fixed and $\Psi_\tau$ is known as the coordinate/parametrization map for parametrization $\tau$ (i.e., $\Psi_\tau: \mathcal{M} \to \mathcal{R}^{\mathrm{dim}(\mathcal{M})}$).</p>
+$$</code> where we consider $t$ to be fixed and <code class="language-plaintext highlighter-rouge">$\Psi_\tau$</code> is known as the coordinate/parametrization map for parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code> (i.e., <code class="language-plaintext highlighter-rouge">$\Psi_\tau: \mathcal{M} \to \mathcal{R}^{\mathrm{dim}(\mathcal{M})}$</code>).</p>
 
 <p>Technically speaking,  domain <code class="language-plaintext highlighter-rouge">$\mathbf{I}_\tau$</code> of curve <code class="language-plaintext highlighter-rouge">$\gamma_\tau(t)$</code> and  domain <code class="language-plaintext highlighter-rouge">$\mathbf{I}_\lambda$</code> of curve <code class="language-plaintext highlighter-rouge">$\gamma_\lambda(t)$</code> may be different.
 For simplicity, we assume both domains are open intervals containing 0.
@@ -554,7 +555,8 @@ $$</code></p>
 <span style="color:blue"><strong>row</strong></span> vector <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\tau^T$</code> can be computed via a vector-Jacobian product in any standard Auto-Diff toolbox given that <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\lambda$</code> is pre-computed.</p>
 </div>
 
-<p>By Eq <code class="language-plaintext highlighter-rouge">$\eqref{3}$</code>, we obtain the transformation rule for Riemannian gradients  (denoted by a column vector) as below,  where <code class="language-plaintext highlighter-rouge">$\mathbf{Q}:=\mathbf{J}^{-1}$</code> is also a Jacobian matrix and <code class="language-plaintext highlighter-rouge">$Q_{ki}=\frac{\partial \tau^k(\lambda)}{\partial \lambda^i}$</code> is the <code class="language-plaintext highlighter-rouge">$(k,i)$</code> entry of matrix <code class="language-plaintext highlighter-rouge">$\mathbf{Q}$</code>.</p>
+<p>By Eq <code class="language-plaintext highlighter-rouge">$\eqref{3}$</code>, we obtain the transformation rule for Riemannian gradients  (denoted by a column vector) as below,  where <code class="language-plaintext highlighter-rouge">$\mathbf{Q}:=\mathbf{J}^{-1}$</code> is also a Jacobian matrix and <code class="language-plaintext highlighter-rouge">$Q_{ki}=\frac{\partial \tau^k(\lambda)}{\partial \lambda^i}$</code> is the <code class="language-plaintext highlighter-rouge">$(k,i)$</code> entry of matrix <code class="language-plaintext highlighter-rouge">$\mathbf{Q}$</code>. As disscused in <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">Part I</a>,
+the Jacobian matrix is always non-singular for these two intrinsic parameterizations.</p>
 
 <div class="notice--success">
   <p><code class="language-plaintext highlighter-rouge">$$
