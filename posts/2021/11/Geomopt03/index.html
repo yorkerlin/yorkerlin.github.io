@@ -555,8 +555,7 @@ $$</code></p>
 <span style="color:blue"><strong>row</strong></span> vector <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\tau^T$</code> can be computed via a vector-Jacobian product in any standard Auto-Diff toolbox given that <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\lambda$</code> is pre-computed.</p>
 </div>
 
-<p>By Eq <code class="language-plaintext highlighter-rouge">$\eqref{3}$</code>, we obtain the transformation rule for Riemannian gradients  (denoted by a column vector) as below,  where <code class="language-plaintext highlighter-rouge">$\mathbf{Q}:=\mathbf{J}^{-1}$</code> is also a Jacobian matrix and <code class="language-plaintext highlighter-rouge">$Q_{ki}=\frac{\partial \tau^k(\lambda)}{\partial \lambda^i}$</code> is the <code class="language-plaintext highlighter-rouge">$(k,i)$</code> entry of matrix <code class="language-plaintext highlighter-rouge">$\mathbf{Q}$</code>. As disscused in <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">Part I</a>,
-the Jacobian matrix is always non-singular for these two intrinsic parameterizations.</p>
+<p>By Eq <code class="language-plaintext highlighter-rouge">$\eqref{3}$</code>, we obtain the transformation rule for Riemannian gradients  (denoted by a column vector) as below,  where <code class="language-plaintext highlighter-rouge">$\mathbf{Q}:=\mathbf{J}^{-1}$</code> is also a Jacobian matrix and <code class="language-plaintext highlighter-rouge">$Q_{ki}=\frac{\partial \tau^k(\lambda)}{\partial \lambda^i}$</code> is the <code class="language-plaintext highlighter-rouge">$(k,i)$</code> entry of matrix <code class="language-plaintext highlighter-rouge">$\mathbf{Q}$</code>.</p>
 
 <div class="notice--success">
   <p><code class="language-plaintext highlighter-rouge">$$
@@ -577,7 +576,7 @@ $$</code></p>
 \end{aligned},
 $$</code></p>
 
-<p>Note that these transformation rules are valid  when the Jacobian matrix <code class="language-plaintext highlighter-rouge">$\mathbf{J}$</code> is square and non-singular.
+<p>Note that these transformation rules are valid when the Jacobian matrix <code class="language-plaintext highlighter-rouge">$\mathbf{J}$</code> is square and non-singular.
 As we discussed in Part I about <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">intrinsic parameterizations</a>, the transformation map between $\tau$ and $\lambda$ must be bi-jective, which implies the Jacoabian matrix is square. 
 Moreover, the map and its inverse map should be smooth, which implies that the Jacobian matrix is well-defined and non-singular.</p>
 
