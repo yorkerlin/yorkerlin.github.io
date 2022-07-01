@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-07-01T04:02:06-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-07-01T04:10:34-07:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
@@ -1876,7 +1876,7 @@ In other words, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&
 \end{aligned}\tag{1}\label{1}
 $$&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;In &lt;a href=&quot;/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional&quot;&gt;Part II&lt;/a&gt;, we have shown that 
+&lt;p&gt;In &lt;a href=&quot;/posts/2021/10/Geomopt02/#parameterization-dependent-representation&quot;&gt;Part II&lt;/a&gt;, we have shown that 
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
  \frac{d h_\tau({\gamma}_\tau(t)) }{d t} \Big|_{t=0} &amp;amp;=  [\nabla h_\tau(\mathbf{\tau}_0)  ]^T  \frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}   \\ 
@@ -2596,7 +2596,7 @@ Be aware of the differences shown in the table.&lt;/p&gt;
 
 &lt;p&gt;Under &lt;strong&gt;intrinsic&lt;/strong&gt; parametrization $\tau$, we have &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau \subset \mathcal{R}^2$&lt;/code&gt;. Thus, we can perform this operation in $\Omega_\tau$ space: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau_0 +t\mathbf{v}(\tau_0) \in \Omega_\tau$&lt;/code&gt; when scalar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$|t|$&lt;/code&gt; is small enough. Note that we only define the &lt;a href=&quot;#weighted-norm-induced-by-the-fisher-rao-metric&quot;&gt;distance&lt;/a&gt; between two (Riemannian gradient) vectors in the tangent space. The distance between two points in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau$&lt;/code&gt; space is undefined in this post.&lt;/p&gt;
 
-&lt;h2 id=&quot;parameterization-free-representation-of--vector-mathbfv&quot;&gt;Parameterization-free Representation of  Vector $\mathbf{v}$&lt;/h2&gt;
+&lt;h2 id=&quot;parameterization-free-representation&quot;&gt;Parameterization-free Representation&lt;/h2&gt;
 
 &lt;p&gt;The tangent vector $\mathbf{v}$ at point $\mathbf{x_0}$  can be viewed as the &lt;strong&gt;tangent direction&lt;/strong&gt; of a (1-dimensional) smooth curve $\gamma(t) \in \mathcal{M}$, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\gamma(0)=\mathbf{x_0}$&lt;/code&gt; and   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\frac{d {\gamma}(t) }{d t} \Big|_{t=0}=\mathbf{v}$&lt;/code&gt; and the support of $\gamma(t)$ denoted by $\mathbf{I}$ is an open interval in  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathcal{R}^1$&lt;/code&gt; containing 0. 
 Since a curve $\gamma(t)$ is a geometric object,  its tangent direction is also a geometric object.
@@ -2608,7 +2608,7 @@ For example, in physics, the concept of parameterization-free representation mea
 parametrization when it comes to computation.
 A key takeaway is that a geometric property (i.e., length of a vector) should be invariant to the choice of valid parametrizations.&lt;/p&gt;
 
-&lt;h2 id=&quot;parameterization-dependent-representation-of-vector-mathbfv&quot;&gt;Parameterization-dependent Representation of Vector $\mathbf{v}$&lt;/h2&gt;
+&lt;h2 id=&quot;parameterization-dependent-representation&quot;&gt;Parameterization-dependent Representation&lt;/h2&gt;
 
 &lt;p&gt;Given intrinsic parametrization $\tau$, we can define the parametric representation of the curve denoted by ${\gamma}_\tau(t)$, where the domain is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{I}_\tau \subset \mathcal{R}^1$&lt;/code&gt;.
 The parametric representation of vector &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{v}$&lt;/code&gt; is defined as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{v}(\mathbf{\tau}_0):= \frac{d {\gamma}_{\tau}(t) }{d t} \Big|_{t=0}$&lt;/code&gt;, where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;${\gamma}_{\tau}(0)=\tau_0$&lt;/code&gt;.&lt;/p&gt;
