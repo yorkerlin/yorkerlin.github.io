@@ -3,12 +3,12 @@
 PhD student working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **approximate inference** and  **numerical optimization** in machine learning.
 
 For generalized natural-gradient (NG) methods, please see 
-* Structured NG descent (ICML 2021): [Long Talk](https://download.dsf.tuhh.de/ig4ds22/videos/IG4DS-WuLin.mp4), [Short Talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [ICML Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
-* Riemannian gradient descent (ICML 2020): [Talk](https://www.youtube.com/watch?v=nu1hT-LExFg), [ICML Paper](https://arxiv.org/abs/2002.10060)
+* Structured NG descent (ICML 2021): [Long Talk](https://download.dsf.tuhh.de/ig4ds22/videos/IG4DS-WuLin.mp4), [Short Talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
+* Riemannian gradient descent (ICML 2020): [Short Talk](https://www.youtube.com/watch?v=nu1hT-LExFg), [Paper](https://arxiv.org/abs/2002.10060)
 
-* NG descent for exponential-family mixtures (ICML 2019): [ICML paper](https://arxiv.org/abs/1906.02914)
-* NG descent for Bayesian deep learninng (ICML 2018): [ICML paper](https://arxiv.org/abs/1806.04854)
-* NG variational inference for non-conjugate models (AI\&Stats 2017): [AI\&Stats](https://arxiv.org/abs/1703.04265)
+* NG descent for exponential-family mixtures (ICML 2019): [Paper](https://arxiv.org/abs/1906.02914)
+* NG descent for Bayesian deep learninng (ICML 2018): [Paper](https://arxiv.org/abs/1806.04854)
+* NG variational inference for non-conjugate models (AI&Stats 2017): [Paper](https://arxiv.org/abs/1703.04265)
 
 
 For an introduction to natural-gradient methods, see my [Blog]({{ site.baseurl }}{% post_url 2021-09-06-Geomopt01 %}).
