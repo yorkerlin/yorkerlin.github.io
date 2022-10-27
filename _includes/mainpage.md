@@ -3,7 +3,7 @@
 PhD student working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **approximate inference** and  **numerical optimization** in machine learning.
 
 For generalized natural-gradient methods, please see 
-* Structured natural-gradient descent: [Talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [ICML Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
+* Structured natural-gradient descent: [Long Talk](https://download.dsf.tuhh.de/ig4ds22/videos/IG4DS-WuLin.mp4), [Short Talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [ICML Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
 * Riemannian gradient descent: [Talk](https://www.youtube.com/watch?v=nu1hT-LExFg), [ICML Paper](https://arxiv.org/abs/2002.10060)
 
 For an introduction to natural-gradient methods, see my [Blog]({{ site.baseurl }}{% post_url 2021-09-06-Geomopt01 %}).
