@@ -260,14 +260,14 @@ speaking,  a (Riemannian) gradient space is much simpler and nicer than a  param
 \end{aligned}\tag{1}\label{1}
 $$</code></p>
 </div>
-<p>where <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_{\tau_k}$</code> is a natural gradient evaluated at point <code class="language-plaintext highlighter-rouge">$\tau_{k}$</code> and $\alpha&gt;0$ is a step-size.</p>
+<p>where <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_{\tau_k}:=\mathbf{v}(\tau_k) $</code> is a natural gradient evaluated at point <code class="language-plaintext highlighter-rouge">$\tau_{k}$</code> and <code class="language-plaintext highlighter-rouge">$\alpha:=t&gt;0$</code> is a step-size.</p>
 
-<p>This update in Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is inspired by the standard vector update in the <strong>gradient space</strong>.
+<p>This update in Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is inspired by the standard linear update in the <strong>tangent vector space</strong> (as the green space in the above figure).
 By choosing an intrinsic parametrization, this update is also valid in the <strong>parameter space</strong> as long as the step-size is small
-enough.</p>
+enough (as the red space in the above figure).</p>
 
-<p>The update in the parameter space is valid since the parameter space $\Omega_\tau$ has a local vector-space structure thanks to the use of an intrinsic parametrization.
-However, when $\Omega_\tau$ is a proper subset of <code class="language-plaintext highlighter-rouge">$T_{\tau_k}\mathcal{M}$</code> (i.e., <code class="language-plaintext highlighter-rouge">$\Omega_\tau \neq T_{\tau_k}\mathcal{M} $</code>), the update in Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is valid only when the step-size $\alpha$ is small enough so that  <code class="language-plaintext highlighter-rouge">$\tau_{k+1} \in \Omega_\tau$</code>.</p>
+<p>The update in the parameter space is valid since the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> has a local vector-space structure thanks to the use of an intrinsic parametrization.
+However, when   <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is a proper <strong>subset</strong> of <code class="language-plaintext highlighter-rouge">$T_{\tau_k}\mathcal{M}$</code> (i.e., <code class="language-plaintext highlighter-rouge">$\Omega_\tau \neq T_{\tau_k}\mathcal{M} $</code>), the update in Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is valid only when the step-size <code class="language-plaintext highlighter-rouge">$\alpha$</code> is small enough so that  <code class="language-plaintext highlighter-rouge">$\tau_{k+1} \in \Omega_\tau$</code>.</p>
 
 <div class="notice--danger">
   <p><strong>Warning</strong>:</p>
@@ -399,8 +399,7 @@ $$</code>  where <code class="language-plaintext highlighter-rouge">$t$</code> i
   <p><strong>Warning</strong>:</p>
 
   <p>The exponential map is a geometric object.
-We use 
-a parametric representation of a geodesic curve to define the exponential map.
+We use a parametric representation of a geodesic curve to define the exponential map.
 Thus, the form/expression of the map does depend on the choice of parametrizations.</p>
 </div>
 
