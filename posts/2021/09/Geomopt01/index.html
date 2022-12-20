@@ -486,12 +486,12 @@ The partial derivatives are</p>
 
   <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-\partial_{\pi_0} \log \mathcal{B}(w |\pi_0, \pi_1) = \frac{1}{\mathcal{B}(w |\pi_0, \pi_1)}  (\mathcal{I}(w=0)-\mathcal{I}(w=1)) \frac{\pi_1}{(\pi_0+\pi_1)^2}   
+\partial_{\pi_0} \log \mathcal{B}(w |\pi_0, \pi_1) = \frac{(\mathcal{I}(w=0)-\mathcal{I}(w=1))}{\mathcal{B}(w |\pi_0, \pi_1)}   \frac{\pi_1}{(\pi_0+\pi_1)^2}   
 \end{aligned}
 $$</code>
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
-\partial_{\pi_1} \log \mathcal{B}(w |\pi_0, \pi_1) = \frac{1}{\mathcal{B}(w |\pi_0, \pi_1)} (\mathcal{I}(w=0)-\mathcal{I}(w=1)) \frac{-\pi_0}{ (\pi_0+\pi_1 )^2} 
+\partial_{\pi_1} \log \mathcal{B}(w |\pi_0, \pi_1) = \frac{(\mathcal{I}(w=0)-\mathcal{I}(w=1))}{\mathcal{B}(w |\pi_0, \pi_1)}  \frac{-\pi_0}{ (\pi_0+\pi_1 )^2} 
 \end{aligned}
 $$</code>
 Note that when <code class="language-plaintext highlighter-rouge">$c_0 = \pi_0 \neq 0 $</code> and <code class="language-plaintext highlighter-rouge">$c_1= \pi_1 \neq 0$</code>, we have <code class="language-plaintext highlighter-rouge">$c_0 \frac{\pi_1}{(\pi_0+\pi_1)^2}  + c_1 \frac{-\pi_0}{ (\pi_0+\pi_1 )^2} = 0$</code>. 
