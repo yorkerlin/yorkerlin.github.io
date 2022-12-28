@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-20T13:52:40-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-28T15:49:03-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
@@ -1936,7 +1936,12 @@ $$&lt;/code&gt;&lt;/p&gt;
 (g_\tau)_i = \sum_{k}  {\color{red} (g_\lambda)_k} \frac{ {\color{red} \partial \lambda^k(\tau) }}{ \partial \tau^i } 
 \end{aligned}
 \tag{4}\label{4}
-$$&lt;/code&gt;&lt;/p&gt;
+$$&lt;/code&gt; 
+We can consider a vector function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda(\tau)$&lt;/code&gt; from  input space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau$&lt;/code&gt; to output space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda$&lt;/code&gt;.
+The linearlization of the function is a linear map defined by the Jacobian matrix &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$J$&lt;/code&gt;.
+This linear map is known as the pullback map of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda(\tau)$&lt;/code&gt;   in the differential geometry.
+Given (Euclidean) vector &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$g_\lambda$&lt;/code&gt; in the output space, the Euclidean transformation rule (the standard chain rule) returns (Euclidean) vector &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$g_\tau$&lt;/code&gt; in the input
+space by the linearization.&lt;/p&gt;
 
 &lt;p&gt;Let &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$J_{ki}:=\frac{\partial \lambda^k(\tau) }{ \partial \tau^i }$&lt;/code&gt; denotes the $(k,i)$ entry of the Jacobian matrix. We illustrate our matrix notation in a 2D case as below.&lt;/p&gt;
 
@@ -1982,7 +1987,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&quot;notice--success&quot;&gt;
   &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$
 \begin{aligned}
-\hat{\mathbf{g}}_\tau= \mathbf{J}^{-1}  \hat{\mathbf{g}}_\lambda 
+\hat{\mathbf{g}}_\tau= \mathbf{Q} \hat{\mathbf{g}}_\lambda 
 \end{aligned}\tag{7}\label{7}
 $$&lt;/code&gt;&lt;/p&gt;
 
@@ -1998,6 +2003,13 @@ $$&lt;/code&gt;&lt;/p&gt;
  = \sum_{i}  \frac{ \partial \tau^k(\lambda)  }{ {\color{red} \partial  \lambda^i} }  {\color{red} (g_\lambda)^i}
 \end{aligned},
 $$&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Consider a vector function  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau(\lambda)$&lt;/code&gt; from input space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda$&lt;/code&gt; to output space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau$&lt;/code&gt;. 
+This function is the inverse function of  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\lambda(\tau)$&lt;/code&gt;.
+The linearlization of the new function is a linear map defined by the Jacobian matrix &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$Q$&lt;/code&gt;.
+This linear map is known as the pushforward map of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau(\lambda)$&lt;/code&gt;  in the differential geometry.
+Given (Riemannian) vector &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\hat{g}_\lambda$&lt;/code&gt; in the input space, the Riemannian transformation rule returns (Riemannian) vector &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\hat{g}_\tau$&lt;/code&gt; in the output
+space by the linearization.&lt;/p&gt;
 
 &lt;p&gt;Note that these transformation rules are valid when the Jacobian matrix &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{J}$&lt;/code&gt; is square and non-singular.
 As we discussed in Part I about &lt;a href=&quot;/posts/2021/09/Geomopt01/#intrinsic-parameterizations&quot;&gt;intrinsic parameterizations&lt;/a&gt;, the transformation map between $\tau$ and $\lambda$ must be bi-jective, which implies the Jacoabian matrix is square. 
