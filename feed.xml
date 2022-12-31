@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-28T17:48:54-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2022-12-30T17:33:26-08:00</updated><id>/feed.xml</id><title type="html">Wu Lin</title><subtitle>Academic website for Wu Lin.</subtitle><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><entry><title type="html">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</title><link href="/posts/2021/12/Geomopt06/" rel="alternate" type="text/html" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods" /><published>2021-12-22T00:00:00-08:00</published><updated>2021-12-22T00:00:00-08:00</updated><id>/posts/2021/12/Geomopt06</id><content type="html" xml:base="/posts/2021/12/Geomopt06/">&lt;p&gt;Warning: working in Progress (Part VI is incomplete)&lt;/p&gt;
 
 &lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
 &lt;p&gt;In this blog post, we discuss about how to handle parameter constraints of exponential family.&lt;/p&gt;
@@ -991,7 +991,7 @@ $$&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\hat{\mathbf{g}}_{\tau_k}:=-\mathbf{v}(\tau_k) $&lt;/code&gt; is a natural gradient evaluated at point &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\tau_{k}$&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\alpha:=t&amp;gt;0$&lt;/code&gt; is a step-size.&lt;/p&gt;
 
 &lt;p&gt;This update in Eq. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\eqref{1}$&lt;/code&gt; is inspired by the standard linear update in the &lt;strong&gt;tangent vector space&lt;/strong&gt; (see the green space in the above figure).
-By choosing an intrinsic parametrization, this update is also valid in the &lt;strong&gt;parameter space&lt;/strong&gt;  (see the red space in the above figure) as long as the step-size is small
+By choosing an intrinsic parametrization, this update is also valid in the &lt;strong&gt;parameter space&lt;/strong&gt;&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;  (see the red space in the above figure) as long as the step-size is small
 enough.&lt;/p&gt;
 
 &lt;p&gt;The update in the parameter space is valid since the parameter space &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\Omega_\tau$&lt;/code&gt; has a local vector-space structure thanks to the use of an intrinsic parametrization.
@@ -1111,7 +1111,7 @@ $$&lt;/code&gt; where the geodesic is uniquely determined by the initial conditi
 &lt;p&gt;For a &lt;a href=&quot;https://en.wikipedia.org/wiki/Geodesic_manifold&quot;&gt;geodesically complete&lt;/a&gt; manifold, the domain of the geodesic is the whole space  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{I}_{\tau}
 =\mathcal{R}$&lt;/code&gt;. We will only consider this case in this post.&lt;/p&gt;
 
-&lt;p&gt;To avoid explicitly writing down the differential equations of a geodesic&lt;sup id=&quot;fnref:1&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt; (i.e., &lt;a href=&quot;https://en.wikipedia.org/wiki/Levi-Civita_connection#Christoffel_symbols&quot;&gt;Christoffel symbols&lt;/a&gt; or &lt;a href=&quot;https://en.wikipedia.org/wiki/Connection_form#Example:_the_Levi-Civita_connection&quot;&gt;connection 1-form in a section&lt;/a&gt;), 
+&lt;p&gt;To avoid explicitly writing down the differential equations of a geodesic&lt;sup id=&quot;fnref:3&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt; (i.e., &lt;a href=&quot;https://en.wikipedia.org/wiki/Levi-Civita_connection#Christoffel_symbols&quot;&gt;Christoffel symbols&lt;/a&gt; or &lt;a href=&quot;https://en.wikipedia.org/wiki/Connection_form#Example:_the_Levi-Civita_connection&quot;&gt;connection 1-form in a section&lt;/a&gt;), 
 researchers refer to it as the manifold exponential map.
 Given an intrinsic parametrization $\tau$,
 the  map at point $\tau_0$  is defined as
@@ -1549,7 +1549,7 @@ $$&lt;/code&gt; where by the definition we have &lt;code class=&quot;language-pl
 &lt;h2 id=&quot;the-hessian-is-not-a-valid-manifold-metric&quot;&gt;The Hessian is not a valid manifold metric&lt;/h2&gt;
 
 &lt;p&gt;The Hessian &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$\mathbf{H}_\tau(\tau_k)=\nabla_\tau^2 h_\tau(\tau_k)$&lt;/code&gt;  in general is not a valid manifold metric since it does not follow the transformation
-rule of a metric in non-linear cases&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+rule of a metric in non-linear cases&lt;sup id=&quot;fnref:2&quot; role=&quot;doc-noteref&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot; rel=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 
 &lt;p&gt;Contrastingly, the FIM is a valid manifold metric. Recall that the FIM can also be computed
 as
@@ -1613,10 +1613,13 @@ However, a non-linear reparametrization will lead to a non-natural parametrizati
 &lt;div class=&quot;footnotes&quot; role=&quot;doc-endnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:1&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;In Riemannian geometry, a geodesic is induced by the Levi-Civita connection. This connection is known as the metric compatiable parallel transport. Christoffel symbols are used to represent the connection in a coordinate/parametrization system. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Informally, we locally identify the parameter space with the tanget vector space. However, not all properties are the same in these two spaces. For example, the weighted inner product induced by the Riemannian metric is only defined in the vector space. We often do not use same weighted inner product in the parameter space. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li id=&quot;fn:3&quot; role=&quot;doc-endnote&quot;&gt;
+      &lt;p&gt;This is due to the non-zero partial derivatives of the Jacobian matrix (Eq. \eqref{7}) when it comes to non-linear parameter transformations. These partial derivatives are also related to  Christoffel symbols or Levi-Civita connection coefficients. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:2&quot; role=&quot;doc-endnote&quot;&gt;
-      &lt;p&gt;This is due to the non-zero partial derivatives of the Jacobian matrix (Eq. \eqref{7}) when it comes to non-linear parameter transformations. These partial derivatives are also related to  Christoffel symbols or Levi-Civita connection coefficients. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;In Riemannian geometry, a geodesic is induced by the Levi-Civita connection. This connection is known as the metric compatiable parallel transport. Christoffel symbols are used to represent the connection in a coordinate/parametrization system. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot; role=&quot;doc-backlink&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;</content><author><name>Wu Lin</name><email>yorker.lin@gmail.com</email></author><category term="Natural Gradient Descent" /><category term="Information Geometry" /><category term="Riemannian Manifold" /><summary type="html">Warning: working in Progress (incomplete)</summary></entry><entry><title type="html">Part III: Invariance of Natural-Gradients</title><link href="/posts/2021/11/Geomopt03/" rel="alternate" type="text/html" title="Part III: Invariance of Natural-Gradients" /><published>2021-11-02T00:00:00-07:00</published><updated>2021-11-02T00:00:00-07:00</updated><id>/posts/2021/11/Geomopt03</id><content type="html" xml:base="/posts/2021/11/Geomopt03/">&lt;h2 id=&quot;goal&quot;&gt;Goal&lt;/h2&gt;
