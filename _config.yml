@@ -224,6 +224,7 @@ plugins:
   - jemoji
   - jekyll-scholar
   - jekyll-spaceship
+  - jekyll-last-modified-at
 
 scholar:
   style: custom
@@ -238,7 +239,8 @@ jekyll-spaceship:
   processors:
     - table-processor
 
-
+last-modified-at:
+    date-format: '%d-%b-%y'
 
 # mimic GitHub Pages with --safe
 whitelist:
