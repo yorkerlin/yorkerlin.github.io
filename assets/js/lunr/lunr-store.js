@@ -60,7 +60,7 @@ var store = [{
         "url": "/posts/2021/07/ICML/",
         "teaser":null},{
         "title": "Part I: Smooth Manifolds with the Fisher-Rao Metric",
-        "excerpt":"Goal (edited: 01-Jan-23) This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following useful concepts to ensure non-singular FIMs: Regularity conditions and intrinsic parameterizations of a distribution Dimensionality of a smooth manifoldThe discussion here is informal and focuses...","categories": [],
+        "excerpt":"Goal (edited: 06-Feb-23) This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following useful concepts to ensure non-singular FIMs: Regularity conditions and intrinsic parameterizations of a distribution Dimensionality of a smooth manifoldThe discussion here is informal and focuses...","categories": [],
         "tags": ["Natural Gradient Descent","Information Geometry","Riemannian Manifold"],
         "url": "/posts/2021/09/Geomopt01/",
         "teaser":null},{
