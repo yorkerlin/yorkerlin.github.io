@@ -4,7 +4,7 @@ PhD student working on computational aspects of differential, geometric, and alg
 
 
 For natural-gradient (NG) methods, please see 
-* Structured NG descent for deep learning (Arxiv 2023): [Paper](https://arxiv.org/abs/2302.09738)
+* Structured NG descent for deep learning (to appear in ICML 2023): [Paper](https://arxiv.org/abs/2302.09738)
 * Structured NG descent (ICML 2021): [Long Talk](https://download.dsf.tuhh.de/ig4ds22/videos/IG4DS-WuLin.mp4), [Short Talk](https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s), [Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
 * Riemannian gradient descent (ICML 2020): [Talk](https://www.youtube.com/watch?v=nu1hT-LExFg), [Paper](https://arxiv.org/abs/2002.10060)
 * NG descent for exponential-family mixtures (ICML 2019): [Paper](https://arxiv.org/abs/1906.02914)
