@@ -1,6 +1,6 @@
 # About Me
 
-PhD student working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **approximate inference** and  **numerical optimization** in machine learning.
+Postdoctoral fellow working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **numerical optimization** and **approximate inference** in machine learning.
 
 
 For natural-gradient (NG) methods, please see 
@@ -16,16 +16,14 @@ For an introduction to NG methods, see my [Blog]({{ site.baseurl }}{% post_url 2
 
 For more publications, see my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en) page.
 
-I review papers from conferences ([ICML](https://icml.cc/), [NeurIPS](https://nips.cc/), [ICLR](https://iclr.cc/), [AI&Stats](https://aistats.org/)), journals ([JMLR](https://www.jmlr.org/), [Information Geometry (Springer)](https://www.springer.com/journal/41884)), and workshops ([Optimization for Machine Learning](https://opt-ml.org/), [Advances in Approximate Bayesian Inference](http://approximateinference.org/)).
+<!--I review papers from conferences ([ICML](https://icml.cc/), [NeurIPS](https://nips.cc/), [ICLR](https://iclr.cc/), [AI&Stats](https://aistats.org/)), journals ([JMLR](https://www.jmlr.org/), [Information Geometry (Springer)](https://www.springer.com/journal/41884)), and workshops ([Optimization for Machine Learning](https://opt-ml.org/), [Advances in Approximate Bayesian Inference](http://approximateinference.org/)).-->
 
 ## Research Interests
 
 I am interested in exploiting (hidden) structures and symmetries in machine learning with a focus on practical and numerical methods for optimization and statistical inference.
 
-## News
+<!--## News-->
 
-{% include news.html %}
-[Click here for all news](/news/)
-
-
+<!--{% include news.html %}-->
+<!--[Click here for all news](/news/)-->
 
