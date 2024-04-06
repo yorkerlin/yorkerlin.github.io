@@ -23,7 +23,7 @@ jobs:
       with:
         python-version: 3.7
     - name: Install JekyllNB
-      run: pip install jekyllnb
+      run: pip install jekyllnb lxml == 5.1.0
     - name: Convert embedded notebooks
       run: |
         jupyter jekyllnb --site-dir ./ --page-dir _posts --image-dir img notebooks/20*.ipynb
