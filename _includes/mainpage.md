@@ -4,7 +4,7 @@ Postdoctoral fellow working on computational aspects of differential, geometric,
 
 
 For natural-gradient (NG) methods, please see 
-* Adaptive gradient methods as NGD (ICML 2024): [Paper](https://arxiv.org/abs/2402.03496)
+* Adaptive gradient methods as NGD (ICML 2024): [Paper](https://arxiv.org/abs/2402.03496), [Code](https://github.com/yorkerlin/remove-the-square-root)
 * Structured NG descent for deep learning (ICML 2023): [Paper](https://arxiv.org/abs/2302.09738), [Code](https://github.com/yorkerlin/StructuredNGD-DL)
 * Structured NG descent (ICML 2021):[Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
 * Riemannian gradient descent (ICML 2020): [Paper](https://arxiv.org/abs/2002.10060), [Code](https://github.com/yorkerlin/iBayesLRule)
