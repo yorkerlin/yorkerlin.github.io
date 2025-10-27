@@ -4,7 +4,7 @@ Postdoctoral fellow working on computational aspects of differential, geometric,
 
 
 For natural-gradient (NG) methods, please see 
-* Designing adaptive non-diagonal methods via Riemannian gradient descent (Arxiv 2025): [paper](https://arxiv.org/abs/2502.06268)
+* Improving optimizers Shampoo and SOAP via Riemannian/proximal gradient descent (Arxiv 2025): [paper](https://arxiv.org/abs/2509.03378)
 * Adaptive gradient methods as NGD (ICML 2024): [Paper](https://arxiv.org/abs/2402.03496), [Code](https://github.com/yorkerlin/remove-the-square-root)
 * Structured NG descent for deep learning (ICML 2023, ICML 2024): [Manifold View](https://arxiv.org/abs/2302.09738)  [Code 2023](https://github.com/yorkerlin/StructuredNGD-DL);  [Bayesian View](https://arxiv.org/abs/2312.05705) [Code 2024](https://github.com/f-dangel/singd)
 * Structured NG descent (ICML 2021):[Paper](https://arxiv.org/abs/2102.07405), [Blog]({{ site.baseurl }}{% post_url 2021-07-05-GeomProj01 %})
@@ -29,3 +29,4 @@ I am interested in exploiting (hidden) structures and symmetries in machine lear
 <!--{% include news.html %}-->
 <!--[Click here for all news](/news/)-->
 
+<!--* Designing adaptive non-diagonal methods via Riemannian gradient descent (Arxiv 2025): [paper](https://arxiv.org/abs/2502.06268)-->
