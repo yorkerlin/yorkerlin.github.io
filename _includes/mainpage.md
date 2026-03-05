@@ -1,6 +1,6 @@
 # About Me
 
-Postdoctoral fellow working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **numerical optimization** and **approximate inference** in machine learning.
+I am working on computational aspects of differential, geometric, and algebraic structures (i.e., probability distributions and matrices). My research so far has mostly focused on geometric methods for **numerical optimization** and **approximate inference** in machine learning.
 
 
 For natural-gradient (NG) methods, please see 
