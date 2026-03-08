@@ -1,43 +1,68 @@
----
----
-
-<!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
--->
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
-  <head>
-    {% include head.html %}
-    {% include head/custom.html %}
-  </head>
-
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
-
-    {% include browser-upgrade.html %}
-    {% include masthead.html %}
-
-    <div class="initial-content">
-      {{ content }}
-    </div>
-
-    {% if site.search == true %}
-      <div class="search-content">
-        {% include search/search_form.html %}
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">{{ site.title }}</span>
+    <span class="nav-links">
+      <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
+      <a href="{{ '/research.html' | relative_url }}" {% if page.url == '/research.html' %}class="active"{% endif %}>Papers</a>
+      <a href="{{ '/year-archive.html' | relative_url }}" {% if page.url == '/year-archive.html' %}class="active"{% endif %}>Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    {% if page.layout_type == 'home' %}
+    <table class="home-table" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="photo-col">
+          <img src="{{ '/img/biopic.jpg' | relative_url }}" alt="{{ site.title }}" class="profile-photo">
+        </td>
+        <td class="info-col">
+          {{ content }}
+        </td>
+      </tr>
+    </table>
+    {% else %}
+    {{ content }}
     {% endif %}
+  </div>
+</div>
 
-    <div class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include footer.html %}
-      </footer>
-    </div>
+<script>
+  document.querySelectorAll('code.language-plaintext').forEach(function(el) {
+    var text = el.textContent;
+    if (text.indexOf('$') !== -1) {
+      var parent = el.parentNode;
+      if (parent.tagName === 'P' && text.match(/^\$\$/)) {
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        parent.parentNode.replaceChild(div, parent);
+      } else {
+        var textNode = document.createTextNode(text);
+        parent.replaceChild(textNode, el);
+      }
+    }
+  });
 
-    {% include scripts.html %}
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
 
-  </body>
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
 </html>
-

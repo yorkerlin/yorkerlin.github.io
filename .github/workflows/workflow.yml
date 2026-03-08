@@ -7,35 +7,22 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
       with:
         ref: source
-    - name: Set up Ruby 2.6
+
+    - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '2.6' # Not needed with a .ruby-version file
-        bundler-cache: true 
-    - name: Set up Python 3.7
-      uses: actions/setup-python@v2.2.2
-      with:
-        python-version: 3.7
-    - name: Install JekyllNB
-      run: pip install jekyllnb 'lxml==5.1.0' 
-    - name: Convert embedded notebooks
-      run: |
-        jupyter jekyllnb --site-dir ./ --page-dir _posts --image-dir img notebooks/20*.ipynb
-        jupyter jekyllnb --site-dir ./ --page-dir _includes --image-dir img embedded/nb_*.ipynb
-        sed -i '1,5d' _includes/nb_*.md
+        ruby-version: '3.3'
+        bundler-cache: true
+
     - name: Build Jekyll site
-      run: |
-        set -xo pipefail
-        rm -rf _site/*
-        gem install bundler -v 2.4.22
-        bundle install
-        bundle exec jekyll build
+      run: bundle exec jekyll build
+
     - name: Deploy
       env:
         GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -43,9 +30,6 @@ jobs:
         set -xo pipefail
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        rm -rf _site/img/nb_* _site/img/20*
-        mv img/nb_* _site/img/
-        mv img/20* _site/img/
         git checkout master
         ls -Q | grep -v _site | xargs rm -rf
         mv _site/* .
@@ -54,4 +38,3 @@ jobs:
         git add .
         git commit -m "Build $(git rev-parse source | grep -o '^.\{10\}')"
         git push "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" master
-
