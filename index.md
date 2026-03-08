@@ -22,13 +22,13 @@ I am working on computational aspects of differential, geometric, and algebraic 
 
 ### Working Experiences
 
-- Department of Computer Science, University of Central Florida, Orlando (2026 - Present)
-<br> Assistant Professor
+- Institute of Artificial Intelligence, University of Central Florida, Orlando (2026 - Present)
+<br> Assistant Professor in Computer Science
 
 - Vector Institute for Artificial Intelligence, Toronto (2023 - 2026)
 <br> Distinguished Postdoctoral Fellow (Hosts: Dr. Roger B. Grosse and Dr. Alireza Makhzani)
 
--  Department of Computer Science, University of British Columbia, Vancouver (2018 - 2023)
+-  Department of CS, University of British Columbia, Vancouver (2018 - 2023)
 <br> Ph.D in Machine Learning (Advisors: Dr. Mark Schmidt and Dr. Emtiyaz Khan)
 
 - Center for Advanced Intelligence Project, RIKEN, Tokyo (2017)
@@ -42,7 +42,7 @@ I am interested in exploiting (hidden) structures and symmetries in machine lear
 
 ### Selected Papers
 
-- Improving optimizers Shampoo and SOAP via Riemannian gradient descent (ICLR 2026):
+- Improving optimizers Shampoo and SOAP via natural-gradient descent (ICLR 2026):
   [Paper](https://arxiv.org/abs/2509.03378), [Code](https://github.com/yorkerlin/KL-Methods)
 - Adaptive gradient methods as natural-gradient descent (ICML 2024):
   [Paper](https://arxiv.org/abs/2402.03496), [Code](https://github.com/yorkerlin/remove-the-square-root)
