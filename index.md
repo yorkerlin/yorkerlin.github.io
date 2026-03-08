@@ -23,20 +23,16 @@ I am working on computational aspects of differential, geometric, and algebraic 
 ### Working Experiences
 
 - Department of Computer Science, University of Central Florida, Orlando (2026 - Present)
-
-Assistant Professor
+<br> Assistant Professor
 
 - Vector Institute for Artificial Intelligence, Toronto (2023 - 2026)
-
-Distinguished Postdoctoral Fellow (Hosts: Dr. Roger B. Grosse and Dr. Alireza Makhzani)
+<br> Distinguished Postdoctoral Fellow (Hosts: Dr. Roger B. Grosse and Dr. Alireza Makhzani)
 
 -  Department of Computer Science, University of British Columbia, Vancouver (2018 - 2023)
-
-Ph.D in Machine Learning (Advisors: Dr. Mark Schmidt and Dr. Emtiyaz Khan)
+<br> Ph.D in Machine Learning (Advisors: Dr. Mark Schmidt and Dr. Emtiyaz Khan)
 
 - Center for Advanced Intelligence Project, RIKEN, Tokyo (2017)
-
-Technical Staff (Advisor: Dr. Emtiyaz Khan)
+<br> Technical Staff (Advisor: Dr. Emtiyaz Khan)
 
 
 
