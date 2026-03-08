@@ -1,214 +1,26 @@
 <!DOCTYPE html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
---><html lang="en" class="no-js">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>Structured Natural Gradient Descent (ICML 2021) - Wu Lin</title>
-<meta name="description" content="More about this work [1]: Long talk,  (Youtube) short talk, extended paper, short paper,poster">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Structured Natural Gradient Descent (ICML 2021)">
-<meta property="og:url" content="/posts/2021/07/ICML/">
-
-
-  <meta property="og:description" content="More about this work [1]: Long talk,  (Youtube) short talk, extended paper, short paper,poster">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2021-07-05T00:00:00-07:00">
-
-
-
-  <meta property="article:modified_time" content="2022-10-26T19:46:59-07:00">
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="/posts/2021/07/ICML/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Wu Lin",
-      "url": "https://github.com/pages/yorkerlin/yorkerlin.github.io",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wu Lin Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-
-
-
-
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
-
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single mywide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Wu Lin</a>
-        <ul class="visible-links">
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/">Home</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/news/">News</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/year-archive/">Blog Posts</a>
-            </li>
-          
-        </ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-    <div class="initial-content">
-      
-
-
-
-<div id="main" role="main">
-  
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Structured Natural Gradient Descent (ICML 2021)">
-    <meta itemprop="description" content="More about this work [1]: Long talk,  (Youtube) short talk, extended paper, short paper,poster">
-    <meta itemprop="datePublished" content="July 05, 2021">
-    <meta itemprop="dateModified" content="October 26, 2022">
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Structured Natural Gradient Descent (ICML 2021)
-</h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  12 minute read
-</p>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <p>More about this work <a class="citation" href="#lin2021tractable">[1]</a>: <a href="https://download.dsf.tuhh.de/ig4ds22/videos/IG4DS-WuLin.mp4">Long talk</a>,  <a href="https://www.youtube.com/watch?v=vEY1ZxDJX8o&t=11s">(Youtube) short talk</a>, <a href="https://arxiv.org/abs/2102.07405">extended paper</a>, <a href="https://arxiv.org/abs/2107.10884">short paper</a>,
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Structured Natural Gradient Descent (ICML 2021) | Wu Lin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">Wu Lin</span>
+    <span class="nav-links">
+      <a href="/">Home</a>
+      <a href="/research.html">Papers</a>
+      <a href="/year-archive.html">Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    <h1>Structured Natural Gradient Descent (ICML 2021)</h1>
+    <p class="post-date">July 05, 2021</p>
+    <p>More about this work [lin2021tractable]: <a href="https://download.dsf.tuhh.de/ig4ds22/videos/IG4DS-WuLin.mp4">Long talk</a>,  <a href="https://www.youtube.com/watch?v=vEY1ZxDJX8o&amp;t=11s">(Youtube) short talk</a>, <a href="https://arxiv.org/abs/2102.07405">extended paper</a>, <a href="https://arxiv.org/abs/2107.10884">short paper</a>,
 <a href="/img/poster.pdf">poster</a></p>
 
 <h1 id="introduction">Introduction</h1>
@@ -220,8 +32,7 @@ MathJax = {
 <p>Structures play an essential role in</p>
 <ul>
   <li>Preconditioners of first-order and second-order optimization, gradient-free search.</li>
-  <li>Covariance matrices of variational Gaussian inference <a class="citation" href="#opper2009variational">[2]</a>
-</li>
+  <li>Covariance matrices of variational Gaussian inference [opper2009variational]</li>
 </ul>
 
 <p>Natural-gradient descent on structured parameter spaces is computationally challenging.</p>
@@ -242,8 +53,8 @@ MathJax = {
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="/img/icml2021-fig02.png" width="465"></td>
-      <td style="text-align: center"><img src="/img/icml2021-fig04.png" width="495"></td>
+      <td style="text-align: center"><img src="/img/icml2021-fig02.png" width="465" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-fig04.png" width="495" /></td>
     </tr>
   </tbody>
 </table>
@@ -254,11 +65,9 @@ MathJax = {
 
 <p>Our NGD method</p>
 <ul>
-  <li>generalizes the exponential natural evolutionary strategy <a class="citation" href="#glasmachers2010exponential">[3]</a>
-</li>
+  <li>generalizes the exponential natural evolutionary strategy [glasmachers2010exponential]</li>
   <li>recovers existing  Newton-like algorithms</li>
-  <li>yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance <a class="citation" href="#lin2021structured">[4]</a>
-</li>
+  <li>yields new structured 2nd-order methods and adaptive-gradient methods with group-structural invariance [lin2021structured]</li>
   <li>gives new NGD updates to learn structured covariances of Gaussian, Wishart and their mixtures</li>
   <li>is a systematic approach to incorporate a range of structures</li>
 </ul>
@@ -271,7 +80,7 @@ MathJax = {
   <li>variational mixture of Gaussians (Monte Carlo gradients for structured covariance).</li>
 </ul>
 
-<hr>
+<hr />
 <h1 id="ngd-for-optimization-inference-and-search">NGD for Optimization, Inference, and Search</h1>
 
 <p>A unified  view for problems in optimization, inference, and search
@@ -301,25 +110,23 @@ For an introduction to natural-gradient methods, see this <a href="/posts/2021/0
 \mu_{t+1}  &amp; \leftarrow \mu_t - \beta \mathbf{S}_{t}^{-1} E_{q(\text{w}|\tau_t)}{ \big[ \nabla_w \ell( \mathbf{w}) \big] } \\
 \mathbf{S}_{t+1}  &amp; \leftarrow (1-\beta \gamma)\mathbf{S}_t + \beta  E_{q(\text{w}|\tau_t)}{ \big[ \nabla_w^2 \ell(\mathbf{w}) \big] }
 \end{aligned} \tag{2}\label{2}
-$$</code>
-</li>
+$$</code></li>
   <li>is less sensitive to parameter transformations  than GD</li>
   <li>converges faster than GD</li>
 </ul>
 
-<p><img src="/img/icml2021-fig01.png" width="400"></p>
+<p><img src="/img/icml2021-fig01.png" width="400" /></p>
 
 <p>Challenges of standard NGD:</p>
 <ul>
   <li>NGD could violate parameterization constraints (e.g., <code class="language-plaintext highlighter-rouge">$\mathbf{S}_{t+1}$</code> in <code class="language-plaintext highlighter-rouge">$\eqref{2}$</code> may not be positive-definite)</li>
-  <li>Singular Fisher information matrix (FIM) <code class="language-plaintext highlighter-rouge">$\mathbf{F}_{\tau}(\tau)$</code> of <code class="language-plaintext highlighter-rouge">$q(w|\tau)$</code>
-</li>
+  <li>Singular Fisher information matrix (FIM) <code class="language-plaintext highlighter-rouge">$\mathbf{F}_{\tau}(\tau)$</code> of <code class="language-plaintext highlighter-rouge">$q(w|\tau)$</code></li>
   <li>Limited precision/covariance structures</li>
   <li>Ad-hoc approximations for cost reductions</li>
   <li>Complicated and inefficient natural-gradient computation</li>
 </ul>
 
-<hr>
+<hr />
 <h1 id="ngd-using-local-parameterizations">NGD using Local Parameterizations</h1>
 
 <p>Our method performs NGD updates in local parameter <code class="language-plaintext highlighter-rouge">$\eta$</code> while maintaining structures via matrix groups in auxiliary parameter <code class="language-plaintext highlighter-rouge">$\lambda$</code>. This decoupling enables a <span style="color:red">tractable</span> update that exploits the structures in auxiliary parameter spaces.</p>
@@ -327,20 +134,18 @@ $$</code>
 <table>
   <tbody>
     <tr>
-      <td><img src="/img/icml2021-fig03_new.png" width="450"></td>
-      <td>When <code class="language-plaintext highlighter-rouge">$\tau$</code> space has a local vector-space structure, <br> standard NGD in $\tau$ space is a special case of our NGD,  <br> where we choose <code class="language-plaintext highlighter-rouge">$\psi$</code> to be the identity map and <code class="language-plaintext highlighter-rouge">$\phi_{\lambda_t}$</code> to be a linear map.</td>
+      <td><img src="/img/icml2021-fig03_new.png" width="450" /></td>
+      <td>When <code class="language-plaintext highlighter-rouge">$\tau$</code> space has a local vector-space structure, <br /> standard NGD in $\tau$ space is a special case of our NGD,  <br /> where we choose <code class="language-plaintext highlighter-rouge">$\psi$</code> to be the identity map and <code class="language-plaintext highlighter-rouge">$\phi_{\lambda_t}$</code> to be a linear map.</td>
     </tr>
   </tbody>
 </table>
 
 <p>We consider the following three kinds of parameterizations.</p>
 <ul>
-  <li>Global (original) parameterization <code class="language-plaintext highlighter-rouge">$\tau$</code> for <code class="language-plaintext highlighter-rouge">$q(w|\tau)$</code>
-</li>
-  <li>New auxiliary parameterization <code class="language-plaintext highlighter-rouge">$\lambda$</code>  with a surjective map: <code class="language-plaintext highlighter-rouge">$\tau= \psi(\lambda)$</code>
-</li>
+  <li>Global (original) parameterization <code class="language-plaintext highlighter-rouge">$\tau$</code> for <code class="language-plaintext highlighter-rouge">$q(w|\tau)$</code></li>
+  <li>New auxiliary parameterization <code class="language-plaintext highlighter-rouge">$\lambda$</code>  with a surjective map: <code class="language-plaintext highlighter-rouge">$\tau= \psi(\lambda)$</code></li>
   <li>Local parameterization <code class="language-plaintext highlighter-rouge">$\eta$</code> for <code class="language-plaintext highlighter-rouge">$\lambda$</code> at a current value <code class="language-plaintext highlighter-rouge">$\lambda_t$</code> with a local map:
-<code class="language-plaintext highlighter-rouge">$\lambda = \phi_{\lambda_t} (\eta)$</code>,<br> where  <code class="language-plaintext highlighter-rouge">$\phi_{\lambda_t}$</code> is <span style="color:red"> tight </span> at <code class="language-plaintext highlighter-rouge">$\lambda_t$</code>: $\lambda_t \equiv \phi_{\lambda_t} (\eta_0)$, and  we assume <code class="language-plaintext highlighter-rouge">$\eta_0 =\mathbf{0}$</code> to be a relative origin.</li>
+<code class="language-plaintext highlighter-rouge">$\lambda = \phi_{\lambda_t} (\eta)$</code>,<br /> where  <code class="language-plaintext highlighter-rouge">$\phi_{\lambda_t}$</code> is <span style="color:red"> tight </span> at <code class="language-plaintext highlighter-rouge">$\lambda_t$</code>: $\lambda_t \equiv \phi_{\lambda_t} (\eta_0)$, and  we assume <code class="language-plaintext highlighter-rouge">$\eta_0 =\mathbf{0}$</code> to be a relative origin.</li>
 </ul>
 
 <div class="notice--success">
@@ -367,22 +172,17 @@ Our method allows us to choose map <code class="language-plaintext highlighter-r
 the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}_{\eta}(\eta_0)$</code> is easy to inverse at <code class="language-plaintext highlighter-rouge">$\eta_0$</code>, which enables tractable natural-gradient
 computation.</p>
 
-<hr>
+<hr />
 <h1 id="gaussian-example-with-full-precision">Gaussian Example with Full Precision</h1>
 
 <div class="notice--success">
   <p>Notations:</p>
   <ul>
-    <li>
-<code class="language-plaintext highlighter-rouge">$\mathrm{GL}^{p\times p}$</code>: Invertible Matrices (General Linear Group),</li>
-    <li>
-<code class="language-plaintext highlighter-rouge">$\mathcal{D}^{p\times p}$</code>: Diagonal Matrices,</li>
-    <li>
-<code class="language-plaintext highlighter-rouge">$\mathcal{D}_{++}^{p\times p}$</code>: Diagonal and invertible Matrices (Diagonal Matrix Group),</li>
-    <li>
-<code class="language-plaintext highlighter-rouge">$\mathcal{S}_{++}^{p\times p}$</code>: (Symmetric) positive-definite Matrices,</li>
-    <li>
-<code class="language-plaintext highlighter-rouge">$\mathcal{S}^{p\times p}$</code>: Symmetric Matrices.</li>
+    <li><code class="language-plaintext highlighter-rouge">$\mathrm{GL}^{p\times p}$</code>: Invertible Matrices (General Linear Group),</li>
+    <li><code class="language-plaintext highlighter-rouge">$\mathcal{D}^{p\times p}$</code>: Diagonal Matrices,</li>
+    <li><code class="language-plaintext highlighter-rouge">$\mathcal{D}_{++}^{p\times p}$</code>: Diagonal and invertible Matrices (Diagonal Matrix Group),</li>
+    <li><code class="language-plaintext highlighter-rouge">$\mathcal{S}_{++}^{p\times p}$</code>: (Symmetric) positive-definite Matrices,</li>
+    <li><code class="language-plaintext highlighter-rouge">$\mathcal{S}^{p\times p}$</code>: Symmetric Matrices.</li>
   </ul>
 </div>
 
@@ -412,8 +212,7 @@ $$</code></p>
   <ul>
     <li>keep natural-gradient computation tractable</li>
     <li>maintain numerical stability</li>
-    <li>enable lower iteration cost compared to the matrix exponential map suggested in <a class="citation" href="#glasmachers2010exponential">[3]</a>
-</li>
+    <li>enable lower iteration cost compared to the matrix exponential map suggested in [glasmachers2010exponential]</li>
   </ul>
 </div>
 
@@ -435,7 +234,7 @@ where <span style="color:red"><strong>tractable</strong></span> natural-gradient
 \end{aligned}
 $$</code></p>
 
-<p>Note that <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\mu$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{g}_{\Sigma}$</code> are Euclidean gradients of <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> computed via Stein’s lemma <a class="citation" href="#opper2009variational">[2]</a> <a class="citation" href="#lin2019stein">[5]</a> :
+<p>Note that <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\mu$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{g}_{\Sigma}$</code> are Euclidean gradients of <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> computed via Stein’s lemma [opper2009variational] [lin2019stein] :
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 \mathbf{g}_\mu = \nabla_{\mu}\mathcal{L}(\tau) = E_{q}{ \big[ \nabla_w \ell( \mathbf{w} ) \big] }, \,\,\,\,\,
@@ -453,7 +252,7 @@ $$</code></p>
  \end{aligned}
 $$</code> where $\mathbf{B}$ is a <span style="color:red"><strong>dense</strong></span> matrix in matrix group <code class="language-plaintext highlighter-rouge">$\mathrm{GL}^{p\times p}$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{G}_t := E_{q(w|\tau_t)}{ \big[ \nabla_w^2 \ell(\mathbf{w}) ] } -\gamma \mathbf{S}_t$</code>.</p>
 
-<p>The second-order term shown in red is used for the positive-definite constraint <a class="citation" href="#lin2020handling">[6]</a> known as a retraction in Riemannian gradient descent (RGD).  The higher-order term <code class="language-plaintext highlighter-rouge">$O(\beta^3)$</code> will be used for structured precision matrices in the next section.</p>
+<p>The second-order term shown in red is used for the positive-definite constraint [lin2020handling] known as a retraction in Riemannian gradient descent (RGD).  The higher-order term <code class="language-plaintext highlighter-rouge">$O(\beta^3)$</code> will be used for structured precision matrices in the next section.</p>
 
 <p>Well-known (group) structures in matrix <code class="language-plaintext highlighter-rouge">$\mathbf{B}$</code> are illustrated in the following figure.</p>
 
@@ -467,9 +266,9 @@ $$</code> where $\mathbf{B}$ is a <span style="color:red"><strong>dense</strong>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="/img/icml2021-group-full.png" width="250"></td>
-      <td style="text-align: center"><img src="/img/icml2021-group-tri.png" width="250"></td>
-      <td style="text-align: center"><img src="/img/icml2021-group-diag.png" width="250"></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-full.png" width="250" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-tri.png" width="250" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-diag.png" width="250" /></td>
     </tr>
   </tbody>
 </table>
@@ -482,9 +281,9 @@ is a sparse (group) member as below.</p>
 <table>
   <thead>
     <tr>
-      <th style="text-align: center">Block lower<br> triangular</th>
-      <th style="text-align: center">Block upper<br> triangular</th>
-      <th style="text-align: center">Hierarchical<br> (lower Heisenberg)</th>
+      <th style="text-align: center">Block lower<br /> triangular</th>
+      <th style="text-align: center">Block upper<br /> triangular</th>
+      <th style="text-align: center">Hierarchical<br /> (lower Heisenberg)</th>
       <th style="text-align: center">Kronecker product</th>
       <th style="text-align: center">Triangular-Toeplitz</th>
       <th style="text-align: center">Sparse Cholesky</th>
@@ -492,12 +291,12 @@ is a sparse (group) member as below.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="/img/icml2021-group-low.png" width="220"></td>
-      <td style="text-align: center"><img src="/img/icml2021-group-up.png" width="220"></td>
-      <td style="text-align: center"><img src="/img/icml2021-group-hie.png" width="220"></td>
-      <td style="text-align: center"><img src="/img/icml2021-group-kro.png" width="220"></td>
-      <td style="text-align: center"><img src="/img/icml2021-group-tri-Toep.png" width="220"></td>
-      <td style="text-align: center"><img src="/img/icml2021-group-sparse.png" width="220"></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-low.png" width="220" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-up.png" width="220" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-hie.png" width="220" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-kro.png" width="220" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-tri-Toep.png" width="220" /></td>
+      <td style="text-align: center"><img src="/img/icml2021-group-sparse.png" width="220" /></td>
     </tr>
   </tbody>
   <tbody>
@@ -577,20 +376,17 @@ $$</code></p>
 \mathbf{0} &amp; \frac{1}{2} \mathbf{I}_D
      \end{bmatrix}  \in {\cal{M}_{\text{up}}}(k)$</code>, and $\mathbf{J}$ is a matrix of ones.</p>
 
-  <p>Note that (see <a class="citation" href="#lin2021tractable">[1]</a>  for the detail)</p>
+  <p>Note that (see [lin2021tractable]  for the detail)</p>
   <ul>
-    <li>
-<code class="language-plaintext highlighter-rouge">$ \mathbf{B}_{t+1} \in$</code> matrix Lie group <code class="language-plaintext highlighter-rouge">${\cal{B}_{\text{up}}}(k)$</code> since 
+    <li><code class="language-plaintext highlighter-rouge">$ \mathbf{B}_{t+1} \in$</code> matrix Lie group <code class="language-plaintext highlighter-rouge">${\cal{B}_{\text{up}}}(k)$</code> since 
   <code class="language-plaintext highlighter-rouge">$$
       \begin{aligned}
            &amp;\mathbf{h}\big(\mathbf{M}\big) \in {\cal{B}_{\text{up}}}(k) \text{ for }  \mathbf{M} \in \text{Lie algebra of } {\cal{B}_{\text{up}}}(k) \,\,\,\,  &amp;(\text{by design, } \mathbf{h}(\cdot) \text{ is a Lie-group retraction}) \\
           &amp;\mathbf{B}_{t} \in {\cal{B}_{\text{up}}}(k)  \,\,\,\, &amp; (\text{by construction}) \\
           &amp;\mathbf{B}_{t+1} =  \mathbf{B}_{t}\mathbf{h}\big(\mathbf{M}\big)  \,\,\,\, &amp; (\text{closed under the group product}) 
       \end{aligned}
-  $$</code>
-</li>
-    <li>
-<code class="language-plaintext highlighter-rouge">$\mathbf{B}$</code> also induces a low-rank-plus-diagonal structure in covariance
+  $$</code></li>
+    <li><code class="language-plaintext highlighter-rouge">$\mathbf{B}$</code> also induces a low-rank-plus-diagonal structure in covariance
 matrix <code class="language-plaintext highlighter-rouge">$\Sigma=\mathbf{S}^{-1}$</code>, where <code class="language-plaintext highlighter-rouge">$\mathbf{S}=\mathbf{B}\mathbf{B}^T$</code>.</li>
   </ul>
 </blockquote>
@@ -603,7 +399,7 @@ matrix <code class="language-plaintext highlighter-rouge">$\Sigma=\mathbf{S}^{-1
   </ul>
 </div>
 
-<hr>
+<hr />
 <h1 id="applications">Applications</h1>
 
 <h2 id="structured-2nd-order-methods-for-non-convex-optimization">Structured 2nd-order Methods for Non-convex Optimization</h2>
@@ -630,9 +426,8 @@ $$</code> where <code class="language-plaintext highlighter-rouge">$\mathbf{B} \
 \mu_{t+1}  &amp; \leftarrow \mu_{t} - \beta \mathbf{S}_t^{-1} \mathbf{g}_{\mu_t},\\
 \mathbf{B}_{t+1}  &amp; \leftarrow   \mathbf{B}_t \mathbf{h} \Big( \beta \mathbf{C}_{\text{up}} \odot \kappa_{\text{up}}\big( 2 \mathbf{B}_t^{-1} \mathbf{g}_{\Sigma_t} \mathbf{B}_t^{-T} \big) \Big)
  \end{aligned}
-$$</code>
-</li>
-  <li>obtains an update to solve <code class="language-plaintext highlighter-rouge">$\eqref{5}$</code> with group-structural invariance <a class="citation" href="#lin2021structured">[4]</a>:
+$$</code></li>
+  <li>obtains an update to solve <code class="language-plaintext highlighter-rouge">$\eqref{5}$</code> with group-structural invariance [lin2021structured]:
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
  \mu_{t+1} &amp;  \leftarrow  \mu_t - \beta \mathbf{S}_{t}^{-1} \nabla_{\mu_t} \ell( \mu), \\ 
@@ -664,10 +459,8 @@ The update in <code class="language-plaintext highlighter-rouge">$\eqref{7}$</co
 	<summary>Time complexity: (Click to expand)</summary>
 <fieldset class="field-set">
       <ul>
-        <li>
-<code class="language-plaintext highlighter-rouge">$O(k^2 p)$</code> for triangular structure,</li>
-        <li>
-<code class="language-plaintext highlighter-rouge">$O( (k_1^2+k_2^2) p)$</code> for hierarchical structure.</li>
+        <li><code class="language-plaintext highlighter-rouge">$O(k^2 p)$</code> for triangular structure,</li>
+        <li><code class="language-plaintext highlighter-rouge">$O( (k_1^2+k_2^2) p)$</code> for hierarchical structure.</li>
       </ul>
 
       <p>Implementation using Hessian-vector products (HVPs);</p>
@@ -687,23 +480,18 @@ The update in <code class="language-plaintext highlighter-rouge">$\eqref{7}$</co
       <table>
         <thead>
           <tr>
-            <th style="text-align: center" colspan="2">
-<font size="4"> 200-dim non-separable, non-convex functions
-</font>
-</th>
-            
+            <th style="text-align: center">: <font size="4"> 200-dim non-separable, non-convex functions :</font></th>
+            <th style="text-align: left"> </th>
           </tr>
           <tr>
-            <th style="text-align: center"><img src="/img/icml2021-rbfun.png" width="90%"></th>
-            <th style="text-align: left"><img src="/img/icml2021-dpfun.png" width="90%"></th>
+            <th style="text-align: center"><img src="/img/icml2021-rbfun.png" width="90%" /></th>
+            <th style="text-align: left"><img src="/img/icml2021-dpfun.png" width="90%" /></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align: center" colspan="2">
-<font size="3"> Performance of our method with group structures (lower-triangular, upper-triangular, upper Heisenberg, lower Heisenberg), Adam, and BFGS </font>
-</td>
-            
+            <td style="text-align: center">: <font size="3"> Performance of our method with group structures (lower-triangular, upper-triangular, upper Heisenberg, lower Heisenberg), Adam, and BFGS </font> :</td>
+            <td style="text-align: left"> </td>
           </tr>
         </tbody>
       </table>
@@ -728,16 +516,10 @@ _1$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{B}_2$
 	<summary>Time complexity: (Click to expand)</summary>
 <fieldset class="field-set">
       <ul>
-        <li>
-<code class="language-plaintext highlighter-rouge">$O(k p)$</code> for our Kronecker product with triangular groups, where <code class="language-plaintext highlighter-rouge">$0&lt;k&lt;p^{1/2}$</code>
-</li>
-        <li>
-<code class="language-plaintext highlighter-rouge">$O( (k_1+k_2) p)$</code> for our  Kronecker product with hierarchical groups, where <code class="language-plaintext highlighter-rouge">$0&lt;k_1+k_2&lt;p^{1/2}$</code>
-</li>
-        <li>
-<code class="language-plaintext highlighter-rouge">$O(p)$</code> for Adam and our diagonal groups</li>
-        <li>
-<code class="language-plaintext highlighter-rouge">$O(p^{3/2})$</code> for KFAC and our Kronecker product with dense groups</li>
+        <li><code class="language-plaintext highlighter-rouge">$O(k p)$</code> for our Kronecker product with triangular groups, where <code class="language-plaintext highlighter-rouge">$0&lt;k&lt;p^{1/2}$</code></li>
+        <li><code class="language-plaintext highlighter-rouge">$O( (k_1+k_2) p)$</code> for our  Kronecker product with hierarchical groups, where <code class="language-plaintext highlighter-rouge">$0&lt;k_1+k_2&lt;p^{1/2}$</code></li>
+        <li><code class="language-plaintext highlighter-rouge">$O(p)$</code> for Adam and our diagonal groups</li>
+        <li><code class="language-plaintext highlighter-rouge">$O(p^{3/2})$</code> for KFAC and our Kronecker product with dense groups</li>
       </ul>
 
       <p>Implementation:</p>
@@ -757,22 +539,18 @@ _1$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{B}_2$
       <table>
         <thead>
           <tr>
-            <th style="text-align: center" colspan="2">
-<font size="4"> Kronecker product of lower-triangular groups for CNN </font>
-</th>
-            
+            <th style="text-align: center">: <font size="4"> Kronecker product of lower-triangular groups for CNN </font> :</th>
+            <th style="text-align: left"> </th>
           </tr>
           <tr>
-            <th style="text-align: center"><img src="/img/icml2021-stl10.png" width="90%"></th>
-            <th style="text-align: left"><img src="/img/icml2021-cifar10.png" width="90%"></th>
+            <th style="text-align: center"><img src="/img/icml2021-stl10.png" width="90%" /></th>
+            <th style="text-align: left"><img src="/img/icml2021-cifar10.png" width="90%" /></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align: center" colspan="2">
-<font size="4"> Comparison between our method with Kronecker product groups and Adam </font>
-</td>
-            
+            <td style="text-align: center">: <font size="4"> Comparison between our method with Kronecker product groups and Adam </font> :</td>
+            <td style="text-align: left"> </td>
           </tr>
         </tbody>
       </table>
@@ -785,8 +563,7 @@ _1$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{B}_2$
 
 <p>Our NGD</p>
 <ul>
-  <li>can use structured Gaussian mixtures as flexible variational distributions: <code class="language-plaintext highlighter-rouge">$q(\mathbf{w}|\tau)=\frac{1}{C}\sum_{c=1}^{C}q(\mathbf{w}|\mu_c,\mathbf{S}_c)$</code>
-</li>
+  <li>can use structured Gaussian mixtures as flexible variational distributions: <code class="language-plaintext highlighter-rouge">$q(\mathbf{w}|\tau)=\frac{1}{C}\sum_{c=1}^{C}q(\mathbf{w}|\mu_c,\mathbf{S}_c)$</code></li>
   <li>gives efficient stochastic natural-gradient variational methods beyond mean-field/diagonal covariance</li>
 </ul>
 
@@ -798,22 +575,18 @@ _1$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{B}_2$
       <table>
         <thead>
           <tr>
-            <th style="text-align: center" colspan="2">
-<font size="4"> First 8 marginal distributions of Gaussian mixture approximation with upper-triangular structure </font>
-</th>
-            
+            <th style="text-align: center">: <font size="4"> First 8 marginal distributions of Gaussian mixture approximation with upper-triangular structure </font> :</th>
+            <th style="text-align: left"> </th>
           </tr>
           <tr>
-            <th style="text-align: center"><img src="/img/icml2021-tmm80d-01.png" width="90%"></th>
-            <th style="text-align: left"><img src="/img/icml2021-tmm80d-02.png" width="90%"></th>
+            <th style="text-align: center"><img src="/img/icml2021-tmm80d-01.png" width="90%" /></th>
+            <th style="text-align: left"><img src="/img/icml2021-tmm80d-02.png" width="90%" /></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td style="text-align: center" colspan="2">
-<font size="4"> Comparison between our approximation ($k=5$) and the ground-truth (mixture of t distributions) </font>
-</td>
-            
+            <td style="text-align: center">:  <font size="4"> Comparison between our approximation (`$k=5$`) and the ground-truth (mixture of t distributions) </font> :</td>
+            <td style="text-align: left"> </td>
           </tr>
         </tbody>
       </table>
@@ -822,294 +595,38 @@ _1$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{B}_2$
 </details>
 </div>
 
-<hr>
+<hr />
 <h1 id="references">References</h1>
-<p class="bibliography"></p>
-<p><span id="lin2021tractable">[1] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Tractable structured natural gradient descent using local parameterizations," <i>International Conference on Machine Learning (ICML)</i> (2021).</span></p>
-<p><span id="opper2009variational">[2] M. Opper &amp; C. Archambeau, "The variational Gaussian approximation revisited," <i>Neural computation</i> <b>21</b>:786–792 (2009).</span></p>
-<p><span id="glasmachers2010exponential">[3] T. Glasmachers, T. Schaul, S. Yi, D. Wierstra, &amp; J. Schmidhuber, "Exponential natural evolution strategies," <i>Proceedings of the 12th annual conference on Genetic and evolutionary computation</i> (2010), pp. 393–400.</span></p>
-<p><span id="lin2021structured">[4] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Structured second-order methods via natural gradient descent," <i>arXiv preprint arXiv:2107.10884</i> (2021).</span></p>
-<p><span id="lin2019stein">[5] W. Lin, M. E. Khan, &amp; M. Schmidt, "Stein’s Lemma for the Reparameterization Trick with Exponential Family Mixtures," <i>arXiv preprint arXiv:1910.13398</i> (2019).</span></p>
-<p><span id="lin2020handling">[6] W. Lin, M. Schmidt, &amp; M. E. Khan, "Handling the positive-definite constraint in the bayesian learning rule," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 6116–6126.</span></p>
+<ol class="bibliography"></ol>
 
 
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#exponential-family" class="page__taxonomy-item" rel="tag">Exponential Family</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#information-geometry" class="page__taxonomy-item" rel="tag">Information Geometry</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#matrix-lie-groups" class="page__taxonomy-item" rel="tag">Matrix Lie Groups</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#natural-gradient-descent" class="page__taxonomy-item" rel="tag">Natural Gradient Descent</a>
-    
-    </span>
-  </p>
-
-
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-10-26">October 26, 2022</time></p>
-        
-      </footer>
-
-      <section class="page__share">
-  
-    <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Structured+Natural+Gradient+Descent+%28ICML+2021%29%20informationgeometryML.github.io%2Fposts%2F2021%2F07%2FICML%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F07%2FICML%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=informationgeometryML.github.io%2Fposts%2F2021%2F07%2FICML%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-
-
-
-     
-
-  <script src="https://utteranc.es/client.js" repo="yorkerlin/yorkerlin.github.io" issue-term="url" label="blog-comments" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-
-
-
-</section>
-
-
-      
-  <nav class="pagination">
-    
-      <a href="/posts/2022/01/notebooks/" class="pagination--pager" title="GD and NGD
-">Previous</a>
-    
-    
-      <a href="/posts/2021/09/Geomopt01/" class="pagination--pager" title="Part I: Smooth Manifolds with the Fisher-Rao Metric
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt06/" rel="permalink">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  5 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (Part VI is incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt05/" rel="permalink">Part V: Efficient Natural-gradient Methods for Exponential Family
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  19 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  20 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt03/" rel="permalink">Part III: Invariance of Natural-Gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  14 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on invariant properties of natural-gradients.
-We will discuss
-
-  transformation rules of natural-gradients,
- ...</p>
-  </article>
-</div>
-        
-      </div>
-    </div>
-  
-  
-</div>
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-      <li><strong>Follow</strong></li>
-    
-    
-    
-    
-      <li><a href="https://github.com/yorkerlin"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-  </ul>
+  </div>
 </div>
 
-<div class="page__footer-copyright">© 2026 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<script>
+  // Unwrap ALL math from <code> tags before MathJax loads
+  document.querySelectorAll('code').forEach(function(el) {
+    var text = el.textContent;
+    if (/\$/.test(text)) {
+      // Use a temp element to safely HTML-encode the text
+      var temp = document.createElement('span');
+      temp.textContent = text;
+      el.outerHTML = temp.innerHTML;
+    }
+  });
 
-      </footer>
-    </div>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
 
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
-
-
-
-
-
---&gt;
-    <!--
-
-  <script src="https://utteranc.es/client.js"
-    repo=yorkerlin/yorkerlin.github.io
-    issue-term=url
-    label=blog-comments
-    theme=github-light
-    crossorigin= "anonymous"
-    async>
-  </script>
-
--->
-  
-
-
-
-
-
-  
-    <script src="/assets/js/custom.js"></script>
-  
-    <script src="/assets/js/math-code.js"></script>
-  
-
-
-
-  </body>
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
 </html>

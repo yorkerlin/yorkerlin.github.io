@@ -1,216 +1,28 @@
 <!DOCTYPE html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
---><html lang="en" class="no-js">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods - Wu Lin</title>
-<meta name="description" content="Warning: working in Progress (Part VI is incomplete)">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods">
-<meta property="og:url" content="/posts/2021/12/Geomopt06/">
-
-
-  <meta property="og:description" content="Warning: working in Progress (Part VI is incomplete)">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2021-12-22T00:00:00-08:00">
-
-
-
-  <meta property="article:modified_time" content="2023-01-01T13:57:27-08:00">
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="/posts/2021/12/Geomopt06/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Wu Lin",
-      "url": "https://github.com/pages/yorkerlin/yorkerlin.github.io",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wu Lin Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-
-
-
-
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
-
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single mywide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Wu Lin</a>
-        <ul class="visible-links">
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/">Home</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/news/">News</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/year-archive/">Blog Posts</a>
-            </li>
-          
-        </ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-    <div class="initial-content">
-      
-
-
-
-<div id="main" role="main">
-  
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods">
-    <meta itemprop="description" content="Warning: working in Progress (Part VI is incomplete)">
-    <meta itemprop="datePublished" content="December 22, 2021">
-    <meta itemprop="dateModified" content="January 01, 2023">
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
-</h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  5 minute read
-</p>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <p>Warning: working in Progress (Part VI is incomplete)</p>
-
-<h2 id="goal-edited-01-jan-23">Goal (edited: 01-Jan-23)</h2>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods | Wu Lin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">Wu Lin</span>
+    <span class="nav-links">
+      <a href="/">Home</a>
+      <a href="/research.html">Papers</a>
+      <a href="/year-archive.html">Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    <h1>Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods</h1>
+    <p class="post-date">December 22, 2021</p>
+    <p>Warning: working in Progress (Part VI is incomplete)</p>
+
+<h2 id="goal-edited-">Goal (edited: )</h2>
 <p>In this blog post, we discuss about how to handle parameter constraints of exponential family.</p>
 
 <div class="notice--info">
@@ -218,8 +30,7 @@ MathJax = {
 <summary>Click to see how to cite this blog post</summary>
 <fieldset class="field-set">
 
-      <div class="language-latex highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog06,
+      <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog06,
   title = <span class="p">{</span>Introduction to Natural-gradient Descent: Part VI<span class="p">}</span>,
   author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
   url = <span class="p">{</span>https://informationgeometryml.github.io/year-archive/<span class="p">}</span>, 
@@ -233,7 +44,7 @@ MathJax = {
 </div>
 
 <h1 id="handling-parameter-constraints">Handling Parameter Constraints</h1>
-<hr>
+<hr />
 
 <p>Recall that  in Part IV, we discuss 
 <a href="/posts/2021/11/Geomopt04/#many-faces-of-natural-gradient-descent">the many faces of NGD</a> in unconstrained cases.  These methods could also be exteneded in constrained cases to handle the parameter constraint.</p>
@@ -276,14 +87,15 @@ transformation rule for natural-gradients as discussed in
 
 <p>However, we have to compute the Jacobian matrix used the transformation rule.
 It could be possible to use Auto-Diff to compute (implicit) natural-gradients as suggested by
- <a class="citation" href="#salimbeni2018natural">[1]</a>.
+ <a class="citation" href="#salimbeni2018natural">(Salimbeni et al., 2018)</a>.
  However, an unconstrained reparametrization can easily destroy structures in a parameter space due to the
 (Jacobian) matrix product.
- Moreover, it is often difficult for Auto-Diff to exploit sparsity such as automatically using a sparse linear solver. Please see Appendix G.1 of <a class="citation" href="#lin2021tractable">[2]</a> for detailed discussion about this issue.</p>
+ Moreover, it is often difficult for Auto-Diff to exploit sparsity such as automatically using a sparse linear solver. Please see Appendix G.1 of <a class="citation" href="#lin2021tractable">(Lin et al., 2021)</a> for detailed discussion about this issue.</p>
 
 <h2 id="projected-natural-gradient-descent">Projected Natural Gradient Descent</h2>
 <p>Another straightforward approach from natural-gradient descent is the projected natural-gradient descent, where we  use 
-the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}_\eta(\eta_k)$</code> evaluted at <code class="language-plaintext highlighter-rouge">$\eta_k$</code> as a projection metric and use the <a href="/posts/2021/10/Geomopt02/%0A#distance-induced-by-the-fisher-rao-metric">weighted inner product</a> to measure the distance for the projection.</p>
+the FIM <code class="language-plaintext highlighter-rouge">$\mathbf{F}_\eta(\eta_k)$</code> evaluted at <code class="language-plaintext highlighter-rouge">$\eta_k$</code> as a projection metric and use the <a href="/posts/2021/10/Geomopt02/
+#distance-induced-by-the-fisher-rao-metric">weighted inner product</a> to measure the distance for the projection.</p>
 
 <p><code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
@@ -345,7 +157,7 @@ $$</code></p>
 <div class="notice--success">
   <p><strong>Note</strong>:</p>
 
-  <p>The KL divergence is the only divergence <a class="citation" href="#amari2016information">[3]</a> that is both a  f-divergence and a Bregman divergence.</p>
+  <p>The KL divergence is the only divergence <a class="citation" href="#amari2016information">(Amari, 2016)</a> that is both a  f-divergence and a Bregman divergence.</p>
 
   <p>We have the following identity for the KL divergence.
 <code class="language-plaintext highlighter-rouge">$$
@@ -416,292 +228,43 @@ Given
 a general parameter constraint <code class="language-plaintext highlighter-rouge">$\Omega_\eta$</code>, it can be difficult to come out an efficient retraction map to satisfy
 the constraint.</p>
 
-<p>For positive-definite constraints in <code class="language-plaintext highlighter-rouge">$\Omega_\eta$</code>, please see <a class="citation" href="#lin2020handling">[4]</a> as an example to derive efficient Riemannian gradient updates.</p>
+<p>For positive-definite constraints in <code class="language-plaintext highlighter-rouge">$\Omega_\eta$</code>, please see <a class="citation" href="#lin2020handling">(Lin et al., 2020)</a> as an example to derive efficient Riemannian gradient updates.</p>
 
-<hr>
+<hr />
 <h1 id="references">References</h1>
-<p class="bibliography"></p>
-<p><span id="salimbeni2018natural">[1] H. Salimbeni, S. Eleftheriadis, &amp; J. Hensman, "Natural gradients in practice: Non-conjugate variational inference in Gaussian process models," <i>International Conference on Artificial Intelligence and Statistics</i> (PMLR, 2018), pp. 689–697.</span></p>
-<p><span id="lin2021tractable">[2] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Tractable structured natural gradient descent using local parameterizations," <i>International Conference on Machine Learning (ICML)</i> (2021).</span></p>
-<p><span id="amari2016information">[3] S.-ichi Amari, <i>Information geometry and its applications</i> (Springer, 2016).</span></p>
-<p><span id="lin2020handling">[4] W. Lin, M. Schmidt, &amp; M. E. Khan, "Handling the positive-definite constraint in the bayesian learning rule," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 6116–6126.</span></p>
+<ol class="bibliography"><li><span id="salimbeni2018natural">Salimbeni, H., Eleftheriadis, S., &amp; Hensman, J. (2018). Natural gradients in practice: Non-conjugate variational inference in Gaussian process models. <i>International Conference on Artificial Intelligence and Statistics</i>, 689–697.</span></li>
+<li><span id="lin2021tractable">Lin, W., Nielsen, F., Khan, M. E., &amp; Schmidt, M. (2021). Tractable structured natural gradient descent using local parameterizations. <i>International Conference on Machine Learning (ICML)</i>.</span></li>
+<li><span id="amari2016information">Amari, S.-ichi. (2016). <i>Information geometry and its applications</i> (Vol. 194). Springer.</span></li>
+<li><span id="lin2020handling">Lin, W., Schmidt, M., &amp; Khan, M. E. (2020). Handling the positive-definite constraint in the bayesian learning rule. <i>International Conference on Machine Learning</i>, 6116–6126.</span></li></ol>
 
 
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#exponential-family" class="page__taxonomy-item" rel="tag">Exponential Family</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#information-geometry" class="page__taxonomy-item" rel="tag">Information Geometry</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#natural-gradient-descent" class="page__taxonomy-item" rel="tag">Natural Gradient Descent</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#riemannian-manifold" class="page__taxonomy-item" rel="tag">Riemannian Manifold</a>
-    
-    </span>
-  </p>
-
-
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-01-01">January 01, 2023</time></p>
-        
-      </footer>
-
-      <section class="page__share">
-  
-    <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Part+VI%3A+Handling+Parameter+Constraints+of+Exponential+Family+In+Natural-gradient+Methods%20informationgeometryML.github.io%2Fposts%2F2021%2F12%2FGeomopt06%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F12%2FGeomopt06%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=informationgeometryML.github.io%2Fposts%2F2021%2F12%2FGeomopt06%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-
-
-
-     
-
-  <script src="https://utteranc.es/client.js" repo="yorkerlin/yorkerlin.github.io" issue-term="url" label="blog-comments" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-
-
-
-</section>
-
-
-      
-  <nav class="pagination">
-    
-      <a href="/posts/2021/12/Geomopt05/" class="pagination--pager" title="Part V: Efficient Natural-gradient Methods for Exponential Family
-">Previous</a>
-    
-    
-      <a href="#" class="pagination--pager disabled">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt05/" rel="permalink">Part V: Efficient Natural-gradient Methods for Exponential Family
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  18 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  19 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt03/" rel="permalink">Part III: Invariance of Natural-Gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  13 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on invariant properties of natural-gradients.
-We will discuss
-
-  transformation rules of natural-gradients,
- ...</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/10/Geomopt02/" rel="permalink">Part II: Derivation of Natural-gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  15 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. W...</p>
-  </article>
-</div>
-        
-      </div>
-    </div>
-  
-  
-</div>
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-      <li><strong>Follow</strong></li>
-    
-    
-    
-    
-      <li><a href="https://github.com/yorkerlin"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-  </ul>
+  </div>
 </div>
 
-<div class="page__footer-copyright">© 2026 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<script>
+  // Unwrap ALL math from <code> tags before MathJax loads
+  document.querySelectorAll('code').forEach(function(el) {
+    var text = el.textContent;
+    if (/\$/.test(text)) {
+      // Use a temp element to safely HTML-encode the text
+      var temp = document.createElement('span');
+      temp.textContent = text;
+      el.outerHTML = temp.innerHTML;
+    }
+  });
 
-      </footer>
-    </div>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
 
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
-
-
-
-
-
---&gt;
-    <!--
-
-  <script src="https://utteranc.es/client.js"
-    repo=yorkerlin/yorkerlin.github.io
-    issue-term=url
-    label=blog-comments
-    theme=github-light
-    crossorigin= "anonymous"
-    async>
-  </script>
-
--->
-  
-
-
-
-
-
-  
-    <script src="/assets/js/custom.js"></script>
-  
-    <script src="/assets/js/math-code.js"></script>
-  
-
-
-
-  </body>
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
 </html>

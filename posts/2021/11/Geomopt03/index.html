@@ -1,214 +1,26 @@
 <!DOCTYPE html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
---><html lang="en" class="no-js">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>Part III: Invariance of Natural-Gradients - Wu Lin</title>
-<meta name="description" content="Goal (edited: 01-Jan-23)This blog post focuses on invariant properties of natural-gradients.We will discuss  transformation rules of natural-gradients,  the automatic computation of re-parametrized natural-gradients via the transformation rules,  non-invariance of the Euclidean counterpart.">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Part III: Invariance of Natural-Gradients">
-<meta property="og:url" content="/posts/2021/11/Geomopt03/">
-
-
-  <meta property="og:description" content="Goal (edited: 01-Jan-23)This blog post focuses on invariant properties of natural-gradients.We will discuss  transformation rules of natural-gradients,  the automatic computation of re-parametrized natural-gradients via the transformation rules,  non-invariance of the Euclidean counterpart.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2021-11-02T00:00:00-07:00">
-
-
-
-  <meta property="article:modified_time" content="2023-01-01T13:57:27-08:00">
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="/posts/2021/11/Geomopt03/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Wu Lin",
-      "url": "https://github.com/pages/yorkerlin/yorkerlin.github.io",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wu Lin Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-
-
-
-
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
-
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single mywide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Wu Lin</a>
-        <ul class="visible-links">
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/">Home</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/news/">News</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/year-archive/">Blog Posts</a>
-            </li>
-          
-        </ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-    <div class="initial-content">
-      
-
-
-
-<div id="main" role="main">
-  
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Part III: Invariance of Natural-Gradients">
-    <meta itemprop="description" content="Goal (edited: 01-Jan-23)This blog post focuses on invariant properties of natural-gradients.We will discuss  transformation rules of natural-gradients,  the automatic computation of re-parametrized natural-gradients via the transformation rules,  non-invariance of the Euclidean counterpart.">
-    <meta itemprop="datePublished" content="November 02, 2021">
-    <meta itemprop="dateModified" content="January 01, 2023">
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Part III: Invariance of Natural-Gradients
-</h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  13 minute read
-</p>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <h2 id="goal-edited-01-jan-23">Goal (edited: 01-Jan-23)</h2>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part III: Invariance of Natural-Gradients | Wu Lin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">Wu Lin</span>
+    <span class="nav-links">
+      <a href="/">Home</a>
+      <a href="/research.html">Papers</a>
+      <a href="/year-archive.html">Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    <h1>Part III: Invariance of Natural-Gradients</h1>
+    <p class="post-date">November 02, 2021</p>
+    <h2 id="goal-edited-">Goal (edited: )</h2>
 <p>This blog post focuses on invariant properties of natural-gradients.
 We will discuss</p>
 <ul>
@@ -224,8 +36,7 @@ We will discuss</p>
 <summary>Click to see how to cite this blog post</summary>
 <fieldset class="field-set">
 
-      <div class="language-latex highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog03,
+      <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog03,
   title = <span class="p">{</span>Introduction to Natural-gradient Descent: Part III<span class="p">}</span>,
   author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
   url = <span class="p">{</span>https://informationgeometryml.github.io/year-archive/<span class="p">}</span>, 
@@ -239,7 +50,7 @@ We will discuss</p>
 </div>
 
 <h1 id="parameter-transformation-and-invariance">Parameter Transformation and Invariance</h1>
-<hr>
+<hr />
 <p>Recall that a Riemannian gradient is also known as a <strong>natural gradient</strong> since we use the Fisher-Rao metric <code class="language-plaintext highlighter-rouge">$\mathbf{F}$</code> as the Riemannian metric.</p>
 
 <p>In <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a>, we have shown that a Riemannian gradient is a parametric representation of the tangent direction of a curve in a  manifold.
@@ -430,18 +241,15 @@ Given an intrinsic parametrization $\tau$ containing the point, we consider the 
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">point <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code>
-</td>
+      <td style="text-align: left">point <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code></td>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\tau_0$</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">curve  <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code>
-</td>
+      <td style="text-align: left">curve  <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code></td>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\gamma_\tau(t) $</code></td>
     </tr>
     <tr>
-      <td style="text-align: left">function  <code class="language-plaintext highlighter-rouge">$h(x_0)$</code>
-</td>
+      <td style="text-align: left">function  <code class="language-plaintext highlighter-rouge">$h(x_0)$</code></td>
       <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$h_\tau(\tau_0) $</code></td>
     </tr>
   </tbody>
@@ -477,7 +285,7 @@ $$</code></p>
 $$</code> where $\nabla$ is the standard (coordinate) derivative.</p>
 
 <p>Recall that in <a href="/posts/2021/10/Geomopt02/#riemannian-gradients-as-tangent-vectors-optional">Part II</a>,  we have shown that <code class="language-plaintext highlighter-rouge">$\frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}$</code> is a  parametric representation of a tangent vector, which is a Riemannian gradient.
-Notice that <code class="language-plaintext highlighter-rouge">$\nabla h_\lambda(\mathbf{\lambda}_0)$</code> is a Euclidean gradient<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>.</p>
+Notice that <code class="language-plaintext highlighter-rouge">$\nabla h_\lambda(\mathbf{\lambda}_0)$</code> is a Euclidean gradient<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup>.</p>
 
 <p>We will use the following notations to simplify expressions.</p>
 
@@ -490,18 +298,15 @@ Notice that <code class="language-plaintext highlighter-rouge">$\nabla h_\lambda
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">Euclidean gradient <code class="language-plaintext highlighter-rouge">$(g_\tau)_i$</code>
-</td>
+      <td style="text-align: left">Euclidean gradient <code class="language-plaintext highlighter-rouge">$(g_\tau)_i$</code></td>
       <td style="text-align: center">$i$-th entry  under parametrization $\tau$</td>
     </tr>
     <tr>
-      <td style="text-align: left">Riemannian gradient <code class="language-plaintext highlighter-rouge">$(\hat{g}_\tau)^j$</code>
-</td>
+      <td style="text-align: left">Riemannian gradient <code class="language-plaintext highlighter-rouge">$(\hat{g}_\tau)^j$</code></td>
       <td style="text-align: center">$j$-th entry under parametrization $\tau$</td>
     </tr>
     <tr>
-      <td style="text-align: left">Parameter <code class="language-plaintext highlighter-rouge">$\tau^j$</code>
-</td>
+      <td style="text-align: left">Parameter <code class="language-plaintext highlighter-rouge">$\tau^j$</code></td>
       <td style="text-align: center">$j$-th parameter under parametrization   $\tau$</td>
     </tr>
   </tbody>
@@ -526,7 +331,7 @@ $$</code></p>
 
 <p>Now, we discuss the parameter transformation between $\tau$ and $\lambda$, where we can express $\lambda$ in terms of $\tau$ denoted by $\lambda(\tau)$.</p>
 
-<p>By the (standard) chain rule for a Euclidean gradient<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>, we has
+<p>By the (standard) chain rule for a Euclidean gradient<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup>, we has
 <code class="language-plaintext highlighter-rouge">$$
 \begin{aligned}
 (g_\tau)_i = \sum_{k}  {\color{red} (g_\lambda)_k} \frac{ {\color{red} \partial \lambda^k(\tau) }}{ \partial \tau^i } 
@@ -570,7 +375,7 @@ $$</code></p>
 $$</code></p>
 
   <p>Note:
-<span style="color:blue"><strong>row</strong></span> vector <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\tau^T$</code> can be computed via a vector-Jacobian product<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup> in any standard Auto-Diff toolbox given that <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\lambda$</code> is pre-computed.</p>
+<span style="color:blue"><strong>row</strong></span> vector <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\tau^T$</code> can be computed via a vector-Jacobian product<sup id="fnref:3"><a href="#fn:3" class="footnote" rel="footnote" role="doc-noteref">3</a></sup> in any standard Auto-Diff toolbox given that <code class="language-plaintext highlighter-rouge">${\mathbf{g}}_\lambda$</code> is pre-computed.</p>
 
 </div>
 
@@ -584,7 +389,7 @@ $$</code></p>
 $$</code></p>
 
   <p>Note:
-<span style="color:blue"><strong>column</strong></span> vector <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\tau$</code> can be computed via a (inverse) Jacobian-vector product<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup> used in forward-mode differentiation <a class="citation" href="#lin2021tractable">[1]</a> <a class="citation" href="#salimbeni2018natural">[2]</a> given that <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\lambda$</code> is pre-computed and we can explicitly express <code class="language-plaintext highlighter-rouge">$\tau$</code> in terms of <code class="language-plaintext highlighter-rouge">$\lambda$</code>. As shown in <a class="citation" href="#salimbeni2018natural">[2]</a>, this Jacobian-vector product can be computed by using two 
+<span style="color:blue"><strong>column</strong></span> vector <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\tau$</code> can be computed via a (inverse) Jacobian-vector product<sup id="fnref:4"><a href="#fn:4" class="footnote" rel="footnote" role="doc-noteref">4</a></sup> used in forward-mode differentiation <a class="citation" href="#lin2021tractable">(Lin et al., 2021)</a> <a class="citation" href="#salimbeni2018natural">(Salimbeni et al., 2018)</a> given that <code class="language-plaintext highlighter-rouge">$\hat{\mathbf{g}}_\lambda$</code> is pre-computed and we can explicitly express <code class="language-plaintext highlighter-rouge">$\tau$</code> in terms of <code class="language-plaintext highlighter-rouge">$\lambda$</code>. As shown in <a class="citation" href="#salimbeni2018natural">(Salimbeni et al., 2018)</a>, this Jacobian-vector product can be computed by using two 
  vector-Jacobian products in any standard Auto-Diff toolbox.</p>
 
 </div>
@@ -666,7 +471,7 @@ $$</code></p>
 $$</code></p>
 
 <h1 id="riemannian-steepest-direction-is-invariant">Riemannian Steepest Direction is Invariant</h1>
-<hr>
+<hr />
 <p>Now, we can show that the optimal solution of <a href="/posts/2021/10/Geomopt02/#riemannian-steepest-direction">Riemannian steepest direction</a> considered in Part II  under parametrization $\tau$ and $\lambda$ are equivalent since both the length and the directional derivative remain the same.</p>
 
 <p>Denote Euclidean gradients as <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\lambda:= \nabla  f_\lambda(\mathbf{\lambda}_0) $</code> and  <code class="language-plaintext highlighter-rouge">$\mathbf{g}_\tau:= \nabla  f_\tau(\mathbf{\tau}_0)  = \nabla  f_\lambda(\mathbf{\lambda}(\tau_0)) $</code>, which follows the parameter transformation rule in  <code class="language-plaintext highlighter-rouge">$\eqref{6}$</code>.</p>
@@ -706,7 +511,7 @@ In other words, the Riemannian steepest direction (which is indeed  a normalized
 <p>As we will discuss in <a href="/posts/2021/11/Geomopt04/#natural-gradient-descent-is-linearly-invariant">Part IV</a>, this invariance property implies that natural-gradient descent is linearly invariant.</p>
 
 <h1 id="euclidean-steepest-direction-is-not-invariant">Euclidean Steepest Direction is NOT Invariant</h1>
-<hr>
+<hr />
 <p>Recall that we have shown that a unit Euclidean gradient is the optimal solution of  <a href="/posts/2021/10/Geomopt02/#euclidean-steepest-direction">Euclidean steepest direction</a> in Part II.</p>
 
 <p>We can show that the (standard) length of a Euclidean gradient is NOT invariant under a parameter transformation due to the Jacobian matrix (i.e., <code class="language-plaintext highlighter-rouge">$\| \mathbf{g}_\tau \| \neq \| \mathbf{g}_\lambda \|$</code>). This is a reason why we use the <a href="/posts/2021/10/Geomopt02/#weighted-norm-induced-by-the-fisher-rao-metric">weighted inner product</a> to define the length of a gradient vector.</p>
@@ -738,300 +543,57 @@ $$</code></p>
 <p>In summary, the Euclidean steepest direction (which is a normalized Euclidean gradient) is NOT transformed according to the transformation rule for a Euclidean gradient.
 Moreover, Euclidean gradient descent is not invariant under a parameter transformation. We will cover more about this in <a href="/posts/2021/11/Geomopt04/">Part IV</a>.</p>
 
-<hr>
+<hr />
 <h1 id="references">References</h1>
-<p class="bibliography"></p>
-<p><span id="lin2021tractable">[1] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Tractable structured natural gradient descent using local parameterizations," <i>International Conference on Machine Learning (ICML)</i> (2021).</span></p>
-<p><span id="salimbeni2018natural">[2] H. Salimbeni, S. Eleftheriadis, &amp; J. Hensman, "Natural gradients in practice: Non-conjugate variational inference in Gaussian process models," <i>International Conference on Artificial Intelligence and Statistics</i> (PMLR, 2018), pp. 689–697.</span></p>
+<ol class="bibliography"><li><span id="lin2021tractable">Lin, W., Nielsen, F., Khan, M. E., &amp; Schmidt, M. (2021). Tractable structured natural gradient descent using local parameterizations. <i>International Conference on Machine Learning (ICML)</i>.</span></li>
+<li><span id="salimbeni2018natural">Salimbeni, H., Eleftheriadis, S., &amp; Hensman, J. (2018). Natural gradients in practice: Non-conjugate variational inference in Gaussian process models. <i>International Conference on Artificial Intelligence and Statistics</i>, 689–697.</span></li></ol>
 
 <h2 id="footnotes">Footnotes:</h2>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>In differential geometry, a Euclidean gradient is also known as a coordinate representation of a cotangent vector. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:1">
+      <p>In differential geometry, a Euclidean gradient is also known as a coordinate representation of a cotangent vector. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
-      <p>We assume readers are familar with the transformation rule for Euclidean gradients.  Let  <code class="language-plaintext highlighter-rouge">$\tau(t)=\gamma_\tau(t)$</code> and <code class="language-plaintext highlighter-rouge">$\lambda(t)=\gamma_\lambda(t)$</code>.  In differential geometry, this transformation rule can also be shown by using the following identity: <code class="language-plaintext highlighter-rouge">$\mathbf{J}(\tau)= \frac{ \partial [\Psi_\lambda \circ \Psi_\tau^{-1}](\tau) }{\partial \tau } =  \frac{ \partial  \lambda  }{\partial \tau } $</code>, where we drop the index $t$ and recall that <code class="language-plaintext highlighter-rouge">$\gamma_\tau(t)=\Psi_\tau \circ \gamma(t)$</code> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:2">
+      <p>We assume readers are familar with the transformation rule for Euclidean gradients.  Let  <code class="language-plaintext highlighter-rouge">$\tau(t)=\gamma_\tau(t)$</code> and <code class="language-plaintext highlighter-rouge">$\lambda(t)=\gamma_\lambda(t)$</code>.  In differential geometry, this transformation rule can also be shown by using the following identity: <code class="language-plaintext highlighter-rouge">$\mathbf{J}(\tau)= \frac{ \partial [\Psi_\lambda \circ \Psi_\tau^{-1}](\tau) }{\partial \tau } =  \frac{ \partial  \lambda  }{\partial \tau } $</code>, where we drop the index $t$ and recall that <code class="language-plaintext highlighter-rouge">$\gamma_\tau(t)=\Psi_\tau \circ \gamma(t)$</code> <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:3" role="doc-endnote">
-      <p>Consider vector function <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code> from input space <code class="language-plaintext highlighter-rouge">$\tau$</code> to output space <code class="language-plaintext highlighter-rouge">$\lambda$</code>. The linearization of function <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code> is a linear map defined by Jacobian matrix <code class="language-plaintext highlighter-rouge">$J$</code>. This linear map is known as the pullback map of <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code>   in differential geometry. Given (Euclidean) vector <code class="language-plaintext highlighter-rouge">$g_\lambda$</code> in the output space, the Euclidean transformation rule (the standard chain rule) returns (Euclidean) vector <code class="language-plaintext highlighter-rouge">$g_\tau$</code> in the input space by the linearization. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:3">
+      <p>Consider vector function <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code> from input space <code class="language-plaintext highlighter-rouge">$\tau$</code> to output space <code class="language-plaintext highlighter-rouge">$\lambda$</code>. The linearization of function <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code> is a linear map defined by Jacobian matrix <code class="language-plaintext highlighter-rouge">$J$</code>. This linear map is known as the pullback map of <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code>   in differential geometry. Given (Euclidean) vector <code class="language-plaintext highlighter-rouge">$g_\lambda$</code> in the output space, the Euclidean transformation rule (the standard chain rule) returns (Euclidean) vector <code class="language-plaintext highlighter-rouge">$g_\tau$</code> in the input space by the linearization. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:4" role="doc-endnote">
-      <p>Recall that function  <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code> is the inverse map of function <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code>. Consider vector function  <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code> from input space <code class="language-plaintext highlighter-rouge">$\lambda$</code> to output space <code class="language-plaintext highlighter-rouge">$\tau$</code>.  The linearization of  function  <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code> is a linear map defined by Jacobian matrix <code class="language-plaintext highlighter-rouge">$Q=J^{-1}$</code>. This linear map is known as the pushforward map of <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code>  in differential geometry. Given (Riemannian) vector <code class="language-plaintext highlighter-rouge">$\hat{g}_\lambda$</code> in the input space, the Riemannian transformation rule returns (Riemannian) vector <code class="language-plaintext highlighter-rouge">$\hat{g}_\tau$</code> in the output space by the linearization. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:4">
+      <p>Recall that function  <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code> is the inverse map of function <code class="language-plaintext highlighter-rouge">$\lambda(\tau)$</code>. Consider vector function  <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code> from input space <code class="language-plaintext highlighter-rouge">$\lambda$</code> to output space <code class="language-plaintext highlighter-rouge">$\tau$</code>.  The linearization of  function  <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code> is a linear map defined by Jacobian matrix <code class="language-plaintext highlighter-rouge">$Q=J^{-1}$</code>. This linear map is known as the pushforward map of <code class="language-plaintext highlighter-rouge">$\tau(\lambda)$</code>  in differential geometry. Given (Riemannian) vector <code class="language-plaintext highlighter-rouge">$\hat{g}_\lambda$</code> in the input space, the Riemannian transformation rule returns (Riemannian) vector <code class="language-plaintext highlighter-rouge">$\hat{g}_\tau$</code> in the output space by the linearization. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#information-geometry" class="page__taxonomy-item" rel="tag">Information Geometry</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#natural-gradient-descent" class="page__taxonomy-item" rel="tag">Natural Gradient Descent</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#riemannian-manifold" class="page__taxonomy-item" rel="tag">Riemannian Manifold</a>
-    
-    </span>
-  </p>
-
-
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-01-01">January 01, 2023</time></p>
-        
-      </footer>
-
-      <section class="page__share">
-  
-    <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Part+III%3A+Invariance+of+Natural-Gradients%20informationgeometryML.github.io%2Fposts%2F2021%2F11%2FGeomopt03%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F11%2FGeomopt03%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=informationgeometryML.github.io%2Fposts%2F2021%2F11%2FGeomopt03%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-
-
-
-     
-
-  <script src="https://utteranc.es/client.js" repo="yorkerlin/yorkerlin.github.io" issue-term="url" label="blog-comments" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-
-
-
-</section>
-
-
-      
-  <nav class="pagination">
-    
-      <a href="/posts/2021/10/Geomopt02/" class="pagination--pager" title="Part II: Derivation of Natural-gradients
-">Previous</a>
-    
-    
-      <a href="/posts/2021/11/Geomopt04/" class="pagination--pager" title="Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt06/" rel="permalink">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  5 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (Part VI is incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt05/" rel="permalink">Part V: Efficient Natural-gradient Methods for Exponential Family
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  19 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  20 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/10/Geomopt02/" rel="permalink">Part II: Derivation of Natural-gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  15 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. W...</p>
-  </article>
-</div>
-        
-      </div>
-    </div>
-  
-  
-</div>
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-      <li><strong>Follow</strong></li>
-    
-    
-    
-    
-      <li><a href="https://github.com/yorkerlin"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-  </ul>
+  </div>
 </div>
 
-<div class="page__footer-copyright">© 2026 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<script>
+  // Unwrap ALL math from <code> tags before MathJax loads
+  document.querySelectorAll('code').forEach(function(el) {
+    var text = el.textContent;
+    if (/\$/.test(text)) {
+      // Use a temp element to safely HTML-encode the text
+      var temp = document.createElement('span');
+      temp.textContent = text;
+      el.outerHTML = temp.innerHTML;
+    }
+  });
 
-      </footer>
-    </div>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
 
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
-
-
-
-
-
---&gt;
-    <!--
-
-  <script src="https://utteranc.es/client.js"
-    repo=yorkerlin/yorkerlin.github.io
-    issue-term=url
-    label=blog-comments
-    theme=github-light
-    crossorigin= "anonymous"
-    async>
-  </script>
-
--->
-  
-
-
-
-
-
-  
-    <script src="/assets/js/custom.js"></script>
-  
-    <script src="/assets/js/math-code.js"></script>
-  
-
-
-
-  </body>
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
 </html>

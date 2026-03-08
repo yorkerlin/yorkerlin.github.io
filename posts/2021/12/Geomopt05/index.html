@@ -1,216 +1,28 @@
 <!DOCTYPE html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
---><html lang="en" class="no-js">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>Part V: Efficient Natural-gradient Methods for Exponential Family - Wu Lin</title>
-<meta name="description" content="Warning: working in Progress (incomplete)">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Part V: Efficient Natural-gradient Methods for Exponential Family">
-<meta property="og:url" content="/posts/2021/12/Geomopt05/">
-
-
-  <meta property="og:description" content="Warning: working in Progress (incomplete)">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2021-12-14T00:00:00-08:00">
-
-
-
-  <meta property="article:modified_time" content="2023-01-01T13:57:27-08:00">
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="/posts/2021/12/Geomopt05/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Wu Lin",
-      "url": "https://github.com/pages/yorkerlin/yorkerlin.github.io",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wu Lin Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-
-
-
-
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
-
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single mywide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Wu Lin</a>
-        <ul class="visible-links">
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/">Home</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/news/">News</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/year-archive/">Blog Posts</a>
-            </li>
-          
-        </ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-    <div class="initial-content">
-      
-
-
-
-<div id="main" role="main">
-  
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Part V: Efficient Natural-gradient Methods for Exponential Family">
-    <meta itemprop="description" content="Warning: working in Progress (incomplete)">
-    <meta itemprop="datePublished" content="December 14, 2021">
-    <meta itemprop="dateModified" content="January 01, 2023">
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Part V: Efficient Natural-gradient Methods for Exponential Family
-</h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  18 minute read
-</p>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <p>Warning: working in Progress (incomplete)</p>
-
-<h2 id="goal-edited-01-jan-23">Goal (edited: 01-Jan-23)</h2>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part V: Efficient Natural-gradient Methods for Exponential Family | Wu Lin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">Wu Lin</span>
+    <span class="nav-links">
+      <a href="/">Home</a>
+      <a href="/research.html">Papers</a>
+      <a href="/year-archive.html">Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    <h1>Part V: Efficient Natural-gradient Methods for Exponential Family</h1>
+    <p class="post-date">December 14, 2021</p>
+    <p>Warning: working in Progress (incomplete)</p>
+
+<h2 id="goal-edited-">Goal (edited: )</h2>
 <p>This blog post should show that we can efficiently implement natural-gradient methods in many cases.</p>
 
 <p>We will give an informal introduction with a focus on high level of ideas.</p>
@@ -220,8 +32,7 @@ MathJax = {
 <summary>Click to see how to cite this blog post</summary>
 <fieldset class="field-set">
 
-      <div class="language-latex highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog05,
+      <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog05,
   title = <span class="p">{</span>Introduction to Natural-gradient Descent: Part V<span class="p">}</span>,
   author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
   url = <span class="p">{</span>https://informationgeometryml.github.io/year-archive/<span class="p">}</span>, 
@@ -235,7 +46,7 @@ MathJax = {
 </div>
 
 <h1 id="exponential-family">Exponential Family</h1>
-<hr>
+<hr />
 
 <p>An exponential family takes the following (canonical) form as
 <code class="language-plaintext highlighter-rouge">$$
@@ -319,7 +130,7 @@ Since <code class="language-plaintext highlighter-rouge">$\sigma= -\frac{1}{2\et
   </details>
     </div>
   </li>
-  <li>The log-partition function can be differentiable w.r.t. <code class="language-plaintext highlighter-rouge">$\eta$</code> <a class="citation" href="#johansen1979introduction">[1]</a> even when <code class="language-plaintext highlighter-rouge">$\mathbf{w}$</code> is discrete.
+  <li>The log-partition function can be differentiable w.r.t. <code class="language-plaintext highlighter-rouge">$\eta$</code> <a class="citation" href="#johansen1979introduction">(Johansen, 1979)</a> even when <code class="language-plaintext highlighter-rouge">$\mathbf{w}$</code> is discrete.
     <div class="notice--info">
       <details>
   <summary>Bernoulli as an exponential family (click to expand)</summary>
@@ -338,7 +149,7 @@ p({w}|\mathbf{\eta})
 &amp;=\underbrace{ \exp(0) }_{  h_\eta({w}) }  \exp( \langle \underbrace{ \log \frac{\pi}{1-\pi}}_{\eta} , \underbrace{ \mathcal{I}(w=0)}_{T_\eta(w) } \rangle - \log \frac{1}{1-\pi} )
 \end{aligned}
 $$</code>
-Since <code class="language-plaintext highlighter-rouge">$\pi = \frac{\exp(\eta)}{1+ \exp(\eta) } $</code> , we have <code class="language-plaintext highlighter-rouge">$A_\eta(\mathbf{\eta}) =  \log \frac{1}{1-\pi} = \log(1+\exp(\eta))$</code>. <br>
+Since <code class="language-plaintext highlighter-rouge">$\pi = \frac{\exp(\eta)}{1+ \exp(\eta) } $</code> , we have <code class="language-plaintext highlighter-rouge">$A_\eta(\mathbf{\eta}) =  \log \frac{1}{1-\pi} = \log(1+\exp(\eta))$</code>. <br />
 We easily to verify that parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\eta= \{ \eta | \eta \in \mathcal{R} \}$</code> is open in $\mathcal{R}$.</p>
           </blockquote>
         </fieldset>
@@ -380,7 +191,7 @@ using this class of parametrizations.</p>
   <p><strong>Minimal</strong> natural parametrization: the corresponding sufficient stattistics <code class="language-plaintext highlighter-rouge">$\mathcal{T}(\mathbf{w})$</code> is linearly independent.</p>
 </div>
 
-<p>A regular, minimal, and natural parametrization <code class="language-plaintext highlighter-rouge">$\eta$</code> has many nice properties <a class="citation" href="#johansen1979introduction">[1]</a> <a class="citation" href="#wainwright2008graphical">[2]</a>.</p>
+<p>A regular, minimal, and natural parametrization <code class="language-plaintext highlighter-rouge">$\eta$</code> has many nice properties <a class="citation" href="#johansen1979introduction">(Johansen, 1979)</a> <a class="citation" href="#wainwright2008graphical">(Wainwright &amp; Jordan, 2008)</a>.</p>
 
 <ul>
   <li>
@@ -541,7 +352,7 @@ between these two parametrizations via this identity.
 &amp;=E_{p(w|\eta)} [ \mathbf{T}_\eta(\mathbf{w}) - \nabla_\eta A_\eta(\eta) ] \\
 &amp;= \mathbf{m}  - \nabla_\eta A_\eta(\eta)
 \end{aligned}\tag{1}\label{1}
-$$</code>  which is a valid Legendre (dual) transformation<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> since 
+$$</code>  which is a valid Legendre (dual) transformation<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> since 
 <code class="language-plaintext highlighter-rouge">$\nabla_\eta^2 A_\eta(\eta)$</code> is positive-definite in its domain <code class="language-plaintext highlighter-rouge">$\Omega_\eta$</code>.</p>
 
 <h2 id="expectation-parameter-space">Expectation Parameter Space</h2>
@@ -591,7 +402,7 @@ $$</code> where
 <code class="language-plaintext highlighter-rouge">$\eta=\eta( \mathbf{m} )$</code>
 can be viewed  as a function of <code class="language-plaintext highlighter-rouge">$\mathbf{m}$</code>.</p>
 
-<p>Therefore, we can  efficinetly compute natural-gradients w.r.t. natural parameter <code class="language-plaintext highlighter-rouge">$\eta$</code> <a class="citation" href="#khan2017conjugate">[3]</a>  if we  can  easily compute Euclidean gradients w.r.t. its expectation parameter <code class="language-plaintext highlighter-rouge">$\mathbf{m}$</code>.</p>
+<p>Therefore, we can  efficinetly compute natural-gradients w.r.t. natural parameter <code class="language-plaintext highlighter-rouge">$\eta$</code> <a class="citation" href="#khan2017conjugate">(Khan &amp; Lin, 2017)</a>  if we  can  easily compute Euclidean gradients w.r.t. its expectation parameter <code class="language-plaintext highlighter-rouge">$\mathbf{m}$</code>.</p>
 
 <h2 id="efficient-ngd-for-multivariate-gaussians">Efficient NGD for multivariate Gaussians</h2>
 <p>Given a $d$-dim multivariate Gaussian with a full covariance structure, 
@@ -918,298 +729,48 @@ $$</code> which is exactly natural gradient
 descent in <strong>natural</strong> parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\eta=\mathcal{R}^K$</code> since by <code class="language-plaintext highlighter-rouge">$\eqref{4}$</code>, we have <code class="language-plaintext highlighter-rouge">$\nabla_m \ell_m(\mathbf{m}_k) = \nabla_m \ell_\eta( \eta_k)= \mathbf{F}
 _\eta^{-1} (\eta_k) \nabla_\eta \ell_\eta(\eta_k)$</code>.</p>
 
-<hr>
+<hr />
 <h1 id="references">References</h1>
-<p class="bibliography"></p>
-<p><span id="johansen1979introduction">[1] S. Johansen, <i>Introduction to the theory of regular exponential families</i> (Institute of Mathematical Statistics, University of Copenhagen, 1979).</span></p>
-<p><span id="wainwright2008graphical">[2] M. J. Wainwright &amp; M. I. Jordan, <i>Graphical models, exponential families, and variational inference</i> (Now Publishers Inc, 2008).</span></p>
-<p><span id="khan2017conjugate">[3] M. Khan &amp; W. Lin, "Conjugate-computation variational inference: Converting variational inference in non-conjugate models to inferences in conjugate models," <i>Artificial Intelligence and Statistics</i> (PMLR, 2017), pp. 878–887.</span></p>
+<ol class="bibliography"><li><span id="johansen1979introduction">Johansen, S. (1979). <i>Introduction to the theory of regular exponential families</i> (Vol. 3). Institute of Mathematical Statistics, University of Copenhagen.</span></li>
+<li><span id="wainwright2008graphical">Wainwright, M. J., &amp; Jordan, M. I. (2008). <i>Graphical models, exponential families, and variational inference</i>. Now Publishers Inc.</span></li>
+<li><span id="khan2017conjugate">Khan, M., &amp; Lin, W. (2017). Conjugate-computation variational inference: Converting variational inference in non-conjugate models to inferences in conjugate models. <i>Artificial Intelligence and Statistics</i>, 878–887.</span></li></ol>
 
 <h2 id="footnotes">Footnotes:</h2>
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>When the natural parameter <code class="language-plaintext highlighter-rouge">$\eta$</code> is minimal, this Legendre transformation is diffeomorphic since <code class="language-plaintext highlighter-rouge">$\nabla_\eta^2 A_\eta(\eta)$</code> is positive-definite in its domain. In other words, the expectation parameter <code class="language-plaintext highlighter-rouge">$\mathbf{m}$</code> is also intrinsic when the natural parameter <code class="language-plaintext highlighter-rouge">$\eta$</code> is minimal. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:1">
+      <p>When the natural parameter <code class="language-plaintext highlighter-rouge">$\eta$</code> is minimal, this Legendre transformation is diffeomorphic since <code class="language-plaintext highlighter-rouge">$\nabla_\eta^2 A_\eta(\eta)$</code> is positive-definite in its domain. In other words, the expectation parameter <code class="language-plaintext highlighter-rouge">$\mathbf{m}$</code> is also intrinsic when the natural parameter <code class="language-plaintext highlighter-rouge">$\eta$</code> is minimal. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#exponential-family" class="page__taxonomy-item" rel="tag">Exponential Family</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#information-geometry" class="page__taxonomy-item" rel="tag">Information Geometry</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#natural-gradient-descent" class="page__taxonomy-item" rel="tag">Natural Gradient Descent</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#riemannian-manifold" class="page__taxonomy-item" rel="tag">Riemannian Manifold</a>
-    
-    </span>
-  </p>
-
-
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-01-01">January 01, 2023</time></p>
-        
-      </footer>
-
-      <section class="page__share">
-  
-    <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Part+V%3A+Efficient+Natural-gradient+Methods+for+Exponential+Family%20informationgeometryML.github.io%2Fposts%2F2021%2F12%2FGeomopt05%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F12%2FGeomopt05%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=informationgeometryML.github.io%2Fposts%2F2021%2F12%2FGeomopt05%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-
-
-
-     
-
-  <script src="https://utteranc.es/client.js" repo="yorkerlin/yorkerlin.github.io" issue-term="url" label="blog-comments" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-
-
-
-</section>
-
-
-      
-  <nav class="pagination">
-    
-      <a href="/posts/2021/11/Geomopt04/" class="pagination--pager" title="Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-">Previous</a>
-    
-    
-      <a href="/posts/2021/12/Geomopt06/" class="pagination--pager" title="Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt06/" rel="permalink">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  5 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (Part VI is incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  19 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt03/" rel="permalink">Part III: Invariance of Natural-Gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  13 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on invariant properties of natural-gradients.
-We will discuss
-
-  transformation rules of natural-gradients,
- ...</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/10/Geomopt02/" rel="permalink">Part II: Derivation of Natural-gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  15 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. W...</p>
-  </article>
-</div>
-        
-      </div>
-    </div>
-  
-  
-</div>
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-      <li><strong>Follow</strong></li>
-    
-    
-    
-    
-      <li><a href="https://github.com/yorkerlin"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-  </ul>
+  </div>
 </div>
 
-<div class="page__footer-copyright">© 2026 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<script>
+  // Unwrap ALL math from <code> tags before MathJax loads
+  document.querySelectorAll('code').forEach(function(el) {
+    var text = el.textContent;
+    if (/\$/.test(text)) {
+      // Use a temp element to safely HTML-encode the text
+      var temp = document.createElement('span');
+      temp.textContent = text;
+      el.outerHTML = temp.innerHTML;
+    }
+  });
 
-      </footer>
-    </div>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
 
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
-
-
-
-
-
---&gt;
-    <!--
-
-  <script src="https://utteranc.es/client.js"
-    repo=yorkerlin/yorkerlin.github.io
-    issue-term=url
-    label=blog-comments
-    theme=github-light
-    crossorigin= "anonymous"
-    async>
-  </script>
-
--->
-  
-
-
-
-
-
-  
-    <script src="/assets/js/custom.js"></script>
-  
-    <script src="/assets/js/math-code.js"></script>
-  
-
-
-
-  </body>
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
 </html>

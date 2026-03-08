@@ -1,214 +1,26 @@
 <!DOCTYPE html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
---><html lang="en" class="no-js">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>Part II: Derivation of Natural-gradients - Wu Lin</title>
-<meta name="description" content="Goal (edited: 01-Jan-23)This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:  Rimannian steepest direction (i.e.,  normalized natural gradient)  The difference between a parameter space and a gradient/vector space">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Part II: Derivation of Natural-gradients">
-<meta property="og:url" content="/posts/2021/10/Geomopt02/">
-
-
-  <meta property="og:description" content="Goal (edited: 01-Jan-23)This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:  Rimannian steepest direction (i.e.,  normalized natural gradient)  The difference between a parameter space and a gradient/vector space">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2021-10-04T00:00:00-07:00">
-
-
-
-  <meta property="article:modified_time" content="2023-01-01T13:57:27-08:00">
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="/posts/2021/10/Geomopt02/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Wu Lin",
-      "url": "https://github.com/pages/yorkerlin/yorkerlin.github.io",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wu Lin Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-
-
-
-
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
-
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single mywide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Wu Lin</a>
-        <ul class="visible-links">
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/">Home</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/news/">News</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/year-archive/">Blog Posts</a>
-            </li>
-          
-        </ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-    <div class="initial-content">
-      
-
-
-
-<div id="main" role="main">
-  
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Part II: Derivation of Natural-gradients">
-    <meta itemprop="description" content="Goal (edited: 01-Jan-23)This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:  Rimannian steepest direction (i.e.,  normalized natural gradient)  The difference between a parameter space and a gradient/vector space">
-    <meta itemprop="datePublished" content="October 04, 2021">
-    <meta itemprop="dateModified" content="January 01, 2023">
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Part II: Derivation of Natural-gradients
-</h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  15 minute read
-</p>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <h2 id="goal-edited-01-jan-23">Goal (edited: 01-Jan-23)</h2>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part II: Derivation of Natural-gradients | Wu Lin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">Wu Lin</span>
+    <span class="nav-links">
+      <a href="/">Home</a>
+      <a href="/research.html">Papers</a>
+      <a href="/year-archive.html">Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    <h1>Part II: Derivation of Natural-gradients</h1>
+    <p class="post-date">October 04, 2021</p>
+    <h2 id="goal-edited-">Goal (edited: )</h2>
 <p>This blog post focuses on the derivation of natural-gradients, which are known as Riemannian gradients with the Fisher-Rao metric. We will discuss the following concepts to derive natural-gradients:</p>
 <ul>
   <li>Rimannian steepest direction (i.e.,  normalized natural gradient)</li>
@@ -222,8 +34,7 @@ MathJax = {
 <summary>Click to see how to cite this blog post</summary>
 <fieldset class="field-set">
 
-      <div class="language-latex highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog02,
+      <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog02,
   title = <span class="p">{</span>Introduction to Natural-gradient Descent: Part II<span class="p">}</span>,
   author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
   url = <span class="p">{</span>https://informationgeometryml.github.io/year-archive/<span class="p">}</span>, 
@@ -253,7 +64,7 @@ while a natural-gradient update (in a parameter space) is only linearly invarian
 <p>We will give an alternative <a href="#riemannian-steepest-direction">derivation</a> of natural-gradients to emphasize the subtlety.</p>
 
 <h1 id="euclidean-steepest-direction">Euclidean Steepest Direction</h1>
-<hr>
+<hr />
 <p>Before we discuss natural-gradients, we first revisit Euclidean gradients.</p>
 
 <p>We will show a normalized Euclidean gradient can be viewed as the Euclidean steepest direction. Later, we will generalize the steepest direction in Riemannian cases and show that the Riemannian steepest direction w.r.t. the Fisher-Rao metric is indeed a normalized natural-gradient.</p>
@@ -282,7 +93,7 @@ $$</code></p>
 </div>
 
 <h1 id="weighted-norm-induced-by-the-fisher-rao-metric">Weighted Norm Induced by the Fisher-Rao Metric</h1>
-<hr>
+<hr />
 
 <p>Now, we  formulate a similar optimization problem like Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code>  in order to generalize the steepest direction at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> in a Riemannian manifold.
 To do so, we have to define the length of a vector in manifold cases. In 
@@ -307,7 +118,7 @@ d(\mathbf{v},\mathbf{w}) := \|\mathbf{v}-\mathbf{w}\|_F
 $$</code>
 where vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> and <code class="language-plaintext highlighter-rouge">$\mathbf{w}$</code> live in the same (vector) space at point <code class="language-plaintext highlighter-rouge">$\tau_0$</code>.</p>
 
-<p><img src="/img/tmanifold.png" width="300"></p>
+<p><img src="/img/tmanifold.png" width="300" /></p>
 
 <div class="notice--success">
   <p><strong>Note</strong>:</p>
@@ -335,21 +146,21 @@ This difference is crucial to (natural) gradient-based methods in
 </div>
 
 <h1 id="directional-derivatives-in-a-manifold">Directional Derivatives in a Manifold</h1>
-<hr>
+<hr />
 <p>As we shown before, the objective function in Eq. <code class="language-plaintext highlighter-rouge">$\eqref{1}$</code> is a directional derivative in Euclidean cases.
 The next step is to generalize the concept of directional derivatives in a manifold.</p>
 
 <p>Recall that a manifold should be locally like a vector space under <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations"><strong>intrinsic</strong> parameterization</a> <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}$</code>.
 Using this parameterization, consider an optimization problem $\min_{\tau \in \Omega_\tau } f(\mathbf{\tau})$, where the parameter space $\Omega_\tau$ is determined by the choice of a parameterization and the manifold. Recall that we have a local vector space structure in <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> if we parametrize the manifold with an intrinsic parameterization.</p>
 
-<p>Therefore, we can similarly define a directional derivative<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> at <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> along Riemannian vector<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> $\mathbf{v}$ as <code class="language-plaintext highlighter-rouge">$\lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t}$</code>, where $t$ is a scalar real number. The main point is that <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}$</code> stays in the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> thanks to the <strong>local vector space</strong> structure.</p>
+<p>Therefore, we can similarly define a directional derivative<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> at <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> along Riemannian vector<sup id="fnref:2"><a href="#fn:2" class="footnote" rel="footnote" role="doc-noteref">2</a></sup> $\mathbf{v}$ as <code class="language-plaintext highlighter-rouge">$\lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t}$</code>, where $t$ is a scalar real number. The main point is that <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}$</code> stays in the parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> thanks to the <strong>local vector space</strong> structure.</p>
 
 <p>Recall that we allow a <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">small perturbation</a> <code class="language-plaintext highlighter-rouge">$E$</code> around <code class="language-plaintext highlighter-rouge">$\tau_0$</code> contained in  parameter space  <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> (i.e., <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>) since  <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}$</code> is an intrinsic parameterization.
 Therefore, when $|t|$ is small enough, <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} $</code> stays in the parameter space and <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau}_0+t\mathbf{v})$</code> is well-defined.
 Note that we only require <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} \in \Omega_\tau$</code> when <code class="language-plaintext highlighter-rouge">$|t|$</code> is small enough. This is possible since a line segment <code class="language-plaintext highlighter-rouge">$ \mathbf{\tau}_0+t\mathbf{v} \in E$</code> and <code class="language-plaintext highlighter-rouge">$E \subset \Omega_\tau$</code>.
 Technically, this is because <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> is an open set in $\mathcal{R}^K$, where $K$ is the number of entries of parameter array <code class="language-plaintext highlighter-rouge">$\tau$</code>.</p>
 
-<p><img src="/img/sphere_simple.png" width="500"></p>
+<p><img src="/img/sphere_simple.png" width="500" /></p>
 
 <p>Under <strong>intrinsic</strong> parameterization $\mathbf{\tau}$, the directional derivative remains the same as in the Euclidean case thanks to the <strong>local vector space</strong> structure in <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>.
 <code class="language-plaintext highlighter-rouge">$$\begin{aligned} \lim_{t \to 0} \frac{f(\mathbf{\tau}_0+t\mathbf{v}) - f(\mathbf{\tau}_0) }{t} = ( \nabla_\tau f(\mathbf{\tau}_0))^T \mathbf{v}. \end{aligned}$$</code></p>
@@ -370,7 +181,7 @@ This is the <strong>key difference</strong> between intrinsic parameter space <c
   </ul>
 </div>
 
-<p><img src="/img/sphere-1.png" width="800"></p>
+<p><img src="/img/sphere-1.png" width="800" /></p>
 
 <p>The following example illustrates directional derivatives in manifold cases.</p>
 
@@ -385,7 +196,7 @@ This is the <strong>key difference</strong> between intrinsic parameter space <c
         <p>The line segment from <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> to <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v} $</code>  is shown in blue, which is the parameter representation of the yellow curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> on the manifold.
 We will show later that Riemannian gradient vector <code class="language-plaintext highlighter-rouge">$\mathbf{v}$</code> under this parametrization at point <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> is the <strong>parameter representation</strong> of the tangent vector of curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> at point <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code>.</p>
 
-        <p><img src="/img/sphere_simple.png" width="500"></p>
+        <p><img src="/img/sphere_simple.png" width="500" /></p>
 
         <div class="notice--danger">
           <p><strong>Warning</strong>:
@@ -406,7 +217,7 @@ Curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> ofte
 
         <p>We use <a href="/posts/2021/09/Geomopt01/#intrinsic-parameterizations">parameterization 3</a> for unit circle <code class="language-plaintext highlighter-rouge">$\mathcal{S}^1$</code>, where the red line segment passes through <code class="language-plaintext highlighter-rouge">$\tau_0=(0,1) \in \mathcal{S}^1 $</code>.</p>
 
-        <p><img src="/img/tangent_non.png" alt="Figure 1"></p>
+        <p><img src="/img/tangent_non.png" alt="Figure 1" /></p>
 
         <p>Any  point <code class="language-plaintext highlighter-rouge">$\tau_0 + t\mathbf{v}$</code> in the line segment leaves the manifold when <code class="language-plaintext highlighter-rouge">$t\neq 0$</code>.  Thus, <code class="language-plaintext highlighter-rouge">$f(\mathbf{\tau}_0+t\mathbf{v})$</code> is not well-defined.
 The main reason is that <code class="language-plaintext highlighter-rouge">$\tau$</code> is not an intrinsic parameterization.</p>
@@ -416,9 +227,9 @@ The main reason is that <code class="language-plaintext highlighter-rouge">$\tau
 </div>
 
 <h1 id="riemannian-steepest-direction">Riemannian Steepest Direction</h1>
-<hr>
+<hr />
 <p>Recall that we have defined the length of a Riemannian vector and directional derivatives in a manifold.
-Now, we can introduce the Riemannian steepest direction <a class="citation" href="#absil2009optimization">[1]</a> . We will use this to define/compute natural-gradients.</p>
+Now, we can introduce the Riemannian steepest direction <a class="citation" href="#absil2009optimization">(Absil et al., 2009)</a> . We will use this to define/compute natural-gradients.</p>
 
 <p>By choosing an intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}$</code>, a minimization problem over a manifold  <code class="language-plaintext highlighter-rouge">$\mathcal{M}$</code> can be translated as
 <code class="language-plaintext highlighter-rouge">$\min_{\tau \in \Omega_\tau } f(\mathbf{\tau})$</code> over  parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>. Recall that <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> has a local vector-space structure.</p>
@@ -574,9 +385,9 @@ Strictly speaking, a natural gradient/vector w.r.t. <code class="language-plaint
 </div>
 
 <h1 id="riemannian-gradients-as-tangent-vectors-optional">Riemannian Gradients as Tangent Vectors (Optional)</h1>
-<hr>
+<hr />
 <p>In the previous section, we only consider Riemannian vectors/gradients under a parametrization $\tau$.
-Now, we will discuss abstract Riemannian vectors without specifying a parametrization <a class="citation" href="#tu2011introduction">[2]</a>. This concept is often used to show the invariance of Riemannian gradients, which will be discussed in 
+Now, we will discuss abstract Riemannian vectors without specifying a parametrization <a class="citation" href="#tu2011introduction">(Tu, 2011)</a>. This concept is often used to show the invariance of Riemannian gradients, which will be discussed in 
 <a href="/posts/2021/11/Geomopt03/#parameter-transformation-and-invariance">Part III</a>.</p>
 
 <p>A Riemannian gradient denoted by $\mathbf{v}(\tau)$ is indeed a tangent vector $\mathbf{v}$ of a smooth curve on the manifold under the parametrization $\tau$. 
@@ -601,23 +412,20 @@ Under parametrization $\mathbf{\tau}$, we have the following parametric represen
     </tr>
     <tr>
       <td style="text-align: left">Intrinsic parameter space</td>
-      <td style="text-align: center">red space <code class="language-plaintext highlighter-rouge">$\Omega_\tau:=\{ (\tau_x,\tau_y)| \tau_x^2 + \tau_y^2 &lt;1 \}$</code>
-</td>
+      <td style="text-align: center">red space <code class="language-plaintext highlighter-rouge">$\Omega_\tau:=\{ (\tau_x,\tau_y)| \tau_x^2 + \tau_y^2 &lt;1 \}$</code></td>
     </tr>
     <tr>
       <td style="text-align: left">Tangent space at $\mathbf{x_0}$</td>
-      <td style="text-align: center">green space  <code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code> at <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code>
-</td>
+      <td style="text-align: center">green space  <code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code> at <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code></td>
     </tr>
     <tr>
       <td style="text-align: left">Yellow curve from $\mathbf{x_0}$ to $\mathbf{x_1}$</td>
-      <td style="text-align: center">blue line segment from <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> to <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}(\tau_0)$</code>
-</td>
+      <td style="text-align: center">blue line segment from <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0$</code> to <code class="language-plaintext highlighter-rouge">$\mathbf{\tau}_0+t\mathbf{v}(\tau_0)$</code></td>
     </tr>
   </tbody>
 </table>
 
-<p><img src="/img/sphere.png" width="800"></p>
+<p><img src="/img/sphere.png" width="800" /></p>
 
 <p>Note that  <code class="language-plaintext highlighter-rouge">$\tau_0$</code> is a parameter array, which is a representation of a point $\mathbf{x}_0$ while $\mathbf{v}(\tau_0)$ is  a Riemannian gradient, which is a representation of the tangent vector of curve <code class="language-plaintext highlighter-rouge">$\gamma$</code> at point $\mathbf{x}_0$.</p>
 
@@ -637,19 +445,15 @@ Be aware of the differences shown in the table.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left">
-<code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code> (vector/natural-gradient) space</td>
-      <td style="text-align: center">tangent vector space at <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code>
-</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code> (vector/natural-gradient) space</td>
+      <td style="text-align: center">tangent vector space at <code class="language-plaintext highlighter-rouge">$\mathbf{x}_0$</code></td>
       <td style="text-align: center">real scalar product, vector addition</td>
       <td>defined</td>
     </tr>
     <tr>
-      <td style="text-align: left">
-<code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> (point/parameter) space</td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code> (point/parameter) space</td>
       <td style="text-align: center">top half of the manifold</td>
-      <td style="text-align: center">
-<span style="color:red"> <strong>local</strong> </span> scalar product, <span style="color:red"><strong>local</strong> </span> vector addition</td>
+      <td style="text-align: center"><span style="color:red"> <strong>local</strong> </span> scalar product, <span style="color:red"><strong>local</strong> </span> vector addition</td>
       <td>undefined</td>
     </tr>
   </tbody>
@@ -683,7 +487,7 @@ and the blue line segment <code class="language-plaintext highlighter-rouge">${\
   <p>The parametric  representation of the vector is <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0):= \frac{d {\gamma}_\tau(t) }{d t} \Big|_{t=0}=(v_x,v_y)$</code>.</p>
 </blockquote>
 
-<p><img src="/img/sphere.png" width="800"></p>
+<p><img src="/img/sphere.png" width="800" /></p>
 
 <p>A Riemannian gradient <code class="language-plaintext highlighter-rouge">$\mathbf{v}(\mathbf{\tau}_0)$</code> can be viewed as a parametric representation of tangent vector  $\mathbf{v}$ as shown below.</p>
 
@@ -713,298 +517,51 @@ of curve <code class="language-plaintext highlighter-rouge">$\gamma(t)$</code> a
 <p>A key takeaway is that a vector space structure is an integral part of a tangent <strong>vector</strong> space. On the other hand, we have to use an intrinsic parametrization <code class="language-plaintext highlighter-rouge">$\tau$</code> to artificially create a local vector space structure in parameter space <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>.
 We will discuss more about this difference in <a href="/posts/2021/11/Geomopt04/#two-kinds-of-spaces">Part IV</a>.</p>
 
-<hr>
+<hr />
 <h1 id="references">References</h1>
-<p class="bibliography"></p>
-<p><span id="absil2009optimization">[1] P.-A. Absil, R. Mahony, &amp; R. Sepulchre, <i>Optimization algorithms on matrix manifolds</i> (Princeton University Press, 2009).</span></p>
-<p><span id="tu2011introduction">[2] L. W. Tu, "An introduction to manifolds. Second," <i>New York, US: Springer</i> (2011).</span></p>
+<ol class="bibliography"><li><span id="absil2009optimization">Absil, P.-A., Mahony, R., &amp; Sepulchre, R. (2009). <i>Optimization algorithms on matrix manifolds</i>. Princeton University Press.</span></li>
+<li><span id="tu2011introduction">Tu, L. W. (2011). An introduction to manifolds. Second. <i>New York, US: Springer</i>.</span></li></ol>
 
 <h2 id="footnotes">Footnotes:</h2>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>For simplicity, we avoid defining a (coordinate-free) <a href="https://en.wikipedia.org/wiki/Covariant_derivative">covariant derivative</a>, which induces parallel transport. Given a smooth scalar field/function on a manifold, a coordinate representation of the covariant derivative remains the same as the Euclidean case. Note that the standard coordinate derivative  is identical to  the coordinate representation of the covariant derivative when it comes to a scalar field. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:1">
+      <p>For simplicity, we avoid defining a (coordinate-free) <a href="https://en.wikipedia.org/wiki/Covariant_derivative">covariant derivative</a>, which induces parallel transport. Given a smooth scalar field/function on a manifold, a coordinate representation of the covariant derivative remains the same as the Euclidean case. Note that the standard coordinate derivative  is identical to  the coordinate representation of the covariant derivative when it comes to a scalar field. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
-    <li id="fn:2" role="doc-endnote">
-      <p>A Riemannian gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors#Contravariant_transformation">contravariant vector</a> (A.K.A. a Riemannian vector) while a Euclidean gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors#Covariant_transformation">covariant vector</a> (A.K.A. a Riemannian covector). We will discuss their transformation rules in <a href="/posts/2021/11/Geomopt03/">Part III</a>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:2">
+      <p>A Riemannian gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors#Contravariant_transformation">contravariant vector</a> (A.K.A. a Riemannian vector) while a Euclidean gradient is a coordinate representation of a <a href="https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors#Covariant_transformation">covariant vector</a> (A.K.A. a Riemannian covector). We will discuss their transformation rules in <a href="/posts/2021/11/Geomopt03/">Part III</a>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#information-geometry" class="page__taxonomy-item" rel="tag">Information Geometry</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#natural-gradient-descent" class="page__taxonomy-item" rel="tag">Natural Gradient Descent</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#riemannian-manifold" class="page__taxonomy-item" rel="tag">Riemannian Manifold</a>
-    
-    </span>
-  </p>
-
-
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-01-01">January 01, 2023</time></p>
-        
-      </footer>
-
-      <section class="page__share">
-  
-    <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Part+II%3A+Derivation+of+Natural-gradients%20informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=informationgeometryML.github.io%2Fposts%2F2021%2F10%2FGeomopt02%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-
-
-
-     
-
-  <script src="https://utteranc.es/client.js" repo="yorkerlin/yorkerlin.github.io" issue-term="url" label="blog-comments" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-
-
-
-</section>
-
-
-      
-  <nav class="pagination">
-    
-      <a href="/posts/2021/09/Geomopt01/" class="pagination--pager" title="Part I: Smooth Manifolds with the Fisher-Rao Metric
-">Previous</a>
-    
-    
-      <a href="/posts/2021/11/Geomopt03/" class="pagination--pager" title="Part III: Invariance of Natural-Gradients
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt06/" rel="permalink">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  5 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (Part VI is incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt05/" rel="permalink">Part V: Efficient Natural-gradient Methods for Exponential Family
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  19 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  20 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt03/" rel="permalink">Part III: Invariance of Natural-Gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  14 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on invariant properties of natural-gradients.
-We will discuss
-
-  transformation rules of natural-gradients,
- ...</p>
-  </article>
-</div>
-        
-      </div>
-    </div>
-  
-  
-</div>
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-      <li><strong>Follow</strong></li>
-    
-    
-    
-    
-      <li><a href="https://github.com/yorkerlin"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-  </ul>
+  </div>
 </div>
 
-<div class="page__footer-copyright">© 2026 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<script>
+  // Unwrap ALL math from <code> tags before MathJax loads
+  document.querySelectorAll('code').forEach(function(el) {
+    var text = el.textContent;
+    if (/\$/.test(text)) {
+      // Use a temp element to safely HTML-encode the text
+      var temp = document.createElement('span');
+      temp.textContent = text;
+      el.outerHTML = temp.innerHTML;
+    }
+  });
 
-      </footer>
-    </div>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
 
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
-
-
-
-
-
---&gt;
-    <!--
-
-  <script src="https://utteranc.es/client.js"
-    repo=yorkerlin/yorkerlin.github.io
-    issue-term=url
-    label=blog-comments
-    theme=github-light
-    crossorigin= "anonymous"
-    async>
-  </script>
-
--->
-  
-
-
-
-
-
-  
-    <script src="/assets/js/custom.js"></script>
-  
-    <script src="/assets/js/math-code.js"></script>
-  
-
-
-
-  </body>
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
 </html>

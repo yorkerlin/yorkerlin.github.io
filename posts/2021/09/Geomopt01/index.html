@@ -1,214 +1,26 @@
 <!DOCTYPE html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.12.0 by Michael Rose
-  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
---><html lang="en" class="no-js">
-  <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-
-<!-- begin _includes/seo.html --><title>Part I: Smooth Manifolds with the Fisher-Rao Metric - Wu Lin</title>
-<meta name="description" content="Goal (edited: 06-Feb-23)This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following  useful concepts to ensure non-singular FIMs:  Regularity conditions and intrinsic parameterizations of a distribution  Dimensionality of a smooth manifold">
-
-
-
-<meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Wu Lin">
-<meta property="og:title" content="Part I: Smooth Manifolds with the Fisher-Rao Metric">
-<meta property="og:url" content="/posts/2021/09/Geomopt01/">
-
-
-  <meta property="og:description" content="Goal (edited: 06-Feb-23)This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following  useful concepts to ensure non-singular FIMs:  Regularity conditions and intrinsic parameterizations of a distribution  Dimensionality of a smooth manifold">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2021-09-06T00:00:00-07:00">
-
-
-
-  <meta property="article:modified_time" content="2023-02-06T12:23:50-08:00">
-
-
-
-  
-
-  
-
-
-<link rel="canonical" href="/posts/2021/09/Geomopt01/">
-
-
-
-
-
-
-
-  <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Person",
-      "name": "Wu Lin",
-      "url": "https://github.com/pages/yorkerlin/yorkerlin.github.io",
-      "sameAs": null
-    }
-  </script>
-
-
-
-
-
-
-
-<!-- end _includes/seo.html -->
-
-
-<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Wu Lin Feed">
-
-<!-- http://t.co/dKP3o1e -->
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-</script>
-
-<!-- For all browsers -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!--[if lte IE 9]>
-  <style>
-    /* old IE unsupported flexbox fixes */
-    .greedy-nav .site-title {
-      padding-right: 3em;
-    }
-    .greedy-nav button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      height: 100%;
-    }
-  </style>
-<![endif]-->
-
-
-    <!-- start custom head snippets -->
-
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
-
-<script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
-  });
-</script>
-
-
-
-
-
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
-<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
-
-
-<!-- end custom head snippets -->
-
-  </head>
-
-  <body class="layout--single mywide">
-
-    <!--[if lt IE 9]>
-<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
-<![endif]-->
-
-    <div class="masthead">
-  <div class="masthead__inner-wrap">
-    <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <a class="site-title" href="/">Wu Lin</a>
-        <ul class="visible-links">
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/">Home</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/news/">News</a>
-            </li>
-          
-            
-            <li class="masthead__menu-item">
-              <a href="/year-archive/">Blog Posts</a>
-            </li>
-          
-        </ul>
-        
-        <button class="greedy-nav__toggle hidden" type="button">
-          <span class="visually-hidden">Toggle menu</span>
-          <div class="navicon"></div>
-        </button>
-        <ul class="hidden-links hidden"></ul>
-      </nav>
-    </div>
-  </div>
-</div>
-
-    <div class="initial-content">
-      
-
-
-
-<div id="main" role="main">
-  
-
-  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Part I: Smooth Manifolds with the Fisher-Rao Metric">
-    <meta itemprop="description" content="Goal (edited: 06-Feb-23)This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following  useful concepts to ensure non-singular FIMs:  Regularity conditions and intrinsic parameterizations of a distribution  Dimensionality of a smooth manifold">
-    <meta itemprop="datePublished" content="September 06, 2021">
-    <meta itemprop="dateModified" content="February 06, 2023">
-
-    <div class="page__inner-wrap">
-      
-        <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Part I: Smooth Manifolds with the Fisher-Rao Metric
-</h1>
-          
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  22 minute read
-</p>
-          
-        </header>
-      
-
-      <section class="page__content" itemprop="text">
-        
-        <h2 id="goal-edited-06-feb-23">Goal (edited: 06-Feb-23)</h2>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part I: Smooth Manifolds with the Fisher-Rao Metric | Wu Lin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">Wu Lin</span>
+    <span class="nav-links">
+      <a href="/">Home</a>
+      <a href="/research.html">Papers</a>
+      <a href="/year-archive.html">Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    <h1>Part I: Smooth Manifolds with the Fisher-Rao Metric</h1>
+    <p class="post-date">September 06, 2021</p>
+    <h2 id="goal-edited-">Goal (edited: )</h2>
 <p>This blog post focuses on the Fisher-Rao metric, which gives rise to the Fisher information matrix (FIM). We will introduce the following  useful concepts to ensure non-singular FIMs:</p>
 <ul>
   <li>Regularity conditions and intrinsic parameterizations of a distribution</li>
@@ -222,8 +34,7 @@ MathJax = {
 <summary>Click to see how to cite this blog post</summary>
 <fieldset class="field-set">
 
-      <div class="language-latex highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog01,
+      <div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@misc<span class="p">{</span>lin2021NGDblog01,
   title = <span class="p">{</span>Introduction to Natural-gradient Descent: Part I<span class="p">}</span>,
   author = <span class="p">{</span>Lin, Wu and Nielsen, Frank and Khan, Mohammad Emtiyaz and Schmidt, Mark<span class="p">}</span>,
   url = <span class="p">{</span>https://informationgeometryml.github.io/year-archive/<span class="p">}</span>, 
@@ -237,16 +48,13 @@ MathJax = {
 </div>
 
 <h1 id="motivation">Motivation</h1>
-<hr>
+<hr />
 <p>The goal of this blog is to introduce geometric structures associated with probability distributions. Why should we care about such geometric structures?
 By exploiting the structures, we can</p>
 <ul>
-  <li>design efficient and simple algorithms <a class="citation" href="#amari1998natural">[1]</a>
-</li>
-  <li>design robust methods that are less sensitive to re-parametrization <a class="citation" href="#lin2021tractable">[2]</a>
-</li>
-  <li>understand the behavior of models/algorithms using tools from differential geometry, information geometry, and invariant theory <a class="citation" href="#liang2019fisher">[3]</a>
-</li>
+  <li>design efficient and simple algorithms <a class="citation" href="#amari1998natural">(Amari, 1998)</a></li>
+  <li>design robust methods that are less sensitive to re-parametrization <a class="citation" href="#lin2021tractable">(Lin et al., 2021)</a></li>
+  <li>understand the behavior of models/algorithms using tools from differential geometry, information geometry, and invariant theory <a class="citation" href="#liang2019fisher">(Liang et al., 2019)</a></li>
 </ul>
 
 <p>These benefits are relevant for the majority of machine learning methods, all of which make use of probability distributions of various kinds.</p>
@@ -266,7 +74,7 @@ By exploiting the structures, we can</p>
 $$</code>
 where <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \mathcal{N}(y | x^T\tau,1) p(x) $</code> is assumed to be the data-generating distribution. Here, <code class="language-plaintext highlighter-rouge">$ \mathcal{N} (y | m, v) $</code> denotes a normal distribution over <code class="language-plaintext highlighter-rouge">$ y $</code> with mean <code class="language-plaintext highlighter-rouge">$ m $</code> and variance <code class="language-plaintext highlighter-rouge">$ v $</code>.</p>
 
-  <p>Well-known algorithms such as  <a href="https://en.wikipedia.org/wiki/Scoring_algorithm#Fisher_scoring"><strong>Fisher scoring</strong></a>  and <strong>(empirical) natural-gradient descent</strong> <a class="citation" href="#martens2020new">[4]</a> are commonly used methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code>. These are examples of algorithms derived from a frequentist perspective, which can also be generalized to neural networks <a class="citation" href="#martens2020new">[4]</a>.</p>
+  <p>Well-known algorithms such as  <a href="https://en.wikipedia.org/wiki/Scoring_algorithm#Fisher_scoring"><strong>Fisher scoring</strong></a>  and <strong>(empirical) natural-gradient descent</strong> <a class="citation" href="#martens2020new">(Martens, 2020)</a> are commonly used methods that exploit the geometric structure of <code class="language-plaintext highlighter-rouge">$p(x,y | \tau)$</code>. These are examples of algorithms derived from a frequentist perspective, which can also be generalized to neural networks <a class="citation" href="#martens2020new">(Martens, 2020)</a>.</p>
 </blockquote>
 
 <blockquote>
@@ -280,8 +88,8 @@ where <code class="language-plaintext highlighter-rouge">$ p(x,y | \tau) = \math
 $$</code>
 where <code class="language-plaintext highlighter-rouge">$ \mathrm{KL} [ q(z) ||  p(z) ] :=  E_{ {q(z)} } [ \log \big(\frac{q(z)}{p(z)}\big) ]$</code> is the Kullback–Leibler divergence.</p>
 
-  <p>The <strong>natural-gradient variational inference</strong> <a class="citation" href="#khan2017conjugate">[5]</a> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric.
-This approach is derived from a Bayesian  perspective, and can also be generalized to neural networks <a class="citation" href="#lin2021structured">[6]</a> and Bayesian neural networks <a class="citation" href="#osawa2019practical">[7]</a>.</p>
+  <p>The <strong>natural-gradient variational inference</strong> <a class="citation" href="#khan2017conjugate">(Khan &amp; Lin, 2017)</a> is an algorithm that speeds up the inference by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$q(z|\tau)$</code> induced by the Fisher-Rao metric.
+This approach is derived from a Bayesian  perspective, and can also be generalized to neural networks <a class="citation" href="#lin2021structured">(Lin et al., 2021)</a> and Bayesian neural networks <a class="citation" href="#osawa2019practical">(Osawa et al., 2019)</a>.</p>
 </blockquote>
 
 <blockquote>
@@ -295,28 +103,26 @@ This approach is derived from a Bayesian  perspective, and can also be generaliz
 $$</code>
 Samples from the search distribution are evaluated through a “fitness” function <code class="language-plaintext highlighter-rouge">$ h(a) $</code>, and guide the optimization towards better optima.</p>
 
-  <p>The <strong>natural evolution strategies</strong> <a class="citation" href="#wierstra2014natural">[8]</a> is an algorithm that speeds up the search process by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$\pi(a|\tau)$</code>.
-In the context of reinforcement learning,  <code class="language-plaintext highlighter-rouge">$ \pi(a | \tau ) $</code> is known as the policy distribution to generate actions and the natural evolution strategies is known as the <strong>natural policy gradient</strong> method <a class="citation" href="#kakade2001natural">[9]</a>.</p>
+  <p>The <strong>natural evolution strategies</strong> <a class="citation" href="#wierstra2014natural">(Wierstra et al., 2014)</a> is an algorithm that speeds up the search process by exploiting the geometry of <code class="language-plaintext highlighter-rouge">$\pi(a|\tau)$</code>.
+In the context of reinforcement learning,  <code class="language-plaintext highlighter-rouge">$ \pi(a | \tau ) $</code> is known as the policy distribution to generate actions and the natural evolution strategies is known as the <strong>natural policy gradient</strong> method <a class="citation" href="#kakade2001natural">(Kakade, 2001)</a>.</p>
 </blockquote>
 
 <p>In all of the examples above, the objective function is expressed in terms of an expectation w.r.t. a distribution in red, parameterized with the parameter <code class="language-plaintext highlighter-rouge">$ \tau $</code>. 
 The geometric structure of a distribution <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code> for the quantity <code class="language-plaintext highlighter-rouge">$ w $</code> can be exploited to improve the learning algorithms. The table below summarizes the three examples. 
-More applications of similar nature are discussed in <a class="citation" href="#le2007topmoumoute">[10]</a> and <a class="citation" href="#duan2020ngboost">[11]</a>.</p>
+More applications of similar nature are discussed in <a class="citation" href="#le2007topmoumoute">(Le Roux et al., 2007)</a> and <a class="citation" href="#duan2020ngboost">(Duan et al., 2020)</a>.</p>
 
 <table>
   <thead>
     <tr>
       <th style="text-align: left">Example       </th>
       <th style="text-align: center">meaning of <code class="language-plaintext highlighter-rouge">$w$</code>        </th>
-      <th style="text-align: right">distribution <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code>
-</th>
+      <th style="text-align: right">distribution <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td style="text-align: left">Empirical Risk Minimization</td>
-      <td style="text-align: center">observation <code class="language-plaintext highlighter-rouge">$(x,y)$</code>
-</td>
+      <td style="text-align: center">observation <code class="language-plaintext highlighter-rouge">$(x,y)$</code></td>
       <td style="text-align: right"><code class="language-plaintext highlighter-rouge">$p(x,y|\tau)$</code></td>
     </tr>
     <tr>
@@ -335,10 +141,10 @@ More applications of similar nature are discussed in <a class="citation" href="#
 <div class="notice--success">
   <p><strong>Note</strong>:</p>
 
-  <p>In general, we may have to compute or estimate the inverse of the FIM. However, in many useful machine learning applications, algorithms such as <a class="citation" href="#lin2021tractable">[2]</a>  <a class="citation" href="#martens2020new">[4]</a> <a class="citation" href="#khan2017conjugate">[5]</a> <a class="citation" href="#osawa2019practical">[7]</a>  <a class="citation" href="#wierstra2014natural">[8]</a>  <a class="citation" href="#kakade2001natural">[9]</a>  <a class="citation" href="#le2007topmoumoute">[10]</a> can be efficiently implemented without
+  <p>In general, we may have to compute or estimate the inverse of the FIM. However, in many useful machine learning applications, algorithms such as <a class="citation" href="#lin2021tractable">(Lin et al., 2021)</a>  <a class="citation" href="#martens2020new">(Martens, 2020)</a> <a class="citation" href="#khan2017conjugate">(Khan &amp; Lin, 2017)</a> <a class="citation" href="#osawa2019practical">(Osawa et al., 2019)</a>  <a class="citation" href="#wierstra2014natural">(Wierstra et al., 2014)</a>  <a class="citation" href="#kakade2001natural">(Kakade, 2001)</a>  <a class="citation" href="#le2007topmoumoute">(Le Roux et al., 2007)</a> can be efficiently implemented without
 explicitly computing the inverse of the FIM.</p>
 
-  <p>We discuss this in other posts. See<br>
+  <p>We discuss this in other posts. See<br />
 <a href="/posts/2021/12/Geomopt05/#efficient-ngd-for-multivariate-gaussians">Part V</a>
 and 
 <a href="/posts/2021/07/ICML/">our ICML work</a>.</p>
@@ -348,12 +154,12 @@ and
 The following figure illustrates four distributions in the Gaussian family denoted by
 <code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |\mu,\sigma) \Big| \mu \in \mathcal{R}, \sigma&gt;0 \}$</code>, where <code class="language-plaintext highlighter-rouge">$ \mathcal{N}(w |\mu,\sigma) := \frac{1}{\sqrt{2\pi \sigma} } \exp [- \frac{(w-\mu)^2}{2\sigma} ] $</code>  and parameter <code class="language-plaintext highlighter-rouge">$\tau :=(\mu,\sigma) $</code>. We will later see that this family is a 2-dimensional manifold in the parameter space.</p>
 
-<p><img src="/img/gauss1d.png" alt="Figure 2" title="Source:Wikipedia"></p>
+<p><img src="/img/gauss1d.png" alt="Figure 2" title="Source:Wikipedia" /></p>
 
 <h1 id="intrinsic-parameterizations">Intrinsic Parameterizations</h1>
-<hr>
+<hr />
 <p>We start by discussing a special type of parameterizations, we call intrinsic parameterizations, which are useful to obtain non-singular FIMs.
-An arbitrary parameterization may not always be appropriate for a smooth manifold <a class="citation" href="#tu2011introduction">[12]</a>. Rather, the parameterization should be such that the manifold is locally like a <em>flat</em> vector space, for example, how the curved Earth surface looks flat to us, locally.
+An arbitrary parameterization may not always be appropriate for a smooth manifold <a class="citation" href="#tu2011introduction">(Tu, 2011)</a>. Rather, the parameterization should be such that the manifold is locally like a <em>flat</em> vector space, for example, how the curved Earth surface looks flat to us, locally.
 We will refer to such flat vector space as a <em>local</em> vector-space structure (denote it by <code class="language-plaintext highlighter-rouge">$ E $</code>).</p>
 
 <div class="notice--success">
@@ -364,7 +170,7 @@ We will refer to such flat vector space as a <em>local</em> vector-space structu
 for the details.)</p>
 </div>
 
-<p>Intrinsic parameterizations<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup> are those that satisfy the following two conditions:</p>
+<p>Intrinsic parameterizations<sup id="fnref:1"><a href="#fn:1" class="footnote" rel="footnote" role="doc-noteref">1</a></sup> are those that satisfy the following two conditions:</p>
 <ul>
   <li>We require that the parameter space of $\tau$, denoted by $\Omega_\tau$, be an <strong>open</strong> set in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^K$</code>, where <code class="language-plaintext highlighter-rouge">$K$</code> is the number of entries of a parameter array. Intuitively, this ensures a local vector-space structure throughout the parameter space, which then ensures that a small, local perturbation <code class="language-plaintext highlighter-rouge">$ E $</code> at each point stays within <code class="language-plaintext highlighter-rouge">$\Omega_\tau$</code>.</li>
   <li>We also require that <code class="language-plaintext highlighter-rouge">$ E $</code>  <strong>uniquely</strong> and <strong>smoothly</strong> represents  points in a manifold. The condition ensures arbitrary (smooth) parameter transformations should still represent the same sub-set. In other words, we require that
@@ -381,7 +187,7 @@ for the details.)</p>
 
 <p>We will now discuss a simple case of a manifold, a unit circle in <code class="language-plaintext highlighter-rouge">$\mathcal{R}^2$</code>, and give an example of an intrinsic parameterization and three non-intrinsic ones due to different reasons such as non-smoothness, non-openness, and non-uniqueness.</p>
 
-<p><img src="/img/circle.png" title="Source:Wikipedia" width="300"></p>
+<p><img src="/img/circle.png" title="Source:Wikipedia" width="300" /></p>
 
 <blockquote>
   <p>Parameterization 1 (an intrinsic parameterization):</p>
@@ -389,11 +195,11 @@ for the details.)</p>
   <p>A (local) parametrization at $ (0,1) $ highlighted in red for the circle is
 <code class="language-plaintext highlighter-rouge">$\{ (t,\sqrt{1-t^2}) | -h&lt;t&lt;h \} $</code>, where $h=0.1$. We use <strong>one</strong> (scalar) parameter in this parametrization. The manifold is (locally) “flat” since we can always find a small <strong>1-dimensional</strong> perturbation $E$ in the <strong>1-dimensional</strong> parameter space  <code class="language-plaintext highlighter-rouge">$\Omega_t=\{t|-h&lt;t&lt;h \} $</code>. Therefore, this is an intrinsic parameterization.</p>
 
-  <p><img src="/img/1d-perturbation.png" title="Fig" width="300"></p>
+  <p><img src="/img/1d-perturbation.png" title="Fig" width="300" /></p>
 
   <p>We can similarly define a (local) parametrization at each point of the circle. In fact, we can use  finite (local) parameterizations to represent the whole circle as shown below.</p>
 
-  <p><img src="/img/charts.png" title="Source:Wikipedia" width="200"></p>
+  <p><img src="/img/charts.png" title="Source:Wikipedia" width="200" /></p>
 </blockquote>
 
 <p>Now, we discuss invalid cases, where not all conditions are satisfied.</p>
@@ -420,7 +226,7 @@ We will discuss this in  <a href="/posts/2021/11/Geomopt03/#parameter-transforma
 
   <p>The reason is that we cannot find a small <strong>2-dimensional</strong> perturbation $E$ in the <strong>2-dimensional</strong> parameter space <code class="language-plaintext highlighter-rouge">$\Omega_{\tau}=\{(x,y)|x^2+y^2=1 \} $</code> due to the constraint $x^2+y^2=1$. In other words, $\Omega_\tau$ is not open in $\mathcal{R}^2$.</p>
 
-  <p><img src="/img/2d-perturbation.png" title="Fig" width="300"></p>
+  <p><img src="/img/2d-perturbation.png" title="Fig" width="300" /></p>
 </blockquote>
 
 <blockquote>
@@ -433,7 +239,7 @@ We will discuss this in  <a href="/posts/2021/11/Geomopt03/#parameter-transforma
 </blockquote>
 
 <h1 id="intrinsic-parameterizations-for-parametric-families">Intrinsic Parameterizations for Parametric families</h1>
-<hr>
+<hr />
 <p>The examples in the previous section clearly show the importance of parameterization, and that it should be chosen carefully. Now, we discuss how to choose such a parameterization for a given parametric family.</p>
 
 <p>Roughly speaking, a parameterization <code class="language-plaintext highlighter-rouge">$ \tau $</code> for a family of distribution <code class="language-plaintext highlighter-rouge">$ p(w|\tau) $</code> is intrinsic if <code class="language-plaintext highlighter-rouge">$\log
@@ -505,7 +311,7 @@ Therefore, the partial derivatives are linearly dependent.</p>
 <p>On the other hand, the condition holds for the following parameterization: <code class="language-plaintext highlighter-rouge">$\{ \mathcal{I}(w=0) \pi_0+ \mathcal{I}(w=1) (1-\pi_0)  \Big| 0&lt;\pi_0&lt;1  \}$</code> with parameter <code class="language-plaintext highlighter-rouge">$\tau = \pi_0$</code>.</p>
 
 <h1 id="fisher-rao-metric">Fisher-Rao Metric</h1>
-<hr>
+<hr />
 
 <p>Given an intrinsic parameterization, the Fisher-Rao metric is defined as follows,
 <code class="language-plaintext highlighter-rouge">$$
@@ -526,10 +332,10 @@ where $K$ is the number of entries of parameter array $\tau$ and
 <code class="language-plaintext highlighter-rouge">$ \mathbf{F}(\tau) := - E_{p(w|\tau) }  [  \nabla_{\tau}^2 \log p(w|\tau )  ]$</code>.
 The regularity condition guarantees that the FIM is non-singular if the matrix exists, that is, the expectation in the definition exists.</p>
 
-<p>In what follows, we will assume the metric to be well-defined, which makes the Fisher-Rao metric a valid Riemannian metric <a class="citation" href="#lee2018introduction">[13]</a> since the corresponding FIM is positive definite everywhere in its intrinsic parameter space.</p>
+<p>In what follows, we will assume the metric to be well-defined, which makes the Fisher-Rao metric a valid Riemannian metric <a class="citation" href="#lee2018introduction">(Lee, 2018)</a> since the corresponding FIM is positive definite everywhere in its intrinsic parameter space.</p>
 
 <h1 id="caveats-of-the-fisher-matrix-computation">Caveats of the Fisher matrix computation</h1>
-<hr>
+<hr />
 <p>There are some caveats when it comes to the Fisher matrix computation. In particular, the regularity condition should be satisfied.
 It is possible to define the FIM under a non-intrinsic parameterization. However, the FIM often is singular or ill-defined under a non-intrinsic  parameterization as shown below.</p>
 
@@ -646,9 +452,9 @@ This parametrization leads to a <strong>singular</strong> FIM w.r.t. <code class
       <p>Well-defined parametrization with <strong>intrinsic</strong> $3$-by-$1$  parameter vector <code class="language-plaintext highlighter-rouge">$v$</code>: <code class="language-plaintext highlighter-rouge">$\Big\{ \exp\Big( -\frac{1}{2}
 \Big[  w^T  ( \mathrm{vech}^{-1}(v))^{-1} w + \log \mathrm{det}( \mathrm{vech}^{-1}(v)) + 2 \log (2\pi)  \Big] \Big)
 \Big|   \mathrm{vech}^{-1}(v) \succ \mathbf{0} \Big\}$</code>.
-<br>  Given a symmetric <code class="language-plaintext highlighter-rouge">$d$</code>-by-<code class="language-plaintext highlighter-rouge">$d$</code> matrix $\Sigma$, we define another vectorization map, <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\Sigma)$</code>, which returns a <code class="language-plaintext highlighter-rouge">$\frac{d(d + 1)}{2}$</code>-dim array obtained by vectorizing only the lower triangular part of <code class="language-plaintext highlighter-rouge">$\Sigma$</code>.
+<br />  Given a symmetric <code class="language-plaintext highlighter-rouge">$d$</code>-by-<code class="language-plaintext highlighter-rouge">$d$</code> matrix $\Sigma$, we define another vectorization map, <code class="language-plaintext highlighter-rouge">$\mathrm{vech}(\Sigma)$</code>, which returns a <code class="language-plaintext highlighter-rouge">$\frac{d(d + 1)}{2}$</code>-dim array obtained by vectorizing only the lower triangular part of <code class="language-plaintext highlighter-rouge">$\Sigma$</code>.
 This map is known as the <a href="https://en.wikipedia.org/wiki/Vectorization_(mathematics)#Half-vectorization">half-vectorization map</a>. 
-<br>   Equivalently, parameter $\Sigma:=\mathrm{vech}^{-1}(v)$
+<br />   Equivalently, parameter $\Sigma:=\mathrm{vech}^{-1}(v)$
 is a symmetric parameter matrix. Note that <code class="language-plaintext highlighter-rouge">$\mathrm{vech}^{-1}(v)$</code> implicitly enforces the symmetry constraint and we should compute derivatives w.r.t. <code class="language-plaintext highlighter-rouge">$v$</code> instead of <code class="language-plaintext highlighter-rouge">$\Sigma$</code> under
 this parametrization.
 This parametrization leads to a <strong>non-singular</strong> FIM w.r.t. <code class="language-plaintext highlighter-rouge">$v=\mathrm{vech}(\Sigma)$</code>.</p>
@@ -695,31 +501,30 @@ This parametrization leads to a <strong>non-singular</strong> FIM w.r.t. <code c
       <details>
 <summary>Python (JAX) code of the Gaussian examples: (Click to expand)</summary>
 <fieldset class="field-set">
-          <div class="language-python highlighter-rouge">
-<div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">jax</span>
-<span class="kn">import</span> <span class="nn">jax.numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="nn">jax.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">;</span> <span class="n">config</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="s">"jax_enable_x64"</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+          <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">jax</span>
+<span class="kn">import</span> <span class="n">jax.numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="n">jax.config</span> <span class="kn">import</span> <span class="n">config</span><span class="p">;</span> <span class="n">config</span><span class="p">.</span><span class="nf">update</span><span class="p">(</span><span class="sh">"</span><span class="s">jax_enable_x64</span><span class="sh">"</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">neg_log_p</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">is_sym</span><span class="p">):</span>
-    <span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">param</span><span class="p">,(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">))</span> <span class="c1"># co-variance # (Sigma = vec^{-1}(param))
+    <span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">param</span><span class="p">,(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">))</span> <span class="c1"># co-variance # (Sigma = vec^{-1}(param))
 </span>    <span class="k">if</span> <span class="n">is_sym</span><span class="p">:</span>
         <span class="n">Sigma</span> <span class="o">=</span> <span class="p">(</span><span class="n">Sigma</span><span class="o">+</span><span class="n">Sigma</span><span class="p">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
-    <span class="n">Sigma0</span> <span class="o">=</span> <span class="n">jax</span><span class="p">.</span><span class="n">lax</span><span class="p">.</span><span class="n">stop_gradient</span><span class="p">(</span> <span class="p">(</span><span class="n">Sigma</span><span class="o">+</span><span class="n">Sigma</span><span class="p">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="p">)</span>
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">trace</span><span class="p">(</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">Sigma</span><span class="p">,</span><span class="n">Sigma0</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># Tr(Sigma^{-1} Sigma_0)
-</span>    <span class="n">_</span><span class="p">,</span> <span class="n">logdet</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">slogdet</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span> <span class="c1"># log det(Sigma)
-</span>    <span class="k">return</span> <span class="p">(</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">logdet</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="n">Sigma0</span> <span class="o">=</span> <span class="n">jax</span><span class="p">.</span><span class="n">lax</span><span class="p">.</span><span class="nf">stop_gradient</span><span class="p">(</span> <span class="p">(</span><span class="n">Sigma</span><span class="o">+</span><span class="n">Sigma</span><span class="p">.</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span> <span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">trace</span><span class="p">(</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">solve</span><span class="p">(</span><span class="n">Sigma</span><span class="p">,</span><span class="n">Sigma0</span><span class="p">)</span> <span class="p">)</span> <span class="c1"># Tr(Sigma^{-1} Sigma_0)
+</span>    <span class="n">_</span><span class="p">,</span> <span class="n">logdet</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">slogdet</span><span class="p">(</span><span class="n">Sigma</span><span class="p">)</span> <span class="c1"># log det(Sigma)
+</span>    <span class="nf">return </span><span class="p">(</span> <span class="n">trace</span> <span class="o">+</span> <span class="n">logdet</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
 <span class="n">is_sym</span> <span class="o">=</span> <span class="bp">False</span> <span class="c1"># Gaussian Example 1 if is_sym==False; Gaussian Example 2 if is_sym==True
 </span><span class="n">d</span><span class="o">=</span><span class="mi">2</span>
-<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">eye</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-<span class="n">param</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">Sigma</span><span class="p">,(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span> <span class="c1">#vec(Sigma)
-</span><span class="k">print</span><span class="p">(</span> <span class="s">'vec(Sigma):'</span><span class="p">,</span> <span class="n">param</span> <span class="p">)</span>
-<span class="k">print</span><span class="p">(</span> <span class="s">'Sigma:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">param</span><span class="p">,(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">))</span> <span class="p">)</span>
-<span class="n">nlp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">param</span><span class="p">:</span><span class="n">neg_log_p</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">is_sym</span><span class="p">)</span>
-<span class="n">hess_f</span> <span class="o">=</span> <span class="n">jax</span><span class="p">.</span><span class="n">jacfwd</span><span class="p">(</span><span class="n">jax</span><span class="p">.</span><span class="n">jacrev</span><span class="p">(</span><span class="n">nlp</span><span class="p">))</span>
-<span class="n">hess</span> <span class="o">=</span> <span class="n">hess_f</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">'FIM:</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="n">hess</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span> <span class="s">'det(FIM):%f'</span><span class="o">%</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">det</span><span class="p">(</span><span class="n">hess</span><span class="p">)</span> <span class="p">)</span>
-<span class="n">w</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">hess</span><span class="p">)</span><span class="c1">#eigen values
-</span><span class="k">print</span><span class="p">(</span><span class="s">'eigen values of the FIM:'</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
+<span class="n">Sigma</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">param</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">Sigma</span><span class="p">,(</span><span class="o">-</span><span class="mi">1</span><span class="p">,))</span> <span class="c1">#vec(Sigma)
+</span><span class="nf">print</span><span class="p">(</span> <span class="sh">'</span><span class="s">vec(Sigma):</span><span class="sh">'</span><span class="p">,</span> <span class="n">param</span> <span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span> <span class="sh">'</span><span class="s">Sigma:</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">param</span><span class="p">,(</span><span class="n">d</span><span class="p">,</span><span class="n">d</span><span class="p">))</span> <span class="p">)</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">param</span><span class="p">:</span><span class="nf">neg_log_p</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">is_sym</span><span class="p">)</span>
+<span class="n">hess_f</span> <span class="o">=</span> <span class="n">jax</span><span class="p">.</span><span class="nf">jacfwd</span><span class="p">(</span><span class="n">jax</span><span class="p">.</span><span class="nf">jacrev</span><span class="p">(</span><span class="n">nlp</span><span class="p">))</span>
+<span class="n">hess</span> <span class="o">=</span> <span class="nf">hess_f</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">FIM:</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="n">hess</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span> <span class="sh">'</span><span class="s">det(FIM):%f</span><span class="sh">'</span><span class="o">%</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">det</span><span class="p">(</span><span class="n">hess</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">w</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">eigh</span><span class="p">(</span><span class="n">hess</span><span class="p">)</span><span class="c1">#eigen values
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">eigen values of the FIM:</span><span class="sh">'</span><span class="p">,</span><span class="n">w</span><span class="p">)</span>
 </code></pre></div>          </div>
         </fieldset>
 </details>
@@ -759,9 +564,9 @@ $$</code> where  <code class="language-plaintext highlighter-rouge">$ F_2(\mathr
 </blockquote>
 
 <h1 id="dimensionality-of-a-manifold">Dimensionality of a manifold</h1>
-<hr>
+<hr />
 <p>We can define the dimension of a manifold by using the  degrees of freedom of an intrinsic parametrization.
-Due to the theorem of <a href="https://ncatlab.org/nlab/show/topological+invariance+of+dimension">toplological invariance of dimension</a>, any intrinsic parametrization of a manifold has the same degrees of freedom <a class="citation" href="#tu2011introduction">[12]</a>.
+Due to the theorem of <a href="https://ncatlab.org/nlab/show/topological+invariance+of+dimension">toplological invariance of dimension</a>, any intrinsic parametrization of a manifold has the same degrees of freedom <a class="citation" href="#tu2011introduction">(Tu, 2011)</a>.
 This also gives us a tool to  identify non-manifold cases.
 We now illustrate this by examples.</p>
 
@@ -775,9 +580,9 @@ We now illustrate this by examples.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="/img/circle-org.png" alt="Source:Wikipedia" width="200"></td>
-      <td style="text-align: center"><img src="/img/open-ball.png" alt="Source:Wikipedia" width="200"></td>
-      <td style="text-align: center"><img src="/img/closed-ball.png" alt="Source:Wikipedia" width="200"></td>
+      <td style="text-align: center"><img src="/img/circle-org.png" alt="Source:Wikipedia" width="200" /></td>
+      <td style="text-align: center"><img src="/img/open-ball.png" alt="Source:Wikipedia" width="200" /></td>
+      <td style="text-align: center"><img src="/img/closed-ball.png" alt="Source:Wikipedia" width="200" /></td>
     </tr>
     <tr>
       <td style="text-align: center">1-dim manifold</td>
@@ -806,320 +611,69 @@ The  circle and the open unit ball do not have the same dimensionality.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">
-<code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |0,s^{-1}) \Big|  s&gt;0 \}$</code> with precision <code class="language-plaintext highlighter-rouge">$s$</code> <br> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = s $</code>
-</td>
-      <td style="text-align: center">
-<code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathrm{vech}^{-1}(\tau) = \mathbf{S}   \succ \mathbf{0} \}$</code> with precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>  <br> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code>.</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(w |0,s^{-1}) \Big|  s&gt;0 \}$</code> with precision <code class="language-plaintext highlighter-rouge">$s$</code> <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = s $</code></td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$ \{ \mathcal{N}(\mathbf{w} |\mathbf{0},\mathbf{S}^{-1}) \Big| \mathrm{vech}^{-1}(\tau) = \mathbf{S}   \succ \mathbf{0} \}$</code> with precision <code class="language-plaintext highlighter-rouge">$\mathbf{S}$</code>  <br /> under intrinsic parameterization <code class="language-plaintext highlighter-rouge">$\tau = \mathrm{vech}(\mathbf{S})$</code>.</td>
     </tr>
     <tr>
       <td style="text-align: center">1-dim statistical manifold</td>
-      <td style="text-align: center">
-<code class="language-plaintext highlighter-rouge">$\frac{d(d+1)}{2}$</code>-dim statistical  manifold</td>
+      <td style="text-align: center"><code class="language-plaintext highlighter-rouge">$\frac{d(d+1)}{2}$</code>-dim statistical  manifold</td>
     </tr>
   </tbody>
 </table>
 
-<hr>
+<hr />
 <h1 id="references">References</h1>
-<p class="bibliography"></p>
-<p><span id="amari1998natural">[1] S.-I. Amari, "Natural gradient works efficiently in learning," <i>Neural computation</i> <b>10</b>:251–276 (1998).</span></p>
-<p><span id="lin2021tractable">[2] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Tractable structured natural gradient descent using local parameterizations," <i>International Conference on Machine Learning (ICML)</i> (2021).</span></p>
-<p><span id="liang2019fisher">[3] T. Liang, T. Poggio, A. Rakhlin, &amp; J. Stokes, "Fisher-rao metric, geometry, and complexity of neural networks," <i>The 22nd International Conference on Artificial Intelligence and Statistics</i> (PMLR, 2019), pp. 888–896.</span></p>
-<p><span id="martens2020new">[4] J. Martens, "New Insights and Perspectives on the Natural Gradient Method," <i>Journal of Machine Learning Research</i> <b>21</b>:1–76 (2020).</span></p>
-<p><span id="khan2017conjugate">[5] M. Khan &amp; W. Lin, "Conjugate-computation variational inference: Converting variational inference in non-conjugate models to inferences in conjugate models," <i>Artificial Intelligence and Statistics</i> (PMLR, 2017), pp. 878–887.</span></p>
-<p><span id="lin2021structured">[6] W. Lin, F. Nielsen, M. E. Khan, &amp; M. Schmidt, "Structured second-order methods via natural gradient descent," <i>arXiv preprint arXiv:2107.10884</i> (2021).</span></p>
-<p><span id="osawa2019practical">[7] K. Osawa, S. Swaroop, A. Jain, R. Eschenhagen, R. E. Turner, R. Yokota, &amp; M. E. Khan, "Practical deep learning with Bayesian principles," <i>Proceedings of the 33rd International Conference on Neural Information Processing Systems</i> (2019), pp. 4287–4299.</span></p>
-<p><span id="wierstra2014natural">[8] D. Wierstra, T. Schaul, T. Glasmachers, Y. Sun, J. Peters, &amp; J. Schmidhuber, "Natural evolution strategies," <i>The Journal of Machine Learning Research</i> <b>15</b>:949–980 (2014).</span></p>
-<p><span id="kakade2001natural">[9] S. M. Kakade, "A natural policy gradient," <i>Advances in neural information processing systems</i> <b>14</b> (2001).</span></p>
-<p><span id="le2007topmoumoute">[10] N. Le Roux, P.-A. Manzagol, &amp; Y. Bengio, "Topmoumoute Online Natural Gradient Algorithm.," <i>NIPS</i> (Citeseer, 2007), pp. 849–856.</span></p>
-<p><span id="duan2020ngboost">[11] T. Duan, A. Anand, D. Y. Ding, K. K. Thai, S. Basu, A. Ng, &amp; A. Schuler, "Ngboost: Natural gradient boosting for probabilistic prediction," <i>International Conference on Machine Learning</i> (PMLR, 2020), pp. 2690–2700.</span></p>
-<p><span id="tu2011introduction">[12] L. W. Tu, "An introduction to manifolds. Second," <i>New York, US: Springer</i> (2011).</span></p>
-<p><span id="lee2018introduction">[13] J. M. Lee, <i>Introduction to Riemannian manifolds</i> (Springer, 2018).</span></p>
+<ol class="bibliography"><li><span id="amari1998natural">Amari, S.-I. (1998). Natural gradient works efficiently in learning. <i>Neural Computation</i>, <i>10</i>(2), 251–276.</span></li>
+<li><span id="lin2021tractable">Lin, W., Nielsen, F., Khan, M. E., &amp; Schmidt, M. (2021). Tractable structured natural gradient descent using local parameterizations. <i>International Conference on Machine Learning (ICML)</i>.</span></li>
+<li><span id="liang2019fisher">Liang, T., Poggio, T., Rakhlin, A., &amp; Stokes, J. (2019). Fisher-rao metric, geometry, and complexity of neural networks. <i>The 22nd International Conference on Artificial Intelligence and Statistics</i>, 888–896.</span></li>
+<li><span id="martens2020new">Martens, J. (2020). New Insights and Perspectives on the Natural Gradient Method. <i>Journal of Machine Learning Research</i>, <i>21</i>, 1–76.</span></li>
+<li><span id="khan2017conjugate">Khan, M., &amp; Lin, W. (2017). Conjugate-computation variational inference: Converting variational inference in non-conjugate models to inferences in conjugate models. <i>Artificial Intelligence and Statistics</i>, 878–887.</span></li>
+<li><span id="lin2021structured">Lin, W., Nielsen, F., Khan, M. E., &amp; Schmidt, M. (2021). Structured second-order methods via natural gradient descent. <i>ArXiv Preprint ArXiv:2107.10884</i>.</span></li>
+<li><span id="osawa2019practical">Osawa, K., Swaroop, S., Jain, A., Eschenhagen, R., Turner, R. E., Yokota, R., &amp; Khan, M. E. (2019). Practical deep learning with Bayesian principles. <i>Proceedings of the 33rd International Conference on Neural Information Processing Systems</i>, 4287–4299.</span></li>
+<li><span id="wierstra2014natural">Wierstra, D., Schaul, T., Glasmachers, T., Sun, Y., Peters, J., &amp; Schmidhuber, J. (2014). Natural evolution strategies. <i>The Journal of Machine Learning Research</i>, <i>15</i>(1), 949–980.</span></li>
+<li><span id="kakade2001natural">Kakade, S. M. (2001). A natural policy gradient. <i>Advances in Neural Information Processing Systems</i>, <i>14</i>.</span></li>
+<li><span id="le2007topmoumoute">Le Roux, N., Manzagol, P.-A., &amp; Bengio, Y. (2007). Topmoumoute Online Natural Gradient Algorithm. <i>NIPS</i>, 849–856.</span></li>
+<li><span id="duan2020ngboost">Duan, T., Anand, A., Ding, D. Y., Thai, K. K., Basu, S., Ng, A., &amp; Schuler, A. (2020). Ngboost: Natural gradient boosting for probabilistic prediction. <i>International Conference on Machine Learning</i>, 2690–2700.</span></li>
+<li><span id="tu2011introduction">Tu, L. W. (2011). An introduction to manifolds. Second. <i>New York, US: Springer</i>.</span></li>
+<li><span id="lee2018introduction">Lee, J. M. (2018). <i>Introduction to Riemannian manifolds</i>. Springer.</span></li></ol>
 
 <h2 id="footnotes">Footnotes:</h2>
 
 <div class="footnotes" role="doc-endnotes">
   <ol>
-    <li id="fn:1" role="doc-endnote">
-      <p>In differential geometry, an intrinsic parametrization is known as a coordinate chart. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">↩</a></p>
+    <li id="fn:1">
+      <p>In differential geometry, an intrinsic parametrization is known as a coordinate chart. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#information-geometry" class="page__taxonomy-item" rel="tag">Information Geometry</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#natural-gradient-descent" class="page__taxonomy-item" rel="tag">Natural Gradient Descent</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#riemannian-manifold" class="page__taxonomy-item" rel="tag">Riemannian Manifold</a>
-    
-    </span>
-  </p>
-
-
-
-
-        
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-02-06">February 06, 2023</time></p>
-        
-      </footer>
-
-      <section class="page__share">
-  
-    <h4 class="page__share-title" data-translate="share_on_label">Share on</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=Part+I%3A+Smooth+Manifolds+with+the+Fisher-Rao+Metric%20informationgeometryML.github.io%2Fposts%2F2021%2F09%2FGeomopt01%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=informationgeometryML.github.io%2Fposts%2F2021%2F09%2FGeomopt01%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=informationgeometryML.github.io%2Fposts%2F2021%2F09%2FGeomopt01%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-
-
-
-     
-
-  <script src="https://utteranc.es/client.js" repo="yorkerlin/yorkerlin.github.io" issue-term="url" label="blog-comments" theme="github-light" crossorigin="anonymous" async>
-  </script>
-
-
-
-
-
-</section>
-
-
-      
-  <nav class="pagination">
-    
-      <a href="/posts/2021/07/ICML/" class="pagination--pager" title="Structured Natural Gradient Descent (ICML 2021)
-">Previous</a>
-    
-    
-      <a href="/posts/2021/10/Geomopt02/" class="pagination--pager" title="Part II: Derivation of Natural-gradients
-">Next</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt06/" rel="permalink">Part VI: Handling Parameter Constraints of Exponential Family In Natural-gradient Methods
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  5 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (Part VI is incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/12/Geomopt05/" rel="permalink">Part V: Efficient Natural-gradient Methods for Exponential Family
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  19 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt04/" rel="permalink">Part IV: Natural Gradient Descent and its Extension—Riemannian Gradient Descent
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  20 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Warning: working in Progress (incomplete)
-
-</p>
-  </article>
-</div>
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/posts/2021/11/Geomopt03/" rel="permalink">Part III: Invariance of Natural-Gradients
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  14 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Goal (edited: 01-Jan-23)
-This blog post focuses on invariant properties of natural-gradients.
-We will discuss
-
-  transformation rules of natural-gradients,
- ...</p>
-  </article>
-</div>
-        
-      </div>
-    </div>
-  
-  
-</div>
-    </div>
-
-    
-
-    <div class="page__footer">
-      <footer>
-        <!-- start custom footer snippets -->
-
-<!-- end custom footer snippets -->
-        <div class="page__footer-follow">
-  <ul class="social-icons">
-    
-      <li><strong>Follow</strong></li>
-    
-    
-    
-    
-      <li><a href="https://github.com/yorkerlin"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
-    
-    
-    
-    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
-  </ul>
+  </div>
 </div>
 
-<div class="page__footer-copyright">© 2026 Wu Lin. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<script>
+  // Unwrap ALL math from <code> tags before MathJax loads
+  document.querySelectorAll('code').forEach(function(el) {
+    var text = el.textContent;
+    if (/\$/.test(text)) {
+      // Use a temp element to safely HTML-encode the text
+      var temp = document.createElement('span');
+      temp.textContent = text;
+      el.outerHTML = temp.innerHTML;
+    }
+  });
 
-      </footer>
-    </div>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
 
-    
-  <script src="/assets/js/main.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-
-
-
-
-
-
---&gt;
-    <!--
-
-  <script src="https://utteranc.es/client.js"
-    repo=yorkerlin/yorkerlin.github.io
-    issue-term=url
-    label=blog-comments
-    theme=github-light
-    crossorigin= "anonymous"
-    async>
-  </script>
-
--->
-  
-
-
-
-
-
-  
-    <script src="/assets/js/custom.js"></script>
-  
-    <script src="/assets/js/math-code.js"></script>
-  
-
-
-
-  </body>
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
 </html>

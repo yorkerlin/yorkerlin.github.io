@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papers - Wu Lin</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+  <nav class="site-nav">
+    <span class="site-name">Wu Lin</span>
+    <span class="nav-links">
+      <a href="/" >Home</a>
+      <a href="/research.html" class="active">Papers</a>
+      <a href="/year-archive.html" >Blog Posts</a>
+    </span>
+  </nav>
+  <hr class="nav-rule">
+  <div class="main-content">
+    
+    <h2 id="papers">Papers</h2>
+
+<p>For natural-gradient (NG) methods:</p>
+
+<ul>
+  <li>
+    <p>Improving optimizers Shampoo and SOAP via Riemannian/proximal gradient descent (ICLR 2026):
+<a href="https://arxiv.org/abs/2509.03378">Paper</a>, <a href="https://github.com/yorkerlin/KL-Methods">Code</a></p>
+  </li>
+  <li>
+    <p>Adaptive gradient methods as NGD (ICML 2024):
+<a href="https://arxiv.org/abs/2402.03496">Paper</a>, <a href="https://github.com/yorkerlin/remove-the-square-root">Code</a></p>
+  </li>
+  <li>
+    <p>Structured NG descent for deep learning (ICML 2023, ICML 2024):
+<a href="https://arxiv.org/abs/2302.09738">Manifold View</a>, <a href="https://github.com/yorkerlin/StructuredNGD-DL">Code 2023</a>;
+<a href="https://arxiv.org/abs/2312.05705">Bayesian View</a>, <a href="https://github.com/f-dangel/singd">Code 2024</a></p>
+  </li>
+  <li>
+    <p>Structured NG descent (ICML 2021):
+<a href="https://arxiv.org/abs/2102.07405">Paper</a>, <a href="/posts/2021/07/ICML/">Blog</a></p>
+  </li>
+  <li>
+    <p>Riemannian gradient descent (ICML 2020):
+<a href="https://arxiv.org/abs/2002.10060">Paper</a>, <a href="https://github.com/yorkerlin/iBayesLRule">Code</a></p>
+  </li>
+  <li>
+    <p>NG descent for exponential-family mixtures (ICML 2019):
+<a href="https://arxiv.org/abs/1906.02914">Paper</a>, <a href="https://github.com/yorkerlin/VB-MixEF">Code</a></p>
+  </li>
+  <li>
+    <p>NG descent for Bayesian deep learning (ICML 2018):
+<a href="https://arxiv.org/abs/1806.04854">Paper</a>, <a href="https://github.com/emtiyaz/vadam">Code</a></p>
+  </li>
+  <li>
+    <p>NG variational inference for non-conjugate models (AI&amp;Stats 2017):
+<a href="https://arxiv.org/abs/1703.04265">Paper</a>, <a href="https://github.com/emtiyaz/cvi">Code</a></p>
+  </li>
+</ul>
+
+<p>For an introduction to NG methods, see my <a href="/posts/2021/09/Geomopt01/">Blog Posts</a>.</p>
+
+<p>For more publications, see my <a href="https://scholar.google.com/citations?user=sGl6muoAAAAJ&amp;hl=en">Google Scholar</a> page.</p>
+
+    
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('code.language-plaintext').forEach(function(el) {
+    var text = el.textContent;
+    if (text.indexOf('$') !== -1) {
+      var parent = el.parentNode;
+      if (parent.tagName === 'P' && text.match(/^\$\$/)) {
+        var div = document.createElement('div');
+        div.innerHTML = text;
+        parent.parentNode.replaceChild(div, parent);
+      } else {
+        var textNode = document.createTextNode(text);
+        parent.replaceChild(textNode, el);
+      }
+    }
+  });
+
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams'
+    }
+  };
+
+  var script = document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js';
+  document.head.appendChild(script);
+</script>
+</body>
+</html>
