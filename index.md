@@ -6,8 +6,6 @@ title: Wu Lin
 
 ## Wu Lin
 
-Research Machine Learning \| Learn Math and Physics
-
 **Email:** [yorker.lin@gmail.com](mailto:yorker.lin@gmail.com)
 &nbsp;&middot;&nbsp;
 [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en)
