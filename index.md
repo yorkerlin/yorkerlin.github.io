@@ -36,7 +36,7 @@ I am working on computational aspects of differential, geometric, and algebraic 
 
 ### Research Interests
 
-I am interested in exploiting (hidden) structures and symmetries in machine learning with a focus on practical and numerical methods for optimization and statistical inference.
+I am interested in exploiting (hidden) structures and symmetries in machine learning with a focus on scalable methods for numerical optimization and statistical inference.
 
 ### Selected Papers
 
