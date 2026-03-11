@@ -10,7 +10,7 @@ For natural-gradient (NG) methods:
 - Improving optimizers Shampoo and SOAP via Riemannian/proximal gradient descent (ICLR 2026):
   [Paper](https://arxiv.org/abs/2509.03378), [Code](https://github.com/yorkerlin/KL-Methods)
 
-- Adaptive gradient methods as NGD (ICML 2024):
+- Adaptive gradient methods as NG descent (ICML 2024):
   [Paper](https://arxiv.org/abs/2402.03496), [Code](https://github.com/yorkerlin/remove-the-square-root)
 
 - Structured NG descent for deep learning (ICML 2023, ICML 2024):
