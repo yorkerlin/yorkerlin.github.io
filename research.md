@@ -32,6 +32,9 @@ For natural-gradient (NG) methods:
 - NG variational inference for non-conjugate models (AI&Stats 2017):
   [Paper](https://arxiv.org/abs/1703.04265), [Code](https://github.com/emtiyaz/cvi)
 
+- Improving variational inference via proximal gradient descent (UAI 2016):
+  [Paper](https://arxiv.org/abs/1511.00146)
+
 For an introduction to NG methods, see my [Blog Posts](/posts/2021/09/Geomopt01/).
 
 For more publications, see my [Google Scholar](https://scholar.google.com/citations?user=sGl6muoAAAAJ&hl=en) page.
